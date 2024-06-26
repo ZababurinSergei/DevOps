@@ -206,7 +206,7 @@ const BaseClass = class extends HTMLElement {
             gitDir: `/git/github.com/ZababurinSergei/welcomebook`,
             gitUrl: `https://github.com/ZababurinSergei/welcomebook`,
             oauth2format: 'github',
-            corsProxy: 'http://localhost:3000',
+            corsProxy: 'https://cors.isomorphic-git.org',
             branch: 'main'
         };
 
