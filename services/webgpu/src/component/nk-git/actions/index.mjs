@@ -67,7 +67,7 @@ export const actions = (self) => {
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
 
-                            history.pushState({}, '', '/sw/');
+                            history.pushState({}, '', '/DevOps/sw/');
 
                             iframe.addEventListener('load', function(e) {
                                 iframe.contentWindow.postMessage({
