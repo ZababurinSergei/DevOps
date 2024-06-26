@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <base href="/DevOps/">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="./services/webgpu/src/this/css/index.light.css" rel="stylesheet" />
-<!--    <link href="/js/themes/dark-hive/jquery-ui.css" rel="stylesheet" />-->
-<!--    <link href="/js/themes/dark-hive/theme.css" rel="stylesheet" />-->
-<!--    <link href="/js/jquery-ui-fix.css" rel="stylesheet" />-->
-<!--    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>-->
-<!--    <script type="text/javascript" src="/js/jquery-ui.js"></script>-->
-<!--    <script type="text/javascript" src="/js/jquery-ui-fix.js"></script>-->
-<!--    <script type="text/javascript" src="/js/sndfile.js"></script>-->
-<!--    <script type="text/javascript" src="/config/controller.bundle.js"></script>-->
-
+<!--    <base href="/DevOps/">-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="./services/webgpu/src/this/css/index.light.css" rel="stylesheet"/>
     <script src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm/lib/xterm.js"></script>
     <script
-        src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/local-echo/dist/local-echo.js"></script>
+            src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/local-echo/dist/local-echo.js"></script>
     <script
-        src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
+            src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
     <script
-        src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-web-links/lib/xterm-addon-web-links.js"></script>
+            src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-web-links/lib/xterm-addon-web-links.js"></script>
     <link rel="preload" href="./services/webgpu/src/component/nk-terminal/this/mjs/terminal/coreutils.async.wasm"
-          as="fetch" crossorigin />
+          as="fetch" crossorigin/>
 
     <title>DevOps</title>
     <link rel="shortcut icon"
@@ -115,7 +106,7 @@
                 <h2>Scheduler</h2>
                 <div class="settings">
                     <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span
-                        class="value"></span></div>
+                            class="value"></span></div>
                 </div>
                 <div class="memory-queue"></div>
             </div>
@@ -123,10 +114,10 @@
                 <h2>GIT-OPFS-SWAGGER-MOCHA-VIEWS</h2>
                 <slot name="nk-git"></slot>
             </div>
-<!--            <div class="nk-opfs">-->
-<!--                <h2>OPFS</h2>-->
-<!--                <slot name="nk-opfs"></slot>-->
-<!--            </div>-->
+            <!--            <div class="nk-opfs">-->
+            <!--                <h2>OPFS</h2>-->
+            <!--                <slot name="nk-opfs"></slot>-->
+            <!--            </div>-->
             <div class="nk-radio">
                 <h2>Radio</h2>
                 <slot name="nk-radio"></slot>
@@ -157,57 +148,57 @@
             </div>
         </div>
         <nk-ide
-            slot="nk-ide"
-            data-field="nk-ide"
+                slot="nk-ide"
+                data-field="nk-ide"
         >
             <template>
                 <div data-exclusion id="root"></div>
                 <nk-terminal
-                    slot="nk-terminal"
-                    data-field="terminal_0"
-                    data-services-path="webgpu"
+                        slot="nk-terminal"
+                        data-field="terminal_0"
+                        data-services-path="webgpu"
                 >
                     <div class="term"></div>
                 </nk-terminal>
             </template>
         </nk-ide>
         <nk-git
-            slot="nk-git"
-            data-field="nk-git"
+                slot="nk-git"
+                data-field="nk-git"
         >
             <template>
                 <div class="nk-git__container">
-<!--                    <div class="settings">-->
-<!--                        <div class="wrapper">-->
-<!--                            <button class="fonts-button disabled">Загрузить шрифт</button>-->
-<!--                            <input type="file" id="font-input">-->
-<!--                        </div>-->
-<!--                        <div class="test">-->
-<!--                            <p id="test">Upload a font to change me!</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="settings">-->
+                    <!--                        <div class="wrapper">-->
+                    <!--                            <button class="fonts-button disabled">Загрузить шрифт</button>-->
+                    <!--                            <input type="file" id="font-input">-->
+                    <!--                        </div>-->
+                    <!--                        <div class="test">-->
+                    <!--                            <p id="test">Upload a font to change me!</p>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                     <div class="run">
 
                     </div>
                     <div class="settings">
                         <div class="settings__block_0">
                             <mss-input
-                                disabled
-                                slot="mss-input"
-                                data-field="input_0"
+                                    disabled
+                                    slot="mss-input"
+                                    data-field="input_0"
                             >
                                 <template>
                                     <div class="container">
                                         <input readonly id="input"
                                                placeholder="https://github.com/ElenaSidneva/yoga_studio"
-                                               value="https://github.com/ElenaSidneva/yoga_studio" />
+                                               value="https://github.com/ElenaSidneva/yoga_studio"/>
                                     </div>
                                 </template>
                             </mss-input>
                             <fer-select
-                                disabled
-                                slot="fer-select"
-                                data-field="select_0"
+                                    disabled
+                                    slot="fer-select"
+                                    data-field="select_0"
                             >
                                 <template>
                                     <div class="dropdown">
@@ -221,22 +212,23 @@
                                                      viewBox="0 0 16 16" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                                           d="M7.99994 8.93934L11.4696 5.46967L12.5303 6.53033L8.53027 10.5303C8.23738 10.8232 7.76251 10.8232 7.46961 10.5303L3.46961 6.53033L4.53027 5.46967L7.99994 8.93934Z"
-                                                          fill="#0D4CD3" />
+                                                          fill="#0D4CD3"/>
                                                 </svg>
                                             </div>
                                         </div>
                                         <ul class="list">
-                                            <li style="text-align: center;"class="list-item">
+                                            <li style="text-align: center;" class="list-item">
                                                 6
                                             </li>
-                                            <li style="text-align: center;"class="list-item">
+                                            <li style="text-align: center;" class="list-item">
                                                 12
                                             </li>
-                                            <li style="text-align: center;"class="list-item">
+                                            <li style="text-align: center;" class="list-item">
                                                 32
                                             </li>
                                         </ul>
-                                        <input class="input_hidden" type="text" name="select-category" value="Фильтр 1" />
+                                        <input class="input_hidden" type="text" name="select-category"
+                                               value="Фильтр 1"/>
                                     </div>
                                 </template>
                             </fer-select>
@@ -276,8 +268,8 @@
                 </div>
 
                 <nk-opfs
-                    slot="nk-opfs"
-                    data-field="nk-opfs"
+                        slot="nk-opfs"
+                        data-field="nk-opfs"
                 >
                     <template>
                         <div class="nk-opfs">
@@ -324,8 +316,8 @@
                 </nk-opfs>
 
                 <mss-settings
-                    slot="mss-settings"
-                    data-field="mss-settings"
+                        slot="mss-settings"
+                        data-field="mss-settings"
                 >
                     <template>
                         <div data-exclusion id="swagger">
@@ -342,9 +334,9 @@
             </template>
         </nk-git>
         <nk-shared-protocol
-            slot="nk-shared-protocol"
-            data-field="nk-shared-protocol"
-            data-services-path="webgpu"
+                slot="nk-shared-protocol"
+                data-field="nk-shared-protocol"
+                data-services-path="webgpu"
         >
             <template>
                 <div class="container">
@@ -368,9 +360,9 @@
         </nk-shared-protocol>
 
         <nk-settings
-            slot="nk-settings"
-            data-field="free-queue"
-            data-services-path="webgpu"
+                slot="nk-settings"
+                data-field="free-queue"
+                data-services-path="webgpu"
         >
             <template>
                 <div class="container">
@@ -379,7 +371,7 @@
                         <div class="memory">
                             <div id="QUEUE_SIZE" class="settings">Всего памяти<span class="value">—</span></div>
                             <div id="ExpectedPrimingCount" class="settings">ExpectedPrimingCount<span
-                                class="value">—</span></div>
+                                    class="value">—</span></div>
                             <div class="settings">Используется<span class="value">—</span>
                             </div>
                             <div class="settings">Длинна<span class="value">—</span></div>
@@ -432,72 +424,74 @@
                 </nk-elite>
         -->
         <nk-sber
-            slot="nk-sber"
-            data-field="sber"
-            data-services-path="webgpu"
+                slot="nk-sber"
+                data-field="sber"
+                data-services-path="webgpu"
         >
             <template>
                 <div class="container">
                     <div>
                         <div class="letter__avatar-wrap">
-                            <img src="/services/webgpu/src/component/nk-sber/pic.png" />
+                            <img src="/services/webgpu/src/component/nk-sber/pic.png"/>
                         </div>
                     </div>
                     <div class="WordSection1_mr_css_attr">
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">Добрый день, коллеги.</span>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">Добрый день, коллеги.</span>
                         </p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">В период с 15.04 по 23.04 нахожусь вне офиса с ограниченным доступом к почте в домене _____.</span>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">В период с 15.04 по 23.04 нахожусь вне офиса с ограниченным доступом к почте в домене _____.</span>
                         </p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">&nbsp;</span></p>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">&nbsp;</span></p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">В мое отсутствие прошу обращаться:</span>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">В мое отсутствие прошу обращаться:</span>
                         </p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">1. По вопросам Cash Management и ЦФА к Синотиной Валентине (<u><span
-                            style="color:blue"><a href="//vk.mail.ru/compose/?mailto=mailto%3aVRoSinotina@sberbank.ru"
-                                                  target="_blank" rel=" noopener noreferrer"><span style="color:blue">VRoSinotina@sberbank.ru</span></a></span></u>)</span>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">1. По вопросам Cash Management и ЦФА к Синотиной Валентине (<u><span
+                                style="color:blue"><a
+                                href="//vk.mail.ru/compose/?mailto=mailto%3aVRoSinotina@sberbank.ru"
+                                target="_blank" rel=" noopener noreferrer"><span style="color:blue">VRoSinotina@sberbank.ru</span></a></span></u>)</span>
                         </p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">2. По вопросам Банковского сопровождения к Лазаревой Евгении (<a
-                            href="//vk.mail.ru/compose/?mailto=mailto%3aEilazareva@sberbank.ru" target="_blank"
-                            rel=" noopener noreferrer"><span
-                            style="color:blue">Eilazareva@sberbank.ru</span></a>)</span><span
-                            style="font-size:12.0pt;font-family:'Times New Roman',serif"></span></p>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">2. По вопросам Банковского сопровождения к Лазаревой Евгении (<a
+                                href="//vk.mail.ru/compose/?mailto=mailto%3aEilazareva@sberbank.ru" target="_blank"
+                                rel=" noopener noreferrer"><span
+                                style="color:blue">Eilazareva@sberbank.ru</span></a>)</span><span
+                                style="font-size:12.0pt;font-family:'Times New Roman',serif"></span></p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">3. По вопросам Фонда Президентских Грантов и бизнес-карт к Жило Ирине (<a
-                            href="//vk.mail.ru/compose/?mailto=mailto%3aZhilo.I.St@omega.sbrf.ru" target="_blank"
-                            rel=" noopener noreferrer"><span
-                            style="color:blue">Zhilo.I.St@omega.sbrf.ru</span></a>)</span></p>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">3. По вопросам Фонда Президентских Грантов и бизнес-карт к Жило Ирине (<a
+                                href="//vk.mail.ru/compose/?mailto=mailto%3aZhilo.I.St@omega.sbrf.ru" target="_blank"
+                                rel=" noopener noreferrer"><span
+                                style="color:blue">Zhilo.I.St@omega.sbrf.ru</span></a>)</span></p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">4. По вопросам API переводов к Шабрину Сергею (<a
-                            href="//vk.mail.ru/compose/?mailto=mailto%3aShabrin.S.V@sberbank.ru" target="_blank"
-                            rel=" noopener noreferrer"><span
-                            style="color:blue">Shabrin.S.V@sberbank.ru</span></a>)</span></p>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">4. По вопросам API переводов к Шабрину Сергею (<a
+                                href="//vk.mail.ru/compose/?mailto=mailto%3aShabrin.S.V@sberbank.ru" target="_blank"
+                                rel=" noopener noreferrer"><span
+                                style="color:blue">Shabrin.S.V@sberbank.ru</span></a>)</span></p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">5. По вопросам партнерской программы и смарт контактов к Пицыку Александру (<u><span
-                            style="color:blue"><a
-                            href="/compose?To=ASPitcyk@sberbank.ru">ASPitcyk@sberbank.ru</a></span></u>)</span></p>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">5. По вопросам партнерской программы и смарт контактов к Пицыку Александру (<u><span
+                                style="color:blue"><a
+                                href="/compose?To=ASPitcyk@sberbank.ru">ASPitcyk@sberbank.ru</a></span></u>)</span></p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">6. По вопросам Топливного решения к Арабаджи Константину (<u><span
-                            style="color:blue"><a href="/compose?To=KVArabadzhi@sberbank.ru">KVArabadzhi@sberbank.ru</a></span></u>)</span>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">6. По вопросам Топливного решения к Арабаджи Константину (<u><span
+                                style="color:blue"><a
+                                href="/compose?To=KVArabadzhi@sberbank.ru">KVArabadzhi@sberbank.ru</a></span></u>)</span>
                         </p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">&nbsp;</span></p>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">&nbsp;</span></p>
                         <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
-                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">По срочным вопросам пишите в Telegram <span
-                            class="js-phone-number"> _-___-___-__-__</span></span><span
-                            style="font-size:8.5pt;font-family:'Segoe UI',sans-serif"></span></p>
+                                style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">По срочным вопросам пишите в Telegram <span
+                                class="js-phone-number"> _-___-___-__-__</span></span><span
+                                style="font-size:8.5pt;font-family:'Segoe UI',sans-serif"></span></p>
                     </div>
                 </div>
             </template>
         </nk-sber>
         <nk-rotation
-            slot="nk-rotation"
-            data-field="rotation"
-            data-services-path="webgpu"
+                slot="nk-rotation"
+                data-field="rotation"
+                data-services-path="webgpu"
         >
             <template>
                 <div class="main">
@@ -506,63 +500,63 @@
                             <div class="dcol">
                                 <h2>Input</h2>
                                 <p>Input angle format
-                                    <label><input type="radio" id="iformatrad" name="iformat" value="0" checked />Radians</label>
+                                    <label><input type="radio" id="iformatrad" name="iformat" value="0" checked/>Radians</label>
                                     <label><input type="radio" id="iformatdeg" name="iformat"
-                                                  value="1" />Degrees</label>
+                                                  value="1"/>Degrees</label>
                                 <p class="pi" id="ip0">Rotation matrix
-                                    <br /><span class="dl"></span><input class="nk-rotation-matrix" type="number"
-                                                                         pattern="\d+(\.\d*)?" id="m00" value="1" />
+                                    <br/><span class="dl"></span><input class="nk-rotation-matrix" type="number"
+                                                                        pattern="\d+(\.\d*)?" id="m00" value="1"/>
                                     <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
-                                                                    pattern="\d+(\.\d*)?" id="m01" value="0" />
+                                                                    pattern="\d+(\.\d*)?" id="m01" value="0"/>
                                     <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
-                                                                    pattern="\d+(\.\d*)?" id="m02" value="0" /> &nbsp;
-                                    <br /><span class="dl"></span><input class="nk-rotation-matrix" type="number"
-                                                                         pattern="\d+(\.\d*)?" id="m10" value="0" />
+                                                                    pattern="\d+(\.\d*)?" id="m02" value="0"/> &nbsp;
+                                    <br/><span class="dl"></span><input class="nk-rotation-matrix" type="number"
+                                                                        pattern="\d+(\.\d*)?" id="m10" value="0"/>
                                     <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
-                                                                    pattern="\d+(\.\d*)?" id="m11" value="1" />
+                                                                    pattern="\d+(\.\d*)?" id="m11" value="1"/>
                                     <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
-                                                                    pattern="\d+(\.\d*)?" id="m12" value="0" /> &nbsp;
-                                    <br /><span class="dl"></span><input class="nk-rotation-matrix" type="number"
-                                                                         pattern="\d+(\.\d*)?" id="m20" value="0" />
+                                                                    pattern="\d+(\.\d*)?" id="m12" value="0"/> &nbsp;
+                                    <br/><span class="dl"></span><input class="nk-rotation-matrix" type="number"
+                                                                        pattern="\d+(\.\d*)?" id="m20" value="0"/>
                                     <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
-                                                                    pattern="\d+(\.\d*)?" id="m21" value="0" />
+                                                                    pattern="\d+(\.\d*)?" id="m21" value="0"/>
                                     <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
-                                                                    pattern="\d+(\.\d*)?" id="m22" value="1" />
+                                                                    pattern="\d+(\.\d*)?" id="m22" value="1"/>
                                 <p class="pi" id="ip1">Quaternion
-                                    <br />
+                                    <br/>
                                     <span class="dl">x</span><input class="nk-quaternion" type="number"
-                                                                    pattern="\d+(\.\d*)?" id="q0" value="0" />
+                                                                    pattern="\d+(\.\d*)?" id="q0" value="0"/>
                                     <span class="dl2">y</span><input class="nk-quaternion" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="q1" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="q1" value="0"/>
                                     <span class="dl2">z</span><input class="nk-quaternion" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="q2" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="q2" value="0"/>
                                     <span class="dl">w (real part) <input class="nk-quaternion" type="number"
                                                                           pattern="\d+(\.\d*)?" id="q3"
-                                                                          value="1" /></span>
+                                                                          value="1"/></span>
                                 <p class="pi" id="ip2">Axis-angle
-                                    <br />
+                                    <br/>
                                     <span class="dl">Axis x</span><input class="nk-axis-angle" type="number"
-                                                                         pattern="\d+(\.\d*)?" id="a0" value="0" />
+                                                                         pattern="\d+(\.\d*)?" id="a0" value="0"/>
                                     <span class="dl2">y</span><input class="nk-axis-angle" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="a1" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="a1" value="0"/>
                                     <span class="dl2">z</span><input class="nk-axis-angle" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="a2" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="a2" value="0"/>
                                     <span class="dl">Angle<span class="nk-spananglei"
                                                                 name="spananglei"> (radians)</span> <input
-                                        class="nk-axis-angle" type="number" pattern="\d+(\.\d*)?" id="a3"
-                                        value="0" /></span>
+                                            class="nk-axis-angle" type="number" pattern="\d+(\.\d*)?" id="a3"
+                                            value="0"/></span>
                                 <p class="pi" id="ip3">Axis with angle magnitude<span class="nk-spananglei"
                                                                                       name="spananglei"> (radians)</span>
-                                    <br /><span class="dl">Axis x</span><input class="nk-axis-with-angle-magnitude"
-                                                                               type="number" pattern="\d+(\.\d*)?"
-                                                                               id="r0" value="0" />
+                                    <br/><span class="dl">Axis x</span><input class="nk-axis-with-angle-magnitude"
+                                                                              type="number" pattern="\d+(\.\d*)?"
+                                                                              id="r0" value="0"/>
                                     <span class="dl2">y</span><input class="nk-axis-with-angle-magnitude" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="r1" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="r1" value="0"/>
                                     <span class="dl2">z</span><input class="nk-axis-with-angle-magnitude" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="r2" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="r2" value="0"/>
                                 <p class="pi" id="ip4">Euler angles of multiple axis rotations<span
-                                    class="nk-spananglei" name="spananglei"> (radians)</span>
-                                    <br />
+                                        class="nk-spananglei" name="spananglei"> (radians)</span>
+                                    <br/>
                                     <span class="dl"><select class="nk-euler-angles-of-multiple-axis-rotations-onchange"
                                                              id="euler">
                                         <option value="XYZ" selected>XYZ</option>
@@ -573,62 +567,62 @@
                                         <option value="ZYX">ZYX</option>
                                         </select></span>
                                     <span class="dl2">x</span><input
-                                        class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
-                                        pattern="\d+(\.\d*)?" id="e0" value="0" />
+                                            class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
+                                            pattern="\d+(\.\d*)?" id="e0" value="0"/>
                                     <span class="dl2">y</span><input
-                                        class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
-                                        pattern="\d+(\.\d*)?" id="e1" value="0" />
+                                            class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
+                                            pattern="\d+(\.\d*)?" id="e1" value="0"/>
                                     <span class="dl2">z</span><input
-                                        class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
-                                        pattern="\d+(\.\d*)?" id="e2" value="0" />
+                                            class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
+                                            pattern="\d+(\.\d*)?" id="e2" value="0"/>
                                 <p class="pi" id="ip5">Triple of points, P, Q, R,
                                     such that
                                     X &#x2225; (Q&minus;P), &nbsp;
                                     Z &#x2225; X &times; (R&minus;P), &nbsp;and
                                     Y &#x2225; Z &times; X.
-                                    <br />
+                                    <br/>
                                     P:
                                     <span class="dl2">x</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Px" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="Px" value="0"/>
                                     <span class="dl2">y</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Py" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="Py" value="0"/>
                                     <span class="dl2">z</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Pz" value="0" />
-                                    <br />
+                                                                     pattern="\d+(\.\d*)?" id="Pz" value="0"/>
+                                    <br/>
                                     Q:
                                     <span class="dl2">x</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Qx" value="1" />
+                                                                     pattern="\d+(\.\d*)?" id="Qx" value="1"/>
                                     <span class="dl2">y</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Qy" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="Qy" value="0"/>
                                     <span class="dl2">z</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Qz" value="0" />
-                                    <br />
+                                                                     pattern="\d+(\.\d*)?" id="Qz" value="0"/>
+                                    <br/>
                                     R:
                                     <span class="dl2">x</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Rx" value="0" />
+                                                                     pattern="\d+(\.\d*)?" id="Rx" value="0"/>
                                     <span class="dl2">y</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Ry" value="1" />
+                                                                     pattern="\d+(\.\d*)?" id="Ry" value="1"/>
                                     <span class="dl2">z</span><input class="nk-triple-of-points" type="number"
-                                                                     pattern="\d+(\.\d*)?" id="Rz" value="0" />
-                                    <br />
+                                                                     pattern="\d+(\.\d*)?" id="Rz" value="0"/>
+                                    <br/>
                             </div>
 
                             <div class="dcol">
                                 <h2>Output</h2>
                                 <p>Output angle format
                                     <label><input class="nk-output-angle-format" type="radio" id="resformatrad"
-                                                  name="resformat" value="0" checked />Radians</label>
+                                                  name="resformat" value="0" checked/>Radians</label>
                                     <label><input class="nk-output-angle-format" type="radio" id="resformatdeg"
-                                                  name="resformat" value="1" />Degrees</label>
+                                                  name="resformat" value="1"/>Degrees</label>
                                 <p>Rotation matrix
-                                    <br /><textarea id="resmatrix" rows="3" cols="70" readonly></textarea>
+                                    <br/><textarea id="resmatrix" rows="3" cols="70" readonly></textarea>
                                 <p>Quaternion [x, y, z, w]
-                                    <br /><textarea id="resq" rows="1" cols="85" readonly></textarea>
+                                    <br/><textarea id="resq" rows="1" cols="85" readonly></textarea>
                                 <p>Axis-Angle {[x, y, z], angle<span class="nk-spanangleres" name="spanangleres"> (radians)</span>}
-                                    <br /><textarea id="resa" rows="1" cols="85" readonly></textarea>
+                                    <br/><textarea id="resa" rows="1" cols="85" readonly></textarea>
                                 <p>Axis with angle magnitude<span class="nk-spanangleres"
                                                                   name="spanangleres"> (radians)</span> [x, y, z]
-                                    <br /><textarea id="resr" rows="1" cols="85" readonly></textarea>
+                                    <br/><textarea id="resr" rows="1" cols="85" readonly></textarea>
                                 <p>Euler angles<span class="nk-spanangleres" name="spanangleres"> (radians)</span>
                                     <select id="reseuler" class="nk-output-angle-format">
                                         <option value="XYZ" selected>XYZ</option>
@@ -638,10 +632,10 @@
                                         <option value="ZXY">ZXY</option>
                                         <option value="ZYX">ZYX</option>
                                     </select>
-                                    <br />
+                                    <br/>
                                     <textarea id="rese" rows="1" cols="70" readonly></textarea>
                             </div>
-                            <br style="clear: left;" />
+                            <br style="clear: left;"/>
 
                             <div class="dcol">
                                 <h2>Details</h2>
@@ -649,7 +643,7 @@
                                     Please note that rotation formats vary.
                                     For quaternions, it is not uncommon to denote the real part first.
                                     Euler angles can be defined with many different combinations (see <a
-                                    href="https://en.wikipedia.org/wiki/Euler_angles#Tait.E2.80.93Bryan_angles">definition
+                                        href="https://en.wikipedia.org/wiki/Euler_angles#Tait.E2.80.93Bryan_angles">definition
                                     of Cardan angles</a>).
                                     All input is normalized to unit quaternions and may therefore mapped to different
                                     ranges.
@@ -663,9 +657,11 @@
                                 <p>
                                     This calculator for 3D rotations is open-source software.
                                     If there are any bugs, please push fixes to the <a
-                                    href="https://github.com/gaschler/rotationconverter">Rotation Converter git repo</a>.
+                                        href="https://github.com/gaschler/rotationconverter">Rotation Converter git
+                                    repo</a>.
                                     For almost all conversions, <a
-                                    href="https://threejs.org/docs/index.html#api/math/Quaternion">three.js Math</a> is
+                                        href="https://threejs.org/docs/index.html#api/math/Quaternion">three.js Math</a>
+                                    is
                                     used internally.
                             </div>
 
@@ -675,9 +671,9 @@
             </template>
         </nk-rotation>
         <nk-transformers
-            slot="nk-transformers"
-            data-field="transformers"
-            data-services-path="webgpu"
+                slot="nk-transformers"
+                data-field="transformers"
+                data-services-path="webgpu"
         >
             <template>
                 <div class="container">
@@ -689,9 +685,9 @@
             </template>
         </nk-transformers>
         <nk-views
-            slot="nk-views"
-            data-field="osc_0"
-            data-services-path="webgpu"
+                slot="nk-views"
+                data-field="osc_0"
+                data-services-path="webgpu"
         >
             <template>
                 <div class="container">
@@ -768,9 +764,9 @@
 
                         <div class="position-sample-settings">
                             <nk-settings
-                                slot="nk-settings"
-                                data-field="settings"
-                                data-services-path="webgpu"
+                                    slot="nk-settings"
+                                    data-field="settings"
+                                    data-services-path="webgpu"
                             >
                                 <template>
                                     <div class="container">
@@ -788,44 +784,44 @@
                                         <div class="constants">
                                             <h2>Переменные</h2>
                                             <div class="settings" id="RENDER_QUANTUM">RENDER_QUANTUM<span
-                                                class="value"></span></div>
+                                                    class="value"></span></div>
                                             <div class="settings" id="KERNEL_LENGTH">KERNEL_LENGTH<span
-                                                class="value"></span></div>
+                                                    class="value"></span></div>
                                             <div class="settings" id="FRAME_SIZE">FRAME_SIZE<span
-                                                class="value"></span></div>
+                                                    class="value"></span></div>
                                             <div class="settings" id="QUEUE_SIZE">QUEUE_SIZE<span
-                                                class="value"></span></div>
+                                                    class="value"></span></div>
                                             <div class="settings" id="WORKGROUP_SIZE">WORKGROUP_SIZE<span
-                                                class="value"></span></div>
+                                                    class="value"></span></div>
                                             <pre>--------------------------------------------------------------------------------</pre>
                                             <div class="settings" id="ARRAY_LENGTH">ARRAY_LENGTH<span
-                                                class="value">—</span>
+                                                    class="value">—</span>
                                             </div>
                                             <div class="settings" id="freq">freq<span class="value">—</span>
                                             </div>
                                             <div class="settings" id="channels">channels<span
-                                                class="value">—</span>
+                                                    class="value">—</span>
                                             </div>
                                             <div class="settings" id="duration">duration<span
-                                                class="value">—</span>
+                                                    class="value">—</span>
                                             </div>
                                             <div class="settings" id="samplerate">samplerate<span
-                                                class="value">—</span></div>
+                                                    class="value">—</span></div>
                                             <div class="settings" id="volumerate">volumerate<span
-                                                class="value">—</span></div>
+                                                    class="value">—</span></div>
                                             <div class="settings" id="frames">frames<span class="value">—</span>
                                             </div>
                                             <div class="settings" id="memdata">memdata<span
-                                                class="value">—</span>
+                                                    class="value">—</span>
                                             </div>
                                         </div>
                                     </div>
                                 </template>
                             </nk-settings>
                             <nk-info
-                                slot="nk-info"
-                                data-field="info"
-                                data-services-path="webgpu"
+                                    slot="nk-info"
+                                    data-field="info"
+                                    data-services-path="webgpu"
                             >
                                 <template>
                                     <div class="info">
@@ -866,8 +862,8 @@
         </nk-views>
 
         <nk-emulator
-            slot="nk-emulator"
-            data-field="emulator_0"
+                slot="nk-emulator"
+                data-field="emulator_0"
         >
             <template>
                 <div class="container">
@@ -878,9 +874,9 @@
                             <div class="container-wrapper">
                                 <div class="position-sample-container">
                                     <nk-time-line
-                                        data-field="settings-time"
-                                        data-services-path="webgpu"
-                                        data-id="1"
+                                            data-field="settings-time"
+                                            data-services-path="webgpu"
+                                            data-id="1"
                                     >
                                         <template>
                                             <div class="frames">
@@ -890,9 +886,9 @@
                                         </template>
                                     </nk-time-line>
                                     <nk-filter
-                                        data-field="filter-0"
-                                        data-services-path="webgpu"
-                                        data-id="1"
+                                            data-field="filter-0"
+                                            data-services-path="webgpu"
+                                            data-id="1"
                                     >
                                         <template>
                                             <div class="filters">
@@ -946,18 +942,18 @@
                                         </template>
                                     </nk-switch>
                                     <nk-osc
-                                        data-field="osc_audio"
-                                        data-services-path="webgpu"
-                                        data-id="1"
+                                            data-field="osc_audio"
+                                            data-services-path="webgpu"
+                                            data-id="1"
                                     >
                                         <template>
                                             <div class="container-view">
                                                 <div id="outputDiv">
                                                 <span
-                                                    class="outputText">_</span>
+                                                        class="outputText">_</span>
                                                     <span id="outputTextElement">&nbsp;</span>
                                                     <span
-                                                        class="outputText">¯</span>
+                                                            class="outputText">¯</span>
                                                 </div>
                                                 <div id="progressBarBaseDiv">
                                                     <div id="progressBarDiv" style="width:0px"></div>
@@ -1021,9 +1017,9 @@
                                 </div>
                                 <div class="position-sample-container">
                                     <nk-time-line
-                                        data-field="settings-1"
-                                        data-services-path="webgpu"
-                                        data-id="2"
+                                            data-field="settings-1"
+                                            data-services-path="webgpu"
+                                            data-id="2"
                                     >
                                         <template>
                                             <div class="frames">
@@ -1033,9 +1029,9 @@
                                         </template>
                                     </nk-time-line>
                                     <nk-filter
-                                        data-field="filter-0"
-                                        data-services-path="webgpu"
-                                        data-id="2"
+                                            data-field="filter-0"
+                                            data-services-path="webgpu"
+                                            data-id="2"
                                     >
                                         <template>
                                             <div class="filters">
@@ -1089,18 +1085,18 @@
                                         </template>
                                     </nk-switch>
                                     <nk-osc
-                                        data-field="osc_text"
-                                        data-services-path="webgpu"
-                                        data-id="2"
+                                            data-field="osc_text"
+                                            data-services-path="webgpu"
+                                            data-id="2"
                                     >
                                         <template>
                                             <div class="container-view">
                                                 <div id="outputDiv">
                                                 <span
-                                                    class="outputText">_</span>
+                                                        class="outputText">_</span>
                                                     <span id="outputTextElement">&nbsp;</span>
                                                     <span
-                                                        class="outputText">¯</span>
+                                                            class="outputText">¯</span>
                                                 </div>
                                                 <div id="progressBarBaseDiv">
                                                     <div id="progressBarDiv" style="width:0px"></div>
@@ -1188,9 +1184,9 @@
                             <div class="container-wrapper">
                                 <div class="position-sample-container">
                                     <nk-time-line
-                                        data-field="settings-time"
-                                        data-services-path="webgpu"
-                                        data-id="0"
+                                            data-field="settings-time"
+                                            data-services-path="webgpu"
+                                            data-id="0"
                                     >
                                         <template>
                                             <div class="frames">
@@ -1200,9 +1196,9 @@
                                         </template>
                                     </nk-time-line>
                                     <nk-filter
-                                        data-field="filter-0"
-                                        data-services-path="webgpu"
-                                        data-id="0"
+                                            data-field="filter-0"
+                                            data-services-path="webgpu"
+                                            data-id="0"
                                     >
                                         <template>
                                             <div class="filters">
@@ -1256,18 +1252,18 @@
                                         </template>
                                     </nk-switch>
                                     <nk-osc
-                                        data-field="osc_audio_frame"
-                                        data-services-path="webgpu"
-                                        data-id="0"
+                                            data-field="osc_audio_frame"
+                                            data-services-path="webgpu"
+                                            data-id="0"
                                     >
                                         <template>
                                             <div class="container-view">
                                                 <div id="outputDiv">
                                                 <span
-                                                    class="outputText">_</span>
+                                                        class="outputText">_</span>
                                                     <span id="outputTextElement">&nbsp;</span>
                                                     <span
-                                                        class="outputText">¯</span>
+                                                            class="outputText">¯</span>
                                                 </div>
                                                 <div id="progressBarBaseDiv">
                                                     <div id="progressBarDiv" style="width:0px"></div>
@@ -1331,9 +1327,9 @@
                                 </div>
                                 <div class="position-sample-container">
                                     <nk-time-line
-                                        data-field="settings-time"
-                                        data-services-path="webgpu"
-                                        data-id="3"
+                                            data-field="settings-time"
+                                            data-services-path="webgpu"
+                                            data-id="3"
                                     >
                                         <template>
                                             <div class="frames">
@@ -1343,9 +1339,9 @@
                                         </template>
                                     </nk-time-line>
                                     <nk-filter
-                                        data-field="filter-0"
-                                        data-services-path="webgpu"
-                                        data-id="3"
+                                            data-field="filter-0"
+                                            data-services-path="webgpu"
+                                            data-id="3"
                                     >
                                         <template>
                                             <div class="filters">
@@ -1399,18 +1395,18 @@
                                         </template>
                                     </nk-switch>
                                     <nk-osc
-                                        data-field="osc_audio_frame"
-                                        data-services-path="webgpu"
-                                        data-id="3"
+                                            data-field="osc_audio_frame"
+                                            data-services-path="webgpu"
+                                            data-id="3"
                                     >
                                         <template>
                                             <div class="container-view">
                                                 <div id="outputDiv">
                                                 <span
-                                                    class="outputText">_</span>
+                                                        class="outputText">_</span>
                                                     <span id="outputTextElement">&nbsp;</span>
                                                     <span
-                                                        class="outputText">¯</span>
+                                                            class="outputText">¯</span>
                                                 </div>
                                                 <div id="progressBarBaseDiv">
                                                     <div id="progressBarDiv" style="width:0px"></div>
@@ -1480,9 +1476,9 @@
         </nk-emulator>
 
         <nk-radio
-            slot="nk-radio"
-            data-field="settings-2"
-            data-services-path="webgpu"
+                slot="nk-radio"
+                data-field="settings-2"
+                data-services-path="webgpu"
         ></nk-radio>
 
         <!--        <nk-chart slot="nk-chart" data-field="terminal_0" data-services-path="webgpu">-->
@@ -2034,7 +2030,7 @@
 </nk-memory>
 <!--<script type="module" src="/main.bundle.mjs"></script>-->
 <script type="module">
-    import { Fonts } from '/services/webgpu/src/fonts.mjs';
+    import {Fonts} from '/services/webgpu/src/fonts.mjs';
 
     await Fonts('Raleway', 'Raleway-Regular.ttf');
     await Fonts('Raleway-ExtraBold', 'Raleway-ExtraBold.ttf');
