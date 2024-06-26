@@ -3,7 +3,7 @@
 <head>
     <base href="/DevOps/">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="/services/webgpu/src/this/css/index.light.css" rel="stylesheet" />
+    <link href="./services/webgpu/src/this/css/index.light.css" rel="stylesheet" />
 <!--    <link href="/js/themes/dark-hive/jquery-ui.css" rel="stylesheet" />-->
 <!--    <link href="/js/themes/dark-hive/theme.css" rel="stylesheet" />-->
 <!--    <link href="/js/jquery-ui-fix.css" rel="stylesheet" />-->
@@ -13,14 +13,14 @@
 <!--    <script type="text/javascript" src="/js/sndfile.js"></script>-->
 <!--    <script type="text/javascript" src="/config/controller.bundle.js"></script>-->
 
-    <script src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm/lib/xterm.js"></script>
+    <script src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm/lib/xterm.js"></script>
     <script
-        src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/local-echo/dist/local-echo.js"></script>
+        src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/local-echo/dist/local-echo.js"></script>
     <script
-        src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
+        src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
     <script
-        src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-web-links/lib/xterm-addon-web-links.js"></script>
-    <link rel="preload" href="/services/webgpu/src/component/nk-terminal/this/mjs/terminal/coreutils.async.wasm"
+        src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-web-links/lib/xterm-addon-web-links.js"></script>
+    <link rel="preload" href="./services/webgpu/src/component/nk-terminal/this/mjs/terminal/coreutils.async.wasm"
           as="fetch" crossorigin />
 
     <title>DevOps</title>
@@ -30,15 +30,15 @@
 
     <script type="module">
         window.localStorage.setItem('location', JSON.stringify({
-            pathname: '/services/webgpu/src'
+            pathname: './services/webgpu/src'
         }));
 
-        const index = await import('/index.mjs');
+        const index = await import('./index.mjs');
     </script>
 
     <style>
-        @import "/codicon.css";
-        @import url('/services/webgpu/src/component/nk-ide/this/mjs/api/this/index.css');
+        @import "./codicon.css";
+        @import url('./services/webgpu/src/component/nk-ide/this/mjs/api/this/index.css');
 
         @font-face {
             font-family: 'Segoe UI';
