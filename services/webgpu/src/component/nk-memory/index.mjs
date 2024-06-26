@@ -1,4 +1,5 @@
 import {Component} from '../index.mjs'
+import {nkOpfs} from "../nk-git/this/index.mjs";
 
 const name = 'nk-memory'
 const component = Component()
@@ -21,7 +22,8 @@ Object.defineProperties(component.prototype, {
         }
     },
     init: {
-        set(value) { }
+        value: async function() { },
+        writable: true
     },
     open: {
         set(value) {
