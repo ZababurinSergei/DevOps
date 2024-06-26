@@ -147,21 +147,6 @@
                 <slot name="nk-chart"></slot>
             </div>
         </div>
-        <nk-ide
-                slot="nk-ide"
-                data-field="nk-ide"
-        >
-            <template>
-                <div data-exclusion id="root"></div>
-                <nk-terminal
-                        slot="nk-terminal"
-                        data-field="terminal_0"
-                        data-services-path="webgpu"
-                >
-                    <div class="term"></div>
-                </nk-terminal>
-            </template>
-        </nk-ide>
         <nk-git
                 slot="nk-git"
                 data-field="nk-git"
@@ -333,29 +318,6 @@
                 </mss-settings>
             </template>
         </nk-git>
-
-        <nk-settings
-                slot="nk-settings"
-                data-field="free-queue"
-                data-services-path="webgpu"
-        >
-            <template>
-                <div class="container">
-                    <div class="wrapper">
-                        <h2>Free Queue</h2>
-                        <div class="memory">
-                            <div id="QUEUE_SIZE" class="settings">Всего памяти<span class="value">—</span></div>
-                            <div id="ExpectedPrimingCount" class="settings">ExpectedPrimingCount<span
-                                    class="value">—</span></div>
-                            <div class="settings">Используется<span class="value">—</span>
-                            </div>
-                            <div class="settings">Длинна<span class="value">—</span></div>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        </nk-settings>
-
         <nk-radio
                 slot="nk-radio"
                 data-field="settings-2"
