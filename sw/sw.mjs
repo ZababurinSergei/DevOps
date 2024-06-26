@@ -188,7 +188,7 @@ self.addEventListener('fetch', event => {
                 const string = textDecoder.decode(servicePath)
 
                 const path = isBrowser
-                    ? `${string}/docs/${url.pathname.replace('/sw/', '')}`
+                    ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
                     : `${string}${url.pathname}`
 
                 const options = getHeaders(destination, path)
@@ -198,7 +198,7 @@ self.addEventListener('fetch', event => {
                         const file = await readFile(path);
                         return new Response(file, options)
                     } catch (e) {
-                        let pathname = url.pathname.replace('/sw/', '')
+                        let pathname = url.pathname.replace('/DevOps/sw/', '')
                         pathname = pathname.replaceAll("%20",' ')
                         const path = `${string}/${pathname}`
                         console.log('-------------------------------- path -----------------------------------','string',string, 'pathname:',pathname)
