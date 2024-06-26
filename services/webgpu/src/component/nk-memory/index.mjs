@@ -1,5 +1,4 @@
 import {Component} from '../index.mjs'
-import {nkOpfs} from "../nk-git/this/index.mjs";
 
 const name = 'nk-memory'
 const component = Component()
