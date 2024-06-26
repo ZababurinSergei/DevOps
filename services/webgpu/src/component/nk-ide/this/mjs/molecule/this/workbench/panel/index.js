@@ -1,0 +1,10 @@
+import 'reflect-metadata';
+import { container } from 'tsyringe';
+import { connect } from './../../../this/react';
+import { PanelService } from './../../../this/services';
+import Panel from './panel';
+import { PanelController } from './../../../this/controller/panel';
+const panelService = container.resolve(PanelService);
+const panelController = container.resolve(PanelController);
+const PanelView = connect(panelService, Panel, panelController);
+export { PanelView };

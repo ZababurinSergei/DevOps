@@ -1,0 +1,12 @@
+import 'reflect-metadata';
+import { connect } from './../../../this/react';
+import { container } from 'tsyringe';
+import { AuxiliaryController } from './../../../this/controller';
+import { AuxiliaryBarService } from './../../../this/services';
+import { default as AuxiliaryBarView } from './auxiliaryBar';
+import { default as AuxiliaryBarTabView } from './auxiliaryBarTab';
+const auxiliaryService = container.resolve(AuxiliaryBarService);
+const auxiliaryController = container.resolve(AuxiliaryController);
+const AuxiliaryBar = connect(auxiliaryService, AuxiliaryBarView);
+const AuxiliaryBarTab = connect(auxiliaryService, AuxiliaryBarTabView, auxiliaryController);
+export { AuxiliaryBar, AuxiliaryBarTab };

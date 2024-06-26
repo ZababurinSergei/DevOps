@@ -1,0 +1,11 @@
+export declare const defaultSearchClassName: string;
+export declare const baseInputClassName: string;
+export declare const inputGroupClassName: string;
+export declare const searchToolBarClassName: string;
+export declare const replaceContainerClassName: string;
+export declare const searchTargetContainerClassName: string;
+export declare const replaceBtnClassName: string;
+export declare const validationBaseInputClassName: string;
+export declare const validationInfoInputClassName: string;
+export declare const validationWarningInputClassName: string;
+export declare const validationErrorInputClassName: string;

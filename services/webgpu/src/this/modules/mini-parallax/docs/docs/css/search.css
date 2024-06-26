@@ -1,0 +1,84 @@
+/* search box */
+.search-box {
+  position: absolute;
+  top: 0.52vw;
+  right: 2.6vw;
+  padding-right: 0.42vw;
+  padding-bottom: 0.52vw;
+  line-height: normal;
+  font-size: 0.63vw;
+}
+
+.search-box img {
+  width: 1.04vw;
+  vertical-align: top;
+}
+
+.search-input {
+  display: inline;
+  visibility: hidden;
+  width: 0;
+  padding: 0.1vw;
+  height: 1.5em;
+  outline: none;
+  background: transparent;
+  border: 0.05vw #0af;
+  border-style: none none solid none;
+  vertical-align: bottom;
+}
+
+.search-input-edge {
+  display: none;
+  width: 0.05vw;
+  height: 0.26vw;
+  background-color: #0af;
+  vertical-align: bottom;
+}
+
+.search-result {
+  position: absolute;
+  display: none;
+  height: 31.25vw;
+  width: 100%;
+  padding: 0;
+  margin-top: 0.26vw;
+  margin-left: 1.25vw;
+  background: white;
+  box-shadow: 0.05vw 0.05vw 0.21vw rgb(0,0,0);
+  white-space: nowrap;
+  overflow-y: scroll;
+}
+
+.search-result-import-path {
+  color: #aaa;
+  font-size: 0.63vw;
+}
+
+.search-result li {
+  list-style: none;
+  padding: 0.1vw 0.21vw;
+}
+
+.search-result li a {
+  display: block;
+}
+
+.search-result li.selected {
+  background: #ddd;
+}
+
+.search-result li.search-separator {
+  background: rgb(37, 138, 175);
+  color: white;
+}
+
+.search-box.active .search-input {
+  visibility: visible;
+  transition: width 0.2s ease-out;
+  width: 15.63vw;
+}
+
+.search-box.active .search-input-edge {
+  display: inline-block;
+}
+

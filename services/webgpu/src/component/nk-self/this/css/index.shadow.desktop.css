@@ -1,0 +1,249 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 16px;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nk-git__container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-sizing: border-box;
+    box-shadow: 0px 0.47vw 0.94vw 0px #88919d4d;
+    padding: 16px 12px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.__peer-header_logo_value {
+    font-size: 2px;
+    display: flex;
+    width: min-content;
+    white-space: normal;
+    height: min-content;
+    box-shadow: 0px 0.47vw 0.94vw 0px #88919d4d;
+}
+
+body {
+    font-family: arial;
+    margin: 0;
+    padding: none;
+}
+
+.emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
+div.emscripten { text-align: center; }
+/*div.emscripten_border { border: 1px solid black; }*/
+/* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+canvas.emscripten { border: 0px none; background-color: black; }
+
+#emscripten_logo {
+    display: inline-block;
+    margin: 0;
+}
+
+.spinner {
+    height: 30px;
+    width: 30px;
+    margin: 0;
+    /*margin-top: 20px;*/
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: top;
+
+    -webkit-animation: rotation .8s linear infinite;
+    -moz-animation: rotation .8s linear infinite;
+    -o-animation: rotation .8s linear infinite;
+    animation: rotation 0.8s linear infinite;
+
+    border-left: 5px solid rgb(235, 235, 235);
+    border-right: 5px solid rgb(235, 235, 235);
+    border-bottom: 5px solid rgb(235, 235, 235);
+    border-top: 5px solid rgb(120, 120, 120);
+
+    border-radius: 100%;
+    background-color: rgb(189, 215, 46);
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+@-moz-keyframes rotation {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(360deg);}
+}
+@-o-keyframes rotation {
+    from {-o-transform: rotate(0deg);}
+    to {-o-transform: rotate(360deg);}
+}
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+#status {
+    display: inline-block;
+    vertical-align: top;
+    /*margin-top: 30px;*/
+    margin-left: 20px;
+    font-weight: bold;
+    color: rgb(120, 120, 120);
+}
+
+#progress {
+    height: 20px;
+    width: 300px;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#output {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-left: 0px;
+    border-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    display: block;
+    background-color: black;
+    color: white;
+    font-family: 'Lucida Console', Monaco, monospace;
+    outline: none;
+}
+
+.memory-queue {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.item .key {
+    font-weight: bold;
+}
+
+.item .value {
+    color: #630cb3b0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.memory {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0px 0.26vw 1.15vw rgba(148, 152, 170, 0.48);
+    border-radius: 0.21vw;
+    width: max-content;
+    box-sizing: border-box;
+    padding: 12px 16px;
+}
+
+.hardwareConcurrency .key, .hardwareConcurrency .value {
+    font-size: 24px;
+}
+
+.progress-bar {
+    width: 100%;
+    display: none;
+    height: 16px;
+}
+
+.indeterminate-progress-bar {
+    height: 16px;
+    min-height: 16px;
+    /*background-color: rgba(5, 114, 206, 0.2);*/
+    width: 100%;
+    overflow: hidden;
+    visibility: hidden;
+    box-sizing: border-box;
+    padding: 4px 0;
+    border-radius: 5%;
+}
+
+.indeterminate-progress-bar-value {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(5, 114, 206);
+    animation: indeterminateAnimation 1s infinite linear;
+    transform-origin: 0% 50%;
+}
+
+.visible {
+    /*display: flex;*/
+    visibility: visible;
+}
+
+.error {
+    color: red;
+}
+
+.nk-git__status {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.button {
+    width: 129px;
+    height: 52px;
+    border-radius: 8px;
+    background: var(--Gosblue, #0D4CD3);
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    align-self: center;
+    cursor: pointer;
+    border: none;
+}
+
+@keyframes indeterminateAnimation {
+    0% {
+        transform:  translateX(0) scaleX(0);
+    }
+    40% {
+        transform:  translateX(0) scaleX(0.4);
+    }
+    100% {
+        transform:  translateX(100%) scaleX(0.5);
+    }
+}

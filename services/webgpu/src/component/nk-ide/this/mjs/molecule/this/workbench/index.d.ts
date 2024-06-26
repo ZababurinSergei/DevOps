@@ -1,0 +1,11 @@
+export { WorkbenchView as Workbench } from './workbench';
+export { ActivityBar } from './../../this/workbench/activityBar';
+export { ActivityBarItem } from './../../this/workbench/activityBar/activityBarItem';
+export { Editor } from './../../this/workbench/editor/editor';
+export { EditorGroup } from './../../this/workbench/editor/group';
+export { MenuBar } from './../../this/workbench/menuBar/menuBar';
+export { Panel } from './../../this/workbench/panel/panel';
+export { Sidebar } from './../../this/workbench/sidebar';
+export { StatusBar, StatusItem } from './../../this/workbench/statusBar';
+export type { IWorkbench, IActivityBar, IActivityBarItem, IEditor, IEditorGroup, IMenuBar, IPanel, ISidebar, IStatusBar, IStatusBarItem, IProblems, IProblemsItem, INotification, INotificationItem, } from './../../this/model';
+export type { IActivityBarController, ILayoutController, IEditorController, ISideBarController, IMenuBarController, ISettingsController, INotificationController, IPanelController, IProblemsController, IStatusBarController, } from './../../this/controller';

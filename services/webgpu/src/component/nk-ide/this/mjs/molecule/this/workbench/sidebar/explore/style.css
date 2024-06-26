@@ -1,0 +1,134 @@
+.mo-sidebar .mo-collapse__header__title {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.mo-sidebar .mo-folderTree .mo-tree__indent__guide {
+  opacity: 0;
+  transition: opacity 0.3s linear;
+}
+.mo-sidebar .mo-folderTree:hover .mo-tree__indent__guide {
+  opacity: 1;
+}
+
+.mo-folderTree {
+  min-height: 100%;
+  padding-bottom: 22px;
+}
+.mo-folderTree--editable {
+  background: rgba(0, 0, 0, 0.3);
+}
+.mo-folderTree--editable .mo-folderTree--input {
+  background: var(--input-background);
+  border: 1px solid var(--list-focusOutline);
+  color: var(--input-foreground);
+  font-family: inherit;
+  font-size: inherit;
+  left: -2px;
+  margin: 0;
+  outline: none;
+  padding: 2px 1px;
+  position: relative;
+  width: calc(100% - 2px);
+}
+.mo-folderTree--editable .mo-folderTree--input:focus, .mo-folderTree--editable .mo-folderTree--input:active {
+  border-color: var(--list-focusOutline);
+  outline: inherit;
+}
+.mo-folderTree--editable .mo-folderTree--input::selection {
+  background: rgb(90, 126, 167);
+}
+.mo-folderTree--editable .mo-folderTree--input::placeholder {
+  color: var(--input-placeholderForeground);
+}
+
+.mo-editorTree {
+  font-size: 13px;
+}
+.mo-editorTree__item {
+  align-items: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: flex;
+  height: 22px;
+  line-height: 22px;
+  list-style: none;
+  margin: 0;
+  outline: 0;
+  padding-left: 16px;
+  user-select: none;
+  white-space: nowrap;
+}
+.mo-editorTree__item--active {
+  background-color: var(--list-inactiveSelectionBackground);
+}
+.mo-editorTree__item--active .mo-editorTree__close {
+  color: var(--icon-foreground);
+  opacity: 1;
+}
+.mo-editorTree__item:hover:not(.mo-editorTree__item--active) {
+  background-color: var(--list-hoverBackground);
+}
+.mo-editorTree__item:hover .mo-editorTree__close {
+  opacity: 1;
+}
+.mo-editorTree__item:focus {
+  background: var(--list-activeSelectionBackground);
+  border-color: var(--list-focusOutline);
+  color: #fff;
+}
+.mo-editorTree__item__fileName {
+  flex-basis: auto;
+  margin-left: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.mo-editorTree__item__filePath {
+  flex: 1;
+  font-size: 0.9em;
+  margin-left: 5px;
+  opacity: 0.8;
+  overflow: hidden;
+  padding-top: 2px;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
+.mo-editorTree__group {
+  align-items: center;
+  display: flex;
+  font-size: 11px;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 16px;
+  user-select: none;
+}
+.mo-editorTree__group:hover {
+  background-color: var(--list-hoverBackground);
+}
+.mo-editorTree__group:hover .mo-tool-bar {
+  opacity: 1;
+}
+.mo-editorTree__group .mo-tool-bar {
+  margin-left: auto;
+  opacity: 0;
+}
+.mo-editorTree__group .mo-tool-bar .codicon {
+  color: var(--activityBar-inactiveForeground);
+}
+.mo-editorTree__group .mo-tool-bar .codicon:hover {
+  color: var(--activityBar-activeBorder);
+}
+.mo-editorTree__close {
+  color: var(--icon-foreground);
+  margin-right: 2px;
+  opacity: 0;
+}
+.mo-editorTree__close:hover {
+  opacity: 1;
+}
+.mo-editorTree__file[class*=codicon-] {
+  flex-shrink: 0;
+  height: 22px;
+  line-height: 23px;
+  width: 16px;
+}

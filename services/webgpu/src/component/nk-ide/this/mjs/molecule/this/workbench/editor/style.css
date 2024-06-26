@@ -1,0 +1,64 @@
+.mo-editor {
+  background: var(--editorGroup-background);
+  display: flex;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.mo-editor__group-breadcrumb, .mo-editor__group-container {
+  background-color: var(--editor-background);
+  color: var(--editor-foreground);
+}
+.mo-editor__group {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.mo-editor__group-container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 57px;
+}
+.mo-editor__group-header {
+  background: var(--editorGroupHeader-tabsBackground);
+  border-bottom: 1px solid var(--editorGroupHeader-tabsBorder);
+  display: flex;
+  position: relative;
+}
+.mo-editor__group-header .mo-tab__item:hover {
+  background: var(--tab-hoverBackground);
+}
+.mo-editor__group-tabs {
+  flex-grow: 1;
+  height: 35px;
+}
+.mo-editor__group-tabs .mo-tab__item--active {
+  border-top: 1px solid var(--tab-activeBorder);
+}
+.mo-editor__group-actions {
+  display: flex;
+}
+.mo-editor__group-actions-item {
+  align-items: center;
+  color: var(--icon-foreground);
+  cursor: pointer;
+  display: flex;
+  height: 35px;
+  justify-content: center;
+  padding: 0 8px 0 4px;
+}
+.mo-editor__group-actions-item--disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+.mo-editor__group-breadcrumb {
+  height: 22px;
+  line-height: 22px;
+  padding-left: 20px;
+}
+.mo-editor .mo-tab-switcher .tab-button--active {
+  background-color: var(--tab-activeBackground);
+  color: var(--tab-activeForeground);
+}

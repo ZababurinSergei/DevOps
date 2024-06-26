@@ -1,0 +1,39 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    gap: 12px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0.47vw 0.94vw 0px #88919d4d;
+    box-sizing: border-box;
+    padding: 16px 12px;
+}
+
+.protocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100%;
+    grid-gap: 8px;
+    text-align: center;
+}
+
+.item-0 {
+    background: rgba(230, 80, 43, 0.78);
+}
+
+.item-1 {
+    background: rgba(236, 111, 11, 0.78);
+}
+
+.item-2 {
+    background: rgba(236, 206, 11, 0.78);
+}
+
+.item-3 {
+    background: rgba(127, 236, 11, 0.78);
+}

@@ -1,0 +1,10 @@
+export declare const splitClassName: string;
+export declare const splitDraggingClassName: string;
+export declare const splitVerticalClassName: string;
+export declare const splitHorizontalClassName: string;
+export declare const paneItemClassName: string;
+export declare const sashItemClassName: string;
+export declare const sashVerticalClassName: string;
+export declare const sashHorizontalClassName: string;
+export declare const sashDisabledClassName: string;
+export declare const sashHoverClassName: string;

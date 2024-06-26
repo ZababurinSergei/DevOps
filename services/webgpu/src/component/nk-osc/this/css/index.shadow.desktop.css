@@ -1,0 +1,265 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background: #0080331a;
+    height: 100%;
+}
+
+body {
+    /* background-color:#FFFFFF; /* Uncomment for black text on white background */
+    background-color:#272727; /* Uncomment for white text on black background */
+}
+
+#mainDiv {
+    width: 100%;
+    margin-left:auto;
+    margin-right:auto;
+    vertical-align:center;
+    background: #272727;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    justify-content: center;
+}
+
+#outputDiv {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4px;
+    text-align: center;
+    min-height: 116px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#outputTextElement
+{
+    position: relative;
+    text-align:left;
+    font-size: 0.8vw;
+    font-family:monospace;
+    /* color:#000000; /* Uncomment for black text on white background */
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.highlight, .leftString, .rightString {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    white-space: normal;
+}
+
+.leftString {
+    text-align: right;
+}
+
+.rightString {
+    text-align: left;
+}
+
+.left {
+    margin-right: 8px;
+}
+
+.right {
+    margin-left: 8px;
+}
+
+.highlight {
+    width: min-content;
+    text-align: center;
+}
+
+.outputText {
+    position: absolute;
+    top: 36px;
+    left: 22.1vw;
+    text-align:left;
+    font-size:42px;
+    font-family:monospace;
+    /* color:#000000; /* Uncomment for black text on white background */
+    color:white; /* Uncomment for white text on black background */
+    width: min-content;
+}
+
+.highlight
+{
+    color:#ff7030;
+}
+
+#progressBarBaseDiv
+{
+    width:600px;
+    height:3px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#606060;
+}
+
+#progressBarDiv
+{
+    width:0px;
+    height:3px;
+    background-color:#a0a0a0;
+}
+
+#controlButtons {
+    margin: 0px auto 0px auto;
+    text-align:center;
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+#inputTextAreaDiv {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: inherit;
+}
+
+.controlButton
+{
+    margin: 0px 6px 0px 6px;
+    text-align:center;
+    font-size:32px;
+    font-family:monospace;
+}
+
+#speedAndCheckBoxesDiv {
+    margin: 0px auto 0px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+    box-sizing: border-box;
+    padding: 8px;
+    background: black;
+    min-height: 64px;
+    width: 100%;
+}
+
+textarea {
+    /*border:1px solid #999999;*/
+    width:100%;
+    margin:5px 0;
+    padding:3px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    height: 100%;
+    min-height: 36dvh;
+}
+
+.UIText {
+    /* color:#000000; /* Uncomment for black text on white background */
+    color:#a0a0a0;    /* Uncomment for black text on white background */
+    min-width: 24px;
+}
+
+.UIDisabledText {
+    color:#808080;
+}
+
+.UIInput {
+    background-color:#e0e0e0;
+}
+
+.UIInputReadOnly {
+    background-color: #ecffece0;
+}
+
+#inputTextArea, #inputTextArea:focus-visible {
+    font-family: monospace;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-size: 13.3333px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-alternates: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-variant-position: normal;
+    font-variation-settings: normal;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: normal;
+    text-indent: 0px;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: none;
+    text-wrap: wrap;
+    /*white-space-collapse: preserve;*/
+    word-spacing: 0px;
+    border: none;
+    outline: none;
+    margin: 0;
+    height: inherit;
+    text-align: justify;
+    word-break: break-word;
+    padding: 0.5vw;
+    box-sizing: border-box;
+}
+
+.container-view {
+    background: black;
+}
+
+.readable-stream {
+    display: none;
+}
+
+:focus-visible  {
+    border: none;
+    outline: none;
+}
+
+.active {
+    background: rgba(0, 157, 255, 0.73);
+    color: back;
+}
+
+[contenteditable="true"] {
+    -webkit-user-select: unset;
+    -moz-user-select: unset;
+    -ms-user-select: unset;
+    user-select: unset;
+}
+
+[contenteditable="false"] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.center {
+    background: rgb(255 0 71 / 74%);
+    color: #89fffa;
+    box-sizing: border-box;
+}
+
+.onair {
+    background: rgb(11 28 30 / 72%);
+    color: #5fefe9;
+}
+
+.display.sample {
+    display: grid;
+    grid-template-columns: repeat(64, 1fr);
+    grid-template-rows: repeat(36, 0.1vw);
+    box-shadow: 0px 0px 5px #666666;
+    background: rgba(233, 253, 194, 0.85);
+}

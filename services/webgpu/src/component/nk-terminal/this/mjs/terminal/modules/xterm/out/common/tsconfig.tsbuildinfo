@@ -1,0 +1,729 @@
+{
+  "program": {
+    "fileInfos": {
+      "../../node_modules/typescript/lib/lib.es5.d.ts": {
+        "version": "c9a1f03d6ba0fe3c871eb0dd81622e78fbb61ade70878b34d48a341a690c59e9",
+        "signature": "c9a1f03d6ba0fe3c871eb0dd81622e78fbb61ade70878b34d48a341a690c59e9",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.d.ts": {
+        "version": "dc47c4fa66b9b9890cf076304de2a9c5201e94b740cffdf09f87296d877d71f6",
+        "signature": "dc47c4fa66b9b9890cf076304de2a9c5201e94b740cffdf09f87296d877d71f6",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/typescript/lib/lib.dom.d.ts": {
+        "version": "38130cdd16bd2318b9362f9d60dd9670f7e38708bb6131cf11fc78a41b2c34a0",
+        "signature": "38130cdd16bd2318b9362f9d60dd9670f7e38708bb6131cf11fc78a41b2c34a0",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts": {
+        "version": "46ee15e9fefa913333b61eaf6b18885900b139867d89832a515059b62cf16a17",
+        "signature": "46ee15e9fefa913333b61eaf6b18885900b139867d89832a515059b62cf16a17",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts": {
+        "version": "43fb1d932e4966a39a41b464a12a81899d9ae5f2c829063f5571b6b87e6d2f9c",
+        "signature": "43fb1d932e4966a39a41b464a12a81899d9ae5f2c829063f5571b6b87e6d2f9c",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts": {
+        "version": "cdccba9a388c2ee3fd6ad4018c640a471a6c060e96f1232062223063b0a5ac6a",
+        "signature": "cdccba9a388c2ee3fd6ad4018c640a471a6c060e96f1232062223063b0a5ac6a",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
+        "version": "42f5e41e5893da663dbf0394268f54f1da4b43dc0ddd2ea4bf471fe5361d6faf",
+        "signature": "42f5e41e5893da663dbf0394268f54f1da4b43dc0ddd2ea4bf471fe5361d6faf",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts": {
+        "version": "0b7a905675e6cb4211c128f0a3aa47d414b275180a299a9aad5d3ec298abbfc4",
+        "signature": "0b7a905675e6cb4211c128f0a3aa47d414b275180a299a9aad5d3ec298abbfc4",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
+        "version": "dfff68b3c34338f6b307a25d4566de15eed7973b0dc5d69f9fde2bcac1c25315",
+        "signature": "dfff68b3c34338f6b307a25d4566de15eed7973b0dc5d69f9fde2bcac1c25315",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
+        "version": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
+        "signature": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
+        "version": "3013574108c36fd3aaca79764002b3717da09725a36a6fc02eac386593110f93",
+        "signature": "3013574108c36fd3aaca79764002b3717da09725a36a6fc02eac386593110f93",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
+        "version": "4670208dd7da9d6c774ab1b75c1527a810388c7989c4905de6aaea8561cb9dce",
+        "signature": "4670208dd7da9d6c774ab1b75c1527a810388c7989c4905de6aaea8561cb9dce",
+        "affectsGlobalScope": true
+      },
+      "../../src/common/EventEmitter.ts": {
+        "version": "7e1ee84490a62fa1d28a643337af1c5dd6ee4646b81618d13a2b6f2b0400aab7",
+        "signature": "cf89bfca5e1a4e05302f858d69d796f0febbfeaa70de689bdd114c6bf27e9c03",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/parser/Constants.ts": {
+        "version": "40ee7ae42475b3392c14a641fbebfd84cdcb576215817f2d5ae8af1a6e2e2639",
+        "signature": "8797550c50c3747c07e0b908d33a0e6f65ca730161911c0dad889837659f1ac9",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/parser/Types.d.ts": {
+        "version": "6e53385166a2dbbad9071020e07b2269e5eb18c4e02c8ff1b55cda8fb3388270",
+        "signature": "6e53385166a2dbbad9071020e07b2269e5eb18c4e02c8ff1b55cda8fb3388270",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/Types.d.ts": {
+        "version": "7e2a89a3e6506474423645e967ea1c6aa34851ad37722499b137043bcc8e3629",
+        "signature": "7e2a89a3e6506474423645e967ea1c6aa34851ad37722499b137043bcc8e3629",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/ServiceRegistry.ts": {
+        "version": "00f31b550bf0088a87bccb6caec3de5d83d084e4ad0e7afab84e28f47a17d99f",
+        "signature": "a47712fc06bec015665a9a6246d8e2dd5601a51381f6867787e4a10a2d8c0726",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/Services.ts": {
+        "version": "272518f5fdc6f27122e19bfed997e3eb7e269c728b0951df9eeb44b89b1e4849",
+        "signature": "1de3bf595a70fc555946839039c1347e458870504e4dc0ccb097fb6ae9699929",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/Types.d.ts": {
+        "version": "bd4c0e0f766b46c74cef63678a8bfe2c5b24ba7c6cf850b33d2bdc05eb29a203",
+        "signature": "bd4c0e0f766b46c74cef63678a8bfe2c5b24ba7c6cf850b33d2bdc05eb29a203",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/CircularList.ts": {
+        "version": "1834c0f91c17e1b814e09178d9eefaed4436bc82049858fe47cd95c200c36fcd",
+        "signature": "cf8a79046dd20cfc83c4c681f09e0bab8054191017ee28b3cdd3316115859f87",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/Clone.ts": {
+        "version": "85941f07fc6a17c30980bc76190b044ae1742bcccf71b54bcfbe0b539728d6f2",
+        "signature": "88bd9a8f9ca5a8d8762fa47fc8aeb844198eecaf8b1e67a87a407b1e0a7bc9cd",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/Lifecycle.ts": {
+        "version": "f89ea80b053d9ed87e1f2bd61caffb49ac10161cd14d68b60af1312641a2795e",
+        "signature": "90a4bb0e59a438d1b4d498726a5f8f4d175a784979493e39e42a217672ab6cd8",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/InstantiationService.ts": {
+        "version": "ac58c795479c6cae379dfb5bd420af78d8ea13a7020164c533e13c8db21f3820",
+        "signature": "d4abd1b20627fba141096ce5775fcf2ddf506d4ff61c0a7d5e043fa263bb613e",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/LogService.ts": {
+        "version": "3f6e1bfd09f809b90c47902e68b0b10b14a2db13fecf7815847adca4192ab530",
+        "signature": "0418b4f9c524dd852c36e1c5c0f06cdc62a36bab9526643557b084c3f5f99e82",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/input/TextDecoder.ts": {
+        "version": "c8db6c27e0077c117f20e6ee621aa4f5a124f219c6fe59e631fecfdfa668da94",
+        "signature": "8f21f90f26a523a82761853cc084407dbac6bd46897cabf32e5d3bc698f212b1",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/Constants.ts": {
+        "version": "441d8a484a0f2c9feaf6f97fd88ea7f934233d0c387ae50705aa15dae6bd2cd4",
+        "signature": "66453359dbf09019bd49af73c8e1d7749e3455116d5e94e070661b52040cd063",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/AttributeData.ts": {
+        "version": "d769bc2d0783af693958b4a9ab19afed56ebfa2f18951da7ae27311d32e42b54",
+        "signature": "8585bc78f952b95b2c2652b56dfd8ee02cb910d534b21d1cd5d5b813f146a984",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/CellData.ts": {
+        "version": "bd7bbe972d9210e14ad907dd4538c9162395a1565bf75fe6252822b4a65952a9",
+        "signature": "a264d78c3e48f75cc603d92b5927963d6f06d6b553d3f4f555bcdb3379135167",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/BufferLine.ts": {
+        "version": "57e5c265446a4dfc9c0dd3a397d4846e516bf632e679346a8c2bc3ecc5382bb5",
+        "signature": "0e55a2c84ecc6dc40882a99c94b6d7948d4a1b171fd3db2b4b38fe69105fb932",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/BufferReflow.ts": {
+        "version": "0fb5695318aa4616b439ba9e3fec98b148fe25be5871f73799d44dd2e411b661",
+        "signature": "f8b6996a6abce619a946490360eea59d5e45673c5fa8d9b8a005d488e28375d7",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/Marker.ts": {
+        "version": "c9cfb1f8d13630b829cf38cdbc8af53f58a864025028b5f65d1353a4f1cb42e0",
+        "signature": "b9a2a975068db80fe80cd86a507300eb7789fe1da4f182ee6419f4dd1821b2f3",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/data/Charsets.ts": {
+        "version": "bac7104ffb2887b9871a08a294ba08ebf6d848774189474d1ec52e3da8c5f37e",
+        "signature": "64bee5c5cd388e9b44b78cb3d310c4de2eaa076ae8f7ca076908096cd503f2f7",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/Buffer.ts": {
+        "version": "a50e8769d9aaadbf992fc543c253c0c9949d52f76309f4c989f89a72bf57a782",
+        "signature": "bcefd559dfe8bd0059727c78b8e447f36f85ce6a4f0cde1f2a5b8a0cdf6cc264",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/BufferSet.ts": {
+        "version": "8ef0637e52b46c74179325a8731f764153aba5ab54a60f5cb882319f9d3dd8e4",
+        "signature": "49be7957547c33f1f887f765a90121de8f4196043e031b38845577130e206a0e",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/BufferService.ts": {
+        "version": "c63dadff63f046f9b9e288a1d937e1364ae0049eeb2529bba44aad861cf11c5f",
+        "signature": "bade09ac99e81498cae913537cbdc28f70dddae4fa4b1f5c70e9fadac78b238b",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/Platform.ts": {
+        "version": "d6e442e70460167bfa68097c687a997e49e4659bc5479502b2fbfd62e344367e",
+        "signature": "32e8f8eb730d8e61e851bd59e9948ee53e433a6a3e658879c72fbe85f8f9a5a3",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/OptionsService.ts": {
+        "version": "b3a29e38c03fef14150eedd0c7d12562c392dbff7b3e3c02a7c16cfa52441b4b",
+        "signature": "22594dd2c6e0e5ac6b67bddaae3d5f4bd99a95fe2a52770e7fb0220543f68bdd",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/CoreService.ts": {
+        "version": "9421302edd04972a9e2f823527cdb20cb8e7ff8bcde64b463d5d6b94f2c8afe7",
+        "signature": "43ff954748bb8a5985693df55f72ed6ec9ab5775babe6667d384240931c5a70f",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/CoreMouseService.ts": {
+        "version": "1f0beab6b363573a5801bd7f26099d260ebe7dc2105804b42046b277598bf009",
+        "signature": "01f3d4e8ddf32aa070ccf4561535cd35b495d2d4746ac11adb9f7d668d453b0a",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/DirtyRowService.ts": {
+        "version": "22297d614f6dc891074c0be53cbb782e68703006b2f8a383a2d20d8cabdf39f2",
+        "signature": "e6840a7da58db7cca105292a10595cd8f6296461f60cf39d622496834debd8bf",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/TypedArrayUtils.ts": {
+        "version": "026f30ea63446a47d4039446897776943523787d91de551d22d11cfbfe9fff3a",
+        "signature": "080affb84c4824847c26b6642cb77510e84247e06cb3f38de219e1e8df264c98",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/input/UnicodeV6.ts": {
+        "version": "d28b32a22aae56ed379d37be194a46c5cad3f4ecb651ab22c9cc1a7bd3f1e280",
+        "signature": "876aa398d9a8dbd3a8746ab414f02c9feae99428054818b65866fc638866c4a3",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/UnicodeService.ts": {
+        "version": "8a81680f5484e3e8443e1189fce7c1597c1bce7207f6834c8d4b5c3ab736e052",
+        "signature": "00605b0dbd93e16e461ea91bade72e846409a2043a296db66aff0c8c1cf7399e",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/services/CharsetService.ts": {
+        "version": "713b3ee7028605cf2637603df8f23c96aade132311d75c638d2851a5be7ba82b",
+        "signature": "6e102ba3831ad1f1f85136c57ef0b2de6b5965a2a2d9e5501ebbc7ed4081dae0",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/WindowsMode.ts": {
+        "version": "1f449ede2f770a1dc90340a922dac4f087d49f9337100d563f1fe505fcba5cb6",
+        "signature": "7036b873fd128c4877412a522203a7bf89b4583d5fa10161d3427c20b9ddb977",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/data/EscapeSequences.ts": {
+        "version": "d983a0f16c3ac853dc31ddce07fdca6e1b205c2e835e45b5b47c2e9c0c55c6b1",
+        "signature": "85ebc6841619cde02cd1a208d7a3899b36f63a1cd6481d7dca6cf8592e2ae96a",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/parser/Params.ts": {
+        "version": "8c21cb6c8b5d8bbf193ccd9156066985b2ce80f24bad3db5563f36675e0c6ae9",
+        "signature": "5b2bb2e0c7f1dcce2aa2f3a239ec0ce4036d4dba5b219c97e7ee1f736c8c4b30",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/parser/OscParser.ts": {
+        "version": "02e62301b5cee3931f89f75c6e8f4acead5f5f320fe00198aa375546186baeb5",
+        "signature": "4de46b6d05b72881ccbecaf67cc655eb877d57519253498350de3aab79bcaeed",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/parser/DcsParser.ts": {
+        "version": "c98e898a144eb6d8b503f504ddfea3c9249995d2260521c24736d9f5404ebd5c",
+        "signature": "fbaff790c40f30286fe44a1572b6101cbcf17bcca7b274652828435751b1e777",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/parser/EscapeSequenceParser.ts": {
+        "version": "5571ba43d7760383684d1d3ad77ec4ac4cd0b2d01dedf63726bf4c34f920f798",
+        "signature": "2c10277abd3d29d2535b93e90180f6afd4c40ea8ef280202a13c8e5f0fc60aaf",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/InputHandler.ts": {
+        "version": "1bf4ddd1db576b3f291b4059ca0f58210e2d89bd6eec367afd9fbdc7097ae267",
+        "signature": "2239ecf0cd172d018a3478c7c8f82d18d8348d5d4794da2f867fd21f0897e63b",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/input/WriteBuffer.ts": {
+        "version": "6d80abb420c2559fe26760e4f223afe2f6ca66093ae9d448d105501a395ffe52",
+        "signature": "e7ebe00bf6a20f0e7200209c4f07004a03a5dc534212cc2b37062e4af14838e8",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/CoreTerminal.ts": {
+        "version": "e0d8b748c547856acb0617450c8f617b8af6347b31efbecbba29af76e20c4f6f",
+        "signature": "0dcdebafad205b2649be406bcf38ef0b5e2f58483344672c59afc758f38a9201",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/input/Keyboard.ts": {
+        "version": "c1e52a9f39190330e5646705af6752849d0e83190f40fc35d3af1bc8804bf941",
+        "signature": "31104f5ce09646dd8889578a2ed56be6450f852578bdc0224edbe4ddc6a26763",
+        "affectsGlobalScope": false
+      },
+      "../../typings/xterm.d.ts": {
+        "version": "c566ad495eeb1564caba8bf8a03ee1c6a36f634fa0458b84b02ad7c308f57e5d",
+        "signature": "c566ad495eeb1564caba8bf8a03ee1c6a36f634fa0458b84b02ad7c308f57e5d",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/mocha/index.d.ts": {
+        "version": "5f186a758a616c107c70e8918db4630d063bd782f22e6e0b17573b125765b40b",
+        "signature": "5f186a758a616c107c70e8918db4630d063bd782f22e6e0b17573b125765b40b",
+        "affectsGlobalScope": true
+      }
+    },
+    "options": {
+      "target": 1,
+      "lib": [
+        "lib.es2015.d.ts"
+      ],
+      "rootDir": "../../src",
+      "sourceMap": true,
+      "removeComments": true,
+      "pretty": true,
+      "incremental": true,
+      "experimentalDecorators": true,
+      "composite": true,
+      "strict": true,
+      "declarationMap": true,
+      "outDir": "..",
+      "types": [
+        "../../node_modules/@types/mocha"
+      ],
+      "baseUrl": "../../src",
+      "configFilePath": "../../src/common/tsconfig.json"
+    },
+    "referencedMap": {
+      "../../src/common/CircularList.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/CoreTerminal.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/InputHandler.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/WindowsMode.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/input/WriteBuffer.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../src/common/services/BufferService.ts",
+        "../../src/common/services/CharsetService.ts",
+        "../../src/common/services/CoreMouseService.ts",
+        "../../src/common/services/CoreService.ts",
+        "../../src/common/services/DirtyRowService.ts",
+        "../../src/common/services/InstantiationService.ts",
+        "../../src/common/services/LogService.ts",
+        "../../src/common/services/OptionsService.ts",
+        "../../src/common/services/Services.ts",
+        "../../src/common/services/UnicodeService.ts"
+      ],
+      "../../src/common/EventEmitter.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/InputHandler.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/TypedArrayUtils.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/AttributeData.ts",
+        "../../src/common/buffer/BufferLine.ts",
+        "../../src/common/buffer/CellData.ts",
+        "../../src/common/buffer/Constants.ts",
+        "../../src/common/data/Charsets.ts",
+        "../../src/common/data/EscapeSequences.ts",
+        "../../src/common/input/TextDecoder.ts",
+        "../../src/common/parser/DcsParser.ts",
+        "../../src/common/parser/EscapeSequenceParser.ts",
+        "../../src/common/parser/OscParser.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/Lifecycle.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/Types.d.ts": [
+        "../../src/common/CircularList.ts",
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../src/common/services/Services.ts",
+        "../../typings/xterm.d.ts"
+      ],
+      "../../src/common/WindowsMode.ts": [
+        "../../src/common/buffer/Constants.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/buffer/AttributeData.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Constants.ts"
+      ],
+      "../../src/common/buffer/Buffer.ts": [
+        "../../src/common/CircularList.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/AttributeData.ts",
+        "../../src/common/buffer/BufferLine.ts",
+        "../../src/common/buffer/BufferReflow.ts",
+        "../../src/common/buffer/CellData.ts",
+        "../../src/common/buffer/Constants.ts",
+        "../../src/common/buffer/Marker.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/data/Charsets.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/buffer/BufferLine.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/AttributeData.ts",
+        "../../src/common/buffer/CellData.ts",
+        "../../src/common/buffer/Constants.ts",
+        "../../src/common/input/TextDecoder.ts"
+      ],
+      "../../src/common/buffer/BufferReflow.ts": [
+        "../../src/common/CircularList.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/BufferLine.ts"
+      ],
+      "../../src/common/buffer/BufferSet.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Buffer.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/buffer/CellData.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/AttributeData.ts",
+        "../../src/common/buffer/Constants.ts",
+        "../../src/common/input/TextDecoder.ts"
+      ],
+      "../../src/common/buffer/Marker.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/buffer/Types.d.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/data/Charsets.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/input/Keyboard.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/data/EscapeSequences.ts"
+      ],
+      "../../src/common/input/UnicodeV6.ts": [
+        "../../src/common/TypedArrayUtils.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/parser/DcsParser.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/input/TextDecoder.ts",
+        "../../src/common/parser/Constants.ts",
+        "../../src/common/parser/Params.ts",
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/EscapeSequenceParser.ts": [
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/TypedArrayUtils.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Constants.ts",
+        "../../src/common/parser/DcsParser.ts",
+        "../../src/common/parser/OscParser.ts",
+        "../../src/common/parser/Params.ts",
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/OscParser.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/input/TextDecoder.ts",
+        "../../src/common/parser/Constants.ts",
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/Params.ts": [
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/Types.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Constants.ts"
+      ],
+      "../../src/common/services/BufferService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/buffer/BufferSet.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/CharsetService.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/CoreMouseService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/CoreService.ts": [
+        "../../src/common/Clone.ts",
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/DirtyRowService.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/InstantiationService.ts": [
+        "../../src/common/services/ServiceRegistry.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/LogService.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/OptionsService.ts": [
+        "../../src/common/Clone.ts",
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Platform.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/ServiceRegistry.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/Services.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/services/ServiceRegistry.ts"
+      ],
+      "../../src/common/services/UnicodeService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/input/UnicodeV6.ts",
+        "../../src/common/services/Services.ts"
+      ]
+    },
+    "exportedModulesMap": {
+      "../../src/common/CircularList.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/CoreTerminal.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/InputHandler.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/EventEmitter.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/InputHandler.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/Lifecycle.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/Types.d.ts": [
+        "../../src/common/CircularList.ts",
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../src/common/services/Services.ts",
+        "../../typings/xterm.d.ts"
+      ],
+      "../../src/common/WindowsMode.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/buffer/AttributeData.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Constants.ts"
+      ],
+      "../../src/common/buffer/Buffer.ts": [
+        "../../src/common/CircularList.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Marker.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/buffer/BufferLine.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/AttributeData.ts"
+      ],
+      "../../src/common/buffer/BufferReflow.ts": [
+        "../../src/common/CircularList.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/BufferLine.ts"
+      ],
+      "../../src/common/buffer/BufferSet.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Buffer.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/buffer/CellData.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/AttributeData.ts"
+      ],
+      "../../src/common/buffer/Marker.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/buffer/Types.d.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/data/Charsets.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/input/Keyboard.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/common/input/UnicodeV6.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/parser/DcsParser.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/EscapeSequenceParser.ts": [
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Constants.ts",
+        "../../src/common/parser/Params.ts",
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/OscParser.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/Params.ts": [
+        "../../src/common/parser/Types.d.ts"
+      ],
+      "../../src/common/parser/Types.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Constants.ts"
+      ],
+      "../../src/common/services/BufferService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/CharsetService.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/CoreMouseService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/CoreService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Lifecycle.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/DirtyRowService.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/InstantiationService.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/LogService.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/OptionsService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/ServiceRegistry.ts": [
+        "../../src/common/services/Services.ts"
+      ],
+      "../../src/common/services/Services.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts"
+      ],
+      "../../src/common/services/UnicodeService.ts": [
+        "../../src/common/EventEmitter.ts",
+        "../../src/common/services/Services.ts"
+      ]
+    },
+    "semanticDiagnosticsPerFile": [
+      "../../node_modules/@types/mocha/index.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../src/common/CircularList.ts",
+      "../../src/common/Clone.ts",
+      "../../src/common/CoreTerminal.ts",
+      "../../src/common/EventEmitter.ts",
+      "../../src/common/InputHandler.ts",
+      "../../src/common/Lifecycle.ts",
+      "../../src/common/Platform.ts",
+      "../../src/common/TypedArrayUtils.ts",
+      "../../src/common/Types.d.ts",
+      "../../src/common/WindowsMode.ts",
+      "../../src/common/buffer/AttributeData.ts",
+      "../../src/common/buffer/Buffer.ts",
+      "../../src/common/buffer/BufferLine.ts",
+      "../../src/common/buffer/BufferReflow.ts",
+      "../../src/common/buffer/BufferSet.ts",
+      "../../src/common/buffer/CellData.ts",
+      "../../src/common/buffer/Constants.ts",
+      "../../src/common/buffer/Marker.ts",
+      "../../src/common/buffer/Types.d.ts",
+      "../../src/common/data/Charsets.ts",
+      "../../src/common/data/EscapeSequences.ts",
+      "../../src/common/input/Keyboard.ts",
+      "../../src/common/input/TextDecoder.ts",
+      "../../src/common/input/UnicodeV6.ts",
+      "../../src/common/input/WriteBuffer.ts",
+      "../../src/common/parser/Constants.ts",
+      "../../src/common/parser/DcsParser.ts",
+      "../../src/common/parser/EscapeSequenceParser.ts",
+      "../../src/common/parser/OscParser.ts",
+      "../../src/common/parser/Params.ts",
+      "../../src/common/parser/Types.d.ts",
+      "../../src/common/services/BufferService.ts",
+      "../../src/common/services/CharsetService.ts",
+      "../../src/common/services/CoreMouseService.ts",
+      "../../src/common/services/CoreService.ts",
+      "../../src/common/services/DirtyRowService.ts",
+      "../../src/common/services/InstantiationService.ts",
+      "../../src/common/services/LogService.ts",
+      "../../src/common/services/OptionsService.ts",
+      "../../src/common/services/ServiceRegistry.ts",
+      "../../src/common/services/Services.ts",
+      "../../src/common/services/UnicodeService.ts",
+      "../../typings/xterm.d.ts"
+    ]
+  },
+  "version": "4.0.8"
+}

@@ -1,0 +1,14 @@
+export declare const modalClassName: string;
+export declare const confirmClassName: string;
+export declare const closeDialogClassName: string;
+export declare const closeDialogDescriptorClassName: string;
+export declare const wrapDialogClassName: string;
+export declare const containerConfirmClassName: string;
+export declare const indicatorConfirmClassName: string;
+export declare const iconConfirmClassName: (type?: "confirm" | "warning" | undefined) => string;
+export declare const contentConfirmClassName: string;
+export declare const messageConfirmClassName: string;
+export declare const btnsConfirmClassName: string;
+export declare const centeredConfirmClassName: string;
+export declare const textConfirmClassName: string;
+export declare const detailConfirmClassName: string;

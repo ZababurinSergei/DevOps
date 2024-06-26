@@ -1,0 +1,56 @@
+.mo-notification {
+  background-color: var(--workbenchBackground);
+  bottom: 10px;
+  color: var(--foreground);
+  cursor: default;
+  display: none;
+  overflow: hidden;
+  position: absolute;
+  right: 8px;
+  z-index: 1000;
+}
+.mo-notification__header {
+  align-items: center;
+  direction: ltr;
+  display: flex;
+  height: 35px;
+  padding-left: 8px;
+  padding-right: 5px;
+}
+.mo-notification__header > span {
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.mo-notification__header .mo-action-bar {
+  flex: 1;
+}
+.mo-notification__header .mo-action-bar__item .codicon {
+  height: 22px;
+  width: 22px;
+}
+.mo-notification__body {
+  max-height: 500px;
+  min-width: 450px;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 0 8px;
+  position: relative;
+}
+.mo-notification__body:not(:empty) {
+  padding-bottom: 8px;
+}
+.mo-notification__item {
+  padding: 5px;
+  text-align: left;
+  transition: background-color 0.3s;
+}
+.mo-notification__item:hover {
+  background-color: var(--list-hoverBackground);
+}
+.mo-notification--close {
+  cursor: pointer;
+  float: right;
+}
+.mo-notification .mo-btn {
+  color: var(--button-foreground);
+}

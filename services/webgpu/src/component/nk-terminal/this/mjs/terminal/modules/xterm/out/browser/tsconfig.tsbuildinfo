@@ -1,0 +1,1185 @@
+{
+  "program": {
+    "fileInfos": {
+      "../../node_modules/typescript/lib/lib.es5.d.ts": {
+        "version": "c9a1f03d6ba0fe3c871eb0dd81622e78fbb61ade70878b34d48a341a690c59e9",
+        "signature": "c9a1f03d6ba0fe3c871eb0dd81622e78fbb61ade70878b34d48a341a690c59e9",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.d.ts": {
+        "version": "dc47c4fa66b9b9890cf076304de2a9c5201e94b740cffdf09f87296d877d71f6",
+        "signature": "dc47c4fa66b9b9890cf076304de2a9c5201e94b740cffdf09f87296d877d71f6",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/typescript/lib/lib.dom.d.ts": {
+        "version": "38130cdd16bd2318b9362f9d60dd9670f7e38708bb6131cf11fc78a41b2c34a0",
+        "signature": "38130cdd16bd2318b9362f9d60dd9670f7e38708bb6131cf11fc78a41b2c34a0",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts": {
+        "version": "46ee15e9fefa913333b61eaf6b18885900b139867d89832a515059b62cf16a17",
+        "signature": "46ee15e9fefa913333b61eaf6b18885900b139867d89832a515059b62cf16a17",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts": {
+        "version": "43fb1d932e4966a39a41b464a12a81899d9ae5f2c829063f5571b6b87e6d2f9c",
+        "signature": "43fb1d932e4966a39a41b464a12a81899d9ae5f2c829063f5571b6b87e6d2f9c",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts": {
+        "version": "cdccba9a388c2ee3fd6ad4018c640a471a6c060e96f1232062223063b0a5ac6a",
+        "signature": "cdccba9a388c2ee3fd6ad4018c640a471a6c060e96f1232062223063b0a5ac6a",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
+        "version": "42f5e41e5893da663dbf0394268f54f1da4b43dc0ddd2ea4bf471fe5361d6faf",
+        "signature": "42f5e41e5893da663dbf0394268f54f1da4b43dc0ddd2ea4bf471fe5361d6faf",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts": {
+        "version": "0b7a905675e6cb4211c128f0a3aa47d414b275180a299a9aad5d3ec298abbfc4",
+        "signature": "0b7a905675e6cb4211c128f0a3aa47d414b275180a299a9aad5d3ec298abbfc4",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
+        "version": "dfff68b3c34338f6b307a25d4566de15eed7973b0dc5d69f9fde2bcac1c25315",
+        "signature": "dfff68b3c34338f6b307a25d4566de15eed7973b0dc5d69f9fde2bcac1c25315",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
+        "version": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
+        "signature": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
+        "version": "3013574108c36fd3aaca79764002b3717da09725a36a6fc02eac386593110f93",
+        "signature": "3013574108c36fd3aaca79764002b3717da09725a36a6fc02eac386593110f93",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
+        "version": "4670208dd7da9d6c774ab1b75c1527a810388c7989c4905de6aaea8561cb9dce",
+        "signature": "4670208dd7da9d6c774ab1b75c1527a810388c7989c4905de6aaea8561cb9dce",
+        "affectsGlobalScope": true
+      },
+      "../../src/browser/LocalizableStrings.ts": {
+        "version": "ae0de813976a2443c52e7841ee34b962a2edc4914dae44092ebf452f41ae60e6",
+        "signature": "b738346a2a55dcf293b9c21efc310aff66f9b7676f199af5a94bc368cb1c3e36",
+        "affectsGlobalScope": false
+      },
+      "../common/CircularList.d.ts": {
+        "version": "cf8a79046dd20cfc83c4c681f09e0bab8054191017ee28b3cdd3316115859f87",
+        "signature": "cf8a79046dd20cfc83c4c681f09e0bab8054191017ee28b3cdd3316115859f87",
+        "affectsGlobalScope": false
+      },
+      "../common/parser/Constants.d.ts": {
+        "version": "8797550c50c3747c07e0b908d33a0e6f65ca730161911c0dad889837659f1ac9",
+        "signature": "8797550c50c3747c07e0b908d33a0e6f65ca730161911c0dad889837659f1ac9",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/parser/Types.d.ts": {
+        "version": "6e53385166a2dbbad9071020e07b2269e5eb18c4e02c8ff1b55cda8fb3388270",
+        "signature": "6e53385166a2dbbad9071020e07b2269e5eb18c4e02c8ff1b55cda8fb3388270",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/buffer/Types.d.ts": {
+        "version": "7e2a89a3e6506474423645e967ea1c6aa34851ad37722499b137043bcc8e3629",
+        "signature": "7e2a89a3e6506474423645e967ea1c6aa34851ad37722499b137043bcc8e3629",
+        "affectsGlobalScope": false
+      },
+      "../common/services/Services.d.ts": {
+        "version": "1de3bf595a70fc555946839039c1347e458870504e4dc0ccb097fb6ae9699929",
+        "signature": "1de3bf595a70fc555946839039c1347e458870504e4dc0ccb097fb6ae9699929",
+        "affectsGlobalScope": false
+      },
+      "../../src/common/Types.d.ts": {
+        "version": "bd4c0e0f766b46c74cef63678a8bfe2c5b24ba7c6cf850b33d2bdc05eb29a203",
+        "signature": "bd4c0e0f766b46c74cef63678a8bfe2c5b24ba7c6cf850b33d2bdc05eb29a203",
+        "affectsGlobalScope": false
+      },
+      "../common/EventEmitter.d.ts": {
+        "version": "cf89bfca5e1a4e05302f858d69d796f0febbfeaa70de689bdd114c6bf27e9c03",
+        "signature": "cf89bfca5e1a4e05302f858d69d796f0febbfeaa70de689bdd114c6bf27e9c03",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/Types.d.ts": {
+        "version": "6a5bc5f5deed3b65c767fae6eb0b2688ea41293b5cff7faa037d27853255dc96",
+        "signature": "6a5bc5f5deed3b65c767fae6eb0b2688ea41293b5cff7faa037d27853255dc96",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/selection/Types.d.ts": {
+        "version": "6b9f4bb79609dd2342d2dd0129aa5024bd4204e0e40296dccc78ff8840895090",
+        "signature": "6b9f4bb79609dd2342d2dd0129aa5024bd4204e0e40296dccc78ff8840895090",
+        "affectsGlobalScope": false
+      },
+      "../common/services/ServiceRegistry.d.ts": {
+        "version": "a47712fc06bec015665a9a6246d8e2dd5601a51381f6867787e4a10a2d8c0726",
+        "signature": "a47712fc06bec015665a9a6246d8e2dd5601a51381f6867787e4a10a2d8c0726",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/services/Services.ts": {
+        "version": "9bf592c4d4508c2a6c9f5155149bc64aa1ac1115c7c23036ce20b16d602daa32",
+        "signature": "e1d4e35091a4957d2f9dbdd5e22d2840a3e4e63619ce103a8371b271e5fe033a",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Types.d.ts": {
+        "version": "d3a4932fbe63b6530101d1b665c4b6ee88da001cd3834623a1e846518b49a65c",
+        "signature": "d3a4932fbe63b6530101d1b665c4b6ee88da001cd3834623a1e846518b49a65c",
+        "affectsGlobalScope": false
+      },
+      "../common/Platform.d.ts": {
+        "version": "32e8f8eb730d8e61e851bd59e9948ee53e433a6a3e658879c72fbe85f8f9a5a3",
+        "signature": "32e8f8eb730d8e61e851bd59e9948ee53e433a6a3e658879c72fbe85f8f9a5a3",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/RenderDebouncer.ts": {
+        "version": "cdac1c228818514b9bf520d9d88d9614d68ffdf576364b29858fee5a2285be29",
+        "signature": "1e1b57f9da682d15067035cbaab7bd0c8d2c089c97975c997ce5d43d1ec462f8",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Lifecycle.ts": {
+        "version": "bab0ecf74b3172f40b1c722113144543b51c24f46d1a0aa55958314c73802412",
+        "signature": "e99e0a1fb11d0e7fb0970f9cb4e5b7f4e0a3ef0d2fc7e13d9c9ceb670d3bf9e6",
+        "affectsGlobalScope": false
+      },
+      "../common/Lifecycle.d.ts": {
+        "version": "90a4bb0e59a438d1b4d498726a5f8f4d175a784979493e39e42a217672ab6cd8",
+        "signature": "90a4bb0e59a438d1b4d498726a5f8f4d175a784979493e39e42a217672ab6cd8",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/ScreenDprMonitor.ts": {
+        "version": "8df52ba37355449c84d1a7c9ffef6c30303feb558dc3b3bf0bdc1790dd05059e",
+        "signature": "03e9085bbebc91964676106053ae3012fb7d2221a63927636785745117a458e9",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Dom.ts": {
+        "version": "d3ecfef2256040d2960c65e5c54df2a81545bc481c29fca04188a0bbb7b3965c",
+        "signature": "7ecdecb416860bc7a71f46f536430ff06e8c37e2353d0db774881b1a0431d8f4",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/AccessibilityManager.ts": {
+        "version": "3a3e2e4f0f19b33427cd5ada89fb7d0b3bfbe6f7bb080578581f62f091403b9d",
+        "signature": "475249279a3d7f720365684b1922cd6fe9450ff70542a318003533e7b76d2c7f",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Clipboard.ts": {
+        "version": "75820df28b54cb3273e17844b907abeb5116fd7aef9deca7e48704b006cb7825",
+        "signature": "f240e5f4094659a8fda7106ea275fc488db1ed48f0e96d78c7229284a0fee6e7",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Color.ts": {
+        "version": "f690caa5f2e4965a5a7299f8fc8dbfc4595d201cf0c6f97bca9b0702b8f3a918",
+        "signature": "6f4ad30a0c14ce8fdf2fd33ea7e7f64c3d472ce89c08b06354e7a6439bb6b112",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/ColorContrastCache.ts": {
+        "version": "4d56dd145d1bbe123b88c024c14ae97632219844dd37808ceab37802ff77188c",
+        "signature": "a152b649ccdd5301719919959ec579a84a0e1d6d72f9eff92efca7f8ce768a42",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/ColorManager.ts": {
+        "version": "19c03b1cc071ccd797674eb2241d3516c1bba903fd9a35302cc6eae08b3c0089",
+        "signature": "342fcd303664a748f30eee3a2117cf7c02689ebd1be8f4704459cf2cc29bbfa3",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Linkifier.ts": {
+        "version": "acd7c6d5d47fbd3790e4eef028623716a01613325c96e8420656d6cdeb7d8b4f",
+        "signature": "d879e65c19480f9b6665c34e9c4ddf5472b2499f7c7b308fe5068a603dc89e17",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Linkifier2.ts": {
+        "version": "32175757cf201325c63e243c56c33652048916017d2ce1cbae524501d220d0ba",
+        "signature": "a8fb4d1939e48d7e69d786581a44200766e0fe23b8e1b83c50ef1f7cef770513",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/MouseZoneManager.ts": {
+        "version": "8ba90b4e4a4f39fafb72b047a20b7c6e0aabbcbb4749073d9cb5d530581037ee",
+        "signature": "ca643e5e4516021e7f728223274e4d680c6449a90a354d92078015716998b8af",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/input/CompositionHelper.ts": {
+        "version": "e579c2b969a2e2214e33a0504a0198c6b343ab0f7150f7132c26e36571c702dd",
+        "signature": "c7ee64e41485bb183ec7732c4920ff0c8fa59fd7747a087ec74624c1cd535c48",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Viewport.ts": {
+        "version": "35850b4d7860df3cecaadd69f04b2592286befce5610ba0e63cee493d7697c45",
+        "signature": "0e3af3e487212b035e95cb617e74ef0a2432ec604966d18b38b44ba94523bc8c",
+        "affectsGlobalScope": false
+      },
+      "../common/data/EscapeSequences.d.ts": {
+        "version": "85ebc6841619cde02cd1a208d7a3899b36f63a1cd6481d7dca6cf8592e2ae96a",
+        "signature": "85ebc6841619cde02cd1a208d7a3899b36f63a1cd6481d7dca6cf8592e2ae96a",
+        "affectsGlobalScope": false
+      },
+      "../common/InputHandler.d.ts": {
+        "version": "2239ecf0cd172d018a3478c7c8f82d18d8348d5d4794da2f867fd21f0897e63b",
+        "signature": "2239ecf0cd172d018a3478c7c8f82d18d8348d5d4794da2f867fd21f0897e63b",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/GridCache.ts": {
+        "version": "b96a9c5607e73ffd1fabe5d17faa9ec5961a7837f40d1c94740cb7339db1abfe",
+        "signature": "1bcf8d4a18c33faf46d1d4ce794db2327298bae00db4e7ec57a313d969cc9c61",
+        "affectsGlobalScope": false
+      },
+      "../common/buffer/Constants.d.ts": {
+        "version": "66453359dbf09019bd49af73c8e1d7749e3455116d5e94e070661b52040cd063",
+        "signature": "66453359dbf09019bd49af73c8e1d7749e3455116d5e94e070661b52040cd063",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/atlas/Types.d.ts": {
+        "version": "b9ac7720c7e6b8ae9b9270ef1b18e7632a6d538b35218335dfe7c0243c155f32",
+        "signature": "b9ac7720c7e6b8ae9b9270ef1b18e7632a6d538b35218335dfe7c0243c155f32",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/atlas/Constants.ts": {
+        "version": "411df1dc79cee1384ec51b9a75ba64a751ded62643c496bb1d3ca4df9b539c35",
+        "signature": "ff6d418c42455f2616033485927bf422f1f3fe4156b55e715b2763b0a64bc671",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/atlas/BaseCharAtlas.ts": {
+        "version": "e89952e5e521112828210876addc8cd1a4d477327368a08c3295a3da73d66cd0",
+        "signature": "e8002493b80930478ac64c27c122d9ba0061d3b4136157759e432eba50ba29d3",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/atlas/CharAtlasUtils.ts": {
+        "version": "0e25469f97d4ae6dc4789cdbaf418e6fbc34363e21657cfb67828cbf56a7884b",
+        "signature": "ffd0dda8fcbdceb9c54c7183992dbcc83cd5bbbe3d7219a6cc51885f50cc3b11",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/atlas/LRUMap.ts": {
+        "version": "addbb5d1c9fd0008a87c22a3814f45a484f137aee97864c61e57d16d17a0af05",
+        "signature": "5e7592c592a55f139cd3a7cdbe79e85b4682e9ea608b4cc638f0ebaa44eca004",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/RendererUtils.ts": {
+        "version": "fee7a8dbd1b7070a138165c19ba69dfe52fcd2a1eeae6494542016387c7c224a",
+        "signature": "9b6f4892c22441d6f3228fb5a67e0049d4931ce70fb300847cc06518d3984738",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/atlas/DynamicCharAtlas.ts": {
+        "version": "67f239da620e1fd5381820a6672763ad259cc8533b384efd326e1ae3d16c9467",
+        "signature": "b84145b2dff6871983b648522347dd0dfd35e62a469d98655cc0d5f96f9a0816",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/atlas/CharAtlasCache.ts": {
+        "version": "305f1a8f55112d98d4c3f6379a8e0e0ac1a3489f09b62573e25f33302bd3907e",
+        "signature": "08c88ca8f3fddc6a4d401d0e39e1b53907976266cc068c38bc61673da1ba7611",
+        "affectsGlobalScope": false
+      },
+      "../common/buffer/AttributeData.d.ts": {
+        "version": "8585bc78f952b95b2c2652b56dfd8ee02cb910d534b21d1cd5d5b813f146a984",
+        "signature": "8585bc78f952b95b2c2652b56dfd8ee02cb910d534b21d1cd5d5b813f146a984",
+        "affectsGlobalScope": false
+      },
+      "../common/buffer/CellData.d.ts": {
+        "version": "a264d78c3e48f75cc603d92b5927963d6f06d6b553d3f4f555bcdb3379135167",
+        "signature": "a264d78c3e48f75cc603d92b5927963d6f06d6b553d3f4f555bcdb3379135167",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/BaseRenderLayer.ts": {
+        "version": "6eb94528dde54ae881ec40858c49f5e079be8624840e17d6df09cb1d04ec80dd",
+        "signature": "3a763a40589e4f280c0847c4a816ae5fa2bbdabf5386d143dd29c18022534377",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/CharacterJoinerRegistry.ts": {
+        "version": "4bdd03a6f9f5f2d8b80b52c360d244bfb349659f93a1c5e92e5c24a9580535b6",
+        "signature": "e5e5848668ee587783b278903805689342c3181a6bf49ec87c258a4e9882aad0",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/TextRenderLayer.ts": {
+        "version": "1f4b1275d9e37422ceab8b91c88d27a0e1b208c47bf27e9f1b2495cc95caa970",
+        "signature": "01b9aa5411bdde982e903442faee21d779ec222c4fd1d79ecfbe5806d42dd697",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/SelectionRenderLayer.ts": {
+        "version": "0b6376bbbe8d337b75599efb76cfe58fe707b955e1f14407ee575e8455569920",
+        "signature": "2443f8caac78c3e7acea29404e285b8e8e61bd042e618e8062e9af4f20b9338e",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/CursorRenderLayer.ts": {
+        "version": "a7d8780dd025c2f372bd77e1b21b37e67af62026c43bcf65a168615f108b7c2c",
+        "signature": "e97487af97a67a3d95a69428a613f021490cbc105a9a3115aa710833842939df",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/LinkRenderLayer.ts": {
+        "version": "b390890f7cb2a4a871478fcd4df5798dd29a652810c6ffc2420abb4bc3562508",
+        "signature": "1f3b88f31bde63be810f072dbeddea4db7a665f7d4b4a5743924a2857c13f07d",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/Renderer.ts": {
+        "version": "f860cbc371c8c4d76be8d873025b3db4f1d9febb6ae458340799098cd84801d3",
+        "signature": "35ed2bad9c7456c63366a77d14aa99bad8323ff8e1fd26bce9ebc481798ed3e5",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/selection/SelectionModel.ts": {
+        "version": "1ed9628d05bbc3b04cfc116d6e8b062c900a912c1a5fc752ae9b012c848bbe9a",
+        "signature": "f9b8abd41d6599bd4c757f01fc63d3dab3d11b70d9e32e99b1747d5bd3f0bb34",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/input/Mouse.ts": {
+        "version": "b64e113db7e563f2e5a1fc863e7f9ffae81a94a59af316b4571c1e14d7f875fa",
+        "signature": "fe506ce9c8fa220a079dc601b85da59b8f6a3c90c2e60766ad9173d2552eaa00",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/input/MoveToCell.ts": {
+        "version": "74bc8184f77a22d53d4657b0943f946239f9076117b58247875102d1da8698b0",
+        "signature": "275420602b2c7f914b17198e6d22a2220f3514888a3bc6ec28b573d9b6478c15",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/services/SelectionService.ts": {
+        "version": "9908f777e0935538215a694ee019bd88d413c0016f9fab6e2ddf7e549d7b351b",
+        "signature": "19e3affe2903c1b26251e24a0faeea6cf9e97633e2d43554730e785fa08d9ecc",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/services/SoundService.ts": {
+        "version": "36f0a7ff6652e99293704200cef374d6d6303cbf9b55dc577b86865fc1123560",
+        "signature": "6e4187ef59b702d62162d60cb199dc1cc3755744cb08d2f084edca1dbc1bb588",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/dom/DomRendererRowFactory.ts": {
+        "version": "b8c54be24b2717114bbd323c2084e4d21ea0446a7c8cedbcd715f8a92c6ea1f6",
+        "signature": "1f34edf17f351a02951260dc0c922d665a4293c2e3477bdb51b2b3bd88f02e1f",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/renderer/dom/DomRenderer.ts": {
+        "version": "5ff90ab18ae385a4b2b7124c7604b6451df73b8768601ebbd7bfe82278f5b5e1",
+        "signature": "aa14b9e19e0fa52b58565027df966cc605a471fb1715827cd97adcd6456d8b06",
+        "affectsGlobalScope": false
+      },
+      "../common/input/Keyboard.d.ts": {
+        "version": "31104f5ce09646dd8889578a2ed56be6450f852578bdc0224edbe4ddc6a26763",
+        "signature": "31104f5ce09646dd8889578a2ed56be6450f852578bdc0224edbe4ddc6a26763",
+        "affectsGlobalScope": false
+      },
+      "../common/buffer/BufferLine.d.ts": {
+        "version": "0e55a2c84ecc6dc40882a99c94b6d7948d4a1b171fd3db2b4b38fe69105fb932",
+        "signature": "0e55a2c84ecc6dc40882a99c94b6d7948d4a1b171fd3db2b4b38fe69105fb932",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/services/RenderService.ts": {
+        "version": "1229e6f87dbf73f6c07ee35e61da04b18b5f39c562946f93cd08e92822137f2a",
+        "signature": "c79f10e132e2d6c89ecc713a6bf04d8fb8ae83def36b6ba3daa4583929c161f4",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/services/CharSizeService.ts": {
+        "version": "3051604a6e781bbc4dc923accfee335a6050c0bf666a8a78dc60a73ee90f69cc",
+        "signature": "8be6248fe2fd571823ca5b3f0d44006ca76d0ef1eb33fde947b3db05497b631c",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/services/MouseService.ts": {
+        "version": "2d51347c5614c102c7e09c311c43f9baf37f80720e8c3fd572352a107dac727c",
+        "signature": "33c70dc36f44623229c4df8701cdca3d7b25ac4abc52a11d9d65b2eba4eebd39",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/services/CoreBrowserService.ts": {
+        "version": "c0e78e5f61a3c69d7e8caf797e46852fb28426b7ebf2932c4f39d0880756aa44",
+        "signature": "45c8033a67fc458a1f97f6a6e8556a4b8eb9d6257172e58d55d5285e76e75888",
+        "affectsGlobalScope": false
+      },
+      "../common/CoreTerminal.d.ts": {
+        "version": "0dcdebafad205b2649be406bcf38ef0b5e2f58483344672c59afc758f38a9201",
+        "signature": "0dcdebafad205b2649be406bcf38ef0b5e2f58483344672c59afc758f38a9201",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/Terminal.ts": {
+        "version": "b0b162df7a0c565a31c93b73d55a024f4d858e42b4fbb96b35780195b61390f3",
+        "signature": "d5483bf0e3bb9bce88ffcd74c26d99b0b4b2ebad512168ee045ac3549959219c",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/public/AddonManager.ts": {
+        "version": "5fcec8acb487bb4fa2f2649c8ab3abd2a121d5b111be82d5113f1dcb3be6ab26",
+        "signature": "460eece79b50e09707c35e10cd0a1c13ec50b8eea08fd257b33adf6e257a37b7",
+        "affectsGlobalScope": false
+      },
+      "../../src/browser/public/Terminal.ts": {
+        "version": "2baa53321fc5ff3023d470f6e0a1e89118f494879a9461d2442a317c1558a54f",
+        "signature": "baf3a335a046e6a4994ad273211f3347f08598a47130c72927fd6ddb5d95945e",
+        "affectsGlobalScope": false
+      },
+      "../../typings/xterm.d.ts": {
+        "version": "c566ad495eeb1564caba8bf8a03ee1c6a36f634fa0458b84b02ad7c308f57e5d",
+        "signature": "c566ad495eeb1564caba8bf8a03ee1c6a36f634fa0458b84b02ad7c308f57e5d",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/mocha/index.d.ts": {
+        "version": "5f186a758a616c107c70e8918db4630d063bd782f22e6e0b17573b125765b40b",
+        "signature": "5f186a758a616c107c70e8918db4630d063bd782f22e6e0b17573b125765b40b",
+        "affectsGlobalScope": true
+      }
+    },
+    "options": {
+      "target": 1,
+      "lib": [
+        "lib.dom.d.ts",
+        "lib.es2015.d.ts"
+      ],
+      "rootDir": "../../src",
+      "sourceMap": true,
+      "removeComments": true,
+      "pretty": true,
+      "incremental": true,
+      "experimentalDecorators": true,
+      "composite": true,
+      "strict": true,
+      "declarationMap": true,
+      "outDir": "..",
+      "types": [
+        "../../node_modules/@types/mocha"
+      ],
+      "baseUrl": "../../src",
+      "paths": {
+        "common/*": [
+          "./common/*"
+        ]
+      },
+      "configFilePath": "../../src/browser/tsconfig.json"
+    },
+    "referencedMap": {
+      "../common/CircularList.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../common/CoreTerminal.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/InputHandler.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../common/EventEmitter.d.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../common/InputHandler.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../common/Lifecycle.d.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../common/buffer/AttributeData.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/buffer/Constants.d.ts"
+      ],
+      "../common/buffer/BufferLine.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts"
+      ],
+      "../common/buffer/CellData.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts"
+      ],
+      "../common/input/Keyboard.d.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../common/services/ServiceRegistry.d.ts": [
+        "../common/services/Services.d.ts"
+      ],
+      "../common/services/Services.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/browser/AccessibilityManager.ts": [
+        "../../src/browser/Dom.ts",
+        "../../src/browser/Lifecycle.ts",
+        "../../src/browser/LocalizableStrings.ts",
+        "../../src/browser/RenderDebouncer.ts",
+        "../../src/browser/ScreenDprMonitor.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/Platform.d.ts"
+      ],
+      "../../src/browser/Clipboard.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Color.ts": [
+        "../../src/browser/Types.d.ts"
+      ],
+      "../../src/browser/ColorContrastCache.ts": [
+        "../../src/browser/Types.d.ts"
+      ],
+      "../../src/browser/ColorManager.ts": [
+        "../../src/browser/Color.ts",
+        "../../src/browser/ColorContrastCache.ts",
+        "../../src/browser/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Lifecycle.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/browser/Linkifier.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Linkifier2.ts": [
+        "../../src/browser/Lifecycle.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/MouseZoneManager.ts": [
+        "../../src/browser/Lifecycle.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/RenderDebouncer.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/browser/ScreenDprMonitor.ts": [
+        "../common/Lifecycle.d.ts"
+      ],
+      "../../src/browser/Terminal.ts": [
+        "../../src/browser/AccessibilityManager.ts",
+        "../../src/browser/Clipboard.ts",
+        "../../src/browser/ColorManager.ts",
+        "../../src/browser/Lifecycle.ts",
+        "../../src/browser/Linkifier.ts",
+        "../../src/browser/Linkifier2.ts",
+        "../../src/browser/LocalizableStrings.ts",
+        "../../src/browser/MouseZoneManager.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/Viewport.ts",
+        "../../src/browser/input/CompositionHelper.ts",
+        "../../src/browser/renderer/Renderer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/renderer/dom/DomRenderer.ts",
+        "../../src/browser/services/CharSizeService.ts",
+        "../../src/browser/services/CoreBrowserService.ts",
+        "../../src/browser/services/MouseService.ts",
+        "../../src/browser/services/RenderService.ts",
+        "../../src/browser/services/SelectionService.ts",
+        "../../src/browser/services/Services.ts",
+        "../../src/browser/services/SoundService.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../typings/xterm.d.ts",
+        "../common/CoreTerminal.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/InputHandler.d.ts",
+        "../common/Platform.d.ts",
+        "../common/buffer/BufferLine.d.ts",
+        "../common/data/EscapeSequences.d.ts",
+        "../common/input/Keyboard.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Types.d.ts": [
+        "../../src/browser/services/Services.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../typings/xterm.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/browser/Viewport.ts": [
+        "../../src/browser/Lifecycle.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/input/CompositionHelper.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/input/MoveToCell.ts": [
+        "../common/data/EscapeSequences.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/public/AddonManager.ts": [
+        "../../typings/xterm.d.ts"
+      ],
+      "../../src/browser/public/Terminal.ts": [
+        "../../src/browser/LocalizableStrings.ts",
+        "../../src/browser/Terminal.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/public/AddonManager.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../typings/xterm.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/buffer/CellData.d.ts"
+      ],
+      "../../src/browser/renderer/BaseRenderLayer.ts": [
+        "../../src/browser/Color.ts",
+        "../../src/browser/Dom.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/RendererUtils.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/renderer/atlas/BaseCharAtlas.ts",
+        "../../src/browser/renderer/atlas/CharAtlasCache.ts",
+        "../../src/browser/renderer/atlas/Constants.ts",
+        "../../src/browser/renderer/atlas/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts",
+        "../common/buffer/CellData.d.ts",
+        "../common/buffer/Constants.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/CharacterJoinerRegistry.ts": [
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts",
+        "../common/buffer/CellData.d.ts",
+        "../common/buffer/Constants.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/CursorRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/buffer/CellData.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/LinkRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/renderer/atlas/CharAtlasUtils.ts",
+        "../../src/browser/renderer/atlas/Constants.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/Renderer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/CharacterJoinerRegistry.ts",
+        "../../src/browser/renderer/CursorRenderLayer.ts",
+        "../../src/browser/renderer/LinkRenderLayer.ts",
+        "../../src/browser/renderer/SelectionRenderLayer.ts",
+        "../../src/browser/renderer/TextRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/renderer/atlas/CharAtlasCache.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/SelectionRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/TextRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/CharacterJoinerRegistry.ts",
+        "../../src/browser/renderer/GridCache.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts",
+        "../common/buffer/CellData.d.ts",
+        "../common/buffer/Constants.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/Types.d.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/BaseCharAtlas.ts": [
+        "../../src/browser/renderer/atlas/Types.d.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/CharAtlasCache.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/atlas/BaseCharAtlas.ts",
+        "../../src/browser/renderer/atlas/CharAtlasUtils.ts",
+        "../../src/browser/renderer/atlas/DynamicCharAtlas.ts",
+        "../../src/browser/renderer/atlas/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/CharAtlasUtils.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/atlas/Types.d.ts",
+        "../common/buffer/Constants.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/DynamicCharAtlas.ts": [
+        "../../src/browser/Color.ts",
+        "../../src/browser/ColorManager.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/RendererUtils.ts",
+        "../../src/browser/renderer/atlas/BaseCharAtlas.ts",
+        "../../src/browser/renderer/atlas/Constants.ts",
+        "../../src/browser/renderer/atlas/LRUMap.ts",
+        "../../src/browser/renderer/atlas/Types.d.ts",
+        "../common/Platform.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/Types.d.ts": [
+        "../../src/browser/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/dom/DomRenderer.ts": [
+        "../../src/browser/Color.ts",
+        "../../src/browser/Dom.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/renderer/atlas/Constants.ts",
+        "../../src/browser/renderer/dom/DomRendererRowFactory.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/dom/DomRendererRowFactory.ts": [
+        "../../src/browser/Color.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/atlas/Constants.ts",
+        "../../src/common/Types.d.ts",
+        "../common/buffer/CellData.d.ts",
+        "../common/buffer/Constants.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/selection/SelectionModel.ts": [
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/CharSizeService.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/CoreBrowserService.ts": [
+        "../../src/browser/services/Services.ts"
+      ],
+      "../../src/browser/services/MouseService.ts": [
+        "../../src/browser/input/Mouse.ts",
+        "../../src/browser/services/Services.ts"
+      ],
+      "../../src/browser/services/RenderService.ts": [
+        "../../src/browser/Lifecycle.ts",
+        "../../src/browser/RenderDebouncer.ts",
+        "../../src/browser/ScreenDprMonitor.ts",
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/SelectionService.ts": [
+        "../../src/browser/input/Mouse.ts",
+        "../../src/browser/input/MoveToCell.ts",
+        "../../src/browser/selection/SelectionModel.ts",
+        "../../src/browser/selection/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/Platform.d.ts",
+        "../common/buffer/CellData.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/Services.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/selection/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/ServiceRegistry.d.ts"
+      ],
+      "../../src/browser/services/SoundService.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/common/Types.d.ts": [
+        "../../src/common/parser/Types.d.ts",
+        "../../typings/xterm.d.ts",
+        "../common/CircularList.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/common/buffer/Types.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/common/parser/Types.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/parser/Constants.d.ts"
+      ]
+    },
+    "exportedModulesMap": {
+      "../common/CircularList.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../common/CoreTerminal.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/InputHandler.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../common/EventEmitter.d.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../common/InputHandler.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../common/Lifecycle.d.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../common/buffer/AttributeData.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/buffer/Constants.d.ts"
+      ],
+      "../common/buffer/BufferLine.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts"
+      ],
+      "../common/buffer/CellData.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts"
+      ],
+      "../common/input/Keyboard.d.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../common/services/ServiceRegistry.d.ts": [
+        "../common/services/Services.d.ts"
+      ],
+      "../common/services/Services.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/browser/AccessibilityManager.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/Lifecycle.d.ts"
+      ],
+      "../../src/browser/Clipboard.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Color.ts": [
+        "../../src/browser/Types.d.ts"
+      ],
+      "../../src/browser/ColorContrastCache.ts": [
+        "../../src/browser/Types.d.ts"
+      ],
+      "../../src/browser/ColorManager.ts": [
+        "../../src/browser/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Lifecycle.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/browser/Linkifier.ts": [
+        "../../src/browser/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Linkifier2.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/MouseZoneManager.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/RenderDebouncer.ts": [
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/browser/ScreenDprMonitor.ts": [
+        "../common/Lifecycle.d.ts"
+      ],
+      "../../src/browser/Terminal.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../typings/xterm.d.ts",
+        "../common/CoreTerminal.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/Types.d.ts": [
+        "../../src/browser/services/Services.ts",
+        "../../src/common/Types.d.ts",
+        "../../src/common/buffer/Types.d.ts",
+        "../../src/common/parser/Types.d.ts",
+        "../../typings/xterm.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/browser/Viewport.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/input/CompositionHelper.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/input/MoveToCell.ts": [
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/public/AddonManager.ts": [
+        "../../typings/xterm.d.ts"
+      ],
+      "../../src/browser/public/Terminal.ts": [
+        "../../typings/xterm.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/browser/renderer/BaseRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/renderer/atlas/BaseCharAtlas.ts",
+        "../../src/common/Types.d.ts",
+        "../common/buffer/CellData.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/CharacterJoinerRegistry.ts": [
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/buffer/AttributeData.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/CursorRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/LinkRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/Renderer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/SelectionRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/TextRenderLayer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/BaseRenderLayer.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/Types.d.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/BaseCharAtlas.ts": [
+        "../../src/browser/renderer/atlas/Types.d.ts",
+        "../../src/common/Types.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/CharAtlasCache.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/atlas/BaseCharAtlas.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/CharAtlasUtils.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/atlas/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/DynamicCharAtlas.ts": [
+        "../../src/browser/renderer/atlas/BaseCharAtlas.ts",
+        "../../src/browser/renderer/atlas/Types.d.ts"
+      ],
+      "../../src/browser/renderer/atlas/Types.d.ts": [
+        "../../src/browser/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/dom/DomRenderer.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/renderer/dom/DomRendererRowFactory.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/selection/SelectionModel.ts": [
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/CharSizeService.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/CoreBrowserService.ts": [
+        "../../src/browser/services/Services.ts"
+      ],
+      "../../src/browser/services/MouseService.ts": [
+        "../../src/browser/services/Services.ts"
+      ],
+      "../../src/browser/services/RenderService.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/SelectionService.ts": [
+        "../../src/browser/selection/SelectionModel.ts",
+        "../../src/browser/selection/Types.d.ts",
+        "../../src/browser/services/Services.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/Lifecycle.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/Services.ts": [
+        "../../src/browser/Types.d.ts",
+        "../../src/browser/renderer/Types.d.ts",
+        "../../src/browser/selection/Types.d.ts",
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/browser/services/SoundService.ts": [
+        "../../src/browser/services/Services.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/common/Types.d.ts": [
+        "../../src/common/parser/Types.d.ts",
+        "../../typings/xterm.d.ts",
+        "../common/CircularList.d.ts",
+        "../common/EventEmitter.d.ts",
+        "../common/services/Services.d.ts"
+      ],
+      "../../src/common/buffer/Types.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/EventEmitter.d.ts"
+      ],
+      "../../src/common/parser/Types.d.ts": [
+        "../../src/common/Types.d.ts",
+        "../common/parser/Constants.d.ts"
+      ]
+    },
+    "semanticDiagnosticsPerFile": [
+      "../../node_modules/@types/mocha/index.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../common/CircularList.d.ts",
+      "../common/CoreTerminal.d.ts",
+      "../common/EventEmitter.d.ts",
+      "../common/InputHandler.d.ts",
+      "../common/Lifecycle.d.ts",
+      "../common/Platform.d.ts",
+      "../common/buffer/AttributeData.d.ts",
+      "../common/buffer/BufferLine.d.ts",
+      "../common/buffer/CellData.d.ts",
+      "../common/buffer/Constants.d.ts",
+      "../common/data/EscapeSequences.d.ts",
+      "../common/input/Keyboard.d.ts",
+      "../common/parser/Constants.d.ts",
+      "../common/services/ServiceRegistry.d.ts",
+      "../common/services/Services.d.ts",
+      "../../src/browser/AccessibilityManager.ts",
+      "../../src/browser/Clipboard.ts",
+      "../../src/browser/Color.ts",
+      "../../src/browser/ColorContrastCache.ts",
+      "../../src/browser/ColorManager.ts",
+      "../../src/browser/Dom.ts",
+      "../../src/browser/Lifecycle.ts",
+      "../../src/browser/Linkifier.ts",
+      "../../src/browser/Linkifier2.ts",
+      "../../src/browser/LocalizableStrings.ts",
+      "../../src/browser/MouseZoneManager.ts",
+      "../../src/browser/RenderDebouncer.ts",
+      "../../src/browser/ScreenDprMonitor.ts",
+      "../../src/browser/Terminal.ts",
+      "../../src/browser/Types.d.ts",
+      "../../src/browser/Viewport.ts",
+      "../../src/browser/input/CompositionHelper.ts",
+      "../../src/browser/input/Mouse.ts",
+      "../../src/browser/input/MoveToCell.ts",
+      "../../src/browser/public/AddonManager.ts",
+      "../../src/browser/public/Terminal.ts",
+      "../../src/browser/renderer/BaseRenderLayer.ts",
+      "../../src/browser/renderer/CharacterJoinerRegistry.ts",
+      "../../src/browser/renderer/CursorRenderLayer.ts",
+      "../../src/browser/renderer/GridCache.ts",
+      "../../src/browser/renderer/LinkRenderLayer.ts",
+      "../../src/browser/renderer/Renderer.ts",
+      "../../src/browser/renderer/RendererUtils.ts",
+      "../../src/browser/renderer/SelectionRenderLayer.ts",
+      "../../src/browser/renderer/TextRenderLayer.ts",
+      "../../src/browser/renderer/Types.d.ts",
+      "../../src/browser/renderer/atlas/BaseCharAtlas.ts",
+      "../../src/browser/renderer/atlas/CharAtlasCache.ts",
+      "../../src/browser/renderer/atlas/CharAtlasUtils.ts",
+      "../../src/browser/renderer/atlas/Constants.ts",
+      "../../src/browser/renderer/atlas/DynamicCharAtlas.ts",
+      "../../src/browser/renderer/atlas/LRUMap.ts",
+      "../../src/browser/renderer/atlas/Types.d.ts",
+      "../../src/browser/renderer/dom/DomRenderer.ts",
+      "../../src/browser/renderer/dom/DomRendererRowFactory.ts",
+      "../../src/browser/selection/SelectionModel.ts",
+      "../../src/browser/selection/Types.d.ts",
+      "../../src/browser/services/CharSizeService.ts",
+      "../../src/browser/services/CoreBrowserService.ts",
+      "../../src/browser/services/MouseService.ts",
+      "../../src/browser/services/RenderService.ts",
+      "../../src/browser/services/SelectionService.ts",
+      "../../src/browser/services/Services.ts",
+      "../../src/browser/services/SoundService.ts",
+      "../../src/common/Types.d.ts",
+      "../../src/common/buffer/Types.d.ts",
+      "../../src/common/parser/Types.d.ts",
+      "../../typings/xterm.d.ts"
+    ]
+  },
+  "version": "4.0.8"
+}

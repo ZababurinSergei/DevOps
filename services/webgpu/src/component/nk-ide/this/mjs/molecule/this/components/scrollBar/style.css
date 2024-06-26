@@ -1,0 +1,62 @@
+.mo-scrollBar__wrapper {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.mo-scrollBar__container {
+  position: absolute;
+}
+.mo-scrollBar__container--horizontal {
+  display: flex;
+  height: 100%;
+}
+.mo-scrollBar__container--vertical {
+  width: 100%;
+}
+.mo-scrollBar__track {
+  background-color: transparent;
+  margin: auto;
+  position: sticky;
+  transition: opacity 0.1s linear;
+  z-index: 99;
+}
+.mo-scrollBar__track--horizontal {
+  height: 10px;
+  left: 0;
+  top: 100%;
+  width: 100%;
+}
+.mo-scrollBar__track--vertical {
+  height: 100%;
+  left: 100%;
+  top: 0;
+  width: 10px;
+}
+.mo-scrollBar__track--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s linear;
+}
+.mo-scrollBar__thumb {
+  background-color: var(--scrollbarSlider-background);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.mo-scrollBar__thumb:hover {
+  background-color: var(--scrollbarSlider-hoverBackground);
+}
+.mo-scrollBar__thumb:active {
+  background-color: var(--scrollbarSlider-activeBackground);
+}
+.mo-scrollBar__shadow {
+  box-shadow: var(--widget-shadow) 0 6px 6px -6px inset;
+  height: 3px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+.mo-scrollBar__shadow--hidden {
+  display: none;
+}

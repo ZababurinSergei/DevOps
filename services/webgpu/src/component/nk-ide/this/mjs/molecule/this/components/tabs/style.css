@@ -1,0 +1,68 @@
+.mo-tabs {
+  background-color: var(--editorGroupHeader-tabsBackground);
+  height: 100%;
+  position: relative;
+  user-select: none;
+}
+.mo-tabs--line {
+  border-bottom: 1px solid var(--tab-border);
+}
+.mo-tabs__header {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 35px;
+  justify-content: flex-start;
+}
+.mo-tabs__content {
+  font-size: 13px;
+  height: calc(100% - 36px);
+  width: 100%;
+}
+.mo-tabs__content__item {
+  display: none;
+  height: 100%;
+}
+.mo-tabs__content__item--active {
+  display: block;
+}
+
+.mo-tab__item {
+  align-items: center;
+  background: var(--tab-inactiveBackground);
+  border-right: 1px solid var(--tab-border);
+  box-sizing: border-box;
+  color: var(--tab-inactiveForeground);
+  cursor: pointer;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  min-width: fit-content;
+  padding-left: 10px;
+  position: relative;
+  user-select: none;
+}
+.mo-tab__item__label {
+  font-size: 0;
+}
+.mo-tab__item__label:not(.mo-tab__item__label:empty) {
+  padding-right: 6px;
+}
+.mo-tab__item__extra {
+  font-size: 0;
+  padding: 0 4px;
+}
+.mo-tab__item__extra .codicon-close {
+  opacity: 0;
+}
+.mo-tab__item:hover .codicon-close, .mo-tab__item--active .codicon-close {
+  opacity: 1;
+}
+.mo-tab__item--active {
+  background: var(--tab-activeBackground);
+  border-bottom-color: var(--tab-activeBorder);
+  color: var(--tab-activeForeground);
+}
+.mo-tab__item--close {
+  color: var(--tab-activeForeground);
+}

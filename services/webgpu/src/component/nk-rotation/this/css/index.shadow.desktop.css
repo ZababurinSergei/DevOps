@@ -1,0 +1,141 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+@media all {
+    html {
+        font-family: Garamond, Palatino, serif;
+        font-size: 18px;
+        line-height: 1.3;
+    }
+
+    .dcol {
+        float: left;
+        width: 50%;
+        padding-right: 1.5rem;
+        box-sizing: border-box;
+    }
+}
+
+@media all and (max-width: 1200px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 980px) {
+    html {
+        font-size: 16px;
+    }
+
+    .dcol {
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 800px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 600px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+@media all and (max-width: 400px) {
+    html {
+        font-size: 11px;
+    }
+}
+
+select, input, textarea, label {
+    font-family: "Lucida Console", "DejaVu Sans Mono", monospace;
+    font-size: 0.9rem;
+    background: #dfdff5;
+    border: 1px solid #323296;
+    color: #000;
+    margin: 0.1rem;
+}
+
+textarea {
+    background: #fff;
+    font-weight: bold;
+}
+
+select, label {
+    font-family: Garamond, Palatino, Times;
+    font-size: 1rem;
+    margin: 0rem 0.2rem;
+    padding: 0.1rem 0.2rem;
+}
+
+body {
+    margin: 0.5rem auto;
+    max-width: 1800px;
+    padding: 1.5rem;
+    padding-right: 0rem;
+    position: relative;
+}
+
+.pi, textarea {
+    padding: 0.3rem;
+}
+
+input {
+    width: 5rem;
+}
+
+input[type="radio"] {
+    height: auto;
+    width: auto;
+}
+
+input, select {
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.pi {
+    background: #eee;
+    transition: border-color 0.6s;
+    -webkit-transition: border-color 0.6s;
+    border: 1px solid #fff;
+}
+
+.phigh {
+    border: 1px solid #323296;
+}
+
+.phigh input {
+    font-weight: bold;
+}
+
+.dl, .dl2 {
+    display: inline-block;
+    text-align: right;
+    min-width: 5rem;
+    margin-right: 0.3rem;
+}
+
+.dl2 {
+    min-width: 1rem;
+}
+
+textarea {
+    width: 100%;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}

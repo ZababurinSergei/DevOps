@@ -1,0 +1,64 @@
+.mo-menuBar {
+  align-items: center;
+  background-color: var(--activityBar-background);
+  color: var(--activityBar-inactiveForeground);
+  cursor: pointer;
+  display: flex;
+  font-size: 13px;
+  height: 35px;
+  justify-content: center;
+  overflow: hidden;
+  width: 48px;
+}
+.mo-menuBar .mo-menu__item:hover {
+  background-color: var(--menubar-selectionBackground);
+  border-color: var(--menubar-selectionBorder);
+  color: var(--menubar-selectionForeground);
+}
+.mo-menuBar--left {
+  left: 0;
+  top: 0;
+}
+.mo-menuBar__action {
+  font-size: 16px;
+}
+.mo-menuBar--horizontal {
+  align-items: center;
+  background-color: var(--activityBar-background);
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 100%;
+}
+.mo-menuBar--horizontal > .mo-menu {
+  background-color: inherit;
+  box-shadow: none;
+  color: var(--foreground);
+  height: 100%;
+}
+.mo-menuBar--horizontal > .mo-menu--horizontal .mo-menu__item {
+  min-width: auto;
+}
+.mo-menuBar--horizontal > .mo-menu--horizontal > .mo-menu__item > .mo-menu__content > .mo-menu__label {
+  flex: none;
+  font-size: 13px;
+  padding: 0 1em;
+}
+.mo-menuBar--horizontal > .mo-menu--horizontal > .mo-menu__item > .mo-menu__content > .mo-menu__indicator {
+  display: none;
+}
+.mo-menuBar--horizontal > .mo-menu > .mo-menu__item > .mo-sub-menu {
+  z-index: 2500;
+}
+.mo-menuBar--horizontal__logo {
+  align-items: center;
+  display: flex;
+  flex: 0 0 48px;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+}
+.mo-menuBar--horizontal__logo__content {
+  height: 20px;
+  width: 20px;
+}

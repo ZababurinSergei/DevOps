@@ -1,0 +1,43 @@
+{
+  "name": "mini-parallax",
+  "moduleName": "MiniParallax",
+  "version": "0.3.3",
+  "description": "Parallax library",
+  "main": "dist/index.esm.js",
+  "unpkg": "dist/index.iife.min.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "bili",
+    "docs": "esdoc",
+    "examples": "parcel examples/index.pug -d examples-dist --open",
+    "examples:prod": "parcel build examples/index.pug --no-source-maps -d docs --public-url /mini-parallax/",
+    "pages": "npm run docs && npm run examples:prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ko-yelie@github.com/ko-yelie/mini-parallax.git"
+  },
+  "keywords": [
+    "parallax",
+    "background",
+    "es2015"
+  ],
+  "author": "Ko.Yelie",
+  "license": "MIT",
+  "year": 2018,
+  "bugs": {
+    "url": "https://github.com/ko-yelie/mini-parallax/issues"
+  },
+  "homepage": "https://github.com/ko-yelie/mini-parallax#readme",
+  "devDependencies": {
+    "banner-package": "^0.1.0",
+    "bili": "^4.8.1",
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "parcel-bundler": "^1.12.3",
+    "pug": "^2.0.4",
+    "stylus": "^0.54.5"
+  }
+}

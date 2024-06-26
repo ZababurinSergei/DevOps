@@ -1,0 +1,61 @@
+.mo {
+  background-color: var(--workbenchBackground);
+  color: var(--foreground);
+}
+.mo *::selection {
+  background-color: var(--editor-selectionBackground);
+}
+.mo code {
+  background: var(--textCodeBlock-background);
+}
+.mo.codicon {
+  color: var(--icon-foreground);
+}
+
+.mo-workbench {
+  bottom: 0;
+  height: calc(100% - 22px);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.mo-workbench--with-horizontal-menuBar .mo-mainBench {
+  height: calc(100% - 30px);
+}
+.mo-workbench--with-hidden-statusBar {
+  height: 100%;
+}
+.mo-workbench__display-activityBar {
+  flex: 1;
+}
+
+.mo-compositeBar {
+  border-right: 1px solid var(--activityBar-border);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: auto;
+}
+
+.mo-mainBench {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  left: 0;
+  width: auto;
+}
+.mo-mainBench div[data-type=Resizer] {
+  background: none;
+}
+.mo-mainBench .monaco-scrollable-element {
+  /* stylelint-disable-next-line*/
+}
+.mo-mainBench .monaco-scrollable-element > .scrollbar > .slider {
+  background: var(--scrollbarSlider-activeBackground);
+  /* stylelint-disable-next-line*/
+}
+.mo-mainBench .monaco-scrollable-element > .scrollbar > .slider:hover {
+  background: var(--scrollbarSlider-hoverBackground);
+}

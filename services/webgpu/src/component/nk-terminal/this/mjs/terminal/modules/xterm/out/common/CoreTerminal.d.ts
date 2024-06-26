@@ -1,0 +1,58 @@
+import { Disposable } from 'common/Lifecycle';
+import { IInstantiationService, IOptionsService, IBufferService, ILogService, ICharsetService, ICoreService, ICoreMouseService, IUnicodeService, IDirtyRowService } from 'common/services/Services';
+import { ITerminalOptions, IDisposable, IAttributeData, ICoreTerminal } from 'common/Types';
+import { EventEmitter, IEvent } from 'common/EventEmitter';
+import { IFunctionIdentifier, IParams } from 'common/parser/Types';
+import { IBufferSet } from 'common/buffer/Types';
+import { InputHandler } from 'common/InputHandler';
+export declare abstract class CoreTerminal extends Disposable implements ICoreTerminal {
+    protected readonly _instantiationService: IInstantiationService;
+    protected readonly _bufferService: IBufferService;
+    protected readonly _logService: ILogService;
+    protected readonly _coreService: ICoreService;
+    protected readonly _charsetService: ICharsetService;
+    protected readonly _coreMouseService: ICoreMouseService;
+    protected readonly _dirtyRowService: IDirtyRowService;
+    readonly unicodeService: IUnicodeService;
+    readonly optionsService: IOptionsService;
+    protected _inputHandler: InputHandler;
+    private _writeBuffer;
+    private _windowsMode;
+    private _cachedBlankLine;
+    private _onBinary;
+    get onBinary(): IEvent<string>;
+    private _onData;
+    get onData(): IEvent<string>;
+    protected _onLineFeed: EventEmitter<void, void>;
+    get onLineFeed(): IEvent<void>;
+    private _onResize;
+    get onResize(): IEvent<{
+        cols: number;
+        rows: number;
+    }>;
+    protected _onScroll: EventEmitter<number, void>;
+    get onScroll(): IEvent<number>;
+    get cols(): number;
+    get rows(): number;
+    get buffers(): IBufferSet;
+    constructor(options: ITerminalOptions);
+    dispose(): void;
+    write(data: string | Uint8Array, callback?: () => void): void;
+    writeSync(data: string | Uint8Array): void;
+    resize(x: number, y: number): void;
+    scroll(eraseAttr: IAttributeData, isWrapped?: boolean): void;
+    scrollLines(disp: number, suppressScrollEvent?: boolean): void;
+    scrollPages(pageCount: number): void;
+    scrollToTop(): void;
+    scrollToBottom(): void;
+    scrollToLine(line: number): void;
+    addEscHandler(id: IFunctionIdentifier, callback: () => boolean): IDisposable;
+    addDcsHandler(id: IFunctionIdentifier, callback: (data: string, param: IParams) => boolean): IDisposable;
+    addCsiHandler(id: IFunctionIdentifier, callback: (params: IParams) => boolean): IDisposable;
+    addOscHandler(ident: number, callback: (data: string) => boolean): IDisposable;
+    protected _setup(): void;
+    reset(): void;
+    protected _updateOptions(key: string): void;
+    protected _enableWindowsMode(): void;
+}
+//# sourceMappingURL=CoreTerminal.d.ts.map

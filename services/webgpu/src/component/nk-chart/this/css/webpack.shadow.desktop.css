@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Segoe UI Light';
+    src: url( font/segoeuil.ttf ) format( 'truetype' );
+}
+body{
+    font-family: 'Segoe UI Light';
+    margin-top: 3em;
+    margin-bottom: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+#gfx {
+    width: 100%;
+    display: none;
+}
+#content {
+    width: 100%;
+    display: none;
+}
+#error {
+    text-align: center;
+    width: 100%;
+    color: red;
+    display: none;
+}
+.ui-input {
+    padding: .4em .4em;
+    display: inline-block;
+    position: relative;
+    line-height: normal;
+    margin-right: .1em;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: left;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* Support: IE <= 11 */
+    overflow: visible;
+}
+.ui-input,
+.ui-input:link,
+.ui-input:visited,
+.ui-input:hover,
+.ui-input:active {
+    text-decoration: none;
+}
+
+.visibleInput {
+    display: flex;
+}

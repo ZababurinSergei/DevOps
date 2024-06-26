@@ -1,0 +1,14 @@
+declare const defaultExplorerClassName: string;
+declare const activityBarItemFloatClassName: string;
+declare const folderTreeClassName: string;
+declare const folderTreeInputClassName: string;
+declare const folderTreeEditClassName: string;
+declare const editorTreeClassName: string;
+declare const editorTreeItemClassName: string;
+declare const editorTreeGroupClassName: string;
+declare const editorTreeFileNameClassName: string;
+declare const editorTreeFilePathClassName: string;
+declare const editorTreeActiveItemClassName: string;
+declare const editorTreeCloseIconClassName: string;
+declare const editorTreeFileIconClassName: string;
+export { defaultExplorerClassName, activityBarItemFloatClassName, folderTreeClassName, folderTreeInputClassName, folderTreeEditClassName, editorTreeClassName, editorTreeItemClassName, editorTreeGroupClassName, editorTreeFileNameClassName, editorTreeFilePathClassName, editorTreeActiveItemClassName, editorTreeCloseIconClassName, editorTreeFileIconClassName, };

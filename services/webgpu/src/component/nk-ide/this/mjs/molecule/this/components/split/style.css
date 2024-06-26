@@ -1,0 +1,42 @@
+.mo-split {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.mo-split__pane {
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  white-space: normal;
+  width: 100%;
+}
+.mo-split__sash {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: background-color 0.1s;
+  width: 100%;
+  z-index: 2;
+}
+.mo-split__sash--disabled {
+  pointer-events: none;
+}
+.mo-split__sash--hover {
+  background-color: var(--sash-hoverBorder);
+}
+.mo-split__sash--vertical {
+  cursor: col-resize;
+}
+.mo-split__sash--horizontal {
+  cursor: row-resize;
+}
+.mo-split--dragging .mo-split__pane {
+  user-select: none;
+}
+.mo-split--dragging.mo-split--vertical {
+  cursor: col-resize;
+}
+.mo-split--dragging.mo-split--horizontal {
+  cursor: row-resize;
+}

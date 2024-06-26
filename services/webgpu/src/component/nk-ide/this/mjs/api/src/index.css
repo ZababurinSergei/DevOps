@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+}
+
+nk-ide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /*flex-direction: column-reverse;*/
+  min-height: 80dvh;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  /*height: inherit;*/
+}

@@ -1,0 +1,74 @@
+{
+  "publishConfig": {
+    "access": "public"
+  },
+  "name": "@isomorphic-git/lightning-fs",
+  "version": "0.0.0-development",
+  "description": "A lean and fast 'fs' for the browser",
+  "main": "src/index.js",
+  "unpkg": "dist/lightning-fs.min.js",
+  "bin": {
+    "superblocktxt": "src/superblocktxt.js"
+  },
+  "scripts": {
+    "test": "karma start --single-run",
+    "build": "webpack",
+    "build:esbuild": "nodemon --config esbuild.watch.json esbuild.mjs",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+    "@isomorphic-git/idb-keyval": "3.3.2",
+    "isomorphic-textencoder": "1.0.1",
+    "just-debounce-it": "3.2.0",
+    "just-once": "2.2.0",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "esbuild": "^0.20.2",
+    "esbuild-css-modules-plugin": "^3.1.2",
+    "esbuild-plugin-copy": "^2.1.1",
+    "esbuild-plugin-path-alias": "^1.0.7",
+    "esbuild-plugin-polyfill-node": "^0.3.0",
+    "karma": "^6.4.3",
+    "karma-browserstack-launcher": "^1.6.0",
+    "karma-chrome-launcher": "3.2.0",
+    "karma-edge-launcher": "^0.4.2",
+    "karma-fail-fast-reporter": "1.0.5",
+    "karma-firefox-launcher": "2.1.3",
+    "karma-ie-launcher": "1.0.0",
+    "karma-jasmine": "5.1.0",
+    "karma-junit-reporter": "2.0.1",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sauce-launcher": "^4.3.6",
+    "karma-verbose-reporter": "0.0.8",
+    "karma-webpack": "^5.0.1",
+    "prettier": "^3.2.5",
+    "puppeteer": "^22.7.1",
+    "semantic-release": "^23.0.8",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isomorphic-git/lightning-fs.git"
+  },
+  "files": [
+    "**/*.js",
+    "index.d.ts",
+    "!__tests__",
+    "!coverage"
+  ],
+  "keywords": [
+    "browser",
+    "fs",
+    "indexeddb",
+    "idb"
+  ],
+  "author": "William Hilton <wmhilton@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isomorphic-git/lightning-fs/issues"
+  },
+  "homepage": "https://github.com/isomorphic-git/lightning-fs#readme"
+}

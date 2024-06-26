@@ -1,0 +1,9 @@
+export declare const defaultCollapseClassName: string;
+export declare const collapseItemClassName: string;
+export declare const collapsePaneClassName: string;
+export declare const collapsingClassName: string;
+export declare const collapseActiveClassName: string;
+export declare const collapseHeaderClassName: string;
+export declare const collapseTitleClassName: string;
+export declare const collapseContentClassName: string;
+export declare const collapseExtraClassName: string;

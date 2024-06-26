@@ -1,0 +1,36 @@
+.identifiers-wrap {
+  display: flex;
+  align-items: flex-start;
+}
+
+.identifier-dir-tree {
+  background: #fff;
+  border: solid 0.05vw #ddd;
+  border-radius: 0.25em;
+  top: 2.71vw;
+  position: sticky;
+  max-height: calc(100vh - 8.07vw);
+  overflow-y: scroll;
+  min-width: 10.42vw;
+  margin-left: 1em;
+}
+
+.identifier-dir-tree-header {
+  padding: 0.5em;
+  background-color: #fafafa;
+  border-bottom: solid 0.05vw #ddd;
+}
+
+.identifier-dir-tree-content {
+  padding: 0 0.5em 0;
+}
+
+.identifier-dir-tree-content > div {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+.identifier-dir-tree-content a {
+  color: inherit;
+}
+

@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/services/webgpu/src/this/css/index.light.css" rel="stylesheet" />
+    <link href="/js/themes/dark-hive/jquery-ui.css" rel="stylesheet" />
+    <link href="/js/themes/dark-hive/theme.css" rel="stylesheet" />
+    <link href="/js/jquery-ui-fix.css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui-fix.js"></script>
+    <script type="text/javascript" src="/js/sndfile.js"></script>
+    <script type="text/javascript" src="/config/controller.bundle.js"></script>
+
+    <script src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm/lib/xterm.js"></script>
+    <script
+        src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/local-echo/dist/local-echo.js"></script>
+    <script
+        src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
+    <script
+        src="/services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-web-links/lib/xterm-addon-web-links.js"></script>
+    <link rel="preload" href="/services/webgpu/src/component/nk-terminal/this/mjs/terminal/coreutils.async.wasm"
+          as="fetch" crossorigin />
+
+    <title>WebGPU Test Page</title>
+    <link rel="shortcut icon"
+          href="data:image/png;base64, AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbbv+DGW3/mRlt/5kZbf+ZGq6/hIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGa3/ohkt/7/Zbj//2S3/v9lt/6WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGm5/iRlt/74Zbj//2W4//9luP//Zbf++mi4/i4gIPciGhr24hsb9uwbG/bsGhr24CEh9xoAAAAAAAAAAAAAAABnuP5mZLf+/2W4//9luP//Zbj//2S3/v9muP5yGBj2rhMT9v8TE/b/ExP2/xMT9f8YGPWkAAAAAAAAAAAAAAAAb7z/BGW3/tZluP//Zbj//2W4//9lt/7gJzH3ShMT9f8TE/b/ExP2/xMT9v8TE/b/ExP1/CAg9joAAAAAAAAAAAAAAABmuP5GZLf+6GS3/uhkt/7oZbf+UhgY9YQSEvX/ExP2/xMT9v8TE/b/ExP2/xIS9f8aGvZ8AAAAAD4++gQgIPZ6IiL2hiIi9oYgIPZ8KCj5BAAAAAAtLfgUFBT17BMT9v8TE/b/ExP2/xMT9v8VFfXoLCz4DgAAAAAaGvZqEhL1/xMT9v8TE/b/EhL1/xsb9nIAAAAAAAAAABwc9m4SEvX/ExP2/xMT9v8SEvX/HR32ZAAAAAAnJ/gSFRX16hMT9v8TE/b/ExP2/xMT9v8UFPXuJyf4Fp2xlAKNnqUYLC/mfhYW83ATE/VuFxf1aDc3+gIAAAAAGBj1fhIS9f8TE/b/ExP2/xMT9v8TE/b/ExP1/xkZ9YaGn3yIhZ57/4Wee/+Gn3yKAAAAAAAAAAAAAAAAAAAAACMj9zYTE/X8ExP2/xMT9v8TE/b/ExP2/xMT9f9JUshihZ57+IaffP+Gn3z/hZ579oigfiYAAAAAAAAAAAAAAAAAAAAAGBj1oBIS9f8TE/b/ExP2/xMT9f8YGPWmiKB+PIWee/+Gn3z/hp98/4Wee/+HoH06AAAAAAAAAAAAAAAAAAAAACUl9xgVFfXOExP11BMT9dQUFPXQJib3HgAAAACGn3ymhp98/4affP+Gn3ymAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiKB+EIihf0CIoX9AiKB+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AADg/wAA4MMAAOCBAADggQAA8QEAAOeBAADDwwAAgf8AAIAPAACBDwAAgQ8AAMMPAAD//wAA//8AAA=="
+          type="image/png">
+
+    <script type="module">
+        window.localStorage.setItem('location', JSON.stringify({
+            pathname: '/services/webgpu/src'
+        }));
+
+        const index = await import('/index.mjs');
+    </script>
+
+    <style>
+        @import "/codicon.css";
+        @import url('/services/webgpu/src/component/nk-ide/this/mjs/api/this/index.css');
+
+        @font-face {
+            font-family: 'Segoe UI';
+            src: url('fonts/segoeui.ttf') format('truetype');
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: auto;
+        }
+
+        #gfx {
+            width: 100%;
+            display: none;
+        }
+
+        #content {
+            width: 100%;
+            display: none;
+        }
+
+        #error {
+            text-align: center;
+            width: 100%;
+            color: red;
+            display: none;
+        }
+
+        .visibleInput {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+<nk-memory data-field="mem_0">
+    <template>
+        <nk-bank>
+            <template>
+                <div>111111111111</div>
+            </template>
+        </nk-bank>
+        <nk-paragraph>
+            <template>
+                <div>asasasa</div>
+            </template>
+        </nk-paragraph>
+        <header>
+			<pre class="__peer-header_logo_value">
+						░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+						░░░░░░░░░░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░
+						░░░░░░████░░░░░░█████░░░░░░░░░░░░░░░░░░░░░░░░░
+						░░░░████████░░░███████░░░░░░░░░░░░░░░░░░░░░░░░
+						░░░██████████░█████████░░░░░░░░░░░░░░░░░░░░░░░
+						░░████████████░░█████░░░░░░░░░░░░░░░░░░░░░░░░░
+						░░░██████████░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░
+						░░░░████████░░░░░░█████╗░██████╗░░██████╗░░░░░
+						░░░░░░░░█████░░░░██╔══██╗██╔══██╗██╔════╝░░░░░
+						░░░░░░█████████░░██║░░██║██████╔╝██║░░██╗░░░░░
+						░░░░░███████████░██║░░██║██╔══██╗██║░░╚██╗░░░░
+						░░░░░░█████████░░╚█████╔╝██║░░██║╚██████╔╝░░░░
+						░░░░░░░███████░░░░╚════╝░╚═╝░░╚═╝░╚═════╝░░░░░
+						░░░░░░░░░███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+						░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+        </header>
+        <div class="container">
+            <div class="nk-shared-protocol">
+                <slot name="nk-shared-protocol"></slot>
+            </div>
+            <div class="wrapper">
+                <h2>Scheduler</h2>
+                <div class="settings">
+                    <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span
+                        class="value"></span></div>
+                </div>
+                <div class="memory-queue"></div>
+            </div>
+            <div class="nk-git">
+                <h2>GIT-OPFS-SWAGGER-MOCHA-VIEWS</h2>
+                <slot name="nk-git"></slot>
+            </div>
+<!--            <div class="nk-opfs">-->
+<!--                <h2>OPFS</h2>-->
+<!--                <slot name="nk-opfs"></slot>-->
+<!--            </div>-->
+            <div class="nk-radio">
+                <h2>Radio</h2>
+                <slot name="nk-radio"></slot>
+            </div>
+            <div class="nk-ide">
+                <slot name="nk-ide"></slot>
+            </div>
+            <div class="nk-emulator">
+                <slot name="nk-emulator"></slot>
+            </div>
+            <div class="nk-views">
+                <slot name="nk-views"></slot>
+            </div>
+            <div class="nk-settings">
+                <slot name="nk-settings"></slot>
+            </div>
+            <div class="nk-sber">
+                <slot name="nk-sber"></slot>
+            </div>
+            <div class="nk-elite">
+                <slot name="nk-elite"></slot>
+            </div>
+            <div class="nk-rotation">
+                <slot name="nk-rotation"></slot>
+            </div>
+            <div class="nk-chart">
+                <slot name="nk-chart"></slot>
+            </div>
+        </div>
+        <nk-ide
+            slot="nk-ide"
+            data-field="nk-ide"
+        >
+            <template>
+                <div data-exclusion id="root"></div>
+                <nk-terminal
+                    slot="nk-terminal"
+                    data-field="terminal_0"
+                    data-services-path="webgpu"
+                >
+                    <div class="term"></div>
+                </nk-terminal>
+            </template>
+        </nk-ide>
+        <nk-git
+            slot="nk-git"
+            data-field="nk-git"
+        >
+            <template>
+                <div class="nk-git__container">
+<!--                    <div class="settings">-->
+<!--                        <div class="wrapper">-->
+<!--                            <button class="fonts-button disabled">Загрузить шрифт</button>-->
+<!--                            <input type="file" id="font-input">-->
+<!--                        </div>-->
+<!--                        <div class="test">-->
+<!--                            <p id="test">Upload a font to change me!</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="run">
+
+                    </div>
+                    <div class="settings">
+                        <div class="settings__block_0">
+                            <mss-input
+                                disabled
+                                slot="mss-input"
+                                data-field="input_0"
+                            >
+                                <template>
+                                    <div class="container">
+                                        <input readonly id="input"
+                                               placeholder="https://github.com/ElenaSidneva/yoga_studio"
+                                               value="https://github.com/ElenaSidneva/yoga_studio" />
+                                    </div>
+                                </template>
+                            </mss-input>
+                            <fer-select
+                                disabled
+                                slot="fer-select"
+                                data-field="select_0"
+                            >
+                                <template>
+                                    <div class="dropdown">
+                                        <div class="wrapper">
+                                            <div class="input">
+                                                <button placeholder="Значение ещё не существует" class="button"
+                                                        type="button"></button>
+                                            </div>
+                                            <div class="button_arrow">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     viewBox="0 0 16 16" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M7.99994 8.93934L11.4696 5.46967L12.5303 6.53033L8.53027 10.5303C8.23738 10.8232 7.76251 10.8232 7.46961 10.5303L3.46961 6.53033L4.53027 5.46967L7.99994 8.93934Z"
+                                                          fill="#0D4CD3" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <ul class="list">
+                                            <li style="text-align: center;"class="list-item">
+                                                6
+                                            </li>
+                                            <li style="text-align: center;"class="list-item">
+                                                12
+                                            </li>
+                                            <li style="text-align: center;"class="list-item">
+                                                32
+                                            </li>
+                                        </ul>
+                                        <input class="input_hidden" type="text" name="select-category" value="Фильтр 1" />
+                                    </div>
+                                </template>
+                            </fer-select>
+                        </div>
+                        <div class="settings__block_1">
+                            <div id="controls">
+                                <button class="button" id="mount">Mount</button>
+                                <button class="button disabled" id="run">Run</button>
+                                <button class="button disabled" id="clear">Clear</button>
+                            </div>
+                            <div class="nk-git__status">
+                                <div class="progress">
+                                    <div class="progress_label"></div>
+                                    <div class="indeterminate-progress-bar">
+                                        <div class="indeterminate-progress-bar-value"></div>
+                                    </div>
+                                    <progress class="progress-bar" max="100" value="0"></progress>
+                                </div>
+                                <div class="nk-git__label">
+                                    <div class="error"></div>
+                                    <div class="clear"></div>
+                                    <div class="status"></div>
+                                    <div class="enumerating"></div>
+                                    <div class="counting"></div>
+                                    <div class="compressing"></div>
+                                    <div class="total"></div>
+                                    <div class="clone"></div>
+                                    <div class="listFiles"></div>
+                                    <div class="copy-to-opfs"></div>
+                                    <div class="refresh-opfs"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <slot name="nk-opfs"></slot>
+                    <slot name="mss-settings"></slot>
+                </div>
+
+                <nk-opfs
+                    slot="nk-opfs"
+                    data-field="nk-opfs"
+                >
+                    <template>
+                        <div class="nk-opfs">
+                            <div class="container">
+                                <div id="storageEstimate"></div>
+                                <main>
+                                    <span class="spinner">⏳</span> Analyzing Origin Private File System
+                                </main>
+                                <dialog class="confirm-dialog">
+                                    <form method="dialog">
+                                        <p>Do you really want to delete the <span></span> <code></code>?</p>
+                                        <div>
+                                            <button type="cancel" class="cancel-button" value="cancel">Cancel</button>
+                                            <button type="submit" class="confirm-button" value="delete">
+                                                Confirm
+                                            </button>
+                                        </div>
+                                    </form>
+                                </dialog>
+                                <dialog class="error-dialog">
+                                    <form method="dialog">
+                                        <p></p>
+                                        <div>
+                                            <button type="submit" class="confirm-button" value="ok">OK</button>
+                                        </div>
+                                    </form>
+                                </dialog>
+                                <dialog class="edit-dialog">
+                                    <form method="dialog">
+                                        <div class="codemirror-settings">
+                                            <button type="submit" class="confirm-button" value="save">
+                                                Сохранить
+                                            </button>
+                                            <button type="submit" class="cancel-button" value="cancel">
+                                                Отмена
+                                            </button>
+                                        </div>
+                                        <div id="html-editor" class="textarea edit-file" spellcheck="false"></div>
+                                    </form>
+                                </dialog>
+                            </div>
+                        </div>
+                    </template>
+                </nk-opfs>
+
+                <mss-settings
+                    slot="mss-settings"
+                    data-field="mss-settings"
+                >
+                    <template>
+                        <div data-exclusion id="swagger">
+                            <div class="swagger-menu">
+                                <input class="input" id="describe" type="text"
+                                       placeholder="Введите название describe блока">
+                                <button class="swagger-save">Сохранить тесты</button>
+                                <button class="swagger-reset">Сбросить блоки it</button>
+                            </div>
+                            <div id="swagger-ui"></div>
+                        </div>
+                    </template>
+                </mss-settings>
+            </template>
+        </nk-git>
+        <nk-shared-protocol
+            slot="nk-shared-protocol"
+            data-field="nk-shared-protocol"
+            data-services-path="webgpu"
+        >
+            <template>
+                <div class="container">
+                    <h2>Protocol</h2>
+                    <div class="protocol">
+                        <div class="item-0">
+                            0
+                        </div>
+                        <div class="item-1">
+                            1
+                        </div>
+                        <div class="item-2">
+                            2
+                        </div>
+                        <div class="item-3">
+                            3
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </nk-shared-protocol>
+
+        <nk-settings
+            slot="nk-settings"
+            data-field="free-queue"
+            data-services-path="webgpu"
+        >
+            <template>
+                <div class="container">
+                    <div class="wrapper">
+                        <h2>Free Queue</h2>
+                        <div class="memory">
+                            <div id="QUEUE_SIZE" class="settings">Всего памяти<span class="value">—</span></div>
+                            <div id="ExpectedPrimingCount" class="settings">ExpectedPrimingCount<span
+                                class="value">—</span></div>
+                            <div class="settings">Используется<span class="value">—</span>
+                            </div>
+                            <div class="settings">Длинна<span class="value">—</span></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </nk-settings>
+        <!--
+                <nk-elite
+                    slot="nk-elite"
+                    data-field="elite"
+                    data-services-path="webgpu"
+                >
+                    <template>
+                        <div data-exclusion class="container">
+                            <div class="settings">
+                                <div class="emscripten">
+                                    <progress value="0" max="100" id="progress" hidden=1></progress>
+                                </div>
+                                <div class="spinner" id='spinner'></div>
+                                <div class="emscripten" id="status">Downloading...</div>
+                                <span id='controls'>
+                                    <span>
+                                        <input type="checkbox" id="resize">
+                                        Resize canvas
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" id="pointerLock" checked>
+                                        Lock/hide mouse pointer
+                                    </span>
+                                    <span>
+                                        <input
+                                            class="nk-input"
+                                            type="button"
+                                            value="Fullscreen"
+                                        >
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="wrapper">
+                                <div class=emscripten_border>
+                                    <canvas class=emscripten id=canvas oncontextmenu=event.preventDefault() tabindex=-1></canvas>
+                                </div>
+                                <textarea id=output rows=8></textarea>
+                            </div>
+                        </div>
+                    </template>
+                </nk-elite>
+        -->
+        <nk-sber
+            slot="nk-sber"
+            data-field="sber"
+            data-services-path="webgpu"
+        >
+            <template>
+                <div class="container">
+                    <div>
+                        <div class="letter__avatar-wrap">
+                            <img src="/services/webgpu/src/component/nk-sber/pic.png" />
+                        </div>
+                    </div>
+                    <div class="WordSection1_mr_css_attr">
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">Добрый день, коллеги.</span>
+                        </p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">В период с 15.04 по 23.04 нахожусь вне офиса с ограниченным доступом к почте в домене _____.</span>
+                        </p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">&nbsp;</span></p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">В мое отсутствие прошу обращаться:</span>
+                        </p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">1. По вопросам Cash Management и ЦФА к Синотиной Валентине (<u><span
+                            style="color:blue"><a href="//vk.mail.ru/compose/?mailto=mailto%3aVRoSinotina@sberbank.ru"
+                                                  target="_blank" rel=" noopener noreferrer"><span style="color:blue">VRoSinotina@sberbank.ru</span></a></span></u>)</span>
+                        </p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">2. По вопросам Банковского сопровождения к Лазаревой Евгении (<a
+                            href="//vk.mail.ru/compose/?mailto=mailto%3aEilazareva@sberbank.ru" target="_blank"
+                            rel=" noopener noreferrer"><span
+                            style="color:blue">Eilazareva@sberbank.ru</span></a>)</span><span
+                            style="font-size:12.0pt;font-family:'Times New Roman',serif"></span></p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">3. По вопросам Фонда Президентских Грантов и бизнес-карт к Жило Ирине (<a
+                            href="//vk.mail.ru/compose/?mailto=mailto%3aZhilo.I.St@omega.sbrf.ru" target="_blank"
+                            rel=" noopener noreferrer"><span
+                            style="color:blue">Zhilo.I.St@omega.sbrf.ru</span></a>)</span></p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">4. По вопросам API переводов к Шабрину Сергею (<a
+                            href="//vk.mail.ru/compose/?mailto=mailto%3aShabrin.S.V@sberbank.ru" target="_blank"
+                            rel=" noopener noreferrer"><span
+                            style="color:blue">Shabrin.S.V@sberbank.ru</span></a>)</span></p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">5. По вопросам партнерской программы и смарт контактов к Пицыку Александру (<u><span
+                            style="color:blue"><a
+                            href="/compose?To=ASPitcyk@sberbank.ru">ASPitcyk@sberbank.ru</a></span></u>)</span></p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">6. По вопросам Топливного решения к Арабаджи Константину (<u><span
+                            style="color:blue"><a href="/compose?To=KVArabadzhi@sberbank.ru">KVArabadzhi@sberbank.ru</a></span></u>)</span>
+                        </p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">&nbsp;</span></p>
+                        <p class="MsoNormal_mr_css_attr" style="text-autospace:none"><span
+                            style="font-size:10.0pt;font-family:'Century Gothic',sans-serif">По срочным вопросам пишите в Telegram <span
+                            class="js-phone-number"> _-___-___-__-__</span></span><span
+                            style="font-size:8.5pt;font-family:'Segoe UI',sans-serif"></span></p>
+                    </div>
+                </div>
+            </template>
+        </nk-sber>
+        <nk-rotation
+            slot="nk-rotation"
+            data-field="rotation"
+            data-services-path="webgpu"
+        >
+            <template>
+                <div class="main">
+                    <div>
+                        <form novalidate>
+                            <div class="dcol">
+                                <h2>Input</h2>
+                                <p>Input angle format
+                                    <label><input type="radio" id="iformatrad" name="iformat" value="0" checked />Radians</label>
+                                    <label><input type="radio" id="iformatdeg" name="iformat"
+                                                  value="1" />Degrees</label>
+                                <p class="pi" id="ip0">Rotation matrix
+                                    <br /><span class="dl"></span><input class="nk-rotation-matrix" type="number"
+                                                                         pattern="\d+(\.\d*)?" id="m00" value="1" />
+                                    <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
+                                                                    pattern="\d+(\.\d*)?" id="m01" value="0" />
+                                    <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
+                                                                    pattern="\d+(\.\d*)?" id="m02" value="0" /> &nbsp;
+                                    <br /><span class="dl"></span><input class="nk-rotation-matrix" type="number"
+                                                                         pattern="\d+(\.\d*)?" id="m10" value="0" />
+                                    <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
+                                                                    pattern="\d+(\.\d*)?" id="m11" value="1" />
+                                    <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
+                                                                    pattern="\d+(\.\d*)?" id="m12" value="0" /> &nbsp;
+                                    <br /><span class="dl"></span><input class="nk-rotation-matrix" type="number"
+                                                                         pattern="\d+(\.\d*)?" id="m20" value="0" />
+                                    <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
+                                                                    pattern="\d+(\.\d*)?" id="m21" value="0" />
+                                    <span class="dl2"></span><input class="nk-rotation-matrix" type="number"
+                                                                    pattern="\d+(\.\d*)?" id="m22" value="1" />
+                                <p class="pi" id="ip1">Quaternion
+                                    <br />
+                                    <span class="dl">x</span><input class="nk-quaternion" type="number"
+                                                                    pattern="\d+(\.\d*)?" id="q0" value="0" />
+                                    <span class="dl2">y</span><input class="nk-quaternion" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="q1" value="0" />
+                                    <span class="dl2">z</span><input class="nk-quaternion" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="q2" value="0" />
+                                    <span class="dl">w (real part) <input class="nk-quaternion" type="number"
+                                                                          pattern="\d+(\.\d*)?" id="q3"
+                                                                          value="1" /></span>
+                                <p class="pi" id="ip2">Axis-angle
+                                    <br />
+                                    <span class="dl">Axis x</span><input class="nk-axis-angle" type="number"
+                                                                         pattern="\d+(\.\d*)?" id="a0" value="0" />
+                                    <span class="dl2">y</span><input class="nk-axis-angle" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="a1" value="0" />
+                                    <span class="dl2">z</span><input class="nk-axis-angle" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="a2" value="0" />
+                                    <span class="dl">Angle<span class="nk-spananglei"
+                                                                name="spananglei"> (radians)</span> <input
+                                        class="nk-axis-angle" type="number" pattern="\d+(\.\d*)?" id="a3"
+                                        value="0" /></span>
+                                <p class="pi" id="ip3">Axis with angle magnitude<span class="nk-spananglei"
+                                                                                      name="spananglei"> (radians)</span>
+                                    <br /><span class="dl">Axis x</span><input class="nk-axis-with-angle-magnitude"
+                                                                               type="number" pattern="\d+(\.\d*)?"
+                                                                               id="r0" value="0" />
+                                    <span class="dl2">y</span><input class="nk-axis-with-angle-magnitude" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="r1" value="0" />
+                                    <span class="dl2">z</span><input class="nk-axis-with-angle-magnitude" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="r2" value="0" />
+                                <p class="pi" id="ip4">Euler angles of multiple axis rotations<span
+                                    class="nk-spananglei" name="spananglei"> (radians)</span>
+                                    <br />
+                                    <span class="dl"><select class="nk-euler-angles-of-multiple-axis-rotations-onchange"
+                                                             id="euler">
+                                        <option value="XYZ" selected>XYZ</option>
+                                        <option value="XZY">XZY</option>
+                                        <option value="YXZ">YXZ</option>
+                                        <option value="YZX">YZX</option>
+                                        <option value="ZXY">ZXY</option>
+                                        <option value="ZYX">ZYX</option>
+                                        </select></span>
+                                    <span class="dl2">x</span><input
+                                        class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
+                                        pattern="\d+(\.\d*)?" id="e0" value="0" />
+                                    <span class="dl2">y</span><input
+                                        class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
+                                        pattern="\d+(\.\d*)?" id="e1" value="0" />
+                                    <span class="dl2">z</span><input
+                                        class="nk-euler-angles-of-multiple-axis-rotations-input" type="number"
+                                        pattern="\d+(\.\d*)?" id="e2" value="0" />
+                                <p class="pi" id="ip5">Triple of points, P, Q, R,
+                                    such that
+                                    X &#x2225; (Q&minus;P), &nbsp;
+                                    Z &#x2225; X &times; (R&minus;P), &nbsp;and
+                                    Y &#x2225; Z &times; X.
+                                    <br />
+                                    P:
+                                    <span class="dl2">x</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Px" value="0" />
+                                    <span class="dl2">y</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Py" value="0" />
+                                    <span class="dl2">z</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Pz" value="0" />
+                                    <br />
+                                    Q:
+                                    <span class="dl2">x</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Qx" value="1" />
+                                    <span class="dl2">y</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Qy" value="0" />
+                                    <span class="dl2">z</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Qz" value="0" />
+                                    <br />
+                                    R:
+                                    <span class="dl2">x</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Rx" value="0" />
+                                    <span class="dl2">y</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Ry" value="1" />
+                                    <span class="dl2">z</span><input class="nk-triple-of-points" type="number"
+                                                                     pattern="\d+(\.\d*)?" id="Rz" value="0" />
+                                    <br />
+                            </div>
+
+                            <div class="dcol">
+                                <h2>Output</h2>
+                                <p>Output angle format
+                                    <label><input class="nk-output-angle-format" type="radio" id="resformatrad"
+                                                  name="resformat" value="0" checked />Radians</label>
+                                    <label><input class="nk-output-angle-format" type="radio" id="resformatdeg"
+                                                  name="resformat" value="1" />Degrees</label>
+                                <p>Rotation matrix
+                                    <br /><textarea id="resmatrix" rows="3" cols="70" readonly></textarea>
+                                <p>Quaternion [x, y, z, w]
+                                    <br /><textarea id="resq" rows="1" cols="85" readonly></textarea>
+                                <p>Axis-Angle {[x, y, z], angle<span class="nk-spanangleres" name="spanangleres"> (radians)</span>}
+                                    <br /><textarea id="resa" rows="1" cols="85" readonly></textarea>
+                                <p>Axis with angle magnitude<span class="nk-spanangleres"
+                                                                  name="spanangleres"> (radians)</span> [x, y, z]
+                                    <br /><textarea id="resr" rows="1" cols="85" readonly></textarea>
+                                <p>Euler angles<span class="nk-spanangleres" name="spanangleres"> (radians)</span>
+                                    <select id="reseuler" class="nk-output-angle-format">
+                                        <option value="XYZ" selected>XYZ</option>
+                                        <option value="XZY">XZY</option>
+                                        <option value="YXZ">YXZ</option>
+                                        <option value="YZX">YZX</option>
+                                        <option value="ZXY">ZXY</option>
+                                        <option value="ZYX">ZYX</option>
+                                    </select>
+                                    <br />
+                                    <textarea id="rese" rows="1" cols="70" readonly></textarea>
+                            </div>
+                            <br style="clear: left;" />
+
+                            <div class="dcol">
+                                <h2>Details</h2>
+                                <p>
+                                    Please note that rotation formats vary.
+                                    For quaternions, it is not uncommon to denote the real part first.
+                                    Euler angles can be defined with many different combinations (see <a
+                                    href="https://en.wikipedia.org/wiki/Euler_angles#Tait.E2.80.93Bryan_angles">definition
+                                    of Cardan angles</a>).
+                                    All input is normalized to unit quaternions and may therefore mapped to different
+                                    ranges.
+                                    The converter can therefore also be used to normalize a rotation matrix or a
+                                    quaternion.
+                                    Results are rounded to seven digits.
+                            </div>
+
+                            <div class="dcol">
+                                <h2>Software</h2>
+                                <p>
+                                    This calculator for 3D rotations is open-source software.
+                                    If there are any bugs, please push fixes to the <a
+                                    href="https://github.com/gaschler/rotationconverter">Rotation Converter git repo</a>.
+                                    For almost all conversions, <a
+                                    href="https://threejs.org/docs/index.html#api/math/Quaternion">three.js Math</a> is
+                                    used internally.
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </template>
+        </nk-rotation>
+        <nk-transformers
+            slot="nk-transformers"
+            data-field="transformers"
+            data-services-path="webgpu"
+        >
+            <template>
+                <div class="container">
+                    <h3>Трансформер</h3>
+                    <div class="wrapper">
+
+                    </div>
+                </div>
+            </template>
+        </nk-transformers>
+        <nk-views
+            slot="nk-views"
+            data-field="osc_0"
+            data-services-path="webgpu"
+        >
+            <template>
+                <div class="container">
+                    <div class="сanvas">
+                        <div class="display sample"></div>
+                    </div>
+                    <div class="settings">
+                        <div class="terminal">
+                            <h2>Терминал</h2>
+                            <div class="console">
+                                <div class="array data_0"></div>
+                                <div class="array data_1"></div>
+                                <div class="array data_2"></div>
+                                <div class="array data_3"></div>
+                                <div class="array data_4"></div>
+                                <div class="array data_5"></div>
+                                <div class="array data_6"></div>
+                                <div class="array data_7"></div>
+                                <div class="array data_8"></div>
+                                <div class="array data_9"></div>
+                                <div class="array data_10"></div>
+                                <div class="array data_11"></div>
+                                <div class="array data_12"></div>
+                                <div class="array data_13"></div>
+                                <div class="array data_14"></div>
+                                <div class="array data_15"></div>
+                                <div class="array data_16"></div>
+                                <div class="array data_17"></div>
+                                <div class="array data_18"></div>
+                                <div class="array data_19"></div>
+                                <div class="array data_20"></div>
+                                <div class="array data_21"></div>
+                                <div class="array data_22"></div>
+                                <div class="array data_23"></div>
+                                <div class="array data_24"></div>
+                                <div class="array data_25"></div>
+                                <div class="array data_26"></div>
+                                <div class="array data_27"></div>
+                                <div class="array data_28"></div>
+                                <div class="array data_29"></div>
+                                <div class="array data_30"></div>
+                                <div class="array data_31"></div>
+                                <div class="array data_32"></div>
+                                <div class="array data_33"></div>
+                                <div class="array data_34"></div>
+                                <div class="array data_35"></div>
+                                <div class="array data_36"></div>
+                                <div class="array data_37"></div>
+                                <div class="array data_38"></div>
+                                <div class="array data_39"></div>
+                                <div class="array data_40"></div>
+                                <div class="array data_41"></div>
+                                <div class="array data_42"></div>
+                                <div class="array data_43"></div>
+                                <div class="array data_44"></div>
+                                <div class="array data_45"></div>
+                                <div class="array data_46"></div>
+                                <div class="array data_47"></div>
+                                <div class="array data_48"></div>
+                                <div class="array data_49"></div>
+                                <div class="array data_50"></div>
+                                <div class="array data_51"></div>
+                                <div class="array data_52"></div>
+                                <div class="array data_53"></div>
+                                <div class="array data_54"></div>
+                                <div class="array data_55"></div>
+                                <div class="array data_56"></div>
+                                <div class="array data_57"></div>
+                                <div class="array data_58"></div>
+                                <div class="array data_59"></div>
+                                <div class="array data_60"></div>
+                            </div>
+                        </div>
+
+                        <div class="position-sample-settings">
+                            <nk-settings
+                                slot="nk-settings"
+                                data-field="settings"
+                                data-services-path="webgpu"
+                            >
+                                <template>
+                                    <div class="container">
+                                        <div class="wrapper">
+                                            <h2>Настройки</h2>
+                                            <div class="memory">
+                                                <div class="settings">Всего памяти<span class="value">—</span>
+                                                </div>
+                                                <div class="settings">Используется<span class="value">—</span>
+                                                </div>
+                                                <div class="settings">Длинна<span class="value">—</span></div>
+                                            </div>
+                                        </div>
+                                        <pre>--------------------------------------------------------------------------------</pre>
+                                        <div class="constants">
+                                            <h2>Переменные</h2>
+                                            <div class="settings" id="RENDER_QUANTUM">RENDER_QUANTUM<span
+                                                class="value"></span></div>
+                                            <div class="settings" id="KERNEL_LENGTH">KERNEL_LENGTH<span
+                                                class="value"></span></div>
+                                            <div class="settings" id="FRAME_SIZE">FRAME_SIZE<span
+                                                class="value"></span></div>
+                                            <div class="settings" id="QUEUE_SIZE">QUEUE_SIZE<span
+                                                class="value"></span></div>
+                                            <div class="settings" id="WORKGROUP_SIZE">WORKGROUP_SIZE<span
+                                                class="value"></span></div>
+                                            <pre>--------------------------------------------------------------------------------</pre>
+                                            <div class="settings" id="ARRAY_LENGTH">ARRAY_LENGTH<span
+                                                class="value">—</span>
+                                            </div>
+                                            <div class="settings" id="freq">freq<span class="value">—</span>
+                                            </div>
+                                            <div class="settings" id="channels">channels<span
+                                                class="value">—</span>
+                                            </div>
+                                            <div class="settings" id="duration">duration<span
+                                                class="value">—</span>
+                                            </div>
+                                            <div class="settings" id="samplerate">samplerate<span
+                                                class="value">—</span></div>
+                                            <div class="settings" id="volumerate">volumerate<span
+                                                class="value">—</span></div>
+                                            <div class="settings" id="frames">frames<span class="value">—</span>
+                                            </div>
+                                            <div class="settings" id="memdata">memdata<span
+                                                class="value">—</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </nk-settings>
+                            <nk-info
+                                slot="nk-info"
+                                data-field="info"
+                                data-services-path="webgpu"
+                            >
+                                <template>
+                                    <div class="info">
+                                        <h2>Информация</h2>
+                                        <div class="container">
+                                            <div class="info-item">
+                                                <div class="item_background">
+                                                    <div class="info-color-1"></div>
+                                                </div>
+                                                <span>
+                                                    Индекс сигнала
+                                                </span>
+                                            </div>
+                                            <div class="info-item">
+                                                <div class="item_background">
+                                                    <div class="info-color-2"></div>
+                                                </div>
+                                                <span>
+                                                    Задержанный сигнал
+                                                </span>
+                                            </div>
+                                            <div class="info-item">
+                                                <div class="item_background">
+                                                    <div class="info-color-3"></div>
+                                                </div>
+                                                <span>
+                                                    Основной сигнал
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </nk-info>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </nk-views>
+
+        <nk-emulator
+            slot="nk-emulator"
+            data-field="emulator_0"
+        >
+            <template>
+                <div class="container">
+                    <h2>Эмулятор</h2>
+                    <div class="reader">
+                        <h2>Reader</h2>
+                        <div class="container-reader">
+                            <div class="container-wrapper">
+                                <div class="position-sample-container">
+                                    <nk-time-line
+                                        data-field="settings-time"
+                                        data-services-path="webgpu"
+                                        data-id="1"
+                                    >
+                                        <template>
+                                            <div class="frames">
+                                                <h3>sample time line</h3>
+                                                <div class="array"></div>
+                                            </div>
+                                        </template>
+                                    </nk-time-line>
+                                    <nk-filter
+                                        data-field="filter-0"
+                                        data-services-path="webgpu"
+                                        data-id="1"
+                                    >
+                                        <template>
+                                            <div class="filters">
+                                                <div class="array line"></div>
+                                            </div>
+                                        </template>
+                                    </nk-filter>
+                                    <nk-switch data-field="settings-1" data-services-path="webgpu">
+                                        <template>
+                                            <div class="container">
+                                                <fieldset data-field="settingsDelay" class="multiswitch">
+                                                    <div class="slide-container">
+                                                        <input type="radio" name="sample" id="sample-0">
+                                                        <label for="sample-0">-16</label>
+                                                        <input type="radio" name="sample" id="sample-1">
+                                                        <label for="sample-1">-15</label>
+                                                        <input type="radio" name="sample" id="sample-2">
+                                                        <label for="sample-2">-14</label>
+                                                        <input type="radio" name="sample" id="sample-3">
+                                                        <label for="sample-3">-13</label>
+                                                        <input type="radio" name="sample" id="sample-4">
+                                                        <label for="sample-4">-12</label>
+                                                        <input type="radio" name="sample" id="sample-5">
+                                                        <label for="sample-5">-11</label>
+                                                        <input type="radio" name="sample" id="sample-6">
+                                                        <label for="sample-6">-10</label>
+                                                        <input type="radio" name="sample" id="sample-7">
+                                                        <label for="sample-7">-9</label>
+                                                        <input type="radio" name="sample" id="sample-8" checked>
+                                                        <label for="sample-8">-8</label>
+                                                        <input type="radio" name="sample" id="sample-9">
+                                                        <label for="sample-9">-7</label>
+                                                        <input type="radio" name="sample" id="sample-10">
+                                                        <label for="sample-10">-6</label>
+                                                        <input type="radio" name="sample" id="sample-11">
+                                                        <label for="sample-11">-5</label>
+                                                        <input type="radio" name="sample" id="sample-12">
+                                                        <label for="sample-12">-4</label>
+                                                        <input type="radio" name="sample" id="sample-13">
+                                                        <label for="sample-13">-3</label>
+                                                        <input type="radio" name="sample" id="sample-14">
+                                                        <label for="sample-14">-2</label>
+                                                        <input type="radio" name="sample" id="sample-15">
+                                                        <label for="sample-15">-1</label>
+                                                        <input type="radio" name="sample" id="sample-16">
+                                                        <label for="sample-16">0</label>
+                                                        <a class="slide" aria-hidden="true"></a>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </template>
+                                    </nk-switch>
+                                    <nk-osc
+                                        data-field="osc_audio"
+                                        data-services-path="webgpu"
+                                        data-id="1"
+                                    >
+                                        <template>
+                                            <div class="container-view">
+                                                <div id="outputDiv">
+                                                <span
+                                                    class="outputText">_</span>
+                                                    <span id="outputTextElement">&nbsp;</span>
+                                                    <span
+                                                        class="outputText">¯</span>
+                                                </div>
+                                                <div id="progressBarBaseDiv">
+                                                    <div id="progressBarDiv" style="width:0px"></div>
+                                                </div>
+                                                <div id="controlButtons" style="visibility: visible;">
+                                                    <input type="button" class="controlButton" id="goBackButton"
+                                                           value="◄◄">
+                                                    <input type="button" class="controlButton" id="startStopButton"
+                                                           value="►">
+                                                    <input type="button" class="controlButton" id="pauseResumeButton"
+                                                           value="▌▐">
+                                                    <input type="button" class="controlButton" id="goForwardButton"
+                                                           value="►►">
+                                                    <input type="button" class="controlButton" id="slowerButton"
+                                                           value="▼">
+                                                    <input type="button" class="controlButton" id="fasterButton"
+                                                           value="▲">
+                                                </div>
+                                            </div>
+                                            <div id="mainDiv">
+                                                <div id="inputTextAreaDiv" style="visibility: visible;">
+                                                    <div id="inputTextArea" class="UIInput" rows="8"></div>
+                                                    <data class="readable-stream" value="readable-stream"></data>
+                                                </div>
+                                            </div>
+                                            <div id="speedAndCheckBoxesDiv">
+                                                <div class="container-settings-0">
+                                                    <span class="UIText">
+                                                        Speed
+                                                        <input type="text" id="speedInputElement" class="UIInput"
+                                                               size="5" value="500">
+                                                        <label>
+                                                            <input type="checkbox" id="hideTextArea">
+                                                            Hide text box when reading
+                                                        </label>
+                                                    </span>
+                                                    <span id="alsoTextSpan" class="UIDisabledText">
+                                                        <label>
+                                                            <input type="checkbox" id="hideButtons" disabled="">
+                                                            Also hide buttons
+                                                        </label>
+                                                    </span>
+                                                    <span class="UIText">
+                                                        <label>
+                                                            <input type="checkbox" id="multiWordCheckBox" checked="">
+                                                            Display multiple words
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <div class="container-settings-0">
+                                                     <span class="UIText">
+                                                        Average words per minute:
+                                                        <span id="wpmDisplay">
+                                                            474.2
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </nk-osc>
+                                </div>
+                                <div class="position-sample-container">
+                                    <nk-time-line
+                                        data-field="settings-1"
+                                        data-services-path="webgpu"
+                                        data-id="2"
+                                    >
+                                        <template>
+                                            <div class="frames">
+                                                <h3>sample time line</h3>
+                                                <div class="array"></div>
+                                            </div>
+                                        </template>
+                                    </nk-time-line>
+                                    <nk-filter
+                                        data-field="filter-0"
+                                        data-services-path="webgpu"
+                                        data-id="2"
+                                    >
+                                        <template>
+                                            <div class="filters">
+                                                <div class="array line"></div>
+                                            </div>
+                                        </template>
+                                    </nk-filter>
+                                    <nk-switch data-field="settings-1" data-services-path="webgpu">
+                                        <template>
+                                            <div class="container">
+                                                <fieldset data-field="settingsDelay" class="multiswitch">
+                                                    <div class="slide-container">
+                                                        <input type="radio" name="sample" id="sample-0">
+                                                        <label for="sample-0">-16</label>
+                                                        <input type="radio" name="sample" id="sample-1">
+                                                        <label for="sample-1">-15</label>
+                                                        <input type="radio" name="sample" id="sample-2">
+                                                        <label for="sample-2">-14</label>
+                                                        <input type="radio" name="sample" id="sample-3">
+                                                        <label for="sample-3">-13</label>
+                                                        <input type="radio" name="sample" id="sample-4">
+                                                        <label for="sample-4">-12</label>
+                                                        <input type="radio" name="sample" id="sample-5">
+                                                        <label for="sample-5">-11</label>
+                                                        <input type="radio" name="sample" id="sample-6">
+                                                        <label for="sample-6">-10</label>
+                                                        <input type="radio" name="sample" id="sample-7">
+                                                        <label for="sample-7">-9</label>
+                                                        <input type="radio" name="sample" id="sample-8" checked>
+                                                        <label for="sample-8">-8</label>
+                                                        <input type="radio" name="sample" id="sample-9">
+                                                        <label for="sample-9">-7</label>
+                                                        <input type="radio" name="sample" id="sample-10">
+                                                        <label for="sample-10">-6</label>
+                                                        <input type="radio" name="sample" id="sample-11">
+                                                        <label for="sample-11">-5</label>
+                                                        <input type="radio" name="sample" id="sample-12">
+                                                        <label for="sample-12">-4</label>
+                                                        <input type="radio" name="sample" id="sample-13">
+                                                        <label for="sample-13">-3</label>
+                                                        <input type="radio" name="sample" id="sample-14">
+                                                        <label for="sample-14">-2</label>
+                                                        <input type="radio" name="sample" id="sample-15">
+                                                        <label for="sample-15">-1</label>
+                                                        <input type="radio" name="sample" id="sample-16">
+                                                        <label for="sample-16">0</label>
+                                                        <a class="slide" aria-hidden="true"></a>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </template>
+                                    </nk-switch>
+                                    <nk-osc
+                                        data-field="osc_text"
+                                        data-services-path="webgpu"
+                                        data-id="2"
+                                    >
+                                        <template>
+                                            <div class="container-view">
+                                                <div id="outputDiv">
+                                                <span
+                                                    class="outputText">_</span>
+                                                    <span id="outputTextElement">&nbsp;</span>
+                                                    <span
+                                                        class="outputText">¯</span>
+                                                </div>
+                                                <div id="progressBarBaseDiv">
+                                                    <div id="progressBarDiv" style="width:0px"></div>
+                                                </div>
+                                                <div id="controlButtons" style="visibility: visible;">
+                                                    <input type="button" class="controlButton" id="goBackButton"
+                                                           value="◄◄">
+                                                    <input type="button" class="controlButton" id="startStopButton"
+                                                           value="►">
+                                                    <input type="button" class="controlButton" id="pauseResumeButton"
+                                                           value="▌▐">
+                                                    <input type="button" class="controlButton" id="goForwardButton"
+                                                           value="►►">
+                                                    <input type="button" class="controlButton" id="slowerButton"
+                                                           value="▼">
+                                                    <input type="button" class="controlButton" id="fasterButton"
+                                                           value="▲">
+                                                </div>
+                                            </div>
+                                            <div id="mainDiv">
+                                                <div id="inputTextAreaDiv" style="visibility: visible;">
+                                                    <div id="inputTextArea" class="UIInput">
+                                                        0.1 0.32 0.64 0.96 0.64 0.32 0.1 -0.32 -0.64 -0.96 -0.64 -0.32
+                                                        -0.1 0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0
+                                                        0.32 0.64 0.96 0.64 0.32 0.1 -0.32 -0.64 -0.96 -0.64 -0.32 0
+                                                        0.32 0.64 0.96 0.64 0.32 -0.1 -0.32 -0.64 -0.96 -0.64 -0.32 0
+                                                        0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32
+                                                        0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64
+                                                        0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96
+                                                        0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96 0.64
+                                                        0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96 0.64 0.32
+                                                        0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96 0.64 0.32 0
+                                                        -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96 0.64 0.32 0 -0.32
+                                                        -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64
+                                                        -0.96 -0.64 -0.32 0 0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96
+                                                        -0.64 -0.32 0 0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64
+                                                        -0.32 0 0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32
+                                                        0 0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0
+                                                        0.32 0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32
+                                                        0.64 0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64
+                                                        0.96 0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96
+                                                        0.64 0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0 0.32 0.64 0.96 0.64
+                                                        0.32 0 -0.32 -0.64 -0.96 -0.64 -0.32 0
+                                                    </div>
+                                                    <data class="readable-stream" value="readable-stream"></data>
+                                                </div>
+                                            </div>
+                                            <div id="speedAndCheckBoxesDiv">
+                                                <div class="container-settings-0">
+                                                    <span class="UIText">
+                                                        Speed
+                                                        <input type="text" id="speedInputElement" class="UIInput"
+                                                               size="5" value="500">
+                                                        <label>
+                                                            <input type="checkbox" id="hideTextArea">
+                                                            Hide text box when reading
+                                                        </label>
+                                                    </span>
+                                                    <span id="alsoTextSpan" class="UIDisabledText">
+                                                        <label>
+                                                            <input type="checkbox" id="hideButtons" disabled="">
+                                                            Also hide buttons
+                                                        </label>
+                                                    </span>
+                                                    <span class="UIText">
+                                                        <label>
+                                                            <input type="checkbox" id="multiWordCheckBox" checked="">
+                                                            Display multiple words
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <div class="container-settings-0">
+                                                     <span class="UIText">
+                                                        Average words per minute:
+                                                        <span id="wpmDisplay">
+                                                            474.2
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </nk-osc>
+                                </div>
+                            </div>
+                            <div class="container-wrapper">
+                                <div class="position-sample-container">
+                                    <nk-time-line
+                                        data-field="settings-time"
+                                        data-services-path="webgpu"
+                                        data-id="0"
+                                    >
+                                        <template>
+                                            <div class="frames">
+                                                <h3>frame time line</h3>
+                                                <div class="array"></div>
+                                            </div>
+                                        </template>
+                                    </nk-time-line>
+                                    <nk-filter
+                                        data-field="filter-0"
+                                        data-services-path="webgpu"
+                                        data-id="0"
+                                    >
+                                        <template>
+                                            <div class="filters">
+                                                <div class="array line"></div>
+                                            </div>
+                                        </template>
+                                    </nk-filter>
+                                    <nk-switch data-id="0" data-field="settings-1" data-services-path="webgpu">
+                                        <template>
+                                            <div class="container">
+                                                <fieldset data-field="settingsDelay" class="multiswitch">
+                                                    <div class="slide-container">
+                                                        <input type="radio" name="sample" id="sample-0">
+                                                        <label for="sample-0">-16</label>
+                                                        <input type="radio" name="sample" id="sample-1">
+                                                        <label for="sample-1">-15</label>
+                                                        <input type="radio" name="sample" id="sample-2">
+                                                        <label for="sample-2">-14</label>
+                                                        <input type="radio" name="sample" id="sample-3">
+                                                        <label for="sample-3">-13</label>
+                                                        <input type="radio" name="sample" id="sample-4">
+                                                        <label for="sample-4">-12</label>
+                                                        <input type="radio" name="sample" id="sample-5">
+                                                        <label for="sample-5">-11</label>
+                                                        <input type="radio" name="sample" id="sample-6">
+                                                        <label for="sample-6">-10</label>
+                                                        <input type="radio" name="sample" id="sample-7">
+                                                        <label for="sample-7">-9</label>
+                                                        <input type="radio" name="sample" id="sample-8" checked>
+                                                        <label for="sample-8">-8</label>
+                                                        <input type="radio" name="sample" id="sample-9">
+                                                        <label for="sample-9">-7</label>
+                                                        <input type="radio" name="sample" id="sample-10">
+                                                        <label for="sample-10">-6</label>
+                                                        <input type="radio" name="sample" id="sample-11">
+                                                        <label for="sample-11">-5</label>
+                                                        <input type="radio" name="sample" id="sample-12">
+                                                        <label for="sample-12">-4</label>
+                                                        <input type="radio" name="sample" id="sample-13">
+                                                        <label for="sample-13">-3</label>
+                                                        <input type="radio" name="sample" id="sample-14">
+                                                        <label for="sample-14">-2</label>
+                                                        <input type="radio" name="sample" id="sample-15">
+                                                        <label for="sample-15">-1</label>
+                                                        <input type="radio" name="sample" id="sample-16">
+                                                        <label for="sample-16">0</label>
+                                                        <a class="slide" aria-hidden="true"></a>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </template>
+                                    </nk-switch>
+                                    <nk-osc
+                                        data-field="osc_audio_frame"
+                                        data-services-path="webgpu"
+                                        data-id="0"
+                                    >
+                                        <template>
+                                            <div class="container-view">
+                                                <div id="outputDiv">
+                                                <span
+                                                    class="outputText">_</span>
+                                                    <span id="outputTextElement">&nbsp;</span>
+                                                    <span
+                                                        class="outputText">¯</span>
+                                                </div>
+                                                <div id="progressBarBaseDiv">
+                                                    <div id="progressBarDiv" style="width:0px"></div>
+                                                </div>
+                                                <div id="controlButtons" style="visibility: visible;">
+                                                    <input type="button" class="controlButton" id="goBackButton"
+                                                           value="◄◄">
+                                                    <input type="button" class="controlButton" id="startStopButton"
+                                                           value="►">
+                                                    <input type="button" class="controlButton" id="pauseResumeButton"
+                                                           value="▌▐">
+                                                    <input type="button" class="controlButton" id="goForwardButton"
+                                                           value="►►">
+                                                    <input type="button" class="controlButton" id="slowerButton"
+                                                           value="▼">
+                                                    <input type="button" class="controlButton" id="fasterButton"
+                                                           value="▲">
+                                                </div>
+                                            </div>
+                                            <div id="mainDiv">
+                                                <div id="inputTextAreaDiv" style="visibility: visible;">
+                                                    <div id="inputTextArea" class="UIInput" rows="8"></div>
+                                                    <data class="readable-stream" value="readable-stream"></data>
+                                                </div>
+                                            </div>
+                                            <div id="speedAndCheckBoxesDiv">
+                                                <div class="container-settings-0">
+                                                    <span class="UIText">
+                                                        Speed
+                                                        <input type="text" id="speedInputElement" class="UIInput"
+                                                               size="5" value="50">
+                                                        <label>
+                                                            <input type="checkbox" id="hideTextArea">
+                                                            Hide text box when reading
+                                                        </label>
+                                                    </span>
+                                                    <span id="alsoTextSpan" class="UIDisabledText">
+                                                        <label>
+                                                            <input type="checkbox" id="hideButtons" disabled="">
+                                                            Also hide buttons
+                                                        </label>
+                                                    </span>
+                                                    <span class="UIText">
+                                                        <label>
+                                                            <input type="checkbox" id="multiWordCheckBox" checked="">
+                                                            Display multiple words
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <div class="container-settings-0">
+                                                     <span class="UIText">
+                                                        Average words per minute:
+                                                        <span id="wpmDisplay">
+                                                            474.2
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </nk-osc>
+                                </div>
+                                <div class="position-sample-container">
+                                    <nk-time-line
+                                        data-field="settings-time"
+                                        data-services-path="webgpu"
+                                        data-id="3"
+                                    >
+                                        <template>
+                                            <div class="frames">
+                                                <h3>frame time line</h3>
+                                                <div class="array"></div>
+                                            </div>
+                                        </template>
+                                    </nk-time-line>
+                                    <nk-filter
+                                        data-field="filter-0"
+                                        data-services-path="webgpu"
+                                        data-id="3"
+                                    >
+                                        <template>
+                                            <div class="filters">
+                                                <div class="array line"></div>
+                                            </div>
+                                        </template>
+                                    </nk-filter>
+                                    <nk-switch data-id="3" data-field="settings-1" data-services-path="webgpu">
+                                        <template>
+                                            <div class="container">
+                                                <fieldset data-field="settingsDelay" class="multiswitch">
+                                                    <div class="slide-container">
+                                                        <input type="radio" name="sample" id="sample-0">
+                                                        <label for="sample-0">-16</label>
+                                                        <input type="radio" name="sample" id="sample-1">
+                                                        <label for="sample-1">-15</label>
+                                                        <input type="radio" name="sample" id="sample-2">
+                                                        <label for="sample-2">-14</label>
+                                                        <input type="radio" name="sample" id="sample-3">
+                                                        <label for="sample-3">-13</label>
+                                                        <input type="radio" name="sample" id="sample-4">
+                                                        <label for="sample-4">-12</label>
+                                                        <input type="radio" name="sample" id="sample-5">
+                                                        <label for="sample-5">-11</label>
+                                                        <input type="radio" name="sample" id="sample-6">
+                                                        <label for="sample-6">-10</label>
+                                                        <input type="radio" name="sample" id="sample-7">
+                                                        <label for="sample-7">-9</label>
+                                                        <input type="radio" name="sample" id="sample-8" checked>
+                                                        <label for="sample-8">-8</label>
+                                                        <input type="radio" name="sample" id="sample-9">
+                                                        <label for="sample-9">-7</label>
+                                                        <input type="radio" name="sample" id="sample-10">
+                                                        <label for="sample-10">-6</label>
+                                                        <input type="radio" name="sample" id="sample-11">
+                                                        <label for="sample-11">-5</label>
+                                                        <input type="radio" name="sample" id="sample-12">
+                                                        <label for="sample-12">-4</label>
+                                                        <input type="radio" name="sample" id="sample-13">
+                                                        <label for="sample-13">-3</label>
+                                                        <input type="radio" name="sample" id="sample-14">
+                                                        <label for="sample-14">-2</label>
+                                                        <input type="radio" name="sample" id="sample-15">
+                                                        <label for="sample-15">-1</label>
+                                                        <input type="radio" name="sample" id="sample-16">
+                                                        <label for="sample-16">0</label>
+                                                        <a class="slide" aria-hidden="true"></a>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </template>
+                                    </nk-switch>
+                                    <nk-osc
+                                        data-field="osc_audio_frame"
+                                        data-services-path="webgpu"
+                                        data-id="3"
+                                    >
+                                        <template>
+                                            <div class="container-view">
+                                                <div id="outputDiv">
+                                                <span
+                                                    class="outputText">_</span>
+                                                    <span id="outputTextElement">&nbsp;</span>
+                                                    <span
+                                                        class="outputText">¯</span>
+                                                </div>
+                                                <div id="progressBarBaseDiv">
+                                                    <div id="progressBarDiv" style="width:0px"></div>
+                                                </div>
+                                                <div id="controlButtons" style="visibility: visible;">
+                                                    <input type="button" class="controlButton" id="goBackButton"
+                                                           value="◄◄">
+                                                    <input type="button" class="controlButton" id="startStopButton"
+                                                           value="►">
+                                                    <input type="button" class="controlButton" id="pauseResumeButton"
+                                                           value="▌▐">
+                                                    <input type="button" class="controlButton" id="goForwardButton"
+                                                           value="►►">
+                                                    <input type="button" class="controlButton" id="slowerButton"
+                                                           value="▼">
+                                                    <input type="button" class="controlButton" id="fasterButton"
+                                                           value="▲">
+                                                </div>
+                                            </div>
+                                            <div id="mainDiv">
+                                                <div id="inputTextAreaDiv" style="visibility: visible;">
+                                                    <div id="inputTextArea" class="UIInput" rows="8"></div>
+                                                    <data class="readable-stream" value="readable-stream"></data>
+                                                </div>
+                                            </div>
+                                            <div id="speedAndCheckBoxesDiv">
+                                                <div class="container-settings-0">
+                                                    <span class="UIText">
+                                                        Speed
+                                                        <input type="text" id="speedInputElement" class="UIInput"
+                                                               size="5" value="50">
+                                                        <label>
+                                                            <input type="checkbox" id="hideTextArea">
+                                                            Hide text box when reading
+                                                        </label>
+                                                    </span>
+                                                    <span id="alsoTextSpan" class="UIDisabledText">
+                                                        <label>
+                                                            <input type="checkbox" id="hideButtons" disabled="">
+                                                            Also hide buttons
+                                                        </label>
+                                                    </span>
+                                                    <span class="UIText">
+                                                        <label>
+                                                            <input type="checkbox" id="multiWordCheckBox" checked="">
+                                                            Display multiple words
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                                <div class="container-settings-0">
+                                                     <span class="UIText">
+                                                        Average words per minute:
+                                                        <span id="wpmDisplay">
+                                                            474.2
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </nk-osc>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </nk-emulator>
+
+        <nk-radio
+            slot="nk-radio"
+            data-field="settings-2"
+            data-services-path="webgpu"
+        ></nk-radio>
+
+        <!--        <nk-chart slot="nk-chart" data-field="terminal_0" data-services-path="webgpu">-->
+        <!--            <template>-->
+        <!--                <script type='text/javascript'>-->
+        <!--                    document.addEventListener('holdchart', (event) => {-->
+        <!--                        window['hold-chart'] = !window['hold-chart'];-->
+        <!--                        console.log('hold-chart: ' + window['hold-chart']);-->
+        <!--                        if (window['hold-chart'] == false) window['hold-buffer'] = undefined;-->
+        <!--                    }, {-->
+        <!--                        bubbles: true,-->
+        <!--                        composed: true-->
+        <!--                    });-->
+
+        <!--                    document.addEventListener('goniometer', (event) => {-->
+        <!--                        const value = event.detail.value;-->
+        <!--                        window['goniometer'] = value;-->
+        <!--                    }, {-->
+        <!--                        bubbles: true,-->
+        <!--                        composed: true-->
+        <!--                    });-->
+        <!--                    document.addEventListener('settingsInput', (event) => {-->
+        <!--                        if (window['isPlaybackInProgress'] == true) {-->
+        <!--                            window.stopplayback();-->
+        <!--                        }-->
+        <!--                        const value = event.detail.value;-->
+        <!--                        window['inputtype'] = value;-->
+        <!--                    }, {-->
+        <!--                        bubbles: true,-->
+        <!--                        composed: true-->
+        <!--                    });-->
+
+        <!--                    document.addEventListener('settingsDelay', (event) => {-->
+        <!--                        const value = event.detail.value;-->
+        <!--                        console.log('DELAY: ', value);-->
+        <!--                    }, {-->
+        <!--                        bubbles: true,-->
+        <!--                        composed: true-->
+        <!--                    });-->
+
+        <!--                    document.addEventListener('settingsCheckbox', (event) => {-->
+        <!--                        const id = event.detail.id;-->
+        <!--                        const value = event.detail.value;-->
+        <!--                        console.log('Checkbox: ', id, value);-->
+        <!--                    }, {-->
+        <!--                        bubbles: true,-->
+        <!--                        composed: true-->
+        <!--                    });-->
+
+        <!--                    document.addEventListener('channels', (event) => {-->
+        <!--                        const value = event.detail.value;-->
+        <!--                        console.log('channels: ', value);-->
+        <!--                        window['rendertype'] = value;-->
+        <!--                    }, {-->
+        <!--                        bubbles: true,-->
+        <!--                        composed: true-->
+        <!--                    });-->
+
+        <!--                    jQuery(document).ready(function() {-->
+        <!--                        window.wasminit('js/', function() {-->
+        <!--                            window.appinit();-->
+        <!--                        });-->
+
+        <!--                        let onchange_samplerate = function() {-->
+        <!--                            let value = $('#sample-rate').spinner('value');-->
+        <!--                            value = window.isNumber(value) ? value : 44100;-->
+        <!--                            $('#sample-rate').spinner('value', value);-->
+        <!--                            window.samplerate = parseFloat(value);-->
+        <!--                        };-->
+
+        <!--                        let onchange_volumerate = function() {-->
+        <!--                            let value = $('#volume-rate').spinner('value');-->
+        <!--                            value = window.isNumber(value) ? value : 1.000;-->
+        <!--                            $('#volume-rate').spinner('value', value);-->
+        <!--                            window.volumerate = parseFloat(value);-->
+        <!--                        };-->
+
+        <!--                        $('#sample-rate').spinner({-->
+        <!--                            create: function(event, ui) {-->
+        <!--                                $('#sample-rate').spinner('value', 44100);-->
+        <!--                                window.samplerate = 44100;-->
+        <!--                            },-->
+        <!--                            change: function(event, ui) {-->
+        <!--                                onchange_samplerate();-->
+        <!--                            },-->
+        <!--                            min: 2000,-->
+        <!--                            max: 96000,-->
+        <!--                            step: 100,-->
+        <!--                            value: 44100-->
+        <!--                        });-->
+
+        <!--                        $('#sample-rate').click(function() {-->
+        <!--                            onchange_samplerate();-->
+        <!--                        });-->
+
+        <!--                        $('#sample-rate').keyup(function() {-->
+        <!--                            if (event.keyCode === 13) {-->
+        <!--                                onchange_samplerate();-->
+        <!--                            }-->
+        <!--                        });-->
+
+        <!--                        $('#volume-rate').spinner({-->
+        <!--                            create: function(event, ui) {-->
+        <!--                                $('#volume-rate').spinner('value', 1.000);-->
+        <!--                                window.volumerate = 1.000;-->
+        <!--                            },-->
+        <!--                            change: function(event, ui) {-->
+        <!--                                onchange_volumerate();-->
+        <!--                            },-->
+        <!--                            min: 0.000,-->
+        <!--                            max: 1.000,-->
+        <!--                            step: 0.001,-->
+        <!--                            value: 1.0-->
+        <!--                        });-->
+
+        <!--                        $('#volume-rate').click(function() {-->
+        <!--                            onchange_volumerate();-->
+        <!--                        });-->
+
+        <!--                        $('#volume-rate').keyup(function() {-->
+        <!--                            if (event.keyCode === 13) {-->
+        <!--                                onchange_volumerate();-->
+        <!--                            }-->
+        <!--                        });-->
+
+        <!--                        $('#zoom-x').slider({-->
+        <!--                            create: function(event, ui) {-->
+        <!--                                $('#zoom-x').slider('value', 100);-->
+        <!--                                window.zoomX = 100;-->
+        <!--                            },-->
+        <!--                            change: function(event, ui) {-->
+        <!--                                $('#zoom-x-value').text(ui.value);-->
+        <!--                                window.zoomX = ui.value;-->
+        <!--                            },-->
+        <!--                            slide: function(event, ui) {-->
+        <!--                                $('#zoom-x-value').text(ui.value);-->
+        <!--                            },-->
+        <!--                            range: false,-->
+        <!--                            min: 100,-->
+        <!--                            max: 1000,-->
+        <!--                            step: 1-->
+        <!--                        });-->
+
+        <!--                        $('#minimum-x').slider({-->
+        <!--                            create: function(event, ui) {-->
+        <!--                                $('#minimum-x').slider('value', 333);-->
+        <!--                                window.kdX = 333;-->
+        <!--                            },-->
+        <!--                            change: function(event, ui) {-->
+        <!--                                $('#minimum-x-value').text(ui.value);-->
+        <!--                                window.kdX = ui.value;-->
+        <!--                            },-->
+        <!--                            slide: function(event, ui) {-->
+        <!--                                $('#minimum-x-value').text(ui.value);-->
+        <!--                            },-->
+        <!--                            range: false,-->
+        <!--                            min: 9,-->
+        <!--                            max: 999,-->
+        <!--                            step: 2-->
+        <!--                        });-->
+
+        <!--                        $('#zoom-y').slider({-->
+        <!--                            create: function(event, ui) {-->
+        <!--                                $('#zoom-y').slider('value', 100);-->
+        <!--                                window.zoomY = 100;-->
+        <!--                            },-->
+        <!--                            change: function(event, ui) {-->
+        <!--                                $('#zoom-y-value').text(ui.value);-->
+        <!--                                window.zoomY = ui.value;-->
+        <!--                            },-->
+        <!--                            slide: function(event, ui) {-->
+        <!--                                $('#zoom-y-value').text(ui.value);-->
+        <!--                            },-->
+        <!--                            range: false,-->
+        <!--                            min: 100,-->
+        <!--                            max: 400,-->
+        <!--                            step: 1-->
+        <!--                        });-->
+
+        <!--                        $('#minimum-y').slider({-->
+        <!--                            create: function(event, ui) {-->
+        <!--                                $('#minimum-y').slider('value', 11);-->
+        <!--                                window.kdY = 11;-->
+        <!--                            },-->
+        <!--                            change: function(event, ui) {-->
+        <!--                                $('#minimum-y-value').text(ui.value);-->
+        <!--                                window.kdY = ui.value;-->
+        <!--                            },-->
+        <!--                            slide: function(event, ui) {-->
+        <!--                                $('#minimum-y-value').text(ui.value);-->
+        <!--                            },-->
+        <!--                            min: 9,-->
+        <!--                            max: 559,-->
+        <!--                            step: 2-->
+        <!--                        });-->
+
+        <!--                        $('#startplayback').button();-->
+        <!--                        $('#stopplayback').button();-->
+
+        <!--                        $('#chart').accordion({-->
+        <!--                            heightStyle: 'content',-->
+        <!--                            collapsible: true-->
+        <!--                        });-->
+
+        <!--                        $('#accordition').accordion({-->
+        <!--                            heightStyle: 'content',-->
+        <!--                            collapsible: true-->
+        <!--                        });-->
+
+        <!--                        $('#startplayback').click(function() {-->
+        <!--                            window.audioinit();-->
+
+        <!--                            if (window['isPlaybackInProgress'] == true) {-->
+        <!--                                window.stopplayback();-->
+        <!--                            }-->
+        <!--                            window.startplayback();-->
+        <!--                        });-->
+
+        <!--                        $('#stopplayback').click(function() {-->
+        <!--                            if (window['isPlaybackInProgress'] == true) {-->
+        <!--                                window.stopplayback();-->
+        <!--                            }-->
+        <!--                        });-->
+
+        <!--                        window['enable-spinners'] = function() {-->
+        <!--                            $('#sample-rate').spinner('enable');-->
+        <!--                            $('#volume-rate').spinner('enable');-->
+        <!--                        };-->
+
+        <!--                        window['disable-spinners'] = function() {-->
+        <!--                            $('#sample-rate').spinner('disable');-->
+        <!--                            $('#volume-rate').spinner('disable');-->
+        <!--                        };-->
+
+        <!--                    });-->
+        <!--                </script>-->
+        <!--                <div id="error">[ Your browser does not support WebGPU or it is not enabled ]</div>-->
+        <!--                <noscript>You need to enable JavaScript to run this app.</noscript>-->
+        <!--                <div id="root"></div>-->
+
+        <!--                <div class="emscripten_border">-->
+        <!--                    <div id="content" style="display: block;">-->
+        <!--                        <div class="slot-container">-->
+        <!--                            <slot name="radio"></slot>-->
+        <!--                        </div>-->
+        <!--                        <slot name="audio"></slot>-->
+        <!--                        <div id="chart" class="settings ui-accordion ui-widget ui-helper-reset" role="tablist">-->
+        <!--                            <h5 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-header-active ui-state-active ui-accordion-icons"-->
+        <!--                                role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="true"-->
+        <!--                                aria-expanded="true" tabindex="0"><span-->
+        <!--                                class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>WebGPU график</h5>-->
+        <!--                            <div-->
+        <!--                                class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content ui-accordion-content-active"-->
+        <!--                                id="ui-id-2" aria-labelledby="ui-id-1" role="tabpanel" aria-hidden="false" style="">-->
+        <!--                                <canvas id="gfx" width="1366" height="472" style="display: block;">&nbsp;</canvas>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        <div>-->
+        <!--                            <slot name="accordeon"></slot>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--                <nk-audio-->
+        <!--                    slot="audio"-->
+        <!--                    data-field="settings-2"-->
+        <!--                >-->
+        <!--                    <template>-->
+        <!--                        <body>-->
+        <!--                        &lt;!&ndash;                						<script src="/services/webgpu/src/component/nk-audio/views/mjs/audio/coi-serviceworker.js"></script>&ndash;&gt;-->
+        <!--                        <div>-->
+        <!--                            <div class="demo-box">-->
+        <!--                                <div id="message-view" class="pb-3 text-sm whitespace-pre"></div>-->
+        <!--                                <button id="toggle-audio" disabled>START</button>-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                        </body>-->
+        <!--                    </template>-->
+        <!--                </nk-audio>-->
+        <!--                <div data-exclusion slot="accordeon" id="accordition" class="settings">-->
+        <!--                    <h5>Удержать картинку графика</h5>-->
+        <!--                    <div>-->
+        <!--                        <nk-switch data-field="settings-2" data-services-path="webgpu">-->
+        <!--                            <template>-->
+        <!--                                <div class="container">-->
+        <!--                                    <fieldset data-field="holdchart" class="multiswitch" data-theme="stoplight">-->
+        <!--                                        <legend>Удержать картинку графика</legend>-->
+        <!--                                        <div class="slide-container">-->
+        <!--                                            <input type="radio" name="holdchart" id="holdchart">-->
+        <!--                                            <label for="holdchart">Удержать картинку</label>-->
+        <!--                                            <a class="slide settings-3" aria-hidden="true"></a>-->
+        <!--                                        </div>-->
+        <!--                                    </fieldset>-->
+        <!--                                </div>-->
+        <!--                            </template>-->
+        <!--                        </nk-switch>-->
+        <!--                    </div>-->
+        <!--                    <h5>Goniometer</h5>-->
+        <!--                    <div>-->
+        <!--                        <nk-switch data-field="settings-2" data-services-path="webgpu">-->
+        <!--                            <template>-->
+        <!--                                <div class="container">-->
+        <!--                                    <fieldset data-field="goniometer" class="multiswitch" data-theme="stoplight">-->
+        <!--                                        <legend>Goniometer</legend>-->
+        <!--                                        <div class="slide-container">-->
+        <!--                                            <input data-field="false" type="radio" name="goniometer" id="off" checked>-->
+        <!--                                            <label id="goniometer-off" for="off">Выключено</label>-->
+        <!--                                            <input data-field="true" type="radio" name="goniometer" id="on">-->
+        <!--                                            <label id="goniometer-on" for="on">Включено</label>-->
+        <!--                                            <a class="slide settings-2" aria-hidden="true"></a>-->
+        <!--                                        </div>-->
+        <!--                                    </fieldset>-->
+        <!--                                </div>-->
+        <!--                            </template>-->
+        <!--                        </nk-switch>-->
+        <!--                    </div>-->
+        <!--                    <h5>Left/Stereo/Right</h5>-->
+        <!--                    <div>-->
+        <!--                        <nk-switch data-field="settings-2" data-services-path="webgpu">-->
+        <!--                            <template>-->
+        <!--                                <div class="container">-->
+        <!--                                    <fieldset data-field="LCR" class="multiswitch" data-theme="stoplight">-->
+        <!--                                        <legend>Left/Stereo/Right</legend>-->
+        <!--                                        <div class="slide-container">-->
+        <!--                                            <input type="radio" name="stoplight" id="left">-->
+        <!--                                            <label id="left" for="left">Left</label>-->
+        <!--                                            <input type="radio" name="stoplight" id="stereo" checked>-->
+        <!--                                            <label id="stereo" for="stereo">Stereo</label>-->
+        <!--                                            <input type="radio" name="stoplight" id="right">-->
+        <!--                                            <label id="right" for="right">Right</label>-->
+        <!--                                            <a class="slide value" aria-hidden="true"></a>-->
+        <!--                                        </div>-->
+        <!--                                    </fieldset>-->
+        <!--                                </div>-->
+        <!--                            </template>-->
+        <!--                        </nk-switch>-->
+        <!--                    </div>-->
+        <!--                    <h5>Input Data</h5>-->
+        <!--                    <div>-->
+        <!--                        <nk-switch data-field="settings-1" data-services-path="webgpu">-->
+        <!--                            <template>-->
+        <!--                                <div class="container">-->
+        <!--                                    <fieldset data-field="settingsInput" class="multiswitch" data-theme="stoplight">-->
+        <!--                                        <legend>Input Data</legend>-->
+        <!--                                        <div class="slide-container">-->
+        <!--                                            <input type="radio" name="stoplight" id="audioInput" checked>-->
+        <!--                                            <label id="audio" for="audioInput">Audio</label>-->
+        <!--                                            <input type="radio" name="stoplight" id="oscInput">-->
+        <!--                                            <label id="osc" for="oscInput">OSC</label>-->
+        <!--                                            <input type="radio" name="stoplight" id="dataInput">-->
+        <!--                                            <label id="data" for="dataInput">Data</label>-->
+        <!--                                            <a class="slide value" aria-hidden="true"></a>-->
+        <!--                                        </div>-->
+        <!--                                    </fieldset>-->
+        <!--                                </div>-->
+        <!--                            </template>-->
+        <!--                        </nk-switch>-->
+        <!--                        <nk-switch data-field="settings-1" data-services-path="webgpu">-->
+        <!--                            <template>-->
+        <!--                                <div class="container">-->
+        <!--                                    <fieldset data-field="settingsDelay" class="multiswitch">-->
+        <!--                                        <legend>Sample position</legend>-->
+        <!--                                        <div class="slide-container">-->
+        <!--                                            <input type="radio" name="sample" id="sample-0">-->
+        <!--                                            <label for="sample-0">-16</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-1">-->
+        <!--                                            <label for="sample-1">-15</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-2">-->
+        <!--                                            <label for="sample-2">-14</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-3">-->
+        <!--                                            <label for="sample-3">-13</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-4">-->
+        <!--                                            <label for="sample-4">-12</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-5">-->
+        <!--                                            <label for="sample-5">-11</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-6">-->
+        <!--                                            <label for="sample-6">-10</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-7">-->
+        <!--                                            <label for="sample-7">-9</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-8" checked>-->
+        <!--                                            <label for="sample-8">-8</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-9">-->
+        <!--                                            <label for="sample-9">-7</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-10">-->
+        <!--                                            <label for="sample-10">-6</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-11">-->
+        <!--                                            <label for="sample-11">-5</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-12">-->
+        <!--                                            <label for="sample-12">-4</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-13">-->
+        <!--                                            <label for="sample-13">-3</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-14">-->
+        <!--                                            <label for="sample-14">-2</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-15">-->
+        <!--                                            <label for="sample-15">-1</label>-->
+        <!--                                            <input type="radio" name="sample" id="sample-16">-->
+        <!--                                            <label for="sample-16">0</label>-->
+        <!--                                            <a class="slide" aria-hidden="true"></a>-->
+        <!--                                        </div>-->
+        <!--                                    </fieldset>-->
+        <!--                                </div>-->
+        <!--                            </template>-->
+        <!--                        </nk-switch>-->
+        <!--                        <nk-checkbox data-id="checkbox_0" data-services-path="webgpu">-->
+        <!--                            <template>-->
+        <!--                                <ul class="container">-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-0" type="checkbox">-->
+        <!--                                        <label for="checkbox-0"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-1" type="checkbox">-->
+        <!--                                        <label for="checkbox-1"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-2" type="checkbox">-->
+        <!--                                        <label for="checkbox-2"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-3" type="checkbox">-->
+        <!--                                        <label for="checkbox-3"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-4" type="checkbox">-->
+        <!--                                        <label for="checkbox-4"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-5" type="checkbox">-->
+        <!--                                        <label for="checkbox-5"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-6" type="checkbox">-->
+        <!--                                        <label for="checkbox-6"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-7" type="checkbox">-->
+        <!--                                        <label for="checkbox-7"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-8" type="checkbox" checked>-->
+        <!--                                        <label for="checkbox-8"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-9" type="checkbox">-->
+        <!--                                        <label for="checkbox-9"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-10" type="checkbox">-->
+        <!--                                        <label for="checkbox-10"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-11" type="checkbox">-->
+        <!--                                        <label for="checkbox-11"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-12" type="checkbox">-->
+        <!--                                        <label for="checkbox-12"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-13" type="checkbox">-->
+        <!--                                        <label for="checkbox-13"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-14" type="checkbox">-->
+        <!--                                        <label for="checkbox-14"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-15" type="checkbox">-->
+        <!--                                        <label for="checkbox-15"></label>-->
+        <!--                                    </li>-->
+        <!--                                    <li class="checkbox">-->
+        <!--                                        <input class="custom-checkbox" id="checkbox-16" type="checkbox">-->
+        <!--                                        <label for="checkbox-16"></label>-->
+        <!--                                    </li>-->
+        <!--                                </ul>-->
+        <!--                            </template>-->
+        <!--                        </nk-checkbox>-->
+        <!--                    </div>-->
+        <!--                    <h5>Параметры графика</h5>-->
+        <!--                    <div>-->
+        <!--                        <table style="width: 100%" cellpadding="0" cellspacing="8">-->
+        <!--                            <tbody>-->
+        <!--                            <tr>-->
+        <!--                                <td style="width: 100%">-->
+        <!--                                    <label>Масштаб по x:&nbsp;<span id="zoom-x-value">0</span></label>-->
+        <!--                                    <div style="width: 100%;" id="zoom-x"></div>-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                            <tr>-->
+        <!--                                <td style="width: 100%">-->
+        <!--                                    <label>Дискретное пространство по x:&nbsp;<span-->
+        <!--                                        id="minimum-x-value">0</span></label>-->
+        <!--                                    <div style="width: 100%;" id="minimum-x"></div>-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                            <tr>-->
+        <!--                                <td style="width: 100%">-->
+        <!--                                    <label>Масштаб по y:&nbsp;<span id="zoom-y-value">0</span></label>-->
+        <!--                                    <div style="width: 100%;" id="zoom-y"></div>-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                            <tr>-->
+        <!--                                <td style="width: 100%">-->
+        <!--                                    <label>Дискретное пространство по y:&nbsp;<span-->
+        <!--                                        id="minimum-y-value">0</span></label>-->
+        <!--                                    <div style="width: 100%;" id="minimum-y"></div>-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                            </tbody>-->
+        <!--                        </table>-->
+        <!--                    </div>-->
+        <!--                    <h5>Воспроизведение файла</h5>-->
+        <!--                    <div>-->
+        <!--                        <table style="width: 100%" cellpadding="0" cellspacing="0">-->
+        <!--                            <tbody>-->
+        <!--                            <tr>-->
+        <!--                                <td style="width: 20%">-->
+        <!--                                    <label for="sample-rate">Частота дискретизации:</label>-->
+        <!--                                    <div><input style="width: 160px;" id="sample-rate"></div>-->
+        <!--                                </td>-->
+        <!--                                <td style="width: 20%; text-align: left; padding-left: 10px">-->
+        <!--                                    <label for="volume-rate">Величина громкости:</label>-->
+        <!--                                    <div><input style="width: 140px;" id="volume-rate"></div>-->
+        <!--                                </td>-->
+        <!--                                <td style="width: auto; text-align: left; padding-left: 10px">-->
+        <!--                                    &nbsp;-->
+        <!--                                </td>-->
+        <!--                                <td style="width: 20%; text-align: right; vertical-align: bottom; padding-left: 10px">-->
+        <!--                                    <input id="startplayback" type="button" style="width:200px;" value="Playback">-->
+        <!--                                </td>-->
+        <!--                                <td style="width: 20%; text-align: right; vertical-align: bottom; padding-left: 10px">-->
+        <!--                                    <input id="stopplayback" type="button" style="width:200px;" value="Stop">-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                            <tr>-->
+        <!--                                <td>-->
+        <!--                                    <audio id="audiostream" crossorigin="anonymous" preload="metadata"-->
+        <!--                                           src="https://hermitage.hostingradio.ru/hermitage128.mp3">-->
+        <!--                                        Ваш браузер не поддерживает элемент <code>audio</code>.-->
+        <!--                                    </audio>-->
+        <!--                                </td>-->
+        <!--                            </tr>-->
+        <!--                            </tbody>-->
+        <!--                        </table>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </template>-->
+        <!--        </nk-chart>-->
+    </template>
+</nk-memory>
+<script type="module" src="/main.bundle.mjs"></script>
+<script type="module">
+    import { Fonts } from '/services/webgpu/src/fonts.mjs';
+
+    await Fonts('Raleway', 'Raleway-Regular.ttf');
+    await Fonts('Raleway-ExtraBold', 'Raleway-ExtraBold.ttf');
+
+    navigator.serviceWorker.register('./sw/sw.mjs', {
+        type: 'module',
+        scope: '/sw/'
+        // /browser
+    }).then((registration) => {
+        console.log('Service worker registered successfully', registration);
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event?.data?.type === 'SW_ACTIVATED') {
+                    window.location.reload();
+                }
+            });
+        }
+    }).catch((err) => {
+        console.log('Service worker registration failed: ', err);
+    });
+
+    // let eventSource = new EventSource(`/stream`);
+    //
+    // eventSource.onmessage = (event) => {
+    //     const data = JSON.parse(event.data);
+    //     if (data.type === 'dev') {
+    //         if (data.msg === 'reload') {
+    //             window.location.reload();
+    //         }
+    //     }
+    //     if (data.type === 'dev') {
+    //         if (data.msg === 'close') {
+    //             window.close();
+    //         }
+    //     }
+    // };
+
+    // eventSource.addEventListener('open', (event) => {
+    //     let state = '';
+    //     switch (eventSource.readyState) {
+    //         case 0:
+    //             state = 'CONNECTING';
+    //             break;
+    //         case 1:
+    //             state = 'OPEN';
+    //             break;
+    //         case 2:
+    //             state = 'CLOSED';
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // });
+
+    // eventSource.onerror = function(e) {
+    //     console.log('error events', e);
+    // };
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+export { nkOpfs } from './nk-opfs/index.mjs'

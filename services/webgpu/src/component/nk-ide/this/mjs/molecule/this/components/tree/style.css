@@ -1,0 +1,43 @@
+.mo-tree {
+  font-size: 13px;
+}
+.mo-tree__treenode {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 22px;
+  line-height: 22px;
+  outline: 1px solid transparent;
+  outline-offset: -1px;
+  padding-left: 10px;
+  user-select: none;
+}
+.mo-tree__treenode:not(.mo-tree__treenode--active):hover {
+  background-color: var(--list-hoverBackground);
+}
+.mo-tree__treenode:focus {
+  background-color: var(--list-activeSelectionBackground);
+  color: #fff;
+  outline-color: var(--list-focusOutline);
+}
+.mo-tree__treenode__title {
+  overflow: hidden;
+  padding-left: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.mo-tree__treenode--active, .mo-tree__treenode.drag-over {
+  background-color: var(--list-inactiveSelectionBackground);
+}
+.mo-tree__indent {
+  display: flex;
+  height: 100%;
+  margin-right: 2px;
+}
+.mo-tree__indent__guide {
+  border-left: 1px solid var(--tree-indentGuidesStroke);
+  display: inline-block;
+  height: 100%;
+  margin-left: 7px;
+}

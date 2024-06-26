@@ -1,0 +1,27 @@
+.mo-auxiliaryBar__container {
+  height: 100%;
+  user-select: text;
+  width: 100%;
+}
+
+.mo-auxiliaryBar__tabs {
+  background: var(--editorGroupHeader-tabsBackground);
+  margin: 0;
+  padding: 0;
+}
+.mo-auxiliaryBar__tabs__tab {
+  border-bottom: 1px solid var(--sideBarSectionHeader-border);
+  color: var(--tab-inactiveForeground);
+  cursor: pointer;
+  letter-spacing: 4px;
+  list-style: none;
+  padding: 2px 4px;
+  writing-mode: vertical-rl;
+}
+.mo-auxiliaryBar__tabs__tab:hover {
+  background: var(--tab-hoverBackground);
+}
+.mo-auxiliaryBar__tabs__tab--active {
+  background: var(--tab-activeBackground);
+  color: var(--tab-activeForeground);
+}

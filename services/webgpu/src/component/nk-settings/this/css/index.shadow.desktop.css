@@ -1,0 +1,46 @@
+:host {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.constants, .memory {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: black;
+    color: white;
+    padding: 12px 0 12px 12px;
+    height: inherit;
+}
+
+.constants .settings, .memory .settings {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    font-weight: bold;
+}
+
+.constants .settings span.value, .memory .settings span.value {
+    color: white;
+}
+
+pre {
+    background: black;
+    color: white;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 8px 0;
+}
