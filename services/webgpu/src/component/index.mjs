@@ -12,7 +12,6 @@ import nkTimeLine from './nk-time-line/index.mjs'
 import nkFilter from './nk-filter/index.mjs'
 import nkInfo from './nk-info/index.mjs'
 import nkGit from './nk-git/index.mjs'
-import nkIde from './nk-ide/index.mjs'
 
 export {Component}
 export default {
