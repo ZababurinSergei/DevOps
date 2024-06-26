@@ -265,6 +265,9 @@
 </nk-memory>
 <script type="module">
     console.log('sssssssssssssssssssssssssssssss', window.location.pathname)
+    if(window.location.pathname === '/DevOps/sw/' || window.location.pathname === '/DevOps/sw') {
+        history.pushState({},'', '/DevOps/')
+    }
     import {Fonts} from './services/webgpu/src/fonts.mjs';
 
     await Fonts('Raleway', 'Raleway-Regular.ttf');
