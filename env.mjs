@@ -10,8 +10,9 @@ const envInit = {
 let ENV = {}
 
 try {
-    
-    const myRequest = new Request("./env.json", envInit);
+    const url = new URL("./env.json", import.meta.url)
+    console.log('----------------------------', url)
+    const myRequest = new Request(url.pathname, envInit);
     const response = await fetch(myRequest);
     ENV = await response.json()
 } catch (e) {
