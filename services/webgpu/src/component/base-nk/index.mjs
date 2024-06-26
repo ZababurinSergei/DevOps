@@ -194,7 +194,6 @@ const BaseClass = class extends HTMLElement {
         };
     }
 
-    https://github.com/ElenaSidneva/yoga_studio
     constructor() {
         super();
         this.dataset.servicesPath = servicePath.pathname;
