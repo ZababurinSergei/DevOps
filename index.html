@@ -325,7 +325,6 @@
     navigator.serviceWorker.register('./sw/sw.mjs', {
         type: 'module',
         scope: '/DevOps/sw/'
-        // /browser
     }).then((registration) => {
         console.log('Service worker registered successfully', registration);
         if (!navigator.serviceWorker.controller) {
@@ -338,43 +337,6 @@
     }).catch((err) => {
         console.log('Service worker registration failed: ', err);
     });
-
-    // let eventSource = new EventSource(`/stream`);
-    //
-    // eventSource.onmessage = (event) => {
-    //     const data = JSON.parse(event.data);
-    //     if (data.type === 'dev') {
-    //         if (data.msg === 'reload') {
-    //             window.location.reload();
-    //         }
-    //     }
-    //     if (data.type === 'dev') {
-    //         if (data.msg === 'close') {
-    //             window.close();
-    //         }
-    //     }
-    // };
-
-    // eventSource.addEventListener('open', (event) => {
-    //     let state = '';
-    //     switch (eventSource.readyState) {
-    //         case 0:
-    //             state = 'CONNECTING';
-    //             break;
-    //         case 1:
-    //             state = 'OPEN';
-    //             break;
-    //         case 2:
-    //             state = 'CLOSED';
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // });
-
-    // eventSource.onerror = function(e) {
-    //     console.log('error events', e);
-    // };
 </script>
 </body>
 </html>
