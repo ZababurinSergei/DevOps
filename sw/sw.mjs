@@ -172,11 +172,6 @@ self.addEventListener('fetch', event => {
             || url.pathname.includes('/api/index.css')
             || url.pathname.includes('/api/swagger-ui.css')
 
-        // const isBrowser = false
-
-        // console.log('-------------------------------- URL --------------------------------------------------', url.pathname)
-        // s/system/
-        // if (isBrowser || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs'))) {
         if (isBrowser
             || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
             || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
