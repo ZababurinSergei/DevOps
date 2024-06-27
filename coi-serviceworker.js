@@ -125,7 +125,9 @@ if (typeof window === 'undefined') {
             return;
         }
 
-        n.serviceWorker.register(window.document.currentScript.src).then(
+        n.serviceWorker.register(window.document.currentScript.src, {
+            scope: '/DevOps/'
+        }).then(
             (registration) => {
                 !coi.quiet && console.log("COOP/COEP Service Worker registered", registration.scope);
 
