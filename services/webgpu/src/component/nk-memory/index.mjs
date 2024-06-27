@@ -3,47 +3,9 @@ import {Component} from '../index.mjs'
 const name = 'nk-memory'
 const component = Component()
 
-let isSharedWorker = false
-
-const urlSharedWorker = new URL('./worker.js', import.meta.url)
-
-if (window.SharedWorker) {
-    isSharedWorker = true
-    console.log('Shared Worker присутствует в системе')
-} else {
-    alert('shared worker не поддерживается')
-}
-
 component.observedAttributes = ["open", "disabled"];
 
 Object.defineProperties(component.prototype, {
-    sharedWorker: {
-        value: new SharedWorker(urlSharedWorker, {
-            name: 'memory',
-            type: 'module'
-        }),
-        writable: true
-    },
-    _inputQueue: {
-        value: undefined,
-        writable: true
-    },
-    _outputQueue: {
-        value: undefined,
-        writable: true
-    },
-    _atomicState: {
-        value: undefined,
-        writable: true
-    },
-    _hardwareConcurrency: {
-        value: 0,
-        writable: true
-    },
-    _sharedArrayBuffer: {
-        value: [],
-        writable: true
-    },
     hardwareConcurrency: {
         set(value) {
             this._hardwareConcurrency = value
@@ -58,63 +20,9 @@ Object.defineProperties(component.prototype, {
             }
         }
     },
-    inputQueue: {
-        set(value) {
-            this._inputQueue = value
-        },
-        get() {
-            return this._inputQueue
-        }
-    },
-    atomicState: {
-        set(value) {
-            this._atomicState = value
-        },
-        get() {
-            return this._atomicState
-        }
-    },
-    outputQueue: {
-        set(value) {
-            this._outputQueue = value
-        },
-        get() {
-            return this._outputQueue
-        }
-    },
-    sharedArrayBuffer: {
-        set(value) {
-            if(value?.isRemove) {
-                delete this._sharedArrayBuffer[value.name.toLowerCase()]
-            } else {
-                this._sharedArrayBuffer[value.name.toLowerCase()] = value
-            }
-
-            const list = this.shadowRoot.querySelector('.memory-queue')
-            list.innerHTML = ''
-            for(let item in this._sharedArrayBuffer) {
-                const array = []
-                for(let key in this._sharedArrayBuffer[item]) {
-                    array.push(`<div class="item _${key}"><span class="key"> ${key}:</span> <span class="value">${this.sharedArrayBuffer[item][key]}</span> </div>`)
-                }
-
-                list.insertAdjacentHTML('beforeend', `
-                <div class="memory _${item}">
-                    ${array.join(' ')}
-                </div>
-            `)
-            }
-        },
-        get() {
-            return this._sharedArrayBuffer
-        }
-    },
     init: {
-        set(value) {
-            // this.sharedWorker.port.onmessage = (event) => {
-            //     console.log('--------- nk-memory Message received from worker ---------');
-            // };
-        }
+        value: async function() { },
+        writable: true
     },
     open: {
         set(value) {
