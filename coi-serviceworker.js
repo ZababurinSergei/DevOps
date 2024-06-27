@@ -35,7 +35,7 @@ if (typeof window === 'undefined') {
         event.respondWith(
             fetch(request)
                 .then((response) => {
-                    if ( event.request.url.match( '^.*(\/DevOps\/sw\/).*$' ) ) {
+                    if (request.url.match( '^.*(\/DevOps\/sw\/).*$' ) ) {
                         return false;
                     }
 
