@@ -22,6 +22,10 @@ if (typeof window === 'undefined') {
     });
 
     self.addEventListener("fetch", function (event) {
+        if ( event.request.url.match( '^.*(\/DevOps\/sw\/).*$' ) ) {
+            return false;
+        }
+
         const r = event.request;
         if (r.cache === "only-if-cached" && r.mode !== "same-origin") {
             return;
@@ -35,10 +39,6 @@ if (typeof window === 'undefined') {
         event.respondWith(
             fetch(request)
                 .then((response) => {
-                    if (request.url.match( '^.*(\/DevOps\/sw\/).*$' ) ) {
-                        return false;
-                    }
-
                     if (response.status === 0) {
                         return response;
                     }
