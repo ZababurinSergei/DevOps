@@ -569,11 +569,11 @@ Object.defineProperties(component.prototype, {
                     result.push(`${this.config.git}/${user}/${item}`)
                 })
             }
-
+            console.log('this.config',this.config)
             navigator.serviceWorker.getRegistrations().then(function(registrations) {
                 registrations[0].active.postMessage({
                     type:'service',
-                    message: self.config.gitUrl
+                    message: this.config.gitUrl
                 })
                 resolve(true)
             });
