@@ -201,7 +201,7 @@ const BaseClass = class extends HTMLElement {
             root: '/git',
             git: 'github.com',
             user: 'ElenaSidneva',
-            service: 'mss',
+            service: 'yoga_studio',
             gitUser: `/git/github.com/ElenaSidneva`,
             gitDir: `/git/github.com/ElenaSidneva/yoga_studio`,
             gitUrl: `https://github.com/ElenaSidneva/yoga_studio`,

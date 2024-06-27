@@ -316,7 +316,6 @@ Object.defineProperties(component.prototype, {
                                         this.html.label.error.textContent = `${event.data.data.toString()} Проверьте включен ли сервер corse proxy`
                                     }
 
-                                    alert(`${event.data.data.toString()} Сетевая ошибка. CorsProxy server сторонний`)
                                     console.error('------------- AUTH ERROR-----------------------', event.data.data.toString())
                                 }
                                 break

@@ -104,18 +104,8 @@
         >
             <template>
                 <div class="nk-git__container">
-                    <!--                    <div class="settings">-->
-                    <!--                        <div class="wrapper">-->
-                    <!--                            <button class="fonts-button disabled">Загрузить шрифт</button>-->
-                    <!--                            <input type="file" id="font-input">-->
-                    <!--                        </div>-->
-                    <!--                        <div class="test">-->
-                    <!--                            <p id="test">Upload a font to change me!</p>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <div class="run">
-
-                    </div>
+                    <slot name="nk-settings"></slot>
+                    <div class="run"></div>
                     <div class="settings">
                         <div class="settings__block_0">
                             <mss-input
@@ -127,7 +117,7 @@
                                     <div class="container">
                                         <input readonly id="input"
                                                placeholder="https://github.com/ElenaSidneva/yoga_studio"
-                                               value="https://github.com/ElenaSidneva/yoga_studio"/>
+                                               value="https://github.com/ElenaSidneva/yoga_studio" />
                                     </div>
                                 </template>
                             </mss-input>
@@ -148,7 +138,7 @@
                                                      viewBox="0 0 16 16" fill="none">
                                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                                           d="M7.99994 8.93934L11.4696 5.46967L12.5303 6.53033L8.53027 10.5303C8.23738 10.8232 7.76251 10.8232 7.46961 10.5303L3.46961 6.53033L4.53027 5.46967L7.99994 8.93934Z"
-                                                          fill="#0D4CD3"/>
+                                                          fill="#0D4CD3" />
                                                 </svg>
                                             </div>
                                         </div>
@@ -164,7 +154,7 @@
                                             </li>
                                         </ul>
                                         <input class="input_hidden" type="text" name="select-category"
-                                               value="Фильтр 1"/>
+                                               value="Фильтр 1" />
                                     </div>
                                 </template>
                             </fer-select>
@@ -202,6 +192,23 @@
                     <slot name="nk-opfs"></slot>
                     <slot name="mss-settings"></slot>
                 </div>
+
+                <nk-settings
+                        slot="nk-settings"
+                        data-field="nk-settings"
+                >
+                    <template>
+                        <div class="settings">
+                            <div class="wrapper">
+                                <!--                                <button class="fonts-button disabled">Загрузить шрифт</button>-->
+                                <!--                                <input type="file" id="font-input">-->
+                                <!--                                <div class="test">-->
+                                <!--                                    <p id="test">Upload a font to change me!</p>-->
+                                <!--                                </div>-->
+                            </div>
+                        </div>
+                    </template>
+                </nk-settings>
 
                 <nk-opfs
                         slot="nk-opfs"
