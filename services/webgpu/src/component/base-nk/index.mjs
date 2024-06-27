@@ -200,13 +200,13 @@ const BaseClass = class extends HTMLElement {
         this.config = {
             root: '/git',
             git: 'github.com',
-            user: 'ElenaSidneva',
+            user: 'ZababurinSergei',
             service: 'mss',
-            gitUser: `/git/github.com/ElenaSidneva`,
-            gitDir: `/git/github.com/ElenaSidneva/yoga_studio`,
-            gitUrl: `https://github.com/ElenaSidneva/yoga_studio`,
+            gitUser: `/git/github.com/ZababurinSergei`,
+            gitDir: `/git/github.com/ZababurinSergei/welcomebook`,
+            gitUrl: `https://github.com/ZababurinSergei/welcomebook`,
             oauth2format: 'github',
-            corsProxy: 'https://cors.isomorphic-git.org',
+            corsProxy: 'http://localhost:3000',
             branch: 'main'
         };
 
@@ -252,11 +252,11 @@ const BaseClass = class extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(`☢ ---------------------------${this.tagName} Attribute ${name} has changed.`, {
-            name: name,
-            oldValue: oldValue,
-            newValue: newValue
-        });
+        // console.log(`☢ ---------------------------${this.tagName} Attribute ${name} has changed.`, {
+        //     name: name,
+        //     oldValue: oldValue,
+        //     newValue: newValue
+        // });
 
         if ('attribute' in this) {
             this?.attribute({

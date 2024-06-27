@@ -384,6 +384,7 @@ Object.defineProperties(component.prototype, {
                             case 'refresh':
                                 storeDataAndUpdateUI(this, 'opfs')
                                     .then(data => {
+                                        debugger
                                         // this.task = {
                                         //     id: this.tagName.toLowerCase(),
                                         //     uuid: this.dataset.uuid,
@@ -493,6 +494,7 @@ Object.defineProperties(component.prototype, {
                                 });
                                 break;
                             case 'deleteDirectory':
+                                debugger
                                 let currentDirectory = this.shadowRoot.querySelector(`[data-id="${response.id}"]`);
                                 if (response.error) {
                                     this.html.errorDialog.querySelector('p').textContent =
@@ -555,12 +557,6 @@ Object.defineProperties(component.prototype, {
                         error: this.shadowRoot.querySelector('.error-dialog'),
                         confirm: this.shadowRoot.querySelector('.confirm-dialog')
                     }
-                    // button: {
-                    //     upload: this.shadowRoot.querySelector('.fonts-button')
-                    // },
-                    // input: {
-                    //     upload: this.shadowRoot.querySelector('#font-input')
-                    // }
                 }
             };
 
@@ -585,9 +581,6 @@ Object.defineProperties(component.prototype, {
                     items: result
                 }
             };
-
-            // this.control.button.upload = this.shadowRoot.querySelector('.fonts-button');
-            // this.control.input.upload = this.shadowRoot.querySelector('#font-input');
 
             return true;
         },

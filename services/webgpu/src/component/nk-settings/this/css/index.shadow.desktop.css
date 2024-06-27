@@ -1,46 +1,57 @@
 :host {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.settings {
     display: flex;
     flex-direction: column;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+
+.fonts-button {
+    width: max-content;
+    height: 52px;
+    border-radius: 8px;
+    background: var(--Gosblue, #0D4CD3);
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    align-self: center;
+    cursor: pointer;
+    border: none;
+    cursor: pointer;
 }
 
-.constants, .memory {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    background: black;
-    color: white;
-    padding: 12px 0 12px 12px;
-    height: inherit;
-}
-
-.constants .settings, .memory .settings {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    font-weight: bold;
-}
-
-.constants .settings span.value, .memory .settings span.value {
-    color: white;
-}
-
-pre {
-    background: black;
-    color: white;
-    margin: 0;
+#font-input {
+    width: 100%;
+    align-self: center;
+    background: var(--Input, #F5F7FA);
+    height: 52px;
+    overflow: hidden;
+    color: var(--Summer-night, #0B1F33);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: 'Lato', serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    padding: 14px 16px;
     box-sizing: border-box;
-    padding: 8px 0;
+    border: none;
+}
+
+.wrapper {
+    display: flex;
+    gap: 32px;
+    box-shadow: 0px 0.26vw 1.15vw rgba(148, 152, 170, 0.48);
+    border-radius: 0.21vw;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    flex-direction: row;
+    min-height: 52px;
+}
+
+.test {
+    width: 20%;
 }

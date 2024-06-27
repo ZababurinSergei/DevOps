@@ -243,10 +243,10 @@ self.onmessage = async (event) => {
         const fileHandle = getFileHandle(request.data).handle;
         try {
             const contents = await (await fileHandle.getFile()).text();
-            sendResponse({ message: 'editFile', result: contents });
+            sendResponse({ status: true, message: 'editFile', result: contents });
         } catch (error) {
             console.error(error.name, error.message);
-            sendResponse({ message: 'editFile', error: error.message });
+            sendResponse({ status: false, message: 'editFile', error: error.message });
         }
     } else if (request.message === 'writeFile') {
         const fileHandle = getFileHandle(request.data).handle;
@@ -254,28 +254,43 @@ self.onmessage = async (event) => {
             const writable = await fileHandle.createWritable();
             await writable.write(request.content);
             await writable.close();
-            sendResponse({ message: 'writeFile', result: 'ok' });
+            sendResponse({ status: true, message: 'writeFile', result: 'ok' });
         } catch (error) {
             console.error(error.name, error.message);
-            sendResponse({ message: 'writeFile', error: error.message });
+            sendResponse({ status: false, message: 'writeFile', error: error.message });
         }
     } else if (request.message === 'deleteFile') {
         const fileHandle = getFileHandle(request.data).handle;
         try {
             await fileHandle.remove();
-            sendResponse({ message: 'deleteFile', result: 'ok' , id: request.id});
+            console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% WORKER DELETE FILE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', request.data)
+            sendResponse({
+                status: true,
+                message: 'deleteFile',
+                result: 'ok' ,
+                id: request.id
+            });
         } catch (error) {
             console.error(error.name, error.message);
-            sendResponse({ message: 'deleteFile', error: error.message });
+            sendResponse({
+                status: false,
+                message: 'deleteFile',
+                error: error.message
+            });
         }
     } else if (request.message === 'deleteDirectory') {
         const directoryHandle = getDirectoryHandle(request.data).handle;
         try {
             await directoryHandle.remove({ recursive: true });
-            sendResponse({ message: 'deleteDirectory', result: 'ok' , id: request.id});
+            sendResponse({
+                status: true,
+                message: 'deleteDirectory',
+                result: 'ok' ,
+                id: request.id
+            });
         } catch (error) {
             console.error(error.name, error.message);
-            sendResponse({ message: 'deleteDirectory', error: error.message });
+            sendResponse({ status: false, message: 'deleteDirectory', error: error.message });
         }
     } else if (request.message === 'downloadAll') {
         try {
@@ -284,13 +299,13 @@ self.onmessage = async (event) => {
                 startIn: 'downloads',
             });
             await downloadDirectoryEntriesRecursive(root, '.', download);
-            sendResponse({ message: 'downloadAll', result: 'success' });
+            sendResponse({ status: true, message: 'downloadAll', result: 'success' });
         } catch (error) {
             if (error.name !== 'AbortError') {
                 console.error(error.name, error.message);
-                sendResponse({ message: 'downloadAll', error: error.message });
+                sendResponse({ status: false, message: 'downloadAll', error: error.message });
             } else {
-                sendResponse({ message: 'downloadAll', result: 'success' });
+                sendResponse({ status: true, message: 'downloadAll', result: 'success' });
             }
         }
     }
