@@ -37,6 +37,8 @@ export const actions = (self) => {
                     }
 
                     self.task = {
+                        id: self.tagName.toLowerCase(),
+                        uuid: self.dataset.uuid,
                         component: 'nk-opfs',
                         type: 'self',
                         action: 'default',
@@ -60,12 +62,12 @@ export const actions = (self) => {
                             const iframe = document.createElement('iframe');
 
                             iframe.setAttribute('seamless', '');
-                            iframe.src = `${window.location.origin}/sw/index.git.html`;
+                            iframe.src = `${window.location.origin}/DevOps/sw/index.git.html`;
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
 
-                            history.pushState({}, '', '/sw/');
+                            history.pushState({}, '', '/DevOps/sw/');
 
                             iframe.addEventListener('load', function(e) {
                                 iframe.contentWindow.postMessage({
