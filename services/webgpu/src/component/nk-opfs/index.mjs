@@ -578,7 +578,6 @@ Object.defineProperties(component.prototype, {
                     type:'service',
                     message: url
                 })
-                resolve(true)
             });
 
             this.task = {
