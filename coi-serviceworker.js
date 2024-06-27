@@ -35,6 +35,10 @@ if (typeof window === 'undefined') {
         event.respondWith(
             fetch(request)
                 .then((response) => {
+                    if ( event.request.url.match( '^.*(\/DevOps\/sw\/).*$' ) ) {
+                        return false;
+                    }
+
                     if (response.status === 0) {
                         return response;
                     }
