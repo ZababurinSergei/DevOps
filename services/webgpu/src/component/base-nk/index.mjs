@@ -200,13 +200,13 @@ const BaseClass = class extends HTMLElement {
         this.config = {
             root: '/git',
             git: 'github.com',
-            user: 'ZababurinSergei',
+            user: 'ElenaSidneva',
             service: 'mss',
-            gitUser: `/git/github.com/ZababurinSergei`,
-            gitDir: `/git/github.com/ZababurinSergei/welcomebook`,
-            gitUrl: `https://github.com/ZababurinSergei/welcomebook`,
+            gitUser: `/git/github.com/ElenaSidneva`,
+            gitDir: `/git/github.com/ElenaSidneva/yoga_studio`,
+            gitUrl: `https://github.com/ElenaSidneva/yoga_studio`,
             oauth2format: 'github',
-            corsProxy: 'http://localhost:3000',
+            corsProxy: 'https://cors.isomorphic-git.org',
             branch: 'main'
         };
 

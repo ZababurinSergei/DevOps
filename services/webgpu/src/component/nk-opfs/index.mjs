@@ -570,6 +570,14 @@ Object.defineProperties(component.prototype, {
                 })
             }
 
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                registrations[0].active.postMessage({
+                    type:'service',
+                    message: self.config.gitUrl
+                })
+                resolve(true)
+            });
+
             this.task = {
                 component: 'fer-select',
                 type: 'main',
