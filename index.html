@@ -269,7 +269,7 @@
 
     navigator.serviceWorker.register('./sw/sw.mjs', {
         type: 'module',
-        scope: '/DevOps/sw/'
+        scope: '/sw/'
     }).then((registration) => {
         console.log('Service worker registered successfully', registration);
         if (!navigator.serviceWorker.controller) {
