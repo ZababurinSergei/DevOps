@@ -494,7 +494,6 @@ Object.defineProperties(component.prototype, {
                                 });
                                 break;
                             case 'deleteDirectory':
-                                debugger
                                 let currentDirectory = this.shadowRoot.querySelector(`[data-id="${response.id}"]`);
                                 if (response.error) {
                                     this.html.errorDialog.querySelector('p').textContent =
