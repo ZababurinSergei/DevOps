@@ -82,6 +82,17 @@
 						░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
         </header>
         <div class="container">
+            <div class="nk-shared-protocol">
+                <slot name="nk-shared-protocol"></slot>
+            </div>
+            <div class="wrapper">
+                <h2>Scheduler</h2>
+                <div class="settings">
+                    <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span
+                            class="value"></span></div>
+                </div>
+                <div class="memory-queue"></div>
+            </div>
             <div class="nk-git">
                 <h2>DevOps</h2>
                 <slot name="nk-git"></slot>
