@@ -168,7 +168,7 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     let destination = event.request.destination;
 
-    console.log('###################################', url)
+    console.log('###################################', url.pathname)
     if(url.pathname.includes('/sw/')) {
         const isHtml = url.pathname.includes('index.git.html')
 
