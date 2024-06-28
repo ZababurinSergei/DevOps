@@ -100,22 +100,25 @@ const getHeaders = (destination, path) => {
         statusText: 'OK'
     };
 
-    // console.log('destination: ', destination, 'path: ',path)
-    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
     switch (destination) {
         case 'style':
             options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
                 'Content-Type': 'text/css; charset=UTF-8'
             });
             break;
         case 'script':
             options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
                 'Content-Type': 'application/javascript; charset=UTF-8'
             });
             break;
         case 'document':
             options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
                 'Content-Type': 'text/html; charset=UTF-8'
             });
             break
@@ -125,6 +128,8 @@ const getHeaders = (destination, path) => {
             const isPng = path.endsWith('.png')
 
             options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
                 'Content-Type': isWebp? 'image/webp': isJpeg? 'image/jpeg': isPng? 'image/png':'image/svg+xml'
             });
             break;
@@ -147,6 +152,8 @@ const getHeaders = (destination, path) => {
             break;
         default:
             options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
                 'Content-Type': 'text/html; charset=UTF-8'
             });
             break;
