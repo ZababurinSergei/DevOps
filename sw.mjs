@@ -219,7 +219,7 @@ self.addEventListener('fetch', event => {
                 }
             }) ());
         } else {
-            if(!isHtml) {
+            console.log('@@@@@@@@@@@@@@@@@@@@@@ 2 @@@@@@@@@@@@@@@@@@@@@@', path)
                 event.respondWith(
                     fetch(event.request)
                         .then(function (response) {
@@ -231,19 +231,20 @@ self.addEventListener('fetch', event => {
                             newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
                             newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
+                            console.log('@@@@@@@@@@@@@@@@@@@@@@ 5 @@@@@@@@@@@@@@@@@@@@@@', path)
+
                             const moddedResponse = new Response(response.body, {
                                 status: response.status,
                                 statusText: response.statusText,
                                 headers: newHeaders,
                             });
 
-                            return moddedResponse;
+                            return response;
                         })
                         .catch(function (e) {
                             console.error(e);
                         })
                 );
-            }
         }
     } else {
         event.respondWith(
