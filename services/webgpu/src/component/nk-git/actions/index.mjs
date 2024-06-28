@@ -62,7 +62,7 @@ export const actions = (self) => {
                             const iframe = document.createElement('iframe');
 
                             iframe.setAttribute('seamless', '');
-                            iframe.src = `${window.location.origin}/index.sw.html`;
+                            iframe.src = `${window.location.origin}/DevOps/index.sw.html`;
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
