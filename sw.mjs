@@ -219,9 +219,9 @@ self.addEventListener('fetch', event => {
                 }
             }) ());
         } else {
-            // if(!isHtml) {
-            //     return url.href
-            // }
+            if(!isHtml) {
+                return url.href
+            }
             console.log('@@@@@@@@@@@@@@@@@@@@@@ 3 @@@@@@@@@@@@@@@@@@@@@@', url)
         }
     } else {
