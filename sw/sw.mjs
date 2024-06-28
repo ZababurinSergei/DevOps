@@ -192,18 +192,21 @@ self.addEventListener('fetch', event => {
 
                 if(isBrowser) {
                     try {
+                        console.log('@@@@@@@@@@@@@@@@@@@@@@ 0 @@@@@@@@@@@@@@@@@@@@@@', path)
                         const file = await readFile(path);
                         return new Response(file, options)
                     } catch (e) {
                         let pathname = url.pathname.replace('/DevOps/sw/', '')
                         pathname = pathname.replaceAll("%20",' ')
                         const path = `${string}/${pathname}`
-                        console.log('-------------------------------- path -----------------------------------','string',string, 'pathname:',pathname)
 
+                        console.log('-------------------------------- path `${string}/${pathname}`-----------------------------------','string',string, 'pathname:',pathname)
+                        console.log('@@@@@@@@@@@@@@@@@@@@@@ 1 @@@@@@@@@@@@@@@@@@@@@@', path)
                         const file =  await readFile(path)
                         return new Response(file, options)
                     }
                 } else {
+                    console.log('@@@@@@@@@@@@@@@@@@@@@@ 2 @@@@@@@@@@@@@@@@@@@@@@', path)
                     return new Response(await readFile(path), options)
                 }
             }) ());
@@ -211,7 +214,7 @@ self.addEventListener('fetch', event => {
             // if(!isHtml) {
             //     return url.href
             // }
-            console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', url)
+            console.log('@@@@@@@@@@@@@@@@@@@@@@ 3 @@@@@@@@@@@@@@@@@@@@@@', url)
         }
     } else {
         event.respondWith(
