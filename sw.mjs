@@ -169,7 +169,7 @@ self.addEventListener('fetch', event => {
     let destination = event.request.destination;
 
     console.log('###################################', url.pathname)
-    if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html') {
+    if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html' && url.pathname !== '/DevOps/sw/') {
         const isHtml = url.pathname.includes('index.sw.html')
 
         const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
