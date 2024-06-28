@@ -224,6 +224,7 @@ self.addEventListener('fetch', event => {
             console.log('@@@@@@@@@@@@@@@@@@@@@@ 3 @@@@@@@@@@@@@@@@@@@@@@', url)
         }
     } else {
+        console.log('@@@@@@@@@@@@@@@@@@@@@@ 66 @@@@@@@@@@@@@@@@@@@@@@', event.request)
         event.respondWith(
             fetch(event.request)
                 .then(function (response) {
