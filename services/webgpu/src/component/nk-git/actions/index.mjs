@@ -57,12 +57,12 @@ export const actions = (self) => {
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             }
 
-                            history.pushState({}, '', '/DevOps/sw/');
+                            history.pushState({}, '', '/DevOps/');
 
                             const iframe = document.createElement('iframe');
 
                             iframe.setAttribute('seamless', '');
-                            iframe.src = `${window.location.origin}/DevOps/index.sw.html`;
+                            iframe.src = `${window.location.origin}/DevOps/sw/index.sw.html`;
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
