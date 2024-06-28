@@ -168,81 +168,75 @@ const getHeaders = (destination, path) => {
 const textDecoder = new TextDecoder();
 const textEncoder = new TextEncoder();
 self.addEventListener('fetch', event => {
-    return new Promise(async (resolve, reject) => {
-        const url = new URL(event.request.url);
-        let destination = event.request.destination;
+    const url = new URL(event.request.url);The Service Worker controls the directory "/pwa_app", the Service Worker itself is in the root directory:
+    let destination = event.request.destination;
 
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',await self.clients.get(event.clientId))
-        if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html' && url.pathname !== '/DevOps/sw/') {
-            const isHtml = url.pathname.includes('index.sw.html')
 
-            const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
-                || url.pathname.includes('swagger-initializer.mjs')
-                || url.pathname.includes('/api/idKey')
-                || url.pathname.includes('/api/ansis')
-                || url.pathname.includes('/api/swagger')
-                || url.pathname.includes('/mss.yaml')
-                || url.pathname.includes('/api/index.css')
-                || url.pathname.includes('/api/swagger-ui.css')
+    console.log('---------------------- 1 --------------------------', self.scopes)
+    if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html' && url.pathname !== '/DevOps/sw/') {
+        const isHtml = url.pathname.includes('index.sw.html')
 
-            if (isBrowser
-                || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-                || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-                || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-                || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-                || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
+        const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
+            || url.pathname.includes('swagger-initializer.mjs')
+            || url.pathname.includes('/api/idKey')
+            || url.pathname.includes('/api/ansis')
+            || url.pathname.includes('/api/swagger')
+            || url.pathname.includes('/mss.yaml')
+            || url.pathname.includes('/api/index.css')
+            || url.pathname.includes('/api/swagger-ui.css')
 
-                event.respondWith((async () => {
-                    const servicePath = await readFile('config')
-                    const string = textDecoder.decode(servicePath)
+        if (isBrowser
+            || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
 
-                    const path = isBrowser
-                        ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
-                        : `${string}${url.pathname}`
+            event.respondWith((async () => {
+                const servicePath = await readFile('config')
+                const string = textDecoder.decode(servicePath)
 
-                    const options = getHeaders(destination, path)
+                const path = isBrowser
+                    ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
+                    : `${string}${url.pathname}`
 
-                    if(isBrowser) {
-                        try {
-                            const file = await readFile(path);
-                            resolve(new Response(file, options))
-                            // return new Response(file, options)
-                        } catch (e) {
-                            let pathname = url.pathname.replace('/DevOps/sw/', '')
-                            pathname = pathname.replaceAll("%20",' ')
-                            const path = `${string}/${pathname}`
-                            const file =  await readFile(path)
+                const options = getHeaders(destination, path)
 
-                            resolve(new Response(file, options))
-                            // return new Response(file, options)
-                        }
-                    } else {
-                        resolve(new Response(await readFile(path), options))
-                        // return new Response(await readFile(path), options)
+                if(isBrowser) {
+                    try {
+                        const file = await readFile(path);
+                        return new Response(file, options)
+                    } catch (e) {
+                        let pathname = url.pathname.replace('/DevOps/sw/', '')
+                        pathname = pathname.replaceAll("%20",' ')
+                        const path = `${string}/${pathname}`
+                        const file =  await readFile(path)
+                        return new Response(file, options)
                     }
-                }) ());
-            }
-        } else {
-            event.respondWith(
-                fetch(event.request)
-                    .then(function (response) {
-                        const newHeaders = new Headers(response.headers);
-                        newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-                        newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
-
-                        const moddedResponse = new Response(response.body, {
-                            status: response.status,
-                            statusText: response.statusText,
-                            headers: newHeaders,
-                        });
-
-                        resolve(moddedResponse)
-                        // return moddedResponse;
-                    })
-                    .catch(function (e) {
-                        console.error(e);
-                    })
-            );
+                } else {
+                    return new Response(await readFile(path), options)
+                }
+            }) ());
         }
-    })
+    } else {
+        event.respondWith(
+            fetch(event.request)
+                .then(function (response) {
+                    const newHeaders = new Headers(response.headers);
+                    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+                    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+
+                    const moddedResponse = new Response(response.body, {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers: newHeaders,
+                    });
+
+                    return moddedResponse;
+                })
+                .catch(function (e) {
+                    console.error(e);
+                })
+        );
+    }
 });
