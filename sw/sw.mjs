@@ -101,7 +101,8 @@ const getHeaders = (destination, path) => {
     };
 
     // console.log('destination: ', destination, 'path: ',path)
-
+    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
     switch (destination) {
         case 'style':
             options.headers = new Headers({
@@ -178,6 +179,7 @@ self.addEventListener('fetch', event => {
             || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
             || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
             || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
+
             event.respondWith((async () => {
                 const servicePath = await readFile('config')
                 const string = textDecoder.decode(servicePath)
@@ -211,5 +213,29 @@ self.addEventListener('fetch', event => {
             // }
             console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@', url)
         }
+    } else {
+        event.respondWith(
+            fetch(event.request)
+                .then(function (response) {
+                    // It seems like we only need to set the headers for index.html
+                    // If you want to be on the safe side, comment this out
+                    // if (!response.url.includes("index.html")) return response;
+
+                    const newHeaders = new Headers(response.headers);
+                    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+                    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+
+                    const moddedResponse = new Response(response.body, {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers: newHeaders,
+                    });
+
+                    return moddedResponse;
+                })
+                .catch(function (e) {
+                    console.error(e);
+                })
+        );
     }
 });
