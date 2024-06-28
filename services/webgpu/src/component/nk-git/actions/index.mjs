@@ -25,9 +25,7 @@ export const actions = (self) => {
     return new Promise(async (resolve, reject) => {
         resolve({
             broadcastChannel: async (event) => {
-                self.external;f(self.dataset.value.length !== 0) {
-                    console.log('dddddddddddddddddddddddddd',self.dataset.value, self.dataset.value.length)
-                }
+                self.external;
             },
             messageerror: async (event) => {
                 console.log('ddddddddddddddddddddddddddddd BROADCAST messageerror ddddddddddddddddddddddddddddd', event);
