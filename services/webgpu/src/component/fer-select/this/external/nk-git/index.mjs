@@ -14,6 +14,7 @@ export const nkGit = function(self, data) {
         }
 
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            console.log('--------------------------------------------------------------------------------------------------------',  `${self.config.gitUser}/${self.config.service}`)
             registrations[0].active.postMessage({
                 type:'service',
                 message: `${self.config.gitUser}/${self.config.service}`

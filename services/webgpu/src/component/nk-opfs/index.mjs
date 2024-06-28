@@ -569,9 +569,10 @@ Object.defineProperties(component.prototype, {
                 })
             }
 
-            const url = this.config.gitUrl
+            const url = this.config.gitDir
 
-            console.log('this.config', url)
+            console.log('---------------------------------------------------------------', url)
+
             navigator.serviceWorker.getRegistrations().then(function(registrations) {
                 registrations[0].active.postMessage({
                     type:'service',
