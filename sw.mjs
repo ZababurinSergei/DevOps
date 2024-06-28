@@ -168,8 +168,8 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     let destination = event.request.destination;
 
-    console.log('###################################', url.patname)
-    if(url.pathname !== '/DevOps/sw/' && url.pathname !== '/DevOps/sw') {
+    console.log('###################################', url)
+    if(url.pathname.includes('/sw/')) {
         const isHtml = url.pathname.includes('index.git.html')
 
         const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
