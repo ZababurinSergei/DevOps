@@ -286,8 +286,7 @@
     await Fonts('Raleway-ExtraBold', 'Raleway-ExtraBold.ttf');
 
     navigator.serviceWorker.register('./sw.mjs', {
-        type: 'module',
-        scope: '/DevOps/'
+        type: 'module'
     }).then((registration) => {
         console.log('Service worker registered successfully', registration);
         if (!navigator.serviceWorker.controller) {

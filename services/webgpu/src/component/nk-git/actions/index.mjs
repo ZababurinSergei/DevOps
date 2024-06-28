@@ -57,20 +57,21 @@ export const actions = (self) => {
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             }
 
+                            history.pushState({}, '', '/DevOps/sw/');
+
                             const iframe = document.createElement('iframe');
 
                             iframe.setAttribute('seamless', '');
-                            iframe.src = `${window.location.origin}/DevOps/sw/index.git.html`;
+                            iframe.src = `${window.location.origin}/index.sw.html`;
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
 
-                            history.pushState({}, '', '/DevOps/sw/');
 
                             iframe.addEventListener('load', function(e) {
-                                // iframe.contentWindow.postMessage({
-                                //     html: html
-                                // });
+                                iframe.contentWindow.postMessage({
+                                    html: html
+                                });
                             });
                         }
                     };
