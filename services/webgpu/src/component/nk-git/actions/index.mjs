@@ -57,7 +57,7 @@ export const actions = (self) => {
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             }
 
-                            history.pushState({}, '', '/DevOps/');
+                            history.pushState({}, '', '/DevOps/sw/');
 
                             const iframe = document.createElement('iframe');
 
