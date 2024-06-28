@@ -285,7 +285,7 @@
     await Fonts('Raleway', 'Raleway-Regular.ttf');
     await Fonts('Raleway-ExtraBold', 'Raleway-ExtraBold.ttf');
 
-    navigator.serviceWorker.register('./sw/sw.mjs', {
+    navigator.serviceWorker.register('./sw.mjs', {
         type: 'module',
         scope: '/DevOps/'
     }).then((registration) => {
