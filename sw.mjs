@@ -190,7 +190,7 @@ self.addEventListener('fetch', event => {
             event.respondWith((async () => {
                 const servicePath = await readFile('config')
                 const string = textDecoder.decode(servicePath)
-
+                console.log('-------------- config ------------------', string)
                 const path = isBrowser
                     ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
                     : `${string}${url.pathname}`
