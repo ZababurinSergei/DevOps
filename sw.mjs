@@ -78,13 +78,12 @@ async function readFile(fileName = '', destination = '') {
 
 // always install updated SW immediately
 self.addEventListener('install', async event => {
-    // const root = await navigator.storage.getDirectory();
-    // const draftHandle = await root.getFileHandle("draft.txt", { create: true });
-    // console.log('###########################################', await (await draftHandle.getFile()).text(),'---------', draftHandle.createSyncAccessHandle)
-    // accessHandle = await draftHandle.createWritable();
-    // await accessHandle.write('ddddddddddd--------------------------------------------------------------------------dddddddd');
-    // accessHandle.close();
+
     self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+    console.log('========================================== ACTIVATE ===================================================')
 });
 
 const createStream = (uint) => new ReadableStream({
