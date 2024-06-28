@@ -168,73 +168,81 @@ const getHeaders = (destination, path) => {
 const textDecoder = new TextDecoder();
 const textEncoder = new TextEncoder();
 self.addEventListener('fetch', event => {
-    const url = new URL(event.request.url);
-    let destination = event.request.destination;
+    return new Promise(async (resolve, reject) => {
+        const url = new URL(event.request.url);
+        let destination = event.request.destination;
 
-    if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html' && url.pathname !== '/DevOps/sw/') {
-        const isHtml = url.pathname.includes('index.sw.html')
+        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@',await self.clients.get(event.clientId))
+        if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html' && url.pathname !== '/DevOps/sw/') {
+            const isHtml = url.pathname.includes('index.sw.html')
 
-        const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
-            || url.pathname.includes('swagger-initializer.mjs')
-            || url.pathname.includes('/api/idKey')
-            || url.pathname.includes('/api/ansis')
-            || url.pathname.includes('/api/swagger')
-            || url.pathname.includes('/mss.yaml')
-            || url.pathname.includes('/api/index.css')
-            || url.pathname.includes('/api/swagger-ui.css')
+            const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
+                || url.pathname.includes('swagger-initializer.mjs')
+                || url.pathname.includes('/api/idKey')
+                || url.pathname.includes('/api/ansis')
+                || url.pathname.includes('/api/swagger')
+                || url.pathname.includes('/mss.yaml')
+                || url.pathname.includes('/api/index.css')
+                || url.pathname.includes('/api/swagger-ui.css')
 
-        if (isBrowser
-            || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
+            if (isBrowser
+                || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
 
-            event.respondWith((async () => {
-                const servicePath = await readFile('config')
-                const string = textDecoder.decode(servicePath)
+                event.respondWith((async () => {
+                    const servicePath = await readFile('config')
+                    const string = textDecoder.decode(servicePath)
 
-                const path = isBrowser
-                    ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
-                    : `${string}${url.pathname}`
+                    const path = isBrowser
+                        ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
+                        : `${string}${url.pathname}`
 
-                const options = getHeaders(destination, path)
+                    const options = getHeaders(destination, path)
 
-                if(isBrowser) {
-                    try {
-                        const file = await readFile(path);
-                        return new Response(file, options)
-                    } catch (e) {
-                        let pathname = url.pathname.replace('/DevOps/sw/', '')
-                        pathname = pathname.replaceAll("%20",' ')
-                        const path = `${string}/${pathname}`
-                        const file =  await readFile(path)
-                        return new Response(file, options)
+                    if(isBrowser) {
+                        try {
+                            const file = await readFile(path);
+                            resolve(new Response(file, options))
+                            // return new Response(file, options)
+                        } catch (e) {
+                            let pathname = url.pathname.replace('/DevOps/sw/', '')
+                            pathname = pathname.replaceAll("%20",' ')
+                            const path = `${string}/${pathname}`
+                            const file =  await readFile(path)
+
+                            resolve(new Response(file, options))
+                            // return new Response(file, options)
+                        }
+                    } else {
+                        resolve(new Response(await readFile(path), options))
+                        // return new Response(await readFile(path), options)
                     }
-                } else {
-                    return new Response(await readFile(path), options)
-                }
-            }) ());
+                }) ());
+            }
+        } else {
+            event.respondWith(
+                fetch(event.request)
+                    .then(function (response) {
+                        const newHeaders = new Headers(response.headers);
+                        newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+                        newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+
+                        const moddedResponse = new Response(response.body, {
+                            status: response.status,
+                            statusText: response.statusText,
+                            headers: newHeaders,
+                        });
+
+                        resolve(moddedResponse)
+                        // return moddedResponse;
+                    })
+                    .catch(function (e) {
+                        console.error(e);
+                    })
+            );
         }
-    } else {
-        event.respondWith(
-            fetch(event.request)
-                .then(function (response) {
-                    const newHeaders = new Headers(response.headers);
-                    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-                    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
-
-                    const moddedResponse = new Response(response.body, {
-                        status: response.status,
-                        statusText: response.statusText,
-                        headers: newHeaders,
-                    });
-
-                    return moddedResponse;
-                })
-                .catch(function (e) {
-                    console.error(e);
-                })
-        );
-    }
+    })
 });
