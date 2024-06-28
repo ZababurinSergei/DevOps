@@ -219,7 +219,7 @@ self.addEventListener('fetch', event => {
                 }
             }) ());
         } else {
-            console.log('@@@@@@@@@@@@@@@@@@@@@@ 2 @@@@@@@@@@@@@@@@@@@@@@', path)
+            console.log('@@@@@@@@@@@@@@@@@@@@@@ 2 @@@@@@@@@@@@@@@@@@@@@@', event.request)
                 event.respondWith(
                     fetch(event.request)
                         .then(function (response) {
@@ -231,7 +231,7 @@ self.addEventListener('fetch', event => {
                             newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
                             newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
-                            console.log('@@@@@@@@@@@@@@@@@@@@@@ 5 @@@@@@@@@@@@@@@@@@@@@@', path)
+                            console.log('@@@@@@@@@@@@@@@@@@@@@@ 5 @@@@@@@@@@@@@@@@@@@@@@')
 
                             const moddedResponse = new Response(response.body, {
                                 status: response.status,
