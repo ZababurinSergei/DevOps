@@ -78,12 +78,16 @@ async function readFile(fileName = '', destination = '') {
 
 // always install updated SW immediately
 self.addEventListener('install', async event => {
-    console.log('========================================== install ===================================================', event)
     self.skipWaiting();
 });
 
-self.addEventListener('activate', event => {
-    console.log('========================================== ACTIVATE ===================================================', event)
+self.addEventListener('activate', async event => {
+    const clients = await getClientList()
+    clients.forEach(client => {
+        client.postMessage({
+            type: 'SW_ACTIVATED'
+        })
+    })
 });
 
 const createStream = (uint) => new ReadableStream({
@@ -216,33 +220,6 @@ self.addEventListener('fetch', event => {
                     return new Response(await readFile(path), options)
                 }
             }) ());
-        } else {
-            // console.log('@@@@@@@@@@@@@@@@@@@@@@ 2 @@@@@@@@@@@@@@@@@@@@@@', event.request)
-                // event.respondWith(
-                //     fetch(event.request)
-                //         .then(function (response) {
-                //             // It seems like we only need to set the headers for index.html
-                //             // If you want to be on the safe side, comment this out
-                //             // if (!response.url.includes("index.html")) return response;
-                //
-                //             const newHeaders = new Headers(response.headers);
-                //             newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-                //             newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
-                //
-                //             console.log('@@@@@@@@@@@@@@@@@@@@@@ 5 @@@@@@@@@@@@@@@@@@@@@@')
-                //
-                //             const moddedResponse = new Response(response.body, {
-                //                 status: response.status,
-                //                 statusText: response.statusText,
-                //                 headers: newHeaders,
-                //             });
-                //
-                //             return response;
-                //         })
-                //         .catch(function (e) {
-                //             console.error(e);
-                //         })
-                // );
         }
     } else {
         // console.log('################ --- ###################', url.pathname)
