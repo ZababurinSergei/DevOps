@@ -78,12 +78,12 @@ async function readFile(fileName = '', destination = '') {
 
 // always install updated SW immediately
 self.addEventListener('install', async event => {
-
+    console.log('========================================== install ===================================================', event)
     self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
-    console.log('========================================== ACTIVATE ===================================================')
+    console.log('========================================== ACTIVATE ===================================================', event)
 });
 
 const createStream = (uint) => new ReadableStream({
@@ -189,7 +189,7 @@ self.addEventListener('fetch', event => {
             event.respondWith((async () => {
                 const servicePath = await readFile('config')
                 const string = textDecoder.decode(servicePath)
-                console.log('-------------- config ------------------', string)
+                // console.log('-------------- config ------------------', string)
                 const path = isBrowser
                     ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
                     : `${string}${url.pathname}`
@@ -198,7 +198,7 @@ self.addEventListener('fetch', event => {
 
                 if(isBrowser) {
                     try {
-                        console.log('@@@@@@@@@@@@@@@@@@@@@@ 0 @@@@@@@@@@@@@@@@@@@@@@', path)
+                        // console.log('@@@@@@@@@@@@@@@@@@@@@@ 0 @@@@@@@@@@@@@@@@@@@@@@', path)
                         const file = await readFile(path);
                         return new Response(file, options)
                     } catch (e) {
@@ -206,13 +206,13 @@ self.addEventListener('fetch', event => {
                         pathname = pathname.replaceAll("%20",' ')
                         const path = `${string}/${pathname}`
 
-                        console.log('-------------------------------- path `${string}/${pathname}`-----------------------------------','string',string, 'pathname:',pathname)
-                        console.log('@@@@@@@@@@@@@@@@@@@@@@ 1 @@@@@@@@@@@@@@@@@@@@@@', path)
+                        // console.log('-------------------------------- path `${string}/${pathname}`-----------------------------------','string',string, 'pathname:',pathname)
+                        // console.log('@@@@@@@@@@@@@@@@@@@@@@ 1 @@@@@@@@@@@@@@@@@@@@@@', path)
                         const file =  await readFile(path)
                         return new Response(file, options)
                     }
                 } else {
-                    console.log('@@@@@@@@@@@@@@@@@@@@@@ 2 @@@@@@@@@@@@@@@@@@@@@@', path)
+                    // console.log('@@@@@@@@@@@@@@@@@@@@@@ 2 @@@@@@@@@@@@@@@@@@@@@@', path)
                     return new Response(await readFile(path), options)
                 }
             }) ());
@@ -245,7 +245,7 @@ self.addEventListener('fetch', event => {
                 // );
         }
     } else {
-        console.log('################ --- ###################', url.pathname)
+        // console.log('################ --- ###################', url.pathname)
         event.respondWith(
             fetch(event.request)
                 .then(function (response) {
