@@ -168,7 +168,6 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     let destination = event.request.destination;
 
-    console.log('###################################', url.pathname)
     if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html' && url.pathname !== '/DevOps/sw/') {
         const isHtml = url.pathname.includes('index.sw.html')
 
@@ -247,6 +246,7 @@ self.addEventListener('fetch', event => {
                 // );
         }
     } else {
+        console.log('################ --- ###################', url.pathname)
         event.respondWith(
             fetch(event.request)
                 .then(function (response) {
