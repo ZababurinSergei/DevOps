@@ -68,9 +68,9 @@ export const actions = (self) => {
                             history.pushState({}, '', '/DevOps/sw/');
 
                             iframe.addEventListener('load', function(e) {
-                                iframe.contentWindow.postMessage({
-                                    html: html
-                                });
+                                // iframe.contentWindow.postMessage({
+                                //     html: html
+                                // });
                             });
                         }
                     };
