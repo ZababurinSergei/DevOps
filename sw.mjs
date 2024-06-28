@@ -168,11 +168,12 @@ const getHeaders = (destination, path) => {
 const textDecoder = new TextDecoder();
 const textEncoder = new TextEncoder();
 self.addEventListener('fetch', event => {
-    const url = new URL(event.request.url);The Service Worker controls the directory "/pwa_app", the Service Worker itself is in the root directory:
+    const url = new URL(event.request.url);
     let destination = event.request.destination;
 
+    let scope = self.registration.scope;
 
-    console.log('---------------------- 1 --------------------------', self.scopes)
+    console.log('---------------------- 1 --------------------------', scope)
     if(url.pathname.includes('/sw/') && url.pathname !== '/DevOps/sw/index.sw.html' && url.pathname !== '/DevOps/sw/') {
         const isHtml = url.pathname.includes('index.sw.html')
 
