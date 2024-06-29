@@ -118,7 +118,7 @@ export const actions = (self) => {
                     return;
                 }
 
-                history.pushState({}, '', '/');
+                // history.pushState({}, '', '/');
 
                 self.html.views.run.innerHTML = '';
                 self.html.control.button.clear.classList.add('disabled');
