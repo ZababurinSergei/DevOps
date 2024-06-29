@@ -230,9 +230,6 @@ self.addEventListener('fetch', event => {
                     }
 
                     path = path.replaceAll("%20", ' ')
-                    console.log('---------------------- SW 1 --------------------------', path)
-
-                    const isDocs = false
 
                     const options = getHeaders(destination, path)
 
@@ -243,12 +240,8 @@ self.addEventListener('fetch', event => {
                     console.error(e);
                 })
             );
-        } else {
-            console.log('---------------------- SW 4 --------------------------', url.pathname)
         }
     } else {
-
-        console.log('---------------------- SW 5 --------------------------', url.pathname)
         event.respondWith(
             fetch(event.request)
                 .then(function (response) {
