@@ -3,7 +3,6 @@
 <head></head>
 <body></body>
 <script type="module">
-    console.log('33333333333333333333333333333333333333333333333333333333333333333')
     window.addEventListener('message', (event) => {
         if(event.data.hasOwnProperty('html')) {
             let htmlHead = event.data.html.slice(event.data.html.indexOf('<head>'), event.data.html.indexOf('</head>'))
