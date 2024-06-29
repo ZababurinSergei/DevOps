@@ -64,18 +64,16 @@ export const actions = (self) => {
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             }
 
-                            history.pushState({}, '', `${normalizeLocation}sw/`);
-
                             const iframe = document.createElement('iframe');
                             iframe.setAttribute('seamless', '');
-                            console.log('iframe path: ', `${window.location.origin}${normalizeLocation}sw/index.sw.html`)
-                            iframe.src = `${window.location.origin}${normalizeLocation}sw/index.sw.html`;
                             iframe.setAttribute('credentialless','')
+                            iframe.src = `${window.location.origin}${normalizeLocation}sw/index.sw.html`;
 
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
 
+                            history.pushState({}, '', `${normalizeLocation}sw/`);
 
                             iframe.addEventListener('load', function(e) {
                                 iframe.contentWindow.postMessage({
