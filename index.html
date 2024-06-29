@@ -323,7 +323,7 @@
         console.log('Service worker registration failed: ', err);
     });
 
-    navigator.serviceWorker.register('./sw.mjs', {
+    navigator.serviceWorker.register('./sw/sw.mjs', {
         type: 'module',
         scope: `${normalizeLocation}sw/`
     }).then((registration) => {
