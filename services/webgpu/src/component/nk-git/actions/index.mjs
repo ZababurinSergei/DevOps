@@ -48,6 +48,13 @@ export const actions = (self) => {
                             phase: ''
                         },
                         callback: async (opfs, data) => {
+                            let normalizeLocation = window.location.pathname
+                            if(!normalizeLocation.endsWith('/')) {
+                                normalizeLocation = normalizeLocation.split('/')
+                                normalizeLocation.pop()
+                                normalizeLocation = `${normalizeLocation.join('/')}/`
+                            }
+
                             let html = undefined
                             let path = `${self.config.gitDir}/docs/index.html`
                             try {
@@ -57,12 +64,14 @@ export const actions = (self) => {
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             }
 
-                            history.pushState({}, '', '/DevOps/sw/');
+                            history.pushState({}, '', `${normalizeLocation}sw/`);
 
                             const iframe = document.createElement('iframe');
-
                             iframe.setAttribute('seamless', '');
-                            iframe.src = `${window.location.origin}/DevOps/sw/index.sw.html`;
+                            console.log('iframe path: ', `${window.location.origin}${normalizeLocation}sw/index.sw.html`)
+                            iframe.src = `${window.location.origin}${normalizeLocation}sw/index.sw.html`;
+                            iframe.setAttribute('credentialless','')
+
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
