@@ -307,9 +307,9 @@
     //     console.log('Service worker registration failed: ', err);
     // });
 
+    // scope: normalizeLocation
     navigator.serviceWorker.register('./sw.mjs', {
-        type: 'module',
-        scope: normalizeLocation
+        type: 'module'
     }).then((registration) => {
         console.log('Service worker registered successfully', registration);
         if (!navigator.serviceWorker.controller) {
