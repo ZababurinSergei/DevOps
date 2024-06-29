@@ -176,26 +176,8 @@ self.addEventListener('fetch', event => {
     const isSw = scope.endsWith('/sw/')
 
     if(isSw) {
-        console.log('---------------------- 1 --------------------------',url.pathname)
-
-        const isHtml = url.pathname.includes('index.sw.html')
-
-        const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
-            || url.pathname.includes('swagger-initializer.mjs')
-            || url.pathname.includes('/api/idKey')
-            || url.pathname.includes('/api/ansis')
-            || url.pathname.includes('/api/swagger')
-            || url.pathname.includes('/mss.yaml')
-            || url.pathname.includes('/api/index.css')
-            || url.pathname.includes('/api/swagger-ui.css')
-
-        if (isBrowser
-            || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
-
+        if(!url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
+            console.log('---------------------- SW --------------------------',url.pathname)
             event.respondWith((async () => {
                 const servicePath = await readFile('config')
                 const string = textDecoder.decode(servicePath)
@@ -223,6 +205,7 @@ self.addEventListener('fetch', event => {
             }) ());
         }
     } else {
+        console.log('---------------------- MAIN --------------------------',url.pathname)
         event.respondWith(
             fetch(event.request)
                 .then(function (response) {
