@@ -3,7 +3,7 @@ const isWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof Wor
 let accessHandle = null
 let windowClientId = ''
 let iframeClientId = ''
-let white = ['http://localhost:4019', 'https://zababurinsergei.github.io']
+let white = ['http://localhost:4019', 'https://zababurinsergei.github.io', '/instance/_sandbox/instance/']
 
 function getClientList() {
     return self.clients.claim().then(() =>
@@ -215,19 +215,22 @@ self.addEventListener('fetch', event => {
     if (isSw) {
         const isOrigin = white.includes(url.origin)
 
-        if (isOrigin && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
+        console.log('---------------------------------------------',isOrigin,  url.pathname)
+
+        if (!url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             event.respondWith(readFile('config')
                 .then(async function (servicePath) {
                     const rootOpfs = textDecoder.decode(servicePath)
                     const isScope = url.pathname.includes(scope)
-                    let path = `${rootOpfs}/${url.pathname}`
+
+                    let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
 
                     if (isScope) {
                         path = `${rootOpfs}/${url.pathname.replace(scope, '')}`
                     }
 
                     path = path.replaceAll("%20", ' ')
-                    // console.log('---------------------- SW 1 --------------------------', path)
+                    console.log('---------------------- SW 1 --------------------------', path)
 
                     const isDocs = false
 
@@ -240,8 +243,12 @@ self.addEventListener('fetch', event => {
                     console.error(e);
                 })
             );
+        } else {
+            console.log('---------------------- SW 4 --------------------------', url.pathname)
         }
     } else {
+
+        console.log('---------------------- SW 5 --------------------------', url.pathname)
         event.respondWith(
             fetch(event.request)
                 .then(function (response) {
