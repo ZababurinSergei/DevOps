@@ -172,6 +172,7 @@ self.addEventListener('fetch', event => {
         const url = new URL(event.request.url);
         let destination = event.request.destination;
 
+        console.log('self.registration.scope', self.registration.scope)
 
         let scope = (new URL(self.registration.scope)).pathname;
 
