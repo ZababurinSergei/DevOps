@@ -210,7 +210,7 @@ self.addEventListener('fetch', event => {
             console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', url.pathname)
         }
     } else {
-        console.log('---------------------- MAIN --------------------------',url.pathname)
+        // console.log('---------------------- MAIN --------------------------',url.pathname)
         event.respondWith(
             fetch(event.request)
                 .then(function (response) {
