@@ -60,19 +60,19 @@ async function readFile(fileName = '', destination = '') {
     // if(destination !== 'font') {
     //     return await file.arrayBuffer()
     // } else {
-        // if (isWorker) {
-        //     fileSize = accessHandle.getSize();
-        //     buffer = new DataView(new ArrayBuffer(fileSize));
-        //     accessHandle.read(buffer, { at: 0 });
-        //     accessHandle.close();
-        // } else {
+    // if (isWorker) {
+    //     fileSize = accessHandle.getSize();
+    //     buffer = new DataView(new ArrayBuffer(fileSize));
+    //     accessHandle.read(buffer, { at: 0 });
+    //     accessHandle.close();
+    // } else {
 
-        fileSize = file.size;
-        buffer = new Uint8Array(fileSize);
-        await file.arrayBuffer().then(data => buffer.set(new Uint8Array(data)));
-        // }
+    fileSize = file.size;
+    buffer = new Uint8Array(fileSize);
+    await file.arrayBuffer().then(data => buffer.set(new Uint8Array(data)));
+    // }
 
-        return new Uint8Array(buffer.buffer);
+    return new Uint8Array(buffer.buffer);
     // }
 }
 
@@ -168,76 +168,79 @@ const getHeaders = (destination, path) => {
 const textDecoder = new TextDecoder();
 const textEncoder = new TextEncoder();
 self.addEventListener('fetch', event => {
-    try {
-        const url = new URL(event.request.url);
-        let destination = event.request.destination;
+    const url = new URL(event.request.url);
+    let destination = event.request.destination;
 
-        console.log('self.registration.scope', self.registration.scope)
+    let scope = (new URL(self.registration.scope)).pathname;
 
-        let scope = (new URL(self.registration.scope)).pathname;
+    const isSw = scope.endsWith('/sw/')
 
-        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',scope, 'ddddddddddddd', url.pathname)
-        const isSw = scope.endsWith('/sw/')
+    if(isSw) {
+        console.log('---------------------- 1 --------------------------',url.pathname)
 
-        if(isSw) {
+        const isHtml = url.pathname.includes('index.sw.html')
 
-            console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',scope, 'ddddddddddddd', url.pathname)
-            if(url.pathname !== scope && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
-                console.log('---------------------- SW --------------------------',url.pathname)
-                event.respondWith((async () => {
-                    const servicePath = await readFile('config')
-                    const string = textDecoder.decode(servicePath)
-                    const isDocs = false
-                    const path = `${string}${url.pathname}`
-                    // ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
-                    // :
+        const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
+            || url.pathname.includes('swagger-initializer.mjs')
+            || url.pathname.includes('/api/idKey')
+            || url.pathname.includes('/api/ansis')
+            || url.pathname.includes('/api/swagger')
+            || url.pathname.includes('/mss.yaml')
+            || url.pathname.includes('/api/index.css')
+            || url.pathname.includes('/api/swagger-ui.css')
 
-                    console.log('---------------------- SW path --------------------------', path)
-                    const options = getHeaders(destination, path)
+        if (isBrowser
+            || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+            || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
 
-                    if(isDocs) {
-                        try {
-                            const file = await readFile(path);
-                            return new Response(file, options)
-                        } catch (e) {
-                            let pathname = url.pathname.replace('/DevOps/sw/', '')
-                            pathname = pathname.replaceAll("%20",' ')
-                            const path = `${string}/${pathname}`
-                            const file =  await readFile(path)
-                            return new Response(file, options)
-                        }
-                    } else {
-                        return new Response(await readFile(path), options)
+            event.respondWith((async () => {
+                const servicePath = await readFile('config')
+                const string = textDecoder.decode(servicePath)
+
+                const path = isBrowser
+                    ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
+                    : `${string}${url.pathname}`
+
+                const options = getHeaders(destination, path)
+
+                if(isBrowser) {
+                    try {
+                        const file = await readFile(path);
+                        return new Response(file, options)
+                    } catch (e) {
+                        let pathname = url.pathname.replace('/DevOps/sw/', '')
+                        pathname = pathname.replaceAll("%20",' ')
+                        const path = `${string}/${pathname}`
+                        const file =  await readFile(path)
+                        return new Response(file, options)
                     }
-                }) ());
-            } else {
-                console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', url.pathname)
-            }
-        } else {
-            console.log('----------------------',scope, 'MAIN --------------------------', url.pathname)
-            // console.log('---------------------- MAIN --------------------------',url.pathname)
-            event.respondWith(
-                fetch(event.request)
-                    .then(function (response) {
-                        const newHeaders = new Headers(response.headers);
-                        newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-                        newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
-
-                        const moddedResponse = new Response(response.body, {
-                            status: response.status,
-                            statusText: response.statusText,
-                            headers: newHeaders,
-                        });
-
-                        return moddedResponse;
-                    })
-                    .catch(function (e) {
-                        console.error(e);
-                    })
-            );
+                } else {
+                    return new Response(await readFile(path), options)
+                }
+            }) ());
         }
-    } catch (e) {
-        console.error('ERROR',e )
-    }
+    } else {
+        event.respondWith(
+            fetch(event.request)
+                .then(function (response) {
+                    const newHeaders = new Headers(response.headers);
+                    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+                    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
+                    const moddedResponse = new Response(response.body, {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers: newHeaders,
+                    });
+
+                    return moddedResponse;
+                })
+                .catch(function (e) {
+                    console.error(e);
+                })
+        );
+    }
 });
