@@ -2,6 +2,18 @@
 <html lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    <meta name="description" content="">
+    <meta property="og:site_name" content="markdown" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="contract" />
+    <meta property="og:title" content="markdown" />
+    <meta property="og:description" content="markdown" />
+    <meta property="og:url" content="https://zababurinsv.github.io/design/" />
+    <meta property="og:image" content="https://i.imgur.com/pSrPUkJ.jpg" />
+    <meta property="og:image:width" content="537" />
+    <meta property="og:image:height" content="240" />
+    <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
     <link href="./services/webgpu/src/this/css/index.light.css" rel="stylesheet"/>
     <script src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm/lib/xterm.js"></script>
     <script src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/local-echo/dist/local-echo.js"></script>
@@ -311,7 +323,7 @@
         let isController = false
 
         navigator.serviceWorker.addEventListener('message', (event) => {
-            console.log('================================== MESSAGE FROM SERVICE WORKER ====================================', event.data)
+            console.log('================================== MESSAGE FROM SERVICE WORKER ====================================',isController, event.data)
             if (!isController && event.data.type === 'SW_ACTIVATED') {
                 window.location.reload();
             }
