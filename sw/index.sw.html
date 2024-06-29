@@ -3,6 +3,21 @@
 <head></head>
 <body></body>
 <script type="module">
+    navigator.serviceWorker.register('./sw.mjs', {
+        type: 'module',
+        scope: '/sw/'
+    }).then((registration) => {
+        console.log('Service worker registered successfully', registration);
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event?.data?.type === 'SW_ACTIVATED') {
+                    window.location.reload();
+                }
+            });
+        }
+    }).catch((err) => {
+        console.log('Service worker registration failed: ', err);
+    });
     window.addEventListener('message', (event) => {
         if(event.data.hasOwnProperty('html')) {
             let htmlHead = event.data.html.slice(event.data.html.indexOf('<head>'), event.data.html.indexOf('</head>'))
