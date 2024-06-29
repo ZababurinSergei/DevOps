@@ -172,8 +172,10 @@ self.addEventListener('fetch', event => {
         const url = new URL(event.request.url);
         let destination = event.request.destination;
 
+
         let scope = (new URL(self.registration.scope)).pathname;
 
+        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',scope, 'ddddddddddddd', url.pathname)
         const isSw = scope.endsWith('/sw/')
 
         if(isSw) {
