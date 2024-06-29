@@ -284,14 +284,20 @@
     await Fonts('Raleway', 'Raleway-Regular.ttf');
     await Fonts('Raleway-ExtraBold', 'Raleway-ExtraBold.ttf');
 
+    let normalizeLocation = window.location.pathname
+    if(!normalizeLocation.endsWith('/')) {
+        normalizeLocation = normalizeLocation.split('/')
+        normalizeLocation.pop()
+        normalizeLocation = `${normalizeLocation.join('/')}/`
+    }
+
     navigator.serviceWorker.register('./sw.mjs', {
         type: 'module',
-        scope: `/DevOps/`
+        scope: normalizeLocation
     }).then((registration) => {
         console.log('Service worker registered successfully', registration);
         if (!navigator.serviceWorker.controller) {
             navigator.serviceWorker.addEventListener('message', (event) => {
-                console.log('ddddddddddddddddddddddddddddddddddddddddddddddddd')
                 if (event?.data?.type === 'SW_ACTIVATED') {
                     window.location.reload();
                 }
@@ -303,15 +309,15 @@
 
     navigator.serviceWorker.register('./sw.mjs', {
         type: 'module',
-        scope: `/DevOps/sw/`
+        scope: `${normalizeLocation}sw/`
     }).then((registration) => {
         console.log('Service worker registered successfully', registration);
         if (!navigator.serviceWorker.controller) {
             navigator.serviceWorker.addEventListener('message', (event) => {
-                console.log('ddddddddddddddddddddddddddddddddddddddddddddddddd')
-                if (event?.data?.type === 'SW_ACTIVATED') {
-                    window.location.reload();
-                }
+                // console.log('ddddddddddddddddddddddddddddddddddddddddddddddddd')
+                // if (event?.data?.type === 'SW_ACTIVATED') {
+                //     window.location.reload();
+                // }
             });
         }
     }).catch((err) => {
