@@ -5,7 +5,7 @@
 <script type="module">
     navigator.serviceWorker.register('./sw.mjs', {
         type: 'module',
-        scope: '/sw/'
+        scope: '/DevOps/sw/'
     }).then((registration) => {
         console.log('Service worker registered successfully', registration);
         if (!navigator.serviceWorker.controller) {
