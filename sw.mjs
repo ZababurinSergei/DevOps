@@ -206,6 +206,8 @@ self.addEventListener('fetch', event => {
                     return new Response(await readFile(path), options)
                 }
             }) ());
+        } else {
+            console.log('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++', url.pathname)
         }
     } else {
         console.log('---------------------- MAIN --------------------------',url.pathname)
