@@ -1,5 +1,5 @@
 import { store, isEmpty } from '../../../index.mjs'
-import { env } from '../../../../env.mjs'
+import { env } from '../../../../../../../env.mjs'
 export async function getTokenPair(code) {
     try {
         // const data = await api.post('/auth/code', {
