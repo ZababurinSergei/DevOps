@@ -176,51 +176,51 @@ self.addEventListener('fetch', event => {
     const isSw = scope.endsWith('/sw/')
 
     if(isSw) {
-        console.log('---------------------- 1 --------------------------',url.pathname)
-
+        console.log('---------------------- 1 --------------------------',scope, url.pathname)
         const isHtml = url.pathname.includes('index.sw.html')
+        if(!isHtml) {
+            const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
+                || url.pathname.includes('swagger-initializer.mjs')
+                || url.pathname.includes('/api/idKey')
+                || url.pathname.includes('/api/ansis')
+                || url.pathname.includes('/api/swagger')
+                || url.pathname.includes('/mss.yaml')
+                || url.pathname.includes('/api/index.css')
+                || url.pathname.includes('/api/swagger-ui.css')
 
-        const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
-            || url.pathname.includes('swagger-initializer.mjs')
-            || url.pathname.includes('/api/idKey')
-            || url.pathname.includes('/api/ansis')
-            || url.pathname.includes('/api/swagger')
-            || url.pathname.includes('/mss.yaml')
-            || url.pathname.includes('/api/index.css')
-            || url.pathname.includes('/api/swagger-ui.css')
+            if (isBrowser
+                || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
+                || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
 
-        if (isBrowser
-            || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-            || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
+                event.respondWith((async () => {
+                    const servicePath = await readFile('config')
+                    const string = textDecoder.decode(servicePath)
 
-            event.respondWith((async () => {
-                const servicePath = await readFile('config')
-                const string = textDecoder.decode(servicePath)
+                    const path = isBrowser
+                        ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
+                        : `${string}${url.pathname}`
 
-                const path = isBrowser
-                    ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
-                    : `${string}${url.pathname}`
+                    const options = getHeaders(destination, path)
 
-                const options = getHeaders(destination, path)
-
-                if(isBrowser) {
-                    try {
-                        const file = await readFile(path);
-                        return new Response(file, options)
-                    } catch (e) {
-                        let pathname = url.pathname.replace('/DevOps/sw/', '')
-                        pathname = pathname.replaceAll("%20",' ')
-                        const path = `${string}/${pathname}`
-                        const file =  await readFile(path)
-                        return new Response(file, options)
+                    if(isBrowser) {
+                        try {
+                            const file = await readFile(path);
+                            return new Response(file, options)
+                        } catch (e) {
+                            let pathname = url.pathname.replace('/DevOps/sw/', '')
+                            pathname = pathname.replaceAll("%20",' ')
+                            const path = `${string}/${pathname}`
+                            const file =  await readFile(path)
+                            return new Response(file, options)
+                        }
+                    } else {
+                        return new Response(await readFile(path), options)
                     }
-                } else {
-                    return new Response(await readFile(path), options)
-                }
-            }) ());
+                }) ());
+            }
         }
     } else {
         event.respondWith(
