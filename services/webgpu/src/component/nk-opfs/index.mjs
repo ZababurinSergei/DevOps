@@ -571,12 +571,13 @@ Object.defineProperties(component.prototype, {
 
             const url = this.config.gitDir
 
-            // console.log('---------------------------------------------------------------', url)
-
+            console.log('this.config', url)
             navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                registrations[0].active.postMessage({
-                    type:'service',
-                    message: url
+                registrations.forEach(service => {
+                    service.active.postMessage({
+                        type:'service',
+                        message: url
+                    })
                 })
             });
 

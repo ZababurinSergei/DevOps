@@ -1,6 +1,9 @@
 const isWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
 
 let accessHandle = null
+let windowClientId = ''
+let iframeClientId = ''
+let white = ['http://localhost:4019', 'https://zababurinsergei.github.io']
 
 function getClientList() {
     return self.clients.claim().then(() =>
@@ -11,11 +14,31 @@ function getClientList() {
 }
 
 self.addEventListener("message", async (event) => {
-    const opfsRoot = await navigator.storage.getDirectory();
-    const fileHandle = await opfsRoot.getFileHandle("config", { create: true });
-    const writable = await fileHandle.createWritable();
-    await writable.write(event.data.message);
-    await writable.close();
+    console.log('sssssssssss MESSAGE sssssssssss', event.data)
+
+    if (event.data.type === "service") {
+        const opfsRoot = await navigator.storage.getDirectory();
+        const fileHandle = await opfsRoot.getFileHandle("config", {create: true});
+        const writable = await fileHandle.createWritable();
+        await writable.write(event.data.message);
+        await writable.close();
+    }
+
+    if (event.data.type === "skipWaiting") {
+        self.skipWaiting();
+    }
+
+    if (event.data.type === "get-client-id") {
+        self.clients.matchAll().then(function (clients) {
+            clients.forEach(function (client) {
+                if (client.frameType === "top-level") {
+                    windowClientId = client.id
+                } else if (client.frameType === "nested") {
+                    iframeClientId = client.id
+                }
+            });
+        });
+    }
 })
 
 async function getHandleFromPath(path = '') {
@@ -26,7 +49,7 @@ async function getHandleFromPath(path = '') {
         if (part === '..') {
             currentHandle = await currentHandle.getParent();
         } else {
-            currentHandle = await currentHandle.getDirectoryHandle(part, { create: true });
+            currentHandle = await currentHandle.getDirectoryHandle(part, {create: true});
         }
     }
 
@@ -78,15 +101,20 @@ async function readFile(fileName = '', destination = '') {
 
 // always install updated SW immediately
 self.addEventListener('install', async event => {
+    console.log('=============================== INSTALL SERVICE WORKER ================================')
     self.skipWaiting();
 });
 
 self.addEventListener('activate', async event => {
     const clients = await getClientList()
+    console.log('----------------------- SW ACTIVATE --------------------------------------', clients)
     clients.forEach(client => {
-        client.postMessage({
-            type: 'SW_ACTIVATED'
-        })
+        if (client.frameType === 'top-level') {
+            console.log('----------------------- SW ACTIVATE SEND --------------------------------------', client)
+            client.postMessage({
+                type: 'SW_ACTIVATED'
+            })
+        }
     })
 });
 
@@ -133,13 +161,13 @@ const getHeaders = (destination, path) => {
             options.headers = new Headers({
                 "Cross-Origin-Embedder-Policy": "require-corp",
                 "Cross-Origin-Opener-Policy": "same-origin",
-                'Content-Type': isWebp? 'image/webp': isJpeg? 'image/jpeg': isPng? 'image/png':'image/svg+xml'
+                'Content-Type': isWebp ? 'image/webp' : isJpeg ? 'image/jpeg' : isPng ? 'image/png' : 'image/svg+xml'
             });
             break;
         case 'font':
             let contentType = ''
 
-            if(path.includes('.ttf')) {
+            if (path.includes('.ttf')) {
                 contentType = 'font/ttf'
             } else {
                 console.error('неизвестный Content-Type', path)
@@ -170,98 +198,68 @@ const textEncoder = new TextEncoder();
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     let destination = event.request.destination;
-    console.log('---------------------- 1 --------------------------', self.registration.scope)
+    let scope = (new URL(self.registration.scope)).pathname;
 
-    event.respondWith(
-        fetch(event.request)
-            .then(function (response) {
-                const newHeaders = new Headers(response.headers);
-                newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-                newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+    let isSw = false
 
-                const moddedResponse = new Response(response.body, {
-                    status: response.status,
-                    statusText: response.statusText,
-                    headers: newHeaders,
-                });
+    if (event.clientId === iframeClientId) {
+        if (event.clientId.length !== 0) {
+            isSw = true
+        }
+    }
 
-                return moddedResponse;
-            })
-            .catch(function (e) {
-                console.error(e);
-            })
-    );
-    // let scope = (new URL(self.registration.scope)).pathname;
+    if (event.clientId === windowClientId) {
+        isSw = false
+    }
 
-    // console.log('---------------------- 1 bhhhh --------------------------', scope)
-    // const isSw = scope.endsWith('/sw/')
-    // const isSw = false
-    // if(isSw) {
-    //
-    //
-    //     const isHtml = url.pathname.includes('index.sw.html')
-    //
-    //     const isBrowser = (url.pathname.includes('/sw/') && !isHtml)
-    //         || url.pathname.includes('swagger-initializer.mjs')
-    //         || url.pathname.includes('/api/idKey')
-    //         || url.pathname.includes('/api/ansis')
-    //         || url.pathname.includes('/api/swagger')
-    //         || url.pathname.includes('/mss.yaml')
-    //         || url.pathname.includes('/api/index.css')
-    //         || url.pathname.includes('/api/swagger-ui.css')
-    //
-    //     if (isBrowser
-    //         || (url.pathname.includes('/mss') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-    //         || (url.pathname.includes('/system') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-    //         || (url.pathname.includes('/welcomebook') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-    //         || (url.pathname.includes('/checklist') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('index.git.html') && !url.pathname.includes('info/refs'))
-    //         || url.pathname.includes('/idKey/') || url.pathname.includes('/ansis/') || url.pathname.includes('/store/')) {
-    //
-    //         event.respondWith((async () => {
-    //             const servicePath = await readFile('config')
-    //             const string = textDecoder.decode(servicePath)
-    //
-    //             const path = isBrowser
-    //                 ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
-    //                 : `${string}${url.pathname}`
-    //
-    //             const options = getHeaders(destination, path)
-    //
-    //             if(isBrowser) {
-    //                 try {
-    //                     const file = await readFile(path);
-    //                     return new Response(file, options)
-    //                 } catch (e) {
-    //                     let pathname = url.pathname.replace('/DevOps/sw/', '')
-    //                     pathname = pathname.replaceAll("%20",' ')
-    //                     const path = `${string}/${pathname}`
-    //                     const file =  await readFile(path)
-    //                     return new Response(file, options)
-    //                 }
-    //             } else {
-    //                 return new Response(await readFile(path), options)
-    //             }
-    //         }) ());
-    //     }
-    // } else {
-    //     event.respondWith(
-    //         fetch(event.request)
-    //             .then(function (response) {
-    //                 const newHeaders = new Headers(response.headers);
-    //                 newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-    //                 newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
-    //
-    //                 const moddedResponse = new Response(response.body, {
-    //                     status: response.status,
-    //                     statusText: response.statusText,
-    //                     headers: newHeaders,
-    //                 });
-    //
-    //                 return moddedResponse;
-    //             })
-    //             .catch(function (e) {
-    //                 console.error(e);
-    //             })
-    //     );
-    // }
+    if (isSw) {
+        const isOrigin = white.includes(url.origin)
+
+        if (isOrigin && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
+            event.respondWith(readFile('config')
+                .then(async function (servicePath) {
+                    const rootOpfs = textDecoder.decode(servicePath)
+                    const isScope = url.pathname.includes(scope)
+                    let path = `${rootOpfs}/${url.pathname}`
+
+                    if (isScope) {
+                        path = `${rootOpfs}/${url.pathname.replace(scope, '')}`
+                    }
+
+                    path = path.replaceAll("%20", ' ')
+                    // console.log('---------------------- SW 1 --------------------------', path)
+
+                    const isDocs = false
+
+                    const options = getHeaders(destination, path)
+
+                    return new Response(await readFile(path), options)
+
+                })
+                .catch(function (e) {
+                    console.error(e);
+                })
+            );
+        }
+    } else {
+        event.respondWith(
+            fetch(event.request)
+                .then(function (response) {
+                    const newHeaders = new Headers(response.headers);
+                    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+                    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+
+                    const moddedResponse = new Response(response.body, {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers: newHeaders,
+                    });
+
+                    return moddedResponse;
+                })
+                .catch(function (e) {
+                    console.error(e);
+                })
+        );
+    }
 });

@@ -10,8 +10,7 @@ const envInit = {
 let ENV = {}
 
 try {
-    console.log('---------- 3 ------------')
-    const myRequest = new Request("./env.json", envInit);
+    const myRequest = new Request("/env.json", envInit);
     const response = await fetch(myRequest);
     ENV = await response.json()
 } catch (e) {

@@ -261,6 +261,7 @@ self.onmessage = async (event) => {
             status(event.data.config);
             break;
         case 'clone':
+            console.log('============ event.data.config ============', event.data.config)
             clone(event.data.auth, event.data.config);
             break;
         case 'listFiles':

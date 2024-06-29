@@ -99,9 +99,9 @@ export const actions = (self) => {
                     }
                 }
 
-                // if(self.dataset.value.length !== 0) {
-                //     console.log('dddddddddddddddddddddddddd',self.dataset.value, self.dataset.value.length)
-                // }
+                if(self.dataset.value.length !== 0) {
+                    console.log('dddddddddddddddddddddddddd',self.dataset.value, self.dataset.value.length)
+                }
 
                 self.html.button.textContent = self.dataset.value
                 // const rootNode = self.getRootNode().host

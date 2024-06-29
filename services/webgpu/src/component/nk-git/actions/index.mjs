@@ -65,19 +65,23 @@ export const actions = (self) => {
                             }
 
                             const iframe = document.createElement('iframe');
-                            iframe.setAttribute('seamless', '');
-                            iframe.setAttribute('credentialless','')
-                            iframe.src = `${window.location.origin}${normalizeLocation}sw/index.sw.html`;
 
+                            iframe.setAttribute('seamless', '');
+                            iframe.src = `${window.location.origin}${normalizeLocation}index.sw.html`;
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
 
-                            history.pushState({}, '', `${normalizeLocation}sw/`);
-
                             iframe.addEventListener('load', function(e) {
-                                iframe.contentWindow.postMessage({
-                                    html: html
+                                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                                    registrations[0].active.postMessage({
+                                        type:'get-client-id',
+                                    })
+
+                                    iframe.contentWindow.postMessage({
+                                        html: html
+                                    });
+                                    resolve(true)
                                 });
                             });
                         }
