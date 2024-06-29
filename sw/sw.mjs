@@ -171,13 +171,14 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     let destination = event.request.destination;
 
+    console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', url.pathname)
     let scope = (new URL(self.registration.scope)).pathname;
 
+    console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',scope)
     const isSw = scope.endsWith('/sw/')
 
     if(isSw) {
 
-        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',scope, 'ddddddddddddd', url.pathname)
         if(url.pathname !== scope && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             console.log('---------------------- SW --------------------------',url.pathname)
             event.respondWith((async () => {
