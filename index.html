@@ -323,22 +323,22 @@
         console.log('Service worker registration failed: ', err);
     });
 
-    // navigator.serviceWorker.register('./sw.mjs', {
-    //     type: 'module',
-    //     scope: `${normalizeLocation}sw/`
-    // }).then((registration) => {
-    //     console.log('Service worker registered successfully', registration);
-    //     if (!navigator.serviceWorker.controller) {
-    //         navigator.serviceWorker.addEventListener('message', (event) => {
-    //             // console.log('ddddddddddddddddddddddddddddddddddddddddddddddddd')
-    //             // if (event?.data?.type === 'SW_ACTIVATED') {
-    //             //     window.location.reload();
-    //             // }
-    //         });
-    //     }
-    // }).catch((err) => {
-    //     console.log('Service worker registration failed: ', err);
-    // });
+    navigator.serviceWorker.register('./sw.mjs', {
+        type: 'module',
+        scope: `${normalizeLocation}sw/`
+    }).then((registration) => {
+        console.log('Service worker registered successfully', registration);
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                // console.log('ddddddddddddddddddddddddddddddddddddddddddddddddd')
+                // if (event?.data?.type === 'SW_ACTIVATED') {
+                //     window.location.reload();
+                // }
+            });
+        }
+    }).catch((err) => {
+        console.log('Service worker registration failed: ', err);
+    });
 </script>
 </body>
 </html>
