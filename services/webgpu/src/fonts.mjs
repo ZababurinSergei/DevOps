@@ -1,6 +1,6 @@
 export const Fonts = async (name, file) => {
     try {
-        const url = new URL(`/services/webgpu/src/this/fonts/${file}`, import.meta.url)
+        const url = new URL(`./services/webgpu/src/this/fonts/${file}`, import.meta.url)
         let fontFace = new FontFace(name, `url(${url.pathname})`)
 
         fontFace = await fontFace.load()
