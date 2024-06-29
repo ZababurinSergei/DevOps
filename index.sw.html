@@ -3,28 +3,6 @@
 <head></head>
 <body></body>
 <script type="module">
-    // let normalizeLocation = window.location.pathname
-    // if(!normalizeLocation.endsWith('/')) {
-    //     normalizeLocation = normalizeLocation.split('/')
-    //     normalizeLocation.pop()
-    //     normalizeLocation = `${normalizeLocation.join('/')}/`
-    // }
-    // navigator.serviceWorker.register('./sw.mjs', {
-    //     type: 'module',
-    //     scope: normalizeLocation
-    // }).then((registration) => {
-    //     console.log('Service worker registered successfully', registration);
-    //     if (!navigator.serviceWorker.controller) {
-    //         navigator.serviceWorker.addEventListener('message', (event) => {
-    //             if (event?.data?.type === 'SW_ACTIVATED') {
-    //                 window.location.reload();
-    //             }
-    //         });
-    //     }
-    // }).catch((err) => {
-    //     console.log('Service worker registration failed: ', err);
-    // });
-
     window.addEventListener('message', (event) => {
         if(event.data.hasOwnProperty('html')) {
             
@@ -37,7 +15,6 @@
             document.head.appendChild(divFragmentHead);
             document.body.appendChild(divFragmentBody);
         }
-        // console.log('MESSAGE', event.data)
     }, false)
 </script>
 </html>
