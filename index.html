@@ -291,7 +291,7 @@
         normalizeLocation = `${normalizeLocation.join('/')}/`
     }
 
-    navigator.serviceWorker.register('./sw.mjs', {
+    navigator.serviceWorker.register('/sw.mjs', {
         type: 'module',
         scope: '/'
     }).then((registration) => {
