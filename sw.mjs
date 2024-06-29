@@ -176,7 +176,9 @@ self.addEventListener('fetch', event => {
     const isSw = scope.endsWith('/sw/')
 
     if(isSw) {
-        if(!url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
+
+        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',scope, 'ddddddddddddd', url.pathname)
+        if(url.pathname !== scope && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             console.log('---------------------- SW --------------------------',url.pathname)
             event.respondWith((async () => {
                 const servicePath = await readFile('config')
