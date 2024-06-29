@@ -181,14 +181,15 @@ self.addEventListener('fetch', event => {
             event.respondWith((async () => {
                 const servicePath = await readFile('config')
                 const string = textDecoder.decode(servicePath)
+                const isDocs = false
+                const path = `${string}${url.pathname}`
+                    // ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
+                    // :
 
-                const path = isBrowser
-                    ? `${string}/docs/${url.pathname.replace('/DevOps/sw/', '')}`
-                    : `${string}${url.pathname}`
-
+                console.log('---------------------- SW path --------------------------', path)
                 const options = getHeaders(destination, path)
 
-                if(isBrowser) {
+                if(isDocs) {
                     try {
                         const file = await readFile(path);
                         return new Response(file, options)
