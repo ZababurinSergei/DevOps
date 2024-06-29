@@ -170,12 +170,12 @@ const textEncoder = new TextEncoder();
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     let destination = event.request.destination;
-    console.log('---------------------- 1 --------------------------',url.pathname)
-    let scope = (new URL(self.registration.scope)).pathname;
+    console.log('---------------------- 1 --------------------------', self.registration.scope)
+    // let scope = (new URL(self.registration.scope)).pathname;
 
-    console.log('---------------------- 1 --------------------------', scope)
-    const isSw = scope.endsWith('/sw/')
-
+    // console.log('---------------------- 1 bhhhh --------------------------', scope)
+    // const isSw = scope.endsWith('/sw/')
+    const isSw = false
     if(isSw) {
 
 
