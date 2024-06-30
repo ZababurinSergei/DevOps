@@ -359,6 +359,32 @@ Object.defineProperties(component.prototype, {
                     const response = event.data;
                     if (response.status) {
                         switch (response.message) {
+                            case 'editFile':
+                                // const textarea = editDialog.querySelector('textarea');
+                                const textarea2 = this.html.editDialog.querySelector('.textarea');
+
+                                if (response.error) {
+                                    this.html.errorDialog.querySelector('p').textContent = response.error;
+                                    return this.html.errorDialog.showModal();
+                                }
+
+                                // debugger
+                                const view = editor(textarea2, response.result);
+                                // console.log('codemirror',codemirror.state.setValue)
+                                view.dispatch({
+                                    changes: {from: 0, to: view.state.doc.toString().length, insert:''}
+                                })
+
+                                view.dispatch({
+                                    changes: {from: 0, insert: response.result}
+                                })
+                                // debugger
+                                // codemirror.doc = response.result
+
+                                // codemirror.dom.setValue(response.result);
+                                // debugger
+                                // textarea.value = response.result;
+                                break;
                             case 'loaded':
                                 resolve(true);
                                 break;
@@ -384,28 +410,7 @@ Object.defineProperties(component.prototype, {
                             case 'refresh':
                                 storeDataAndUpdateUI(this, 'opfs')
                                     .then(data => {
-                                        debugger
-                                        // this.task = {
-                                        //     id: this.tagName.toLowerCase(),
-                                        //     uuid: this.dataset.uuid,
-                                        //     component: 'nk-git',
-                                        //     type: 'main',
-                                        //     action: 'default',
-                                        //     value: '',
-                                        //     method: 'update',
-                                        //     message: {
-                                        //         id: '',
-                                        //         type: '',
-                                        //         phase: 'opfs:refresh'
-                                        //     }
-                                        // }
-                                        // this.task = {
-                                        //     type: 'git',
-                                        //     method: 'update',
-                                        //     data: {
-                                        //         phase: 'opfs:refresh'
-                                        //     }
-                                        // };
+                                        console.log('######################### REFRESH ???? ###############################')
                                     })
                                     .catch(e => {
                                         console.error('ERROR ', e);
@@ -463,18 +468,6 @@ Object.defineProperties(component.prototype, {
                                             }
                                         }
                                     });
-
-                                    // document.dispatchEvent(new CustomEvent(`opfs-message`, {
-                                    //     detail: {
-                                    //         message: 'downloadAll',
-                                    //         callback: async (response) => {
-                                    //             if (response.error) {
-                                    //                 errorDialog.querySelector('p').textContent = response.error;
-                                    //                 return errorDialog.showModal();
-                                    //             }
-                                    //         }
-                                    //     }
-                                    // }));
                                 });
                                 div.append(downloadAllButton);
                                 this.createTreeHTML(response.structure, div);
@@ -501,18 +494,6 @@ Object.defineProperties(component.prototype, {
                                     return this.html.errorDialog.showModal();
                                 }
                                 currentDirectory.remove();
-                                break;
-                            case 'editFile':
-                                // const textarea = editDialog.querySelector('textarea');
-                                const textarea2 = this.html.editDialog.querySelector('.textarea');
-
-                                if (response.error) {
-                                    this.html.errorDialog.querySelector('p').textContent = response.error;
-                                    return this.html.errorDialog.showModal();
-                                }
-
-                                editor(textarea2, response.result);
-                                // textarea.value = response.result;
                                 break;
                             case 'writeFile':
                                 if (response.error) {
