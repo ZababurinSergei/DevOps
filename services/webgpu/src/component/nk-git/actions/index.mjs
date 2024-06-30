@@ -58,58 +58,85 @@ export const actions = (self) => {
                             let html = undefined
                             let path = `${self.config.gitDir}/docs/index.html`
 
-                            try {
-                                html = new TextDecoder().decode(await opfs.readFile(path));
-                            } catch (e) {
-                                path = `${self.config.gitDir}/index.html`
-                                html = new TextDecoder().decode(await opfs.readFile(path));
-                            }
+                            const initialization = (html) => {
+                                const iframe = document.createElement('iframe');
 
-                            try {
-                                if(!html) {
-                                    let path = `${self.config.gitDir}/examples/src/index.html`
-                                    html = new TextDecoder().decode(await opfs.readFile(path));
-                                }
-                            } catch (e) {
-                                let path = `${self.config.gitDir}/examples/dist/index.html`
-                                html = new TextDecoder().decode(await opfs.readFile(path));
-                            }
+                                iframe.setAttribute('seamless', '');
+                                iframe.src = `${window.location.origin}${normalizeLocation}index.sw.html`;
+                                iframe.sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
+                                self.html.views.run.appendChild(iframe);
+                                self.html.control.button.run.classList.add('disabled');
+                                self.html.control.button.clear.classList.remove('disabled');
 
-                            if(!html) {
-                                html = await fetch('/fallback.html')
-                                html = await html.text()
-                            }
+                                iframe.addEventListener('load', function(e) {
+                                    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                                        registrations.forEach(item => {
+                                            navigator.serviceWorker.addEventListener('message', (event) => {
+                                                console.log('================================== MESSAGE FROM SERVICE WORKER  GIT ====================================', event.data.type)
+                                                if (event.data.type === 'SW_CLIENT') {
+                                                    iframe.contentWindow.postMessage({
+                                                        html: html
+                                                    });
 
+                                                    resolve(true)
+                                                }
+                                            }, { once: true });
 
-                            const iframe = document.createElement('iframe');
-
-                            iframe.setAttribute('seamless', '');
-                            iframe.src = `${window.location.origin}${normalizeLocation}index.sw.html`;
-                            iframe.sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
-                            self.html.views.run.appendChild(iframe);
-                            self.html.control.button.run.classList.add('disabled');
-                            self.html.control.button.clear.classList.remove('disabled');
-
-                            iframe.addEventListener('load', function(e) {
-                                navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                                    registrations.forEach(item => {
-                                        navigator.serviceWorker.addEventListener('message', (event) => {
-                                            console.log('================================== MESSAGE FROM SERVICE WORKER  GIT ====================================', event.data.type)
-                                            if (event.data.type === 'SW_CLIENT') {
-                                                iframe.contentWindow.postMessage({
-                                                    html: html
-                                                });
-
-                                                resolve(true)
-                                            }
-                                        }, { once: true });
-
-                                        item.active.postMessage({
-                                            type:'get-client-id',
+                                            item.active.postMessage({
+                                                type:'get-client-id',
+                                            })
                                         })
-                                    })
+                                    });
                                 });
-                            });
+                            }
+                            // debugger
+                            // try {
+                                opfs.readFile(path)
+                                    .then(data => {
+                                        html = new TextDecoder().decode(data);
+                                        initialization(html)
+                                    })
+                                    .catch(e => {
+                                        return opfs.readFile(`${self.config.gitDir}/index.html`)
+                                    })
+                                    .then(data => {
+                                        html = new TextDecoder().decode(data);
+                                        initialization(html)
+                                    })
+                                    .catch(e => {
+                                        return opfs.readFile(`${self.config.gitDir}/examples/src/index.html`)
+                                    })
+                                    .then(data => {
+                                        html = new TextDecoder().decode(data);
+                                        initialization(html)
+                                    })
+                                    .catch(e => {
+                                        return opfs.readFile( `${self.config.gitDir}/examples/dist/index.html`)
+                                    })
+                                    .then(data => {
+                                        html = new TextDecoder().decode(data);
+                                        initialization(html)
+                                    }).catch(async e => {
+                                        let html = {}
+                                        html = await fetch('/fallback.html')
+                                        html = await html.text()
+                                        initialization(html)
+                                    })
+                            // } catch (e) {
+                            //     path = `${self.config.gitDir}/index.html`
+                            //     html = new TextDecoder().decode(await opfs.readFile(path));
+                            // }
+
+                            // debugger
+                            // try {
+                            //     if(!html) {
+                            //         let path = `${self.config.gitDir}/examples/src/index.html`
+                            //         html = new TextDecoder().decode(await opfs.readFile(path));
+                            //     }
+                            // } catch (e) {
+                            //     let path = `${self.config.gitDir}/examples/dist/index.html`
+                            //     html = new TextDecoder().decode(await opfs.readFile(path));
+                            // }
                         }
                     };
                 } catch (e) {
