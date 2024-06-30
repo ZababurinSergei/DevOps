@@ -1,9 +1,9 @@
 const isWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
 
 let accessHandle = null
-let windowClientId = ''
-let iframeClientId = ''
-let white = ['http://localhost:4019', 'https://zababurinsergei.github.io', '/instance/_sandbox/instance/']
+let windowClientId = new Set()
+let iframeClientId = new Set()
+let white = ['http://localhost:4020', 'http://localhost:4019', 'https://zababurinsergei.github.io', '/instance/_sandbox/instance/']
 
 function getClientList() {
     return self.clients.claim().then(() =>
@@ -14,7 +14,7 @@ function getClientList() {
 }
 
 self.addEventListener("message", async (event) => {
-    console.log('sssssssssss MESSAGE sssssssssss', event.data)
+    console.log('sssssssssss MESSAGE sssssssssss',event.data.type,  event.data)
 
     if (event.data.type === "service") {
         const opfsRoot = await navigator.storage.getDirectory();
@@ -32,9 +32,13 @@ self.addEventListener("message", async (event) => {
         self.clients.matchAll().then(function (clients) {
             clients.forEach(function (client) {
                 if (client.frameType === "top-level") {
-                    windowClientId = client.id
+                    windowClientId.add(client.id)
+                    client.postMessage({
+                        type: 'SW_CLIENT',
+                        message: true
+                    })
                 } else if (client.frameType === "nested") {
-                    iframeClientId = client.id
+                    iframeClientId.add(client.id)
                 }
             });
         });
@@ -131,7 +135,30 @@ const getHeaders = (destination, path) => {
         statusText: 'OK'
     };
 
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!----------------------------- destination ---------------------!!!!!!!!!!!!!!!!!!!!!!!!!!', destination)
     switch (destination) {
+        case 'media':
+            options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
+                'Content-Type': "audio/mpeg"
+            });
+            break
+        case 'audio':
+            options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
+                'Content-Type': "audio/mpeg"
+            });
+            break;
+        case 'worker':
+        case 'audioworklet':
+            options.headers = new Headers({
+                "Cross-Origin-Embedder-Policy": "require-corp",
+                "Cross-Origin-Opener-Policy": "same-origin",
+                'Content-Type': 'application/javascript; charset=UTF-8'
+            });
+            break;
         case 'style':
             options.headers = new Headers({
                 "Cross-Origin-Embedder-Policy": "require-corp",
@@ -182,11 +209,19 @@ const getHeaders = (destination, path) => {
             });
             break;
         default:
-            options.headers = new Headers({
-                "Cross-Origin-Embedder-Policy": "require-corp",
-                "Cross-Origin-Opener-Policy": "same-origin",
-                'Content-Type': 'text/html; charset=UTF-8'
-            });
+            if (path.includes('.wasm')) {
+                options.headers = new Headers({
+                    "Cross-Origin-Embedder-Policy": "require-corp",
+                    "Cross-Origin-Opener-Policy": "same-origin",
+                    'Content-Type': 'application/wasm'
+                });
+            } else {
+                options.headers = new Headers({
+                    "Cross-Origin-Embedder-Policy": "require-corp",
+                    "Cross-Origin-Opener-Policy": "same-origin",
+                    'Content-Type': 'text/html; charset=UTF-8'
+                });
+            }
             break;
     }
 
@@ -202,39 +237,73 @@ self.addEventListener('fetch', event => {
 
     let isSw = false
 
-    if (event.clientId === iframeClientId) {
+    if (iframeClientId.has(event.clientId)) {
         if (event.clientId.length !== 0) {
             isSw = true
         }
     }
 
-    if (event.clientId === windowClientId) {
+    if (windowClientId.has(event.clientId)) {
         isSw = false
     }
 
+    console.log('dddddddddddddddddddddddddddddddddddddddddddddddd',  {
+        isSw: isSw,
+        destination: destination,
+        windowClientId: windowClientId,
+        iframeClientId: iframeClientId,
+        clientId: event.clientId,
+        pathname: url.pathname
+    })
+
     if (isSw) {
         const isOrigin = white.includes(url.origin)
-
-        console.log('---------------------------------------------',isOrigin,  url.pathname)
-
-        if (!url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
+        if (!url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs') && url.pathname !=='/false') {
             event.respondWith(readFile('config')
                 .then(async function (servicePath) {
                     const rootOpfs = textDecoder.decode(servicePath)
                     const isScope = url.pathname.includes(scope)
+                    const isAudio = url.pathname.includes('.mp3')
 
-                    let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
+                    if(isAudio) {
+                        return fetch(event.request)
+                            .then(function (response) {
+                                const newHeaders = new Headers(response.headers);
+                                newHeaders.set("Content-Type", "audio/mpeg");
 
-                    if (isScope) {
-                        path = `${rootOpfs}/${url.pathname.replace(scope, '')}`
+                                const moddedResponse = new Response(response.body, {
+                                    status: response.status,
+                                    statusText: response.statusText,
+                                    headers: newHeaders,
+                                });
+
+                                return moddedResponse;
+                            })
+                            .catch(function (e) {
+                                console.error(e);
+                            })
+                    } else {
+                        const isTemplate = rootOpfs.includes('example2')
+
+                        let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
+
+                        if(isTemplate) {
+                            path = `${rootOpfs}/examples/dist/${url.pathname}`
+                        }
+
+                        if (isScope) {
+                            path = isTemplate
+                                ? `${rootOpfs}/examples/dist/${url.pathname.replace(scope, '')}`
+                                :`${rootOpfs}/${url.pathname.replace(scope, '')}`
+                        }
+
+                        path = path.replaceAll("%20", ' ')
+
+                        console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
+                        const options = getHeaders(destination, path)
+
+                        return new Response(await readFile(path), options)
                     }
-
-                    path = path.replaceAll("%20", ' ')
-
-                    const options = getHeaders(destination, path)
-
-                    return new Response(await readFile(path), options)
-
                 })
                 .catch(function (e) {
                     console.error(e);

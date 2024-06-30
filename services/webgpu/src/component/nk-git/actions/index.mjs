@@ -60,6 +60,13 @@ export const actions = (self) => {
                             try {
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             } catch (e) {
+
+                            }
+
+                            try {
+                                let path = `${self.config.gitDir}/examples/dist/index.html`
+                                html = new TextDecoder().decode(await opfs.readFile(path));
+                            } catch (e) {
                                 path = `${self.config.gitDir}/index.html`
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             }
@@ -68,20 +75,29 @@ export const actions = (self) => {
 
                             iframe.setAttribute('seamless', '');
                             iframe.src = `${window.location.origin}${normalizeLocation}index.sw.html`;
+                            iframe.sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
                             self.html.views.run.appendChild(iframe);
                             self.html.control.button.run.classList.add('disabled');
                             self.html.control.button.clear.classList.remove('disabled');
 
                             iframe.addEventListener('load', function(e) {
                                 navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                                    registrations[0].active.postMessage({
-                                        type:'get-client-id',
-                                    })
+                                    registrations.forEach(item => {
+                                        navigator.serviceWorker.addEventListener('message', (event) => {
+                                            console.log('================================== MESSAGE FROM SERVICE WORKER  GIT ====================================', event.data.type)
+                                            if (event.data.type === 'SW_CLIENT') {
+                                                iframe.contentWindow.postMessage({
+                                                    html: html
+                                                });
 
-                                    iframe.contentWindow.postMessage({
-                                        html: html
-                                    });
-                                    resolve(true)
+                                                resolve(true)
+                                            }
+                                        }, { once: true });
+
+                                        item.active.postMessage({
+                                            type:'get-client-id',
+                                        })
+                                    })
                                 });
                             });
                         }
@@ -117,8 +133,6 @@ export const actions = (self) => {
                 if (self.html.control.button.clear.classList.contains('disabled')) {
                     return;
                 }
-
-                // history.pushState({}, '', '/');
 
                 self.html.views.run.innerHTML = '';
                 self.html.control.button.clear.classList.add('disabled');

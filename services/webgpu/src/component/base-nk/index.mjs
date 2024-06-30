@@ -252,12 +252,6 @@ const BaseClass = class extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        // console.log(`☢ ---------------------------${this.tagName} Attribute ${name} has changed.`, {
-        //     name: name,
-        //     oldValue: oldValue,
-        //     newValue: newValue
-        // });
-
         if ('attribute' in this) {
             this?.attribute({
                 name: name,
