@@ -9,6 +9,7 @@ let eventMessages = {};
 const BaseClass = class extends HTMLElement {
     _isOnload = false;
     controller = {};
+    _isBroadcastChannel = false
     component = (name = 'undefined', uuid = undefined) => (uuid !== undefined ? store[name][uuid] : store[name]);
 
     _broadcastChannel = [{
@@ -24,9 +25,7 @@ const BaseClass = class extends HTMLElement {
         }
         this._broadcastChannel[0].self.addEventListener('message', this._broadcastChannel[0].value.broadcastChannel);
         this._broadcastChannel[0].self.addEventListener('messageerror', this._broadcastChannel[0].value.messageerror);
-        this._broadcastChannel[0].self.postMessage({
-            name: this.tagName
-        });
+        this._isBroadcastChannel = true
     }
 
     get broadcastChannel() {
@@ -234,7 +233,10 @@ const BaseClass = class extends HTMLElement {
                         self: self
                     });
 
-
+                    this._broadcastChannel[0].self.postMessage({
+                        isBroadcastChannel: this._isBroadcastChannel,
+                        name: this.tagName
+                    });
                 })
                 .catch(e => console.error('error', e));
         }

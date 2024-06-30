@@ -423,8 +423,6 @@ Object.defineProperties(component.prototype, {
 
                                 if(event.data?.data?.phase === 'end') {
                                     this.task = {
-                                        id: this.tagName.toLowerCase(),
-                                        uuid: this.dataset.uuid,
                                         component: 'nk-git',
                                         type: 'self',
                                         action: 'default',
@@ -540,16 +538,6 @@ Object.defineProperties(component.prototype, {
                 }
             };
 
-            const dirs = await this.readdir(`${this.config.root}/${this.config.git}`);
-
-            let result = []
-            for(let user of dirs) {
-                const temp = await this.readdir(`${this.config.root}/${this.config.git}/${user}`);
-                temp.forEach(item => {
-                    result.push(`${this.config.git}/${user}/${item}`)
-                })
-            }
-
             const url = this.config.gitDir
 
             console.log('this.config', url)
@@ -561,6 +549,16 @@ Object.defineProperties(component.prototype, {
                     })
                 })
             });
+
+            const dirs = await this.readdir(`${this.config.root}/${this.config.git}`);
+
+            let result = []
+            for(let user of dirs) {
+                const temp = await this.readdir(`${this.config.root}/${this.config.git}/${user}`);
+                temp.forEach(item => {
+                    result.push(`${this.config.git}/${user}/${item}`)
+                })
+            }
 
             this.task = {
                 component: 'fer-select',
