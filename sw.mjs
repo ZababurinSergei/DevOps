@@ -246,10 +246,12 @@ self.addEventListener('fetch', event => {
     if (windowClientId.has(event.clientId)) {
         isSw = false
     }
-    console.log('00000000000000000000000000000000000000000000000000000000000000000000000000000', url.hostname === 'localhost')
+
+    const isExclude = url.pathname ==='/false' || url.pathname ===`${scope}false`
     if (isSw) {
-        const isOrigin = white.includes(url.origin)
-        if (!url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs') && url.pathname !=='/false') {
+        const isOrigin = white.includes(url.origin) || url.hostname === 'localhost'
+        // console.log('sssssssssssssssssssssssssssssssssssss', scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
+        if (!isExclude && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             event.respondWith(readFile('config')
                 .then(async function (servicePath) {
                     const rootOpfs = textDecoder.decode(servicePath)
@@ -290,7 +292,7 @@ self.addEventListener('fetch', event => {
 
                         path = path.replaceAll("%20", ' ')
 
-                        console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
+                        // console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
                         const options = getHeaders(destination, path)
 
                         return new Response(await readFile(path), options)
@@ -300,30 +302,32 @@ self.addEventListener('fetch', event => {
                     console.error(e);
                 })
             );
-        } else {
-            console.log('00000000000000000000000000000000 1 00000000000000000000000000000000000000000000000000', url.pathname)
         }
     } else {
 
-        console.log('00000000000000000000000000000000 2 00000000000000000000000000000000000000000000000000', url.pathname)
-        event.respondWith(
-            fetch(event.request)
-                .then(function (response) {
-                    const newHeaders = new Headers(response.headers);
-                    newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
-                    newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
+        if(!isExclude) {
+            // console.log('00000000000000000000000000000000 2 00000000000000000000000000000000000000000000000000', url.pathname)
+            event.respondWith(
+                fetch(event.request)
+                    .then(function (response) {
+                        const newHeaders = new Headers(response.headers);
+                        newHeaders.set("Cross-Origin-Embedder-Policy", "require-corp");
+                        newHeaders.set("Cross-Origin-Opener-Policy", "same-origin");
 
-                    const moddedResponse = new Response(response.body, {
-                        status: response.status,
-                        statusText: response.statusText,
-                        headers: newHeaders,
-                    });
+                        const moddedResponse = new Response(response.body, {
+                            status: response.status,
+                            statusText: response.statusText,
+                            headers: newHeaders,
+                        });
 
-                    return moddedResponse;
-                })
-                .catch(function (e) {
-                    console.error(e);
-                })
-        );
+                        return moddedResponse;
+                    })
+                    .catch(function (e) {
+                        console.error(e);
+                    })
+            );
+        } else {
+            return new Response({})
+        }
     }
 });

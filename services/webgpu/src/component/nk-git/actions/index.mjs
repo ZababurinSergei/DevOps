@@ -64,8 +64,10 @@ export const actions = (self) => {
                             }
 
                             try {
-                                let path = `${self.config.gitDir}/examples/dist/index.html`
-                                html = new TextDecoder().decode(await opfs.readFile(path));
+                                if(!html) {
+                                    let path = `${self.config.gitDir}/examples/dist/index.html`
+                                    html = new TextDecoder().decode(await opfs.readFile(path));
+                                }
                             } catch (e) {
                                 path = `${self.config.gitDir}/index.html`
                                 html = new TextDecoder().decode(await opfs.readFile(path));
