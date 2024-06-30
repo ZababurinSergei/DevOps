@@ -323,7 +323,6 @@
         let isController = false
 
         navigator.serviceWorker.addEventListener('message', (event) => {
-            console.log('================================== MESSAGE FROM SERVICE WORKER ====================================',isController, event.data)
             if (!isController && event.data.type === 'SW_ACTIVATED') {
                 window.location.reload();
             }

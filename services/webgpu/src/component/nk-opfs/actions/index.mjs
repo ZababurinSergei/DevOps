@@ -3,6 +3,15 @@ export const actions = (self) => {
         let font = undefined
 
         resolve({
+            message: async (event) => {
+                if (event.data.type === 'SW_REFRESH_TREE') {
+
+                    console.log('############## REFRESH #######################')
+                    self._worker.postMessage({
+                        message: 'refresh'
+                    })
+                }
+            },
             broadcastChannel: async (event) => {
                 self.external
             },

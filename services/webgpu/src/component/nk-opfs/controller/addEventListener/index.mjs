@@ -2,6 +2,7 @@ export default async (self, actions) => {
     return {
         init: async () => {
             await self.init()
+            navigator.serviceWorker.addEventListener('message', actions.message);
 
             self.broadcastChannel = {
                 await: ['nk-git', 'fer-select'],
@@ -11,6 +12,8 @@ export default async (self, actions) => {
 
             self.external;
         },
-        terminate: () => { }
+        terminate: () => {
+            navigator.serviceWorker.removeEventListener('message', actions.message);
+        }
     };
 }

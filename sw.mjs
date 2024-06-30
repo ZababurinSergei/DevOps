@@ -22,6 +22,15 @@ self.addEventListener("message", async (event) => {
         const writable = await fileHandle.createWritable();
         await writable.write(event.data.message);
         await writable.close();
+
+        self.clients.matchAll().then(function (clients) {
+            clients.forEach(function (client) {
+                client.postMessage({
+                    type: 'SW_REFRESH_TREE',
+                    message: true
+                })
+            });
+        });
     }
 
     if (event.data.type === "skipWaiting") {
