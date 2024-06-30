@@ -29,7 +29,6 @@ export const nkGit =function(self, payload) {
         };
 
         const dir = this.config.gitDir
-        console.log('ssssssssssssssssssssssssssssssssss',this.config)
 
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             registrations.forEach(service => {
