@@ -36,7 +36,7 @@ async function getHandleFromPath(path = '') {
         if (part === '..') {
             currentHandle = await currentHandle.getParent();
         } else {
-            currentHandle = await currentHandle.getDirectoryHandle(part, { create: true });
+            currentHandle = await currentHandle.getDirectoryHandle(part, {create: true});
         }
     }
 
@@ -54,22 +54,34 @@ const getDirectoryEntriesRecursive = async (
     for await (const handle of directoryIterator) {
         const nestedPath = `${relativePath}/${handle.name}`;
         if (handle.kind === 'file') {
-            fileHandles.push({ handle, nestedPath });
+            fileHandles.push({handle, nestedPath});
             directoryEntryPromises.push(
                 handle.getFile().then(async (file) => {
                     // Try to decode the SAH-pool filename only if the file is in the .opaque directory
                     const sahPoolName =
                         directoryHandle.name === '.opaque'
-                            ? await decodeSAHPoolFilename(file).catch(() => {})
+                            ? await decodeSAHPoolFilename(file).catch(() => {
+                            })
                             : undefined;
                     const displayName = sahPoolName
                         ? `SAH-pool VFS entry: ${sahPoolName} (OPFS name: ${handle.name})`
                         : handle.name;
+
+
+                    const isUndefinedType = file.type.length === 0
+
+                    let type = file.type
+                    if (isUndefinedType) {
+                        if(displayName === 'config') {
+                            type = 'text/plain'
+                        }
+                    }
+
                     return {
                         name: displayName,
                         kind: handle.kind,
                         size: file.size,
-                        type: file.type,
+                        type: type,
                         lastModified: file.lastModified,
                         relativePath: nestedPath,
                         isSAHPool: !!sahPoolName,
@@ -80,7 +92,7 @@ const getDirectoryEntriesRecursive = async (
                 }),
             );
         } else if (handle.kind === 'directory') {
-            directoryHandles.push({ handle, nestedPath })
+            directoryHandles.push({handle, nestedPath})
             directoryEntryPromises.push(
                 (async () => {
                     return {
@@ -165,7 +177,8 @@ const downloadDirectoryEntriesRecursive = async (
             try {
                 const sahPoolName =
                     directoryHandle.name === '.opaque'
-                        ? await decodeSAHPoolFilename(file).catch(() => {})
+                        ? await decodeSAHPoolFilename(file).catch(() => {
+                        })
                         : undefined;
                 const displayName = sahPoolName
                     ? `SAH-pool VFS entry: ${sahPoolName} (OPFS name: ${handle.name})`
@@ -212,14 +225,14 @@ self.onmessage = async (event) => {
     let request = {}
     request.message = event.data.detail?.message || event.data.message || event.data?.message?.value
     request.data = event.data.detail?.data || event.data.data
-    request.content =  event.data.detail?.content || event.data.content || event.data?.content?.value
+    request.content = event.data.detail?.content || event.data.content || event.data?.content?.value
     request.id = event.data.detail?.id || event.data.id
 
     if (request.message === 'refresh') {
         try {
             await refreshTree(request)
         } catch (error) {
-            sendResponse({ message: 'refresh', data: {phase: 'opfs:refresh'}, error: error.message , status: false });
+            sendResponse({message: 'refresh', data: {phase: 'opfs:refresh'}, error: error.message, status: false});
         }
     } else if (request.message === 'init') {
 
@@ -243,10 +256,10 @@ self.onmessage = async (event) => {
         const fileHandle = getFileHandle(request.data).handle;
         try {
             const contents = await (await fileHandle.getFile()).text();
-            sendResponse({ status: true, message: 'editFile', result: contents });
+            sendResponse({status: true, message: 'editFile', result: contents});
         } catch (error) {
             console.error(error.name, error.message);
-            sendResponse({ status: false, message: 'editFile', error: error.message });
+            sendResponse({status: false, message: 'editFile', error: error.message});
         }
     } else if (request.message === 'writeFile') {
         const fileHandle = getFileHandle(request.data).handle;
@@ -254,10 +267,10 @@ self.onmessage = async (event) => {
             const writable = await fileHandle.createWritable();
             await writable.write(request.content);
             await writable.close();
-            sendResponse({ status: true, message: 'writeFile', result: 'ok' });
+            sendResponse({status: true, message: 'writeFile', result: 'ok'});
         } catch (error) {
             console.error(error.name, error.message);
-            sendResponse({ status: false, message: 'writeFile', error: error.message });
+            sendResponse({status: false, message: 'writeFile', error: error.message});
         }
     } else if (request.message === 'deleteFile') {
         const fileHandle = getFileHandle(request.data).handle;
@@ -267,7 +280,7 @@ self.onmessage = async (event) => {
             sendResponse({
                 status: true,
                 message: 'deleteFile',
-                result: 'ok' ,
+                result: 'ok',
                 id: request.id
             });
         } catch (error) {
@@ -281,16 +294,16 @@ self.onmessage = async (event) => {
     } else if (request.message === 'deleteDirectory') {
         const directoryHandle = getDirectoryHandle(request.data).handle;
         try {
-            await directoryHandle.remove({ recursive: true });
+            await directoryHandle.remove({recursive: true});
             sendResponse({
                 status: true,
                 message: 'deleteDirectory',
-                result: 'ok' ,
+                result: 'ok',
                 id: request.id
             });
         } catch (error) {
             console.error(error.name, error.message);
-            sendResponse({ status: false, message: 'deleteDirectory', error: error.message });
+            sendResponse({status: false, message: 'deleteDirectory', error: error.message});
         }
     } else if (request.message === 'downloadAll') {
         try {
@@ -299,13 +312,13 @@ self.onmessage = async (event) => {
                 startIn: 'downloads',
             });
             await downloadDirectoryEntriesRecursive(root, '.', download);
-            sendResponse({ status: true, message: 'downloadAll', result: 'success' });
+            sendResponse({status: true, message: 'downloadAll', result: 'success'});
         } catch (error) {
             if (error.name !== 'AbortError') {
                 console.error(error.name, error.message);
-                sendResponse({ status: false, message: 'downloadAll', error: error.message });
+                sendResponse({status: false, message: 'downloadAll', error: error.message});
             } else {
-                sendResponse({ status: true, message: 'downloadAll', result: 'success' });
+                sendResponse({status: true, message: 'downloadAll', result: 'success'});
             }
         }
     }

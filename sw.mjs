@@ -14,7 +14,7 @@ function getClientList() {
 }
 
 self.addEventListener("message", async (event) => {
-    console.log('sssssssssss MESSAGE sssssssssss',event.data.type,  event.data)
+    console.log('====== MESSAGE ======',event.data.type,  event.data)
 
     if (event.data.type === "service") {
         const opfsRoot = await navigator.storage.getDirectory();
@@ -250,7 +250,7 @@ self.addEventListener('fetch', event => {
     const isOrigin = white.includes(url.origin) || url.hostname === 'localhost'
 
     if (isSw) {
-        console.log('-------------------------------------------- 1 -----------------------------------------------',isOrigin, url.hostname, url.pathname, url.origin)
+        // console.log('-------------------------------------------- 1 -----------------------------------------------',isOrigin, url.hostname, url.pathname, url.origin)
         if (isOrigin && !isExclude && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             event.respondWith(readFile('config')
                 .then(async function (servicePath) {
@@ -305,7 +305,7 @@ self.addEventListener('fetch', event => {
             );
         }
     } else {
-        console.log('-------------------------------------------- 2 -----------------------------------------------', isExclude)
+        // console.log('-------------------------------------------- 2 -----------------------------------------------', isExclude)
         if(!isExclude) {
             // console.log('00000000000000000000000000000000 2 00000000000000000000000000000000000000000000000000', url.pathname)
             event.respondWith(

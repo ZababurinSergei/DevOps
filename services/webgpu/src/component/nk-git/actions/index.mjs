@@ -56,7 +56,7 @@ export const actions = (self) => {
                             }
 
                             let html = undefined
-                            let path = `${self.config.gitDir}/docs/index.html`
+                            let path = `${self.config.gitDir}/index.html`
 
                             const initialization = (html) => {
                                 const iframe = document.createElement('iframe');
@@ -91,13 +91,13 @@ export const actions = (self) => {
                             }
 
                             opfs.readFile(path)
-                                .then(data => {
+                                .then(async data => {
                                     html = new TextDecoder().decode(data);
                                     initialization(html)
                                     return 'ok'
                                 })
                                 .catch(e => {
-                                    return opfs.readFile(`${self.config.gitDir}/index.html`)
+                                    return opfs.readFile(`${self.config.gitDir}/docs/index.html`)
                                 })
                                 .then(data => {
                                     if(data !== 'ok') {
@@ -132,6 +132,8 @@ export const actions = (self) => {
                                     html = {}
                                     html = await fetch('/fallback.html')
                                     html = await html.text()
+                                    initialization(html)
+                                    return 'ok'
                                 })
                                 .then(data => {
                                     if(data !== 'ok') {
