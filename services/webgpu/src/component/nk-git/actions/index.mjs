@@ -57,21 +57,29 @@ export const actions = (self) => {
 
                             let html = undefined
                             let path = `${self.config.gitDir}/docs/index.html`
+
                             try {
                                 html = new TextDecoder().decode(await opfs.readFile(path));
-                            } catch (e) {
-
-                            }
-
-                            try {
-                                if(!html) {
-                                    let path = `${self.config.gitDir}/examples/dist/index.html`
-                                    html = new TextDecoder().decode(await opfs.readFile(path));
-                                }
                             } catch (e) {
                                 path = `${self.config.gitDir}/index.html`
                                 html = new TextDecoder().decode(await opfs.readFile(path));
                             }
+
+                            try {
+                                if(!html) {
+                                    let path = `${self.config.gitDir}/examples/src/index.html`
+                                    html = new TextDecoder().decode(await opfs.readFile(path));
+                                }
+                            } catch (e) {
+                                let path = `${self.config.gitDir}/examples/dist/index.html`
+                                html = new TextDecoder().decode(await opfs.readFile(path));
+                            }
+
+                            if(!html) {
+                                html = await fetch('/fallback.html')
+                                html = await html.text()
+                            }
+
 
                             const iframe = document.createElement('iframe');
 

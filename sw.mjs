@@ -3,7 +3,7 @@ const isWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof Wor
 let accessHandle = null
 let windowClientId = new Set()
 let iframeClientId = new Set()
-let white = ['http://localhost:4020', 'http://localhost:4019', 'https://zababurinsergei.github.io', '/instance/_sandbox/instance/']
+let white = ['https://zababurinsergei.github.io']
 
 function getClientList() {
     return self.clients.claim().then(() =>
@@ -135,7 +135,6 @@ const getHeaders = (destination, path) => {
         statusText: 'OK'
     };
 
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!----------------------------- destination ---------------------!!!!!!!!!!!!!!!!!!!!!!!!!!', destination)
     switch (destination) {
         case 'media':
             options.headers = new Headers({
@@ -248,10 +247,11 @@ self.addEventListener('fetch', event => {
     }
 
     const isExclude = url.pathname ==='/false' || url.pathname ===`${scope}false`
+    const isOrigin = white.includes(url.origin) || url.hostname === 'localhost'
+
     if (isSw) {
-        const isOrigin = white.includes(url.origin) || url.hostname === 'localhost'
-        // console.log('sssssssssssssssssssssssssssssssssssss', scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
-        if (!isExclude && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
+        console.log('-------------------------------------------- 1 -----------------------------------------------',isOrigin, url.hostname, url.pathname, url.origin)
+        if (isOrigin && !isExclude && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             event.respondWith(readFile('config')
                 .then(async function (servicePath) {
                     const rootOpfs = textDecoder.decode(servicePath)
@@ -276,6 +276,7 @@ self.addEventListener('fetch', event => {
                                 console.error(e);
                             })
                     } else {
+                        // console.log('sssssssssssssssssssssssssssssssssssss',isOrigin,  scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
                         const isTemplate = rootOpfs.includes('example2')
 
                         let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
@@ -304,7 +305,7 @@ self.addEventListener('fetch', event => {
             );
         }
     } else {
-
+        console.log('-------------------------------------------- 2 -----------------------------------------------', isExclude)
         if(!isExclude) {
             // console.log('00000000000000000000000000000000 2 00000000000000000000000000000000000000000000000000', url.pathname)
             event.respondWith(
