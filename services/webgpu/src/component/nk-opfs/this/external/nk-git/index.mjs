@@ -30,7 +30,10 @@ export const nkGit =function(self, payload) {
 
         const dir = this.config.gitDir
 
+        console.log('########################## dir #####################################', dir)
+
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            console.log('###############################################################', registrations)
             registrations.forEach(service => {
                 service.active.postMessage({
                     type:'service',

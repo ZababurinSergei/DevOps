@@ -513,18 +513,6 @@ Object.defineProperties(component.prototype, {
                                         items: result
                                     }
                                 };
-
-                                const dir = this.config.gitDir
-
-                                navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                                    registrations.forEach(service => {
-                                        service.active.postMessage({
-                                            type:'service',
-                                            message: dir
-                                        })
-                                    })
-                                }).catch(e => console.error(e))
-
                                 break;
                             case 'writeFile':
                                 if (response.error) {
