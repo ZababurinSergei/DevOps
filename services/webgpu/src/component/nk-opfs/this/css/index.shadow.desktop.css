@@ -274,3 +274,13 @@ details:not(.root)[open] > summary::before {
 .cm-scroller {
     position: relative;!important;
 }
+
+.cm-editor.cm-focused, .cm-focused {
+    outline: none!important;
+    border: none!important;
+}
+
+.cm-scroller:focus-visible {
+    outline: none!important;
+    border: none!important;
+}
