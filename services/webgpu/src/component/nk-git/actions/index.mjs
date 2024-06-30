@@ -104,14 +104,14 @@ export const actions = (self) => {
                                         initialization(html)
                                     })
                                     .catch(e => {
-                                        return opfs.readFile(`${self.config.gitDir}/examples/src/index.html`)
+                                        return opfs.readFile( `${self.config.gitDir}/examples/dist/index.html`)
                                     })
                                     .then(data => {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
                                     })
                                     .catch(e => {
-                                        return opfs.readFile( `${self.config.gitDir}/examples/dist/index.html`)
+                                        return opfs.readFile(`${self.config.gitDir}/examples/src/index.html`)
                                     })
                                     .then(data => {
                                         html = new TextDecoder().decode(data);
@@ -122,21 +122,6 @@ export const actions = (self) => {
                                         html = await html.text()
                                         initialization(html)
                                     })
-                            // } catch (e) {
-                            //     path = `${self.config.gitDir}/index.html`
-                            //     html = new TextDecoder().decode(await opfs.readFile(path));
-                            // }
-
-                            // debugger
-                            // try {
-                            //     if(!html) {
-                            //         let path = `${self.config.gitDir}/examples/src/index.html`
-                            //         html = new TextDecoder().decode(await opfs.readFile(path));
-                            //     }
-                            // } catch (e) {
-                            //     let path = `${self.config.gitDir}/examples/dist/index.html`
-                            //     html = new TextDecoder().decode(await opfs.readFile(path));
-                            // }
                         }
                     };
                 } catch (e) {
