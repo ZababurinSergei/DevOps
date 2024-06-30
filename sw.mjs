@@ -105,13 +105,11 @@ async function readFile(fileName = '', destination = '') {
 
 // always install updated SW immediately
 self.addEventListener('install', async event => {
-    console.log('=============================== INSTALL SERVICE WORKER ================================')
     self.skipWaiting();
 });
 
 self.addEventListener('activate', async event => {
     const clients = await getClientList()
-    console.log('----------------------- SW ACTIVATE --------------------------------------', clients)
     clients.forEach(client => {
         if (client.frameType === 'top-level') {
             console.log('----------------------- SW ACTIVATE SEND --------------------------------------', client)
@@ -134,8 +132,6 @@ const getHeaders = (destination, path) => {
         status: 200,
         statusText: 'OK'
     };
-
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!----------------------------- destination ---------------------!!!!!!!!!!!!!!!!!!!!!!!!!!', destination)
     switch (destination) {
         case 'media':
             options.headers = new Headers({
@@ -247,15 +243,6 @@ self.addEventListener('fetch', event => {
         isSw = false
     }
 
-    console.log('dddddddddddddddddddddddddddddddddddddddddddddddd',  {
-        isSw: isSw,
-        destination: destination,
-        windowClientId: windowClientId,
-        iframeClientId: iframeClientId,
-        clientId: event.clientId,
-        pathname: url.pathname
-    })
-
     if (isSw) {
         const isOrigin = white.includes(url.origin)
         if (!url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs') && url.pathname !=='/false') {
@@ -299,7 +286,6 @@ self.addEventListener('fetch', event => {
 
                         path = path.replaceAll("%20", ' ')
 
-                        console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
                         const options = getHeaders(destination, path)
 
                         return new Response(await readFile(path), options)
