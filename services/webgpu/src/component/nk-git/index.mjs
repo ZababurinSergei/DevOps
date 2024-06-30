@@ -316,7 +316,7 @@ Object.defineProperties(component.prototype, {
                                         this.html.label.error.textContent = `${event.data.data.toString()} Проверьте включен ли сервер corse proxy`
                                     }
 
-                                    console.error('------------- AUTH ERROR-----------------------', event.data.data.toString())
+                                    alert(`AUTH ERROR: ${event.data.data.toString()}`)
                                 }
                                 break
                             default:
