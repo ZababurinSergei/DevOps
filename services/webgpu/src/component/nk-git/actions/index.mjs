@@ -56,7 +56,7 @@ export const actions = (self) => {
                             }
 
                             let html = undefined
-                            let path = `${self.config.gitDir}/index.html`
+                            let path = `${self.config.gitDir}/docs/index.html`
 
                             const initialization = (html) => {
                                 const iframe = document.createElement('iframe');
@@ -97,7 +97,7 @@ export const actions = (self) => {
                                     return 'ok'
                                 })
                                 .catch(e => {
-                                    return opfs.readFile(`${self.config.gitDir}/docs/index.html`)
+                                    return opfs.readFile(`${self.config.gitDir}/index.html`)
                                 })
                                 .then(data => {
                                     if(data !== 'ok') {
