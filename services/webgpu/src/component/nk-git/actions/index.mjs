@@ -2,7 +2,7 @@ export const gitConfig = (pathname) => {
     let config = pathname
     config = config.replace('https://', '')
     config = config.replace('http://', '')
-    config = config.startsWith('/') ?  config.trim().replace('/', ''): config.trim()
+    config = config.startsWith('/') ? config.trim().replace('/', '') : config.trim()
     config = config.endsWith('/') ? config.trim().slice(0, -1) : config.trim()
 
     const split = config.split('/')
@@ -49,7 +49,7 @@ export const actions = (self) => {
                         },
                         callback: async (opfs, data) => {
                             let normalizeLocation = window.location.pathname
-                            if(!normalizeLocation.endsWith('/')) {
+                            if (!normalizeLocation.endsWith('/')) {
                                 normalizeLocation = normalizeLocation.split('/')
                                 normalizeLocation.pop()
                                 normalizeLocation = `${normalizeLocation.join('/')}/`
@@ -63,13 +63,13 @@ export const actions = (self) => {
 
                                 iframe.setAttribute('seamless', '');
                                 iframe.src = `${window.location.origin}${normalizeLocation}index.sw.html`;
-                                iframe.sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
+                                iframe.sandbox = "allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
                                 self.html.views.run.appendChild(iframe);
                                 self.html.control.button.run.classList.add('disabled');
                                 self.html.control.button.clear.classList.remove('disabled');
 
-                                iframe.addEventListener('load', function(e) {
-                                    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                                iframe.addEventListener('load', function (e) {
+                                    navigator.serviceWorker.getRegistrations().then(function (registrations) {
                                         registrations.forEach(item => {
                                             navigator.serviceWorker.addEventListener('message', (event) => {
                                                 console.log('================================== MESSAGE FROM SERVICE WORKER  GIT ====================================', event.data.type)
@@ -80,55 +80,74 @@ export const actions = (self) => {
 
                                                     resolve(true)
                                                 }
-                                            }, { once: true });
+                                            }, {once: true});
 
                                             item.active.postMessage({
-                                                type:'get-client-id',
+                                                type: 'get-client-id',
                                             })
                                         })
                                     });
                                 });
                             }
-                            // debugger
-                            // try {
-                                opfs.readFile(path)
-                                    .then(data => {
+
+                            opfs.readFile(path)
+                                .then(data => {
+                                    html = new TextDecoder().decode(data);
+                                    initialization(html)
+                                    return 'ok'
+                                })
+                                .catch(e => {
+                                    return opfs.readFile(`${self.config.gitDir}/index.html`)
+                                })
+                                .then(data => {
+                                    if(data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
-                                    })
-                                    .catch(e => {
-                                        return opfs.readFile(`${self.config.gitDir}/index.html`)
-                                    })
-                                    .then(data => {
+                                    }
+
+                                    return 'ok'
+                                })
+                                .catch(e => {
+                                    return opfs.readFile(`${self.config.gitDir}/examples/dist/index.html`)
+                                })
+                                .then(data => {
+                                    if(data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
-                                    })
-                                    .catch(e => {
-                                        return opfs.readFile( `${self.config.gitDir}/examples/dist/index.html`)
-                                    })
-                                    .then(data => {
+                                    }
+
+                                    return 'ok'
+                                })
+                                .catch(e => {
+                                    return opfs.readFile(`${self.config.gitDir}/examples/src/index.html`)
+                                })
+                                .then(data => {
+                                    if(data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
-                                    })
-                                    .catch(e => {
-                                        return opfs.readFile(`${self.config.gitDir}/examples/src/index.html`)
-                                    })
-                                    .then(data => {
+                                    }
+
+                                    return 'ok'
+                                }).catch(async e => {
+                                    html = {}
+                                    html = await fetch('/fallback.html')
+                                    html = await html.text()
+                                })
+                                .then(data => {
+                                    if(data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
-                                    }).catch(async e => {
-                                        let html = {}
-                                        html = await fetch('/fallback.html')
-                                        html = await html.text()
-                                        initialization(html)
-                                    })
+                                    }
+
+                                    return 'ok'
+                                })
                         }
                     };
                 } catch (e) {
                     console.error('ERROR', e);
                 }
             },
-            mount: async function(event) {
+            mount: async function (event) {
                 if (self.html.control.button.mount.classList.contains('disabled')) {
                     return;
                 }
@@ -140,7 +159,7 @@ export const actions = (self) => {
                     type: 'main',
                     action: 'get.git.value',
                     callback: (data) => {
-                        if(data.status) {
+                        if (data.status) {
                             self.config = gitConfig(data.value)
                         }
 
@@ -151,7 +170,7 @@ export const actions = (self) => {
                     }
                 }
             },
-            clear: async function(event) {
+            clear: async function (event) {
                 if (self.html.control.button.clear.classList.contains('disabled')) {
                     return;
                 }
