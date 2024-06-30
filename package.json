@@ -1,0 +1,31 @@
+{
+  "name": "instance",
+  "version": "1.0.0",
+  "description": "DevOps",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZababurinSergei/DevOps.git"
+  },
+  "keywords": [
+    "DevOps"
+  ],
+  "author": "Забабурин Сергей",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ZababurinSergei/DevOps/issues"
+  },
+  "homepage": "https://github.com/ZababurinSergei/DevOps#readme",
+  "devDependencies": {
+    "esbuild": "0.21.5"
+  },
+  "dependencies": {
+    "esbuild-wasm": "0.21.5"
+  }
+}
