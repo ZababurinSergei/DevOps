@@ -6,6 +6,18 @@ const servicePath = new URL('../', import.meta.url);
 const store = {};
 let eventMessages = {};
 
+let config = {
+    root: '/git',
+    git: 'github.com',
+    user: 'ElenaSidneva',
+    service: 'yoga_studio',
+    gitUser: `/git/github.com/ElenaSidneva`,
+    gitDir: `/git/github.com/ElenaSidneva/yoga_studio`,
+    gitUrl: `https://github.com/ElenaSidneva/yoga_studio`,
+    oauth2format: 'github',
+    corsProxy: 'https://cors-pr6x.onrender.com',
+    branch: 'main'
+}
 const BaseClass = class extends HTMLElement {
     _isOnload = false;
     controller = {};
@@ -76,15 +88,13 @@ const BaseClass = class extends HTMLElement {
         }
     }
 
-    _config = {};
-
     get config() {
-        return this._config;
+        return config;
     }
 
     set config(value) {
         for (let key in value) {
-            this._config[key] = value[key];
+            config[key] = value[key];
         }
         return true;
     }
@@ -196,18 +206,7 @@ const BaseClass = class extends HTMLElement {
     constructor() {
         super();
         this.dataset.servicesPath = servicePath.pathname;
-        this.config = {
-            root: '/git',
-            git: 'github.com',
-            user: 'ElenaSidneva',
-            service: 'yoga_studio',
-            gitUser: `/git/github.com/ElenaSidneva`,
-            gitDir: `/git/github.com/ElenaSidneva/yoga_studio`,
-            gitUrl: `https://github.com/ElenaSidneva/yoga_studio`,
-            oauth2format: 'github',
-            corsProxy: 'https://cors-pr6x.onrender.com',
-            branch: 'main'
-        };
+        this.config = config;
 
         init(this).then(() => {
             this._isOnload = true;
@@ -271,7 +270,7 @@ const BaseClass = class extends HTMLElement {
 export const Component = (() => {
     return () => {
         const body = `return ${BaseClass}`;
-        const baseComponent = new Function('onMessage', 'eventMessages', 'store', 'uuidv', 'servicePath', 'init', 'onload', body);
-        return baseComponent(onMessage, eventMessages, store, uuidv, servicePath, init, onload, body);
+        const baseComponent = new Function('config','onMessage', 'eventMessages', 'store', 'uuidv', 'servicePath', 'init', 'onload', body);
+        return baseComponent(config, onMessage, eventMessages, store, uuidv, servicePath, init, onload, body);
     };
 })(new URL('./', import.meta.url));

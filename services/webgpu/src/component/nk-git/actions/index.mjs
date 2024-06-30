@@ -165,6 +165,8 @@ export const actions = (self) => {
                             self.config = gitConfig(data.value)
                         }
 
+                        console.log('------------- START  MOUNT -------------', self.config)
+
                         self._worker.postMessage({
                             gitDir: self.config.gitDir,
                             message: 'clear'
