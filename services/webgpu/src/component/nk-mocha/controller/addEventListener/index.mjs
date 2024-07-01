@@ -89,7 +89,7 @@ export default async (self, actions) => {
     // })
 
     return {
-        init: () => {
+        init: async () => {
 
         },
         terminate: () => {

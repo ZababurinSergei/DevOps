@@ -112,7 +112,6 @@ export default async (self, actions) => {
 
     return {
         init: () => {
-            self.init = {}
             document.addEventListener('free-queue', actions.freeQueue, { once: true })
             document.addEventListener('next-frame', actions.bus.frame)
             document.addEventListener('stop-frame', actions.bus.frame)
@@ -123,7 +122,6 @@ export default async (self, actions) => {
             // });
             worker.onmessage = null
             worker.terminate();
-            // document.removeEventListener('free-queue', actions.freeQueue)
             document.removeEventListener('next-frame', actions.bus.frame)
             document.removeEventListener('stop-frame', actions.bus.frame)
         }

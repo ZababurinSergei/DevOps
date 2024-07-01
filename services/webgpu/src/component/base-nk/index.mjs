@@ -218,11 +218,15 @@ const BaseClass = class extends HTMLElement {
         if (this.dataset?.servicesPath) {
             onload(this)
                 .then(async (self) => {
+                    self.dataset.uuid = uuidv();
+                    if('init' in self) {
+                        await self.init()
+                    }
+
                     const name = self.tagName.toLowerCase();
                     const { actions, controller } = await import(`${self.dataset.servicesPath}${name}/this/index.mjs`);
                     self.controller = await controller(self, await actions(self));
                     await self.controller.addEventListener.init();
-                    self.dataset.uuid = uuidv();
 
                     if (!store.hasOwnProperty(name)) {
                         store[name] = [];
@@ -230,7 +234,8 @@ const BaseClass = class extends HTMLElement {
 
                     store[name].push({
                         uuid: self.dataset.uuid,
-                        self: self
+                        self: self,
+                        dataset: self.dataset
                     });
 
                     this._broadcastChannel[0].self.postMessage({

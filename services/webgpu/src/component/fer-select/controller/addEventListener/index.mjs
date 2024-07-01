@@ -9,8 +9,6 @@ export default async (self, actions) => {
 
     return {
         init: () => {
-            self.init();
-
             self.html.button.addEventListener('click', actions.clickDropdownBtn);
             self.html.items.forEach(function(listItem) {
                 listItem.addEventListener('click', actions.clickDropdownItems);

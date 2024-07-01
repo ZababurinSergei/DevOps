@@ -37,10 +37,10 @@ input {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%;
     border-radius: 4px;
     box-sizing: border-box;
     justify-content: space-between;
+    background: var(--Input, #F5F7FA);
 }
 
 label {

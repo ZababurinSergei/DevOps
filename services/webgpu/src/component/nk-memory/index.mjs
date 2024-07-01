@@ -110,11 +110,8 @@ Object.defineProperties(component.prototype, {
         }
     },
     init: {
-        set(value) {
-            // this.sharedWorker.port.onmessage = (event) => {
-            //     console.log('--------- nk-memory Message received from worker ---------');
-            // };
-        }
+        value: function(value) { },
+        writable: false
     },
     open: {
         set(value) {

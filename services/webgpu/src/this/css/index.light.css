@@ -254,8 +254,6 @@ dialog {
     margin-bottom: 24px;
 }
 
-
-
 .container {
     display: flex;
     flex-direction: column;
@@ -375,7 +373,6 @@ canvas.emscripten {
 }
 
 .input {
-    width: 100%;
     background: var(--Input, #F5F7FA);
     height: 52px;
     overflow: hidden;
@@ -390,6 +387,7 @@ canvas.emscripten {
     padding: 14px 16px;
     box-sizing: border-box;
     border: none;
+    flex-grow: 1;
 }
 
 input:focus-visible {
@@ -415,10 +413,20 @@ input:focus-visible {
 
 .swagger-menu {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 16px;
 }
 
 #root {
     z-index: 5;
+}
+
+.settings__block_0 {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+button {
+    min-width: 9dvw;
 }

@@ -4,7 +4,6 @@ export default async (self, actions) => {
 
     return {
         init: async () => {
-            await self.init()
             list?.addEventListener('click', actions.click)
             input.addEventListener('input', actions.input)
 

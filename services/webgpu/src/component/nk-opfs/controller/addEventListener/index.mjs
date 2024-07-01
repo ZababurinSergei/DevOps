@@ -1,7 +1,6 @@
 export default async (self, actions) => {
     return {
         init: async () => {
-            await self.init()
             navigator.serviceWorker.addEventListener('message', actions.message);
 
             self.broadcastChannel = {

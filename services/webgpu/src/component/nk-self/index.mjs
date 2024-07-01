@@ -5,9 +5,8 @@ const component = Component();
 
 Object.defineProperties(component.prototype, {
     init: {
-        set(value) {
-
-        }
+        value: function(value) { },
+        writable: false
     }
 });
 

@@ -1,7 +1,7 @@
 import {Component} from '../index.mjs'
 import { mocha } from './this/index.mjs'
 
-const name = 'mss-settings'
+const name = 'nk-mocha'
 
 const component = Component()
 
