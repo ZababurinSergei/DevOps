@@ -130,7 +130,7 @@ export const actions = (self) => {
                                     return 'ok'
                                 }).catch(async e => {
                                     html = {}
-                                    html = await fetch('/fallback.html')
+                                    html = await fetch(`${window.location.origin}${normalizeLocation}fallback.html`)
                                     html = await html.text()
                                     initialization(html)
                                     return 'ok'
