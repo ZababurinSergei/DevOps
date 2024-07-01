@@ -28,8 +28,6 @@ export default async (self, actions) => {
                 broadcastChannel: actions.broadcastChannel,
                 messageerror: actions.messageerror
             }
-
-            self.external
         },
         terminate: () => {
             self.html.button.removeEventListener('click', actions.clickDropdownBtn);

@@ -162,6 +162,7 @@ const BaseClass = class extends HTMLElement {
             id: this.tagName.toLowerCase(),
             uuid: this.dataset.uuid
         }));
+
         this.fetch().catch(e => console.error(e));
     }
 
@@ -236,6 +237,11 @@ const BaseClass = class extends HTMLElement {
                         isBroadcastChannel: this._isBroadcastChannel,
                         name: this.tagName
                     });
+
+                    if(this._isBroadcastChannel) {
+                        this.external
+                    }
+
                 })
                 .catch(e => console.error('error', e));
         }
@@ -244,9 +250,9 @@ const BaseClass = class extends HTMLElement {
     disconnectedCallback() {
         this?.controller?.addEventListener?.terminate();
 
-        if (this._broadcastChannel.value) {
-            this._broadcastChannel.self.removeEventListener('message', this._broadcastChannel.value.broadcastChannel);
-            this._broadcastChannel.self.removeEventListener('messageerror', this._broadcastChannel.value.messageerror);
+        if (this._broadcastChannel[0].value) {
+            this._broadcastChannel[0].self.removeEventListener('message', this._broadcastChannel[0].value.broadcastChannel);
+            this._broadcastChannel[0].self.removeEventListener('messageerror', this._broadcastChannel[0].value.messageerror);
         }
 
         this._broadcastChannel.self.close();

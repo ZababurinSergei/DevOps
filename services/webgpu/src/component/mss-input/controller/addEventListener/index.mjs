@@ -13,8 +13,6 @@ export default async (self, actions) => {
                 broadcastChannel: actions.broadcastChannel,
                 messageerror: actions.messageerror
             }
-
-            self.external
         },
         terminate: () => {
             list?.removeEventListener('click', actions.click)
