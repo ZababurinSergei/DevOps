@@ -56,4 +56,5 @@ function isEmpty(val) {
     return false
 }
 
+export {isEmpty}
 export default isEmpty

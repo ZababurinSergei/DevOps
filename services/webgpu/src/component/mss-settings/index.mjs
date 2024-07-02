@@ -1,5 +1,5 @@
 import {Component} from '../index.mjs'
-import { mocha } from './this/index.mjs'
+// import { mocha } from './this/index.mjs'
 
 const name = 'mss-settings'
 
@@ -29,11 +29,10 @@ Object.defineProperties(component.prototype, {
     writable: true
   },
   init: {
-    value: function(value) {
-      const url = new URL('./this/tests/service.tests.mjs', import.meta.url)
-      console.log(url.pathname)
-
-      mocha(this, url.pathname, false).catch(e => {console.log('error devtool', e)})
+    value: async function(value) {
+      // const url = new URL('./this/tests/service.tests.mjs', import.meta.url)
+      // console.log(url.pathname)
+      // mocha(this, url.pathname, false).catch(e => {console.log('error devtool', e)})
     },
     writable: false
   }
