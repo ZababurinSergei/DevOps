@@ -346,11 +346,12 @@
                                             <button class="swagger-save"> Загрузить тесты</button>
                                             <button class="swagger-reset">Сбросить тесты</button>
                                         </div>
+                                        <slot name="mocha"></slot>
                                     </div>
+                                    <ul data-exclusion  id="mocha" slot="mocha"></ul>
                                 </template>
                             </nk-mocha>
                             <div id="swagger-ui"></div>
-                            <ul data-exclusion  id="mocha"></ul>
                         </div>
                     </template>
                 </mss-settings>

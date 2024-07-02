@@ -90,10 +90,12 @@ export default async (self, actions) => {
 
     return {
         init: async () => {
-
+            self.html.button.add.addEventListener('click', actions.button.add)
+            self.html.button.remove.addEventListener('click', actions.button.remove)
         },
         terminate: () => {
-
+            self.html.button.add.removeEventListener('click', actions.button.add)
+            self.html.button.remove.removeEventListener('click', actions.button.remove)
         }
     }
 }

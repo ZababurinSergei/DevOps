@@ -8,6 +8,10 @@ const component = Component()
 component.observedAttributes = ["open", "disabled"];
 
 Object.defineProperties(component.prototype, {
+    mocha: {
+        value: mocha,
+        writable: true
+    },
     expect: {
         value: expect,
         writable: false
@@ -24,12 +28,18 @@ Object.defineProperties(component.prototype, {
         value: isEmpty,
         writable: false
     },
+    html: {
+        value: null,
+        writable: true
+    },
     set: {
         value: function(url) {
             return new Promise((resolve, reject) => {
                 const script = document.createElement('script')
+                const meta = new URL(url, import.meta.url)
+                script.dataset.type ="test"
                 script.type = 'module'
-                script.src = `${url}`
+                script.src = `${meta.pathname}`
                 window.document.body.appendChild(script)
 
                 script.onload = () => {
@@ -50,6 +60,23 @@ Object.defineProperties(component.prototype, {
         },
         writable: false
     },
+    remove: {
+        value: function(url) {
+            const self = this
+            return new Promise(function (resolve, reject) {
+                const scripts = window.document.body.querySelectorAll('script[data-type="test"]')
+
+                if(scripts.length !== 0) {
+                    scripts.forEach(item => {
+                        item.remove()
+                    })
+                }
+
+                self.html.mocha.innerHTML = ''
+            })
+        },
+        writable: false
+    },
     open: {
         set(value) {
             console.log('----- value -----', value)
@@ -66,20 +93,23 @@ Object.defineProperties(component.prototype, {
             return this.hasAttribute('disabled');
         }
     },
-    mocha: {
-        value: undefined,
-        writable: true
-    },
     init: {
         value: async function (value) {
             try {
-                mocha.setup("bdd");
-                mocha.checkLeaks()
+                this.html = {
+                    mocha: this.querySelector('#mocha'),
+                    button: {
+                        add: this.shadowRoot.querySelector('.swagger-save'),
+                        remove: this.shadowRoot.querySelector('.swagger-reset')
+                    }
+                }
+                this.mocha.setup("bdd");
+                this.mocha.checkLeaks()
                 const url = new URL('./this/tests/service.tests.mjs', import.meta.url)
 
                 await this.set(url.pathname).then(response => {
                     if(response.status) {
-                        mocha.run((data) => {
+                        this.mocha.run((data) => {
 
                             // mocha.reset
                             console.log('--------------- TEST END ----------------', mocha, data)
