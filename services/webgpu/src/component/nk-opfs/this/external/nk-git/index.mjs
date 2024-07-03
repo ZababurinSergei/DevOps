@@ -1,13 +1,11 @@
 import { ferSelect } from '../index.mjs'
 
-export const nkGit =function(self, payload) {
+export const nkGit =function(component, payload) {
     return new Promise(async (resolve, reject) => {
         if(payload.data.phase === 'end') {
-            console.log(self.html)
-            debugger
-            self.html.progress.label.textContent = 'Данные готовы к использованию'
-            self.html.progress.indeterminate.classList.remove('visible')
-            self.html.control.button.run.classList.remove('disabled')
+            component.self.html.progress.label.textContent = 'Данные готовы к использованию'
+            component.self.html.progress.indeterminate.classList.remove('visible')
+            component.self.html.control.button.run.classList.remove('disabled')
         }
 
         const dirs = await this.readdir(`${this.config.root}/${this.config.git}`);
