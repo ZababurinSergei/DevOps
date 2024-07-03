@@ -1,14 +1,15 @@
-export const nkGit = function(self, data) {
+export const nkGit = function(component, data) {
     return new Promise((resolve, reject) => {
         const action = data.value.length === 0 ? 'add': 'remove'
-        self.html.control.button.run.classList[action]('disabled')
+
+        component.self.html.control.button.run.classList[action]('disabled')
 
         const temp = data.value.split('/')
 
-        self.config = {
-            gitDir: `${self.config.root}/${data.value}`,
+        component.self.config = {
+            gitDir: `${component.self.config.root}/${data.value}`,
             gitUrl: `https://${data.value}`,
-            gitUser: `${self.config.root}/${temp[0]}/${temp[1]}`,
+            gitUser: `${component.self.config.root}/${temp[0]}/${temp[1]}`,
             service: temp[2],
             user: temp[1]
         }
@@ -16,7 +17,7 @@ export const nkGit = function(self, data) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
             registrations[0].active.postMessage({
                 type:'service',
-                message: `${self.config.gitUser}/${self.config.service}`
+                message: `${component.self.config.gitUser}/${component.self.config.service}`
             })
             resolve(true)
         });

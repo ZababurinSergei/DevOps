@@ -31,13 +31,15 @@ const BaseClass = class extends HTMLElement {
     }];
 
     set broadcastChannel(value) {
-        this._broadcastChannel[0].value = value;
-        if (value.hasOwnProperty('await')) {
-            this._broadcastChannel[0].await = value.await;
+        if(!this._isBroadcastChannel) {
+            this._broadcastChannel[0].value = value;
+            if (value.hasOwnProperty('await')) {
+                this._broadcastChannel[0].await = value.await;
+            }
+            this._broadcastChannel[0].self.addEventListener('message', this._broadcastChannel[0].value.broadcastChannel);
+            this._broadcastChannel[0].self.addEventListener('messageerror', this._broadcastChannel[0].value.messageerror);
+            this._isBroadcastChannel = true
         }
-        this._broadcastChannel[0].self.addEventListener('message', this._broadcastChannel[0].value.broadcastChannel);
-        this._broadcastChannel[0].self.addEventListener('messageerror', this._broadcastChannel[0].value.messageerror);
-        this._isBroadcastChannel = true
     }
 
     get broadcastChannel() {
@@ -105,15 +107,36 @@ const BaseClass = class extends HTMLElement {
 
     fetch = async function() {
         this._task = this._task.filter(item => {
-            if (item.id === this.tagName.toLowerCase()) {
+            const isTagName = item.tagName === this.tagName.toLowerCase()
+            const components = this.store[`${item.component}`]
+            const isComponent =  !!components
+            let component = null
+            let isId = true
+            if(!item.id) {
+                isId = false
+                alert(`В запросе надо указать id что бы пониматьв каком компоненте делать изменения. Компонент ${item.component} из ${item.tagName} uuid: ${item.uuid}`)
+                return true
+            }
+
+            if(isComponent) {
+                component = (components.filter(data => item.id === data.id))[0]
+            }
+
+            if (isTagName && isId && isComponent) {
                 switch (item.type) {
                     case 'self':
-                        if (this[`_${item.component}`]) {
-                            const bindOnMessage = item.hasOwnProperty('callback') ? item.callback.bind(this) : onMessage.bind(this);
-                            bindOnMessage(this[`_${item.component}`], item);
-                            return false;
-                        }
+                        // if (this[`_${item.component}`]) {
+                            if (component) {
 
+                            // if(item.id) {
+                            // console.log('-------3----------------------------- >>>>>>>>>>>', this)
+                            // debugger
+                            const bindOnMessage = item.hasOwnProperty('callback') ? item.callback.bind(this) : onMessage.bind(this);
+                            // bindOnMessage(this[`_${item.component}`], item);
+                            bindOnMessage(component, item);
+                            return false;
+                            // }
+                        }
                         return true;
                         break;
                     case 'main':
@@ -159,7 +182,7 @@ const BaseClass = class extends HTMLElement {
 
     set task(value) {
         this._task.push(Object.assign(value, {
-            id: this.tagName.toLowerCase(),
+            tagName: this.tagName.toLowerCase(),
             uuid: this.dataset.uuid
         }));
 
@@ -170,7 +193,7 @@ const BaseClass = class extends HTMLElement {
         return {
             task: this._task,
             new: structuredClone({
-                id: this.tagName.toLowerCase(),
+                tagName: this.tagName.toLowerCase(),
                 uuid: this.dataset.uuid,
                 component: this._broadcastChannel[0].await,
                 type: ['self', 'main', 'worker'],
@@ -233,6 +256,7 @@ const BaseClass = class extends HTMLElement {
                     }
 
                     store[name].push({
+                        id: self.id,
                         uuid: self.dataset.uuid,
                         self: self,
                         dataset: self.dataset

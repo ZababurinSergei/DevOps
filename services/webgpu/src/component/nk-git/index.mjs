@@ -119,6 +119,7 @@ Object.defineProperties(component.prototype, {
                                 break
                             case 'opfs:refresh:tree':
                                 this.task = {
+                                    id: 'nk-opfs_0',
                                     component: 'nk-opfs',
                                     type: 'worker',
                                     action: 'refresh',
@@ -153,6 +154,7 @@ Object.defineProperties(component.prototype, {
                                 this.html.progress.indeterminate.classList.add('visible');
 
                                 this.task = {
+                                    id: 'nk-opfs_0',
                                     component: 'nk-opfs',
                                     type: 'worker',
                                     action: 'refresh',
@@ -379,6 +381,7 @@ Object.defineProperties(component.prototype, {
                  }
 
                  this.task = {
+                     id: 'nk-opfs_0',
                      component: 'nk-opfs',
                      type: 'worker',
                      action: 'refresh',

@@ -10,7 +10,6 @@ describe('Service', async function () {
         await delay(5000)
         nkMocha = window.document.body.querySelector('nk-mocha')
         nkMemory = window.document.body.querySelector('nk-memory')
-        console.log('################## 1 ##################', nkMocha)
     });
     describe('NK-GIT', async function () {
         it('Получить кнопки и лейблы для компонента', function () {

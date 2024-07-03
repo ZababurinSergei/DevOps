@@ -1,5 +1,5 @@
 import { Component } from '../index.mjs';
-import { nkGit, storeDataAndUpdateUI, idKey, editor } from './this/index.mjs';
+import { nkGit, ferSelect, storeDataAndUpdateUI, idKey, editor } from './this/index.mjs';
 
 const name = 'nk-opfs';
 const component = Component();
@@ -423,6 +423,7 @@ Object.defineProperties(component.prototype, {
 
                                 if(event.data?.data?.phase === 'end') {
                                     this.task = {
+                                        id: 'nk-git_0',
                                         component: 'nk-git',
                                         type: 'self',
                                         action: 'default',
@@ -502,12 +503,16 @@ Object.defineProperties(component.prototype, {
                                     })
                                 }
 
+                                console.log('--------------------- 1 -----------------------------')
+
                                 this.task = {
+                                    id: 'fer-select_0',
                                     component: 'fer-select',
-                                    type: 'main',
+                                    type: 'self',
                                     action: 'default',
                                     value: '',
                                     method: 'set.item',
+                                    callback: ferSelect,
                                     message: {
                                         phase: 'start',
                                         items: result
@@ -582,11 +587,13 @@ Object.defineProperties(component.prototype, {
             }
 
             this.task = {
+                id: 'fer-select_0',
                 component: 'fer-select',
-                type: 'main',
+                type: 'self',
                 action: 'default',
                 value: '',
                 method: 'set.item',
+                callback: ferSelect,
                 message: {
                     phase: 'start',
                     items: result

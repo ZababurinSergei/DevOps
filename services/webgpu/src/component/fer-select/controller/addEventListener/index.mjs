@@ -7,12 +7,17 @@ export default async (self, actions) => {
     let name = undefined;
     let icon = undefined;
 
+
     return {
-        init: () => {
-            self.html.button.addEventListener('click', actions.clickDropdownBtn);
-            self.html.items.forEach(function(listItem) {
+        init: async () => {
+            const items = self.html?.list.querySelectorAll('[class*="list-item"]')
+            items.forEach(function(listItem) {
+                console.log('----------------1 ---------------------', listItem)
                 listItem.addEventListener('click', actions.clickDropdownItems);
             });
+
+            self.html.button.addEventListener('click', actions.clickDropdownBtn);
+
             self.html.arrow?.addEventListener('click', actions.clickDropdownBtn);
 
             document.addEventListener('click', actions.click);
@@ -27,11 +32,14 @@ export default async (self, actions) => {
                 messageerror: actions.messageerror
             }
         },
-        terminate: () => {
-            self.html.button.removeEventListener('click', actions.clickDropdownBtn);
-            self.html.items.forEach(function(listItem) {
+        terminate: async () => {
+            const items = self.html?.list.querySelectorAll('[class*="list-item"]')
+            items.forEach(function(listItem) {
+                console.log('----------------1 ---------------------', listItem)
                 listItem.removeEventListener('click', actions.clickDropdownItems);
             });
+
+            self.html.button.removeEventListener('click', actions.clickDropdownBtn);
             self.arrow?.removeEventListener('click', actions.clickDropdownBtn);
 
             document.removeEventListener('click', actions.click);

@@ -37,6 +37,7 @@ export const actions = (self) => {
                     }
 
                     self.task = {
+                        id: 'nk-opfs_0',
                         component: 'nk-opfs',
                         type: 'self',
                         action: 'default',
@@ -157,6 +158,7 @@ export const actions = (self) => {
                 self.html.control.button.mount.classList.add('disabled');
 
                 self.task = {
+                    id: 'mss-input_0',
                     component: 'mss-input',
                     type: 'main',
                     action: 'get.git.value',

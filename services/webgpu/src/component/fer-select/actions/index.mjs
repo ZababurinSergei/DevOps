@@ -70,7 +70,8 @@ export const actions = (self) => {
                 arrow.classList.toggle('arrow_active');
             },
             clickDropdownItems: async (event) => {
-                self.html.items.forEach(function (el) {
+                const items = self.html?.list.querySelectorAll('[class*="list-item"]')
+                items.forEach(function (el) {
                     arrow.classList.remove('arrow_active');
                     el.classList.remove('list-item_active');
                 })
@@ -86,8 +87,8 @@ export const actions = (self) => {
                 arrow.classList.remove('arrow_active');
 
                 self.task = {
+                    id: 'nk-git_0',
                     component: 'nk-git',
-                    id: 'fer-select',
                     type: 'self',
                     action: 'button',
                     value: self.dataset.value,
@@ -99,9 +100,9 @@ export const actions = (self) => {
                     }
                 }
 
-                if(self.dataset.value.length !== 0) {
-                    console.log('dddddddddddddddddddddddddd',self.dataset.value, self.dataset.value.length)
-                }
+                // if(self.dataset.value.length !== 0) {
+                //     console.log('dddddddddddddddddddddddddd',self.dataset.value, self.dataset.value.length)
+                // }
 
                 self.html.button.textContent = self.dataset.value
                 // const rootNode = self.getRootNode().host
