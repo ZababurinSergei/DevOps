@@ -140,14 +140,10 @@ const BaseClass = class extends HTMLElement {
                         return true;
                         break;
                     case 'main':
-                        if ((this.store).hasOwnProperty(item.component)) {
-                            this.store[`${item.component}`].forEach(component => {
-                                component.self.onMessage(item);
-                            });
-
-                            return false;
+                        if (component) {
+                            component.self.onMessage(item);
+                            return false
                         }
-
                         return true;
                         break;
                     case 'worker':
