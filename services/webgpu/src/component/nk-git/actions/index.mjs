@@ -49,6 +49,7 @@ export const actions = (self) => {
                             phase: ''
                         },
                         callback: async (opfs, data) => {
+
                             let normalizeLocation = window.location.pathname
                             if (!normalizeLocation.endsWith('/')) {
                                 normalizeLocation = normalizeLocation.split('/')
@@ -91,14 +92,14 @@ export const actions = (self) => {
                                 });
                             }
 
-                            opfs.readFile(path)
+                            opfs.self.readFile(path)
                                 .then(async data => {
                                     html = new TextDecoder().decode(data);
                                     initialization(html)
                                     return 'ok'
                                 })
                                 .catch(e => {
-                                    return opfs.readFile(`${self.config.gitDir}/index.html`)
+                                    return opfs.self.readFile(`${self.config.gitDir}/index.html`)
                                 })
                                 .then(data => {
                                     if(data !== 'ok') {
@@ -109,7 +110,7 @@ export const actions = (self) => {
                                     return 'ok'
                                 })
                                 .catch(e => {
-                                    return opfs.readFile(`${self.config.gitDir}/examples/dist/index.html`)
+                                    return opfs.self.readFile(`${self.config.gitDir}/examples/dist/index.html`)
                                 })
                                 .then(data => {
                                     if(data !== 'ok') {
@@ -120,7 +121,7 @@ export const actions = (self) => {
                                     return 'ok'
                                 })
                                 .catch(e => {
-                                    return opfs.readFile(`${self.config.gitDir}/examples/src/index.html`)
+                                    return opfs.self.readFile(`${self.config.gitDir}/examples/src/index.html`)
                                 })
                                 .then(data => {
                                     if(data !== 'ok') {
