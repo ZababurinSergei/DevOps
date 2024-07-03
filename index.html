@@ -278,14 +278,41 @@
                 >
                     <template>
                         <div data-exclusion id="swagger">
-                            <div class="swagger-menu">
-                                <div class="settings__block_0">
-                                    <input class="input" id="describe" type="text"
-                                           placeholder="Введите название describe блока">
-                                    <button class="swagger-save">Сохранить тесты</button>
-                                    <button class="swagger-reset">Сбросить блоки it</button>
-                                </div>
-                            </div>
+                            <nk-swagger
+                                id="nk-swagger_0"
+                            >
+                                <template>
+                                    <div class="container">
+                                        <div class="swagger-menu">
+                                            <div class="slot-container">
+                                                <slot name="mss-input"></slot>
+                                            </div>
+                                            <button class="swagger-save">Сохранить тесты</button>
+                                            <button class="swagger-reset">Сбросить блоки it</button>
+                                        </div>
+                                        <div class="slot-container">
+                                            <slot name="swagger-ui"></slot>
+                                        </div>
+                                    </div>
+                                    <div data-exclusion slot="swagger-ui" id="swagger-ui"></div>
+                                    <mss-input
+                                            id="mss-input_2"
+                                            disabled
+                                            slot="mss-input"
+                                    >
+                                        <template>
+                                            <div class="container">
+                                                <input
+                                                       type="text"
+                                                       id="input"
+                                                       placeholder="Введите название describe блока"
+                                                       value=""
+                                                />
+                                            </div>
+                                        </template>
+                                    </mss-input>
+                                </template>
+                            </nk-swagger>
                             <nk-mocha>
                                 <template>
                                     <div id="tests" style="position: relative">
@@ -349,7 +376,6 @@
                                     <ul data-exclusion  id="mocha" slot="mocha"></ul>
                                 </template>
                             </nk-mocha>
-                            <div id="swagger-ui"></div>
                         </div>
                     </template>
                 </mss-settings>

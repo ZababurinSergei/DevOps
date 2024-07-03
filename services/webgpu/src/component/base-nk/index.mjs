@@ -1,8 +1,12 @@
-import { init, onload, v4 as uuidv } from './this/index.mjs';
+import { apiInit, SwaggerClient, init, onload, v4 as uuidv } from './this/index.mjs';
 import { onMessage } from './onMessage.mjs';
+// const swagger = apiInit()
+const url = new URL('./this/config/api.yaml', import.meta.url)
+const initializeSwagger = new SwaggerClient(url.pathname)
 
 const servicePath = new URL('../', import.meta.url);
 
+let swagger = null
 const store = {};
 let eventMessages = {};
 
@@ -30,6 +34,22 @@ const BaseClass = class extends HTMLElement {
         await: undefined
     }];
 
+    set ui(value) {
+        swagger.ui = value
+    }
+
+    get ui() {
+        return swagger.ui
+    }
+
+    set api(value) {
+        debugger
+        swagger = value
+    }
+
+    get api() {
+        return swagger
+    }
     set broadcastChannel(value) {
         if(!this._isBroadcastChannel) {
             this._broadcastChannel[0].value = value;
@@ -105,7 +125,7 @@ const BaseClass = class extends HTMLElement {
         return store;
     }
 
-    fetch = async function() {
+    execute = async function() {
         this._task = this._task.filter(item => {
             const isTagName = item.tagName === this.tagName.toLowerCase()
             const components = this.store[`${item.component}`]
@@ -182,7 +202,7 @@ const BaseClass = class extends HTMLElement {
             uuid: this.dataset.uuid
         }));
 
-        this.fetch().catch(e => console.error(e));
+        this.execute().catch(e => console.error(e));
     }
 
     get task() {
@@ -299,9 +319,13 @@ const BaseClass = class extends HTMLElement {
 };
 
 export const Component = (() => {
-    return () => {
+    return async () => {
+       if(!swagger) {
+           swagger = await initializeSwagger
+       }
+
         const body = `return ${BaseClass}`;
-        const baseComponent = new Function('config','onMessage', 'eventMessages', 'store', 'uuidv', 'servicePath', 'init', 'onload', body);
-        return baseComponent(config, onMessage, eventMessages, store, uuidv, servicePath, init, onload, body);
+        const baseComponent = new Function('swagger','config','onMessage', 'eventMessages', 'store', 'uuidv', 'servicePath', 'init', 'onload', body);
+        return baseComponent(swagger, config, onMessage, eventMessages, store, uuidv, servicePath, init, onload, body);
     };
 })(new URL('./', import.meta.url));

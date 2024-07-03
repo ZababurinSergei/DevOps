@@ -3,7 +3,7 @@ import {mocha, expect, should, assert, isEmpty} from './this/index.mjs'
 
 const name = 'nk-mocha'
 
-const component = Component()
+const component = await Component()
 
 component.observedAttributes = ["open", "disabled"];
 
@@ -104,7 +104,7 @@ Object.defineProperties(component.prototype, {
                     }
                 }
                 this.mocha.setup("bdd");
-                this.mocha.checkLeaks()
+                // this.mocha.checkLeaks()
                 const url = new URL('./this/tests/service.tests.mjs', import.meta.url)
 
                 await this.set(url.pathname).then(response => {

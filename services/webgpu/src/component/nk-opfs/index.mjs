@@ -2,7 +2,7 @@ import { Component } from '../index.mjs';
 import { nkGit, ferSelect, storeDataAndUpdateUI, idKey, editor } from './this/index.mjs';
 
 const name = 'nk-opfs';
-const component = Component();
+const component = await Component();
 
 const opfsWorkerUrl = new URL('./worker.js', import.meta.url);
 
@@ -309,7 +309,7 @@ Object.defineProperties(component.prototype, {
     'fer-select': {
         set(value) {
             this['_fer-select'] = value;
-            this.fetch();
+            this.execute().catch(e => {console.error(e)});
         },
         get() {
             return this['_fer-select'];
@@ -318,7 +318,7 @@ Object.defineProperties(component.prototype, {
     'nk-git': {
         set(value) {
             this['_nk-git'] = value;
-            this.fetch();
+            this.execute();
         },
         get() {
             return this['_nk-git'];

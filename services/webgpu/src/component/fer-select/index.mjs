@@ -3,7 +3,7 @@ import {nkGit} from './this/index.mjs'
 
 const name = 'fer-select'
 
-const component = Component()
+const component = await Component()
 
 component.observedAttributes = ["open", "disabled"];
 

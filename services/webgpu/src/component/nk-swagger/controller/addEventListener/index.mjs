@@ -1,48 +1,53 @@
-// import { store, loader } from '../../../../this/index.mjs';
-// import { swagger } from '/api/swagger-initializer.mjs'
-// import { mocha } from '../../this/index.mjs'
+import {store, loader} from '../../../../this/index.mjs';
+import {swagger} from '../../this/index.mjs'
 
 // let tests = Symbol.for("tests");
 // let api = Symbol.for("api");
 
 export default async (self, actions) => {
-    // await loader(`/api/swagger-ui-bundle.js`, '')
-    // await loader(`/api/swagger-ui-standalone-preset.js`, '')
+    const urlSwagger = new URL('../../this/mjs/api/swagger-ui-bundle.js', import.meta.url)
+    const urlSwaggerStandalone = new URL('../../this/mjs/api/swagger-ui-standalone-preset.js', import.meta.url)
+    const urlYaml = new URL('../../this/index.yaml', import.meta.url)
 
-//     window[api].ui = SwaggerUIBundle({
-//     url: '/mss.yaml',
-//     dom_id: '#swagger-ui',
-//     deepLinking: false,
-//     docExpansion: 'none',
-//     validatorUrl: 'http://localhost:8080',
-//     requestInterceptor: (req) => {
-//         const authorization = store.get('authorization')
-//         req.headers.Authorization = `Bearer ${authorization.token.access}`
-//         return req
-//     },
-//     api: swagger,
-//     presets: [
-//         SwaggerUIBundle.presets.apis,
-//         SwaggerUIStandalonePreset
-//     ],
-//     plugins: [
-//         SwaggerUIBundle.plugins.DownloadUrl
-//     ],
-//     layout: 'StandaloneLayout'
-// });
-// window[api].ui.initOAuth({
-//     clientId: 'your-client-id',
-//     clientSecret: 'your-client-secret-if-required',
-//     realm: 'your-realms',
-//     appName: 'your-app-name',
-//     scopeSeparator: ' ',
-//     scopes: 'openid profile email phone address',
-//     additionalQueryStringParams: {},
-//     useBasicAuthenticationWithAccessCodeGrant: false,
-//     usePkceWithAuthorizationCodeGrant: false
-// });
+    await loader(urlSwagger.pathname, '')
+    await loader(urlSwaggerStandalone.pathname, '')
 
-    // mocha(self, '/services/tests/src/tests/mss.document_kind.tests.mjs', false).catch(e => {console.log('error devtool', e)})
+    self.ui = SwaggerUIBundle({
+        url: urlYaml.pathname,
+        dom_id: '#swagger-ui',
+        deepLinking: false,
+        docExpansion: 'none',
+        validatorUrl: 'http://localhost:8080',
+        requestInterceptor: (req) => {
+            const authorization = store.get('authorization')
+            if (authorization) {
+                req.headers.Authorization = `Bearer ${authorization.token.access}`
+            }
+            return req
+        },
+        api: swagger,
+        presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset
+        ],
+        plugins: [
+            SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: 'StandaloneLayout'
+    });
+
+
+    (self.ui).initOAuth({
+        clientId: 'your-client-id',
+        clientSecret: 'your-client-secret-if-required',
+        realm: 'your-realms',
+        appName: 'your-app-name',
+        scopeSeparator: ' ',
+        scopes: 'openid profile email phone address',
+        additionalQueryStringParams: {},
+        useBasicAuthenticationWithAccessCodeGrant: false,
+        usePkceWithAuthorizationCodeGrant: false
+    });
 
 
     // const swaggerApi = self.querySelector('#describe')
@@ -90,12 +95,12 @@ export default async (self, actions) => {
 
     return {
         init: async () => {
-            self.html.button.add.addEventListener('click', actions.button.add)
-            self.html.button.remove.addEventListener('click', actions.button.remove)
+            // self.html.button.add.addEventListener('click', actions.button.add)
+            // self.html.button.remove.addEventListener('click', actions.button.remove)
         },
-        terminate: () => {
-            self.html.button.add.removeEventListener('click', actions.button.add)
-            self.html.button.remove.removeEventListener('click', actions.button.remove)
+        terminate: async () => {
+            // self.html.button.add.removeEventListener('click', actions.button.add)
+            // self.html.button.remove.removeEventListener('click', actions.button.remove)
         }
     }
 }

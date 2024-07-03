@@ -3,7 +3,7 @@ import { Component } from '../index.mjs';
 import { nkOpfs } from './this/index.mjs'
 
 const name = 'nk-git';
-const component = Component();
+const component = await Component();
 
 component.observedAttributes = ['open', 'disabled'];
 
@@ -86,9 +86,7 @@ Object.defineProperties(component.prototype, {
     'nk-opfs': {
         set(value) {
             this['_nk-opfs'] = value
-            this.fetch().catch(e => {
-                console.error(e)
-            })
+            this.execute().catch(e => {console.error(e)})
         },
         get() {
             return this['_nk-opfs'];

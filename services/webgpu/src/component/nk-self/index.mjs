@@ -1,7 +1,7 @@
 import { Component } from '../index.mjs';
 
 const name = 'nk-self';
-const component = Component();
+const component = await Component();
 
 Object.defineProperties(component.prototype, {
     init: {

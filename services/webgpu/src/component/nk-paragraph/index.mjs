@@ -1,7 +1,7 @@
 import { Component } from '../index.mjs'
 
 const name = 'nk-paragraph'
-const component = Component()
+const component = await Component()
 
 component.observedAttributes = ["open", "disabled"];
 

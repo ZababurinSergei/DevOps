@@ -1,7 +1,7 @@
 import {Component} from '../index.mjs'
 
 const name = 'nk-memory'
-const component = Component()
+const component = await Component()
 
 let isSharedWorker = false
 

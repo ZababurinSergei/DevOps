@@ -3,7 +3,7 @@ import {Component} from '../index.mjs'
 
 const name = 'mss-settings'
 
-const component = Component()
+const component = await Component()
 
 component.observedAttributes = ["open", "disabled"];
 

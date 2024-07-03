@@ -1,4 +1,5 @@
 import { Component } from './base-nk/index.mjs';
+import nkSwagger from './nk-swagger/index.mjs'
 import nkMocha from './nk-mocha/index.mjs'
 import nkSettings from './nk-settings/index.mjs'
 import mssSettings from './mss-settings/index.mjs'

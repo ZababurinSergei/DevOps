@@ -1,4 +1,4 @@
-export { mocha, expect, should, assert, isEmpty } from './mocha/index.mjs'
+export { swagger } from './api/initializer.mjs'
 export default {
     description: 'test'
 }

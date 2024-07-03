@@ -2,7 +2,7 @@ import {Component} from '../index.mjs'
 
 const name = 'nk-bank'
 
-const component = Component()
+const component = await Component()
 
 component.observedAttributes = ["open", "disabled"];
 
