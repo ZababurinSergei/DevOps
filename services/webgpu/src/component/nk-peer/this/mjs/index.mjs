@@ -1,2 +1,2 @@
-export { Peer } from "./peerjs/build/index.mjs";
+export { Peer } from "./build/peerjs/index.mjs";
 export default {}
