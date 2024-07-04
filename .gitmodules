@@ -1,3 +1,6 @@
 [submodule "builder/esbuild/this/esbuild"]
 	path = builder/esbuild/this/esbuild
 	url = https://github.com/ZababurinSergei/esbuild
+[submodule "node/peerjs-server"]
+	path = node/peerjs-server
+	url = https://github.com/ZababurinSergei/peerjs-server
