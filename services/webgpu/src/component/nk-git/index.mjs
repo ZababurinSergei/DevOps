@@ -237,7 +237,7 @@ Object.defineProperties(component.prototype, {
                                 this.html.label.status.textContent = `Status README.md: ${data}`
                                 this.html.label.warning.forEach(item => {
                                     if(item.classList.contains('clone')) {
-                                        item.textContent = 'сервис находится на бесплатном хосте который засыпает. Начало загрузки надо подождать пока сервис проснется'
+                                        item.textContent = 'сервис находится на бесплатном хосте который засыпает. Начало загрузки надо подождать пока сервис проснется.'
                                     }
                                 })
                                 let auth = localStorage.getItem('pass')
@@ -374,7 +374,7 @@ Object.defineProperties(component.prototype, {
                          counting: this.shadowRoot.querySelector('.counting'),
                          compressing: this.shadowRoot.querySelector('.compressing'),
                          total: this.shadowRoot.querySelector('.total'),
-                         clone: this.shadowRoot.querySelector('.clone'),
+                         clone: this.shadowRoot.querySelector('.clone:not(.warning)'),
                          listFiles: this.shadowRoot.querySelector('.listFiles'),
                          copyToOPFS:this.shadowRoot.querySelector('.copy-to-opfs'),
                          error: this.shadowRoot.querySelector('.error'),
