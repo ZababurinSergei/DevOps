@@ -191,6 +191,7 @@
                                     <div class="error"></div>
                                     <div class="clear"></div>
                                     <div class="status"></div>
+                                    <div class="warning clone"></div>
                                     <div class="enumerating"></div>
                                     <div class="counting"></div>
                                     <div class="compressing"></div>
@@ -343,7 +344,15 @@
                                     <ul data-exclusion  id="mocha" slot="mocha"></ul>
                                 </template>
                             </nk-mocha>
-
+                        </div>
+                    </template>
+                </mss-settings>
+                <mss-settings
+                        id="mss-settings_1"
+                        slot="mss-settings"
+                >
+                    <template>
+                        <div data-exclusion id="swagger">
                             <nk-swagger
                                     id="nk-swagger_0"
                             >

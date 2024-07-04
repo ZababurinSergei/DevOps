@@ -285,6 +285,10 @@ iframe {
     gap: 16px;
 }
 
+.warning {
+    color: #e51a1a
+}
+
 @keyframes indeterminateAnimation {
     0% {
         transform:  translateX(0) scaleX(0);

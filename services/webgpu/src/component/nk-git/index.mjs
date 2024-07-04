@@ -235,6 +235,11 @@ Object.defineProperties(component.prototype, {
                                 break
                             case 'status':
                                 this.html.label.status.textContent = `Status README.md: ${data}`
+                                this.html.label.warning.forEach(item => {
+                                    if(item.classList.contains('clone')) {
+                                        item.textContent = 'сервис находится на бесплатном хосте который засыпает. Начало загрузки надо подождать пока сервис проснется'
+                                    }
+                                })
                                 let auth = localStorage.getItem('pass')
                                 if (auth === null) {
                                     if (confirm('This repo is password protected. Ready to enter a username & password?')) {
@@ -374,7 +379,8 @@ Object.defineProperties(component.prototype, {
                          copyToOPFS:this.shadowRoot.querySelector('.copy-to-opfs'),
                          error: this.shadowRoot.querySelector('.error'),
                          clear: this.shadowRoot.querySelector('.clear'),
-                         refreshOpfs: this.shadowRoot.querySelector('.refresh-opfs')
+                         refreshOpfs: this.shadowRoot.querySelector('.refresh-opfs'),
+                         warning: this.shadowRoot.querySelectorAll('.warning')
                      },
                  }
 
