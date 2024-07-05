@@ -104,12 +104,6 @@ export default async (self, actions) => {
         }
     });
 
-    console.log('MEMORY', {
-        atomicState: self.atomicState,
-        inputQueue: self.inputQueue,
-        outputQueue: self.outputQueue
-    })
-
     return {
         init: () => {
             document.addEventListener('free-queue', actions.freeQueue, { once: true })

@@ -329,15 +329,8 @@ Object.defineProperties(component.prototype, {
         writable: true
     },
     html: {
-        set(value) {
-            if (value) {
-                console.log('HTML: value', value);
-                this._html = value;
-            }
-        },
-        get() {
-            return this._html;
-        }
+        value: null,
+        writable: true
     },
     _worker: {
         value: null,
