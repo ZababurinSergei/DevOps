@@ -99,13 +99,29 @@ Object.defineProperties(component.prototype, {
             }
 
             this.getLocalStream()
+            //
+            // this._peer = new Peer(
+            //     `${Math.floor(Math.random() * 2 ** 18)
+            //         .toString(36)
+            //         .padStart(4, 0)}`,
+            //     {
+            //         host: location.hostname,
+            //         port: 8000,
+            //         debug: 1,
+            //         path: "/myapp",
+            //     },
+            // );
+            // host: 'devops-y56f.onrender.com',
+
+            console.log('2222222222222222222222222222222', window.location.hostname)
 
             this._peer = new Peer(
                 `${Math.floor(Math.random() * 2 ** 18)
                     .toString(36)
                     .padStart(4, 0)}`,
                 {
-                    host: 'devops-y56f.onrender.com',
+                    port: 10000,
+                    host: window.location.hostname,
                     debug: 1,
                     path: "/myapp",
                 },
