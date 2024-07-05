@@ -33,7 +33,6 @@ export class Git {
 
 const git = new Git('/git', 'github.com', 'ZababurinSergei', 'welcomebook', 'main', 'http://localhost:3000')
 
-console.log('GIT: ', git)
 export const gitConfig = () => {
     return git
 }
