@@ -51,13 +51,13 @@ Object.defineProperties(component.prototype, {
     },
     getStreamCode: {
         value: function() {
-            this._code = window.prompt("Please enter the sharing code");
+            this._code = window.prompt("Пожалуйста введите ID собеседника");
         },
         writable: false
     },
     showConnectedContent: {
         value: function() {
-            this.html.caststatus.textContent = "You're connected";
+            this.html.caststatus.textContent = "Вы соединились";
             this.html.callBtn.hidden = true;
             this.html.audioContainer.hidden = false;
         },
@@ -65,7 +65,7 @@ Object.defineProperties(component.prototype, {
     },
     showCallContent: {
         value: function() {
-            this.html.caststatus.textContent = `Your device ID is: ${this._peer.id}`;
+            this.html.caststatus.textContent = `ID вашего устройства:  ${this._peer.id}`;
             this.html.callBtn.hidden = false;
             this.html.audioContainer.hidden = true;
         },
@@ -80,7 +80,7 @@ Object.defineProperties(component.prototype, {
                     this.localAudio.autoplay = true; // C
                 })
                 .catch((err) => {
-                    console.error(`you got an error: ${err}`);
+                    console.error(`Ошибка: ${err}`);
                 });
         },
         writable: false
