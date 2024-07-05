@@ -503,8 +503,6 @@ Object.defineProperties(component.prototype, {
                                     })
                                 }
 
-                                console.log('--------------------- 1 -----------------------------')
-
                                 this.task = {
                                     id: 'fer-select_0',
                                     component: 'fer-select',
