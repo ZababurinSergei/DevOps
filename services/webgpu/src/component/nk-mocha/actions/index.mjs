@@ -16,14 +16,14 @@ export const actions = (self) => {
                         self.mocha.run((data) => {
 
                             // mocha.reset
-                            console.log('--------------- TEST END ----------------', mocha, data)
+                            console.log('TEST END', mocha, data)
                         })
                     }
-                    self.mocha.run((data) => {
-
-                        // mocha.reset
-                        console.log('--------------- TEST END ----------------', mocha, data)
-                    })
+                    // self.mocha.run((data) => {
+                    //
+                    //     // mocha.reset
+                    //     console.log('--------------- TEST END ----------------', mocha, data)
+                    // })
                 },
             }
         })

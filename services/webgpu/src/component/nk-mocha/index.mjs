@@ -110,9 +110,7 @@ Object.defineProperties(component.prototype, {
                 await this.set(url.pathname).then(response => {
                     if(response.status) {
                         this.mocha.run((data) => {
-
-                            // mocha.reset
-                            console.log('--------------- TEST END ----------------', mocha, data)
+                            // console.log('--------------- TEST END ----------------', mocha, data)
                         })
                     }
                 }).catch(e => {console.log('error devtool', e)})

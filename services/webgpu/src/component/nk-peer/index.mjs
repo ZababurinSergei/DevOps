@@ -99,21 +99,6 @@ Object.defineProperties(component.prototype, {
             }
 
             this.getLocalStream()
-            //
-            // this._peer = new Peer(
-            //     `${Math.floor(Math.random() * 2 ** 18)
-            //         .toString(36)
-            //         .padStart(4, 0)}`,
-            //     {
-            //         host: location.hostname,
-            //         port: 8000,
-            //         debug: 1,
-            //         path: "/myapp",
-            //     },
-            // );
-            // host: 'devops-y56f.onrender.com',
-
-            console.log('2222222222222222222222222222222', window.location.hostname)
 
             this._peer = new Peer(
                 `${Math.floor(Math.random() * 2 ** 18)
@@ -121,18 +106,20 @@ Object.defineProperties(component.prototype, {
                     .padStart(4, 0)}`,
                 {
                     port: 10000,
-                    host: window.location.hostname,
+                    host: 'devops-y56f.onrender.com',
                     debug: 1,
                     path: "/myapp",
                 },
             );
 
-            this._peer.on("open", () => {
-                this.html.caststatus.textContent = `Your device ID is: ${this._peer.id}`;
+            this._peer.on("connection", (connection) => {
+                debugger
+                this._conn = connection;
             });
 
-            this._peer.on("connection", (connection) => {
-                this._conn = connection;
+            this._peer.on("open", () => {
+              debugger
+                this.html.caststatus.textContent = `Your device ID is: ${this._peer.id}`;
             });
 
             this._peer.on("call", (call) => {

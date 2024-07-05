@@ -12,7 +12,6 @@ export default async (self, actions) => {
         init: async () => {
             const items = self.html?.list.querySelectorAll('[class*="list-item"]')
             items.forEach(function(listItem) {
-                console.log('----------------1 ---------------------', listItem)
                 listItem.addEventListener('click', actions.clickDropdownItems);
             });
 
@@ -35,7 +34,6 @@ export default async (self, actions) => {
         terminate: async () => {
             const items = self.html?.list.querySelectorAll('[class*="list-item"]')
             items.forEach(function(listItem) {
-                console.log('----------------1 ---------------------', listItem)
                 listItem.removeEventListener('click', actions.clickDropdownItems);
             });
 

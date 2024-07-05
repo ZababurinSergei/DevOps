@@ -15,7 +15,6 @@ describe('Service', async function () {
         it('Получить кнопки и лейблы для компонента', function () {
             return new Promise(async (resolve, reject) => {
                 const html = (nkMemory.store)['nk-git'][0].self.html
-                console.log('NK-GIT: ', html)
                 resolve(true)
             })
         })

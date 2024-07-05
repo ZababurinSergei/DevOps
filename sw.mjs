@@ -14,8 +14,6 @@ function getClientList() {
 }
 
 self.addEventListener("message", async (event) => {
-    console.log('====== MESSAGE ======',event.data.type,  event.data)
-
     if (event.data.type === "service") {
         const opfsRoot = await navigator.storage.getDirectory();
         const fileHandle = await opfsRoot.getFileHandle("config", {create: true});
@@ -114,16 +112,13 @@ async function readFile(fileName = '', destination = '') {
 
 // always install updated SW immediately
 self.addEventListener('install', async event => {
-    console.log('=============================== INSTALL SERVICE WORKER ================================')
     self.skipWaiting();
 });
 
 self.addEventListener('activate', async event => {
     const clients = await getClientList()
-    console.log('----------------------- SW ACTIVATE --------------------------------------', clients)
     clients.forEach(client => {
         if (client.frameType === 'top-level') {
-            console.log('----------------------- SW ACTIVATE SEND --------------------------------------', client)
             client.postMessage({
                 type: 'SW_ACTIVATED'
             })
