@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "node:peer": "node signal.mjs"
+    "start": "node signal.mjs"
   },
   "repository": {
     "type": "git",

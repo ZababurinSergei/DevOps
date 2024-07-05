@@ -94,7 +94,8 @@ Object.defineProperties(component.prototype, {
             this.html = {
                 callBtn:  this.shadowRoot.querySelector(".call-btn"),
                 audioContainer: this.shadowRoot.querySelector(".call-container"),
-                caststatus: this.shadowRoot.querySelector('#caststatus')
+                caststatus: this.shadowRoot.querySelector('#caststatus'),
+                hangUpBtn: this.shadowRoot.querySelector(".hangup-btn")
             }
 
             this.getLocalStream()
@@ -134,6 +135,15 @@ Object.defineProperties(component.prototype, {
                 } else {
                     console.log("call denied"); // D
                 }
+            });
+
+            // this._conn.on("close", () => {
+            //     this.showCallContent();
+            // });
+
+            this.html.hangUpBtn.addEventListener("click", () => {
+                this._conn.close();
+                this.showCallContent();
             });
 
             this.html.callBtn.addEventListener("click", () => {
