@@ -105,8 +105,7 @@ Object.defineProperties(component.prototype, {
                     .toString(36)
                     .padStart(4, 0)}`,
                 {
-                    host: location.hostname,
-                    port: 8000,
+                    host: 'devops-y56f.onrender.com',
                     debug: 1,
                     path: "/myapp",
                 },
@@ -161,6 +160,9 @@ Object.defineProperties(component.prototype, {
             });
         },
         writable: false
+    },
+    terminate: async function () {
+        this._peer.destroy();
     },
     onMessage:{
         value: function(event) { },

@@ -258,6 +258,7 @@ const BaseClass = class extends HTMLElement {
             onload(this)
                 .then(async (self) => {
                     self.dataset.uuid = uuidv();
+
                     if('init' in self) {
                         await self.init()
                     }
@@ -293,6 +294,10 @@ const BaseClass = class extends HTMLElement {
     }
 
     disconnectedCallback() {
+        if('terminate' in this) {
+            self.init().catch(e => console.error(e))
+        }
+
         this?.controller?.addEventListener?.terminate();
 
         if (this._broadcastChannel[0].value) {
