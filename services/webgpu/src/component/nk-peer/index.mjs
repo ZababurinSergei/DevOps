@@ -105,20 +105,30 @@ Object.defineProperties(component.prototype, {
                     .toString(36)
                     .padStart(4, 0)}`,
                 {
-                    port: 10000,
+                    port: null,
                     host: 'devops-y56f.onrender.com',
                     debug: 1,
                     path: "/myapp",
                 },
             );
 
+            // this._peer = new Peer(
+            //     `${Math.floor(Math.random() * 2 ** 18)
+            //         .toString(36)
+            //         .padStart(4, 0)}`,
+            //     {
+            //         port: 8000,
+            //         host: location.hostname,
+            //         debug: 1,
+            //         path: "/myapp",
+            //     },
+            // );
+
             this._peer.on("connection", (connection) => {
-                debugger
                 this._conn = connection;
             });
 
             this._peer.on("open", () => {
-              debugger
                 this.html.caststatus.textContent = `Your device ID is: ${this._peer.id}`;
             });
 
@@ -126,13 +136,14 @@ Object.defineProperties(component.prototype, {
                 const answerCall = confirm("Do you want to answer?");
 
                 if (answerCall) {
-                    call.answer(window.localStream); // A
+                    call.answer(this.localStream); // A
                     this.showConnectedContent(); // B
                     call.on("stream", (stream) => {
-                        // C
+                        this.peerStream = stream;
+                        this.remoteAudio = {}
                         this.remoteAudio.srcObject = stream;
                         this.remoteAudio.autoplay = true;
-                        this.peerStream = stream;
+
                     });
                 } else {
                     console.log("call denied"); // D
@@ -151,10 +162,9 @@ Object.defineProperties(component.prototype, {
             this.html.callBtn.addEventListener("click", () => {
                 this.getStreamCode();
                 this.connectPeers();
-                const call = this._peer.call(this._code, window.localStream); // A
+                const call = this._peer.call(this._code, this.localStream); // A
 
                 call.on("stream", (stream) => {
-                    // B
                     this.remoteAudio.srcObject = stream; // C
                     this.remoteAudio.autoplay = true; // D
                     this.peerStream = stream; //E
