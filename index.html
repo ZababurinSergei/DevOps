@@ -105,16 +105,37 @@
             <div class="wrapper">
                 <h2>Scheduler</h2>
                 <div class="settings">
-                    <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span
-                            class="value"></span></div>
+                    <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span class="value"></span></div>
                 </div>
                 <div class="memory-queue"></div>
+                <div class="nk-ping">
+                    <slot name="nk-ping"></slot>
+                </div>
             </div>
             <div class="nk-git">
                 <h2>DevOps</h2>
                 <slot name="nk-git"></slot>
             </div>
         </div>
+        <nk-ping
+            id="nk-ping_0"
+            slot="nk-ping"
+        >
+            <template>
+                <div class="relation">
+                    <div class="property">
+                        <div class="item">
+                            <div class="name"> Cors Proxy </div>
+                            <div class="status"> </div>
+                        </div>
+                        <div class="item">
+                            <div class="name"> Signal Server </div>
+                            <div class="status"> </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </nk-ping>
         <nk-peer
                 id="nk-peer_0"
                 slot="nk-peer"
@@ -656,7 +677,6 @@
     });
 
     logUserTiming()
-
 
     import {Fonts} from './services/webgpu/src/fonts.mjs';
 

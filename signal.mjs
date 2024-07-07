@@ -21,6 +21,12 @@ app.use(peerServer);
 
 app.use(express.static(path.join(__dirname)));
 
+app.get("/ping", (request, response) => {
+    response.status(200).send({
+        status: true
+    });
+});
+
 app.get("/", (request, response) => {
     response.sendFile(`${__dirname}/index.html`);
 });
