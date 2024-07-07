@@ -254,7 +254,6 @@ self.addEventListener('fetch', event => {
     const isOrigin = white.includes(url.origin) || url.hostname === 'localhost'
 
     if (isSw) {
-        // console.log('-------------------------------------------- 1 -----------------------------------------------',isOrigin, url, url.pathname)
         if (isOrigin && !isExclude && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             event.respondWith(readFile('config')
                 .then(async function (servicePath) {
@@ -281,7 +280,9 @@ self.addEventListener('fetch', event => {
                             })
                     } else {
                         // console.log('sssssssssssssssssssssssssssssssssssss',isOrigin,  scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
-                        const isTemplate = rootOpfs.includes('example2')
+                        const isTemplate = rootOpfs.includes('example3')
+
+                        console.log('-------------------------------------------- 1 -----------------------------------------------', isTemplate)
 
                         let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
 
@@ -291,14 +292,68 @@ self.addEventListener('fetch', event => {
 
                         if (isScope) {
                             path = isTemplate
-                                ? `${rootOpfs}/examples/dist/${url.pathname.replace(scope, '')}`
+                                ? `${rootOpfs}/examples/src/${url.pathname.replace(scope, '')}`
                                 :`${rootOpfs}/${url.pathname.replace(scope, '')}`
                         }
 
                         path = path.replaceAll("%20", ' ')
 
-                        // console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
+                        console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
                         const options = getHeaders(destination, path)
+
+                        // await readFile(path)
+                        //     .then(async data => {
+                        //         html = new TextDecoder().decode(data);
+                        //         initialization(html)
+                        //         return 'ok'
+                        //     })
+                        //     .catch(e => {
+                        //         return opfs.self.readFile(`${self.config.gitDir}/index.html`)
+                        //     })
+                        //     .then(data => {
+                        //         if(data !== 'ok') {
+                        //             html = new TextDecoder().decode(data);
+                        //             initialization(html)
+                        //         }
+                        //
+                        //         return 'ok'
+                        //     })
+                        //     .catch(e => {
+                        //         return opfs.self.readFile(`${self.config.gitDir}/examples/dist/index.html`)
+                        //     })
+                        //     .then(data => {
+                        //         if(data !== 'ok') {
+                        //             html = new TextDecoder().decode(data);
+                        //             initialization(html)
+                        //         }
+                        //
+                        //         return 'ok'
+                        //     })
+                        //     .catch(e => {
+                        //         return opfs.self.readFile(`${self.config.gitDir}/examples/src/index.html`)
+                        //     })
+                        //     .then(data => {
+                        //         if(data !== 'ok') {
+                        //             html = new TextDecoder().decode(data);
+                        //             initialization(html)
+                        //         }
+                        //
+                        //         return 'ok'
+                        //     }).catch(async e => {
+                        //     html = {}
+                        //     html = await fetch(`${window.location.origin}${normalizeLocation}fallback.html`)
+                        //     html = await html.text()
+                        //     initialization(html)
+                        //     return 'ok'
+                        // })
+                        //     .then(data => {
+                        //         if(data !== 'ok') {
+                        //             html = new TextDecoder().decode(data);
+                        //             initialization(html)
+                        //         }
+                        //
+                        //         return 'ok'
+                        //     })
 
                         return new Response(await readFile(path), options)
                     }
@@ -308,10 +363,10 @@ self.addEventListener('fetch', event => {
                 })
             );
         } else {
-            // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', url, url.pathname)
+            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', url, url.pathname)
         }
     } else {
-        // console.log('-------------------------------------------- 2 -----------------------------------------------', isExclude)
+        console.log('-------------------------------------------- 2 -----------------------------------------------', isExclude)
         if(!isExclude) {
             // console.log('00000000000000000000000000000000 2 00000000000000000000000000000000000000000000000000', url.pathname)
             event.respondWith(
