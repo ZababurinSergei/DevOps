@@ -289,6 +289,10 @@ iframe {
     color: #e51a1a
 }
 
+#fer-select_2 {
+    width: 10dvw;
+}
+
 @keyframes indeterminateAnimation {
     0% {
         transform:  translateX(0) scaleX(0);

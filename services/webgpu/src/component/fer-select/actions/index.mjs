@@ -86,26 +86,23 @@ export const actions = (self) => {
                 event.target.classList.add('list-item_active');
                 arrow.classList.remove('arrow_active');
 
-                self.task = {
-                    id: 'nk-git_0',
-                    component: 'nk-git',
-                    type: 'self',
-                    action: 'button',
-                    value: self.dataset.value,
-                    callback: nkGit,
-                    message: {
-                        id: '',
-                        type: 'active.button.run',
-                        phase: 'start'
+                if(self.id === 'fer-select_0') {
+                    self.task = {
+                        id: 'nk-git_0',
+                        component: 'nk-git',
+                        type: 'self',
+                        action: 'button',
+                        value: self.dataset.value,
+                        callback: nkGit,
+                        message: {
+                            id: '',
+                            type: 'active.button.run',
+                            phase: 'start'
+                        }
                     }
                 }
 
-                // if(self.dataset.value.length !== 0) {
-                //     console.log('dddddddddddddddddddddddddd',self.dataset.value, self.dataset.value.length)
-                // }
-
                 self.html.button.textContent = self.dataset.value
-                // const rootNode = self.getRootNode().host
             }
         })
     })

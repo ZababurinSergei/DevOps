@@ -116,8 +116,6 @@ Object.defineProperties(component.prototype, {
                 list: this.shadowRoot.querySelector('[class*="list"]'),
                 arrow: this.shadowRoot.querySelector('.button_arrow')
             }
-
-            this.disabled = true
         },
         writable: false
     },

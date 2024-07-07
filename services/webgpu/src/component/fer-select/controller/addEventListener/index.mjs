@@ -30,6 +30,8 @@ export default async (self, actions) => {
                 broadcastChannel: actions.broadcastChannel,
                 messageerror: actions.messageerror
             }
+
+            return true
         },
         terminate: async () => {
             const items = self.html?.list.querySelectorAll('[class*="list-item"]')
@@ -44,6 +46,8 @@ export default async (self, actions) => {
             document.removeEventListener('keydown', actions.keydown);
             document.removeEventListener('fer-select', actions.ferSelect);
             document.removeEventListener('click', actions.button.under);
+
+            return true
         }
     };
 }
