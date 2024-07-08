@@ -1,4 +1,5 @@
-import {Component} from '../index.mjs'
+import { Component } from '../index.mjs'
+import { ping } from './this/index.mjs'
 
 const name = 'nk-ping'
 
@@ -18,28 +19,17 @@ Object.defineProperties(component.prototype, {
     },
     ping: {
         value: function () {
-            for (let key in this.host) {
-                let url = `${this.host[key]}/ping`
-                fetch({
-                    method: "GET",
-                    url: url,
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "text/plain"
-                    },
+            for(let key in this.host) {
+                ping(this.host[key])
+                    .then(data => {
+                        this.html[key].classList.add('active')
+                        console.log('---- ping 1 ----',key,  data)
+                    }).catch(function (error) {
+                    console.log('---- ping 3 ----', this, key)
+                    this.html[key].classList.remove('active')
+                    this.ping()
                 })
-                    .then(data => {
-                        console.log('---- ping 1 ----', this, data)
-                        return data.text()
-                    })
-                    .then(data => {
-                        console.log('---- ping 2 ----', this, this.host[key], data)
-                    }).catch(e => {
-                            console.log('---- ping 3 ----', this)
-                    // this.ping()
-                    })
             }
-
         },
         writable: true
     },
@@ -55,7 +45,7 @@ Object.defineProperties(component.prototype, {
             }
 
             this.ping()
-            this.pingId = setInterval(this.ping, 14 * 60 * 1000);
+            this.pingId = setInterval(this.index, 14 * 60 * 1000);
         },
         writable: false
     },

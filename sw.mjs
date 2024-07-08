@@ -237,6 +237,7 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     let destination = event.request.destination;
     let scope = (new URL(self.registration.scope)).pathname;
+    let host = (new URL(self.registration.scope)).hostname;
 
     let isSw = false
 
@@ -250,7 +251,7 @@ self.addEventListener('fetch', event => {
         isSw = false
     }
 
-    const isExclude = url.pathname ==='/false' || url.pathname ===`${scope}false`
+    const isExclude = url.pathname ==='/false' || url.pathname ===`${scope}false` || url.hostname !== host
     const isOrigin = white.includes(url.origin) || url.hostname === 'localhost'
 
     if (isSw) {
@@ -367,7 +368,6 @@ self.addEventListener('fetch', event => {
         }
     } else {
         if(!isExclude) {
-            // console.log('00000000000000000000000000000000 2 00000000000000000000000000000000000000000000000000', url.pathname)
             event.respondWith(
                 fetch(event.request)
                     .then(function (response) {

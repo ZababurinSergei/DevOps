@@ -102,29 +102,29 @@ Object.defineProperties(component.prototype, {
 
             const isLocalhost = location.hostname === 'localhost'
 
-            // this._peer = new Peer(
-            //     `${Math.floor(Math.random() * 2 ** 18)
-            //         .toString(36)
-            //         .padStart(4, 0)}`,
-            //     {
-            //         port: isLocalhost ? location.port: null,
-            //         host: isLocalhost ? location.hostname: 'devops-y56f.onrender.com',
-            //         debug: 1,
-            //         path: "/myapp",
-            //     },
-            // );
-
             this._peer = new Peer(
                 `${Math.floor(Math.random() * 2 ** 18)
                     .toString(36)
                     .padStart(4, 0)}`,
                 {
-                    port:  null,
-                    host: 'devops-y56f.onrender.com',
+                    port: isLocalhost ? location.port: null,
+                    host: isLocalhost ? location.hostname: 'devops-y56f.onrender.com',
                     debug: 1,
                     path: "/myapp",
                 },
             );
+
+            // this._peer = new Peer(
+            //     `${Math.floor(Math.random() * 2 ** 18)
+            //         .toString(36)
+            //         .padStart(4, 0)}`,
+            //     {
+            //         port:  null,
+            //         host: 'devops-y56f.onrender.com',
+            //         debug: 1,
+            //         path: "/myapp",
+            //     },
+            // );
 
             this._peer.on("connection", (connection) => {
                 this._conn = connection;
