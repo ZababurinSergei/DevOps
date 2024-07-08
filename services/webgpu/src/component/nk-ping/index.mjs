@@ -22,11 +22,13 @@ Object.defineProperties(component.prototype, {
             for(let key in this.host) {
                 ping(this.host[key])
                     .then(data => {
-                        this.html[key].classList.add('active')
-                        console.log('---- ping 1 ----',key,  data)
+                        this.html[key].status.classList.add('active')
+                        this.html[key].ping.textContent = `${data} ms`
+                        console.log('---- ping 1 ----')
                     }).catch(function (error) {
                     console.log('---- ping 3 ----', this, key)
-                    this.html[key].classList.remove('active')
+                    this.html[key].status.classList.remove('active')
+                    this.html[key].ping.textContent = ``
                     this.ping()
                 })
             }
@@ -40,8 +42,14 @@ Object.defineProperties(component.prototype, {
     init: {
         value: function (value) {
             this.html = {
-                cors: this.shadowRoot.querySelector('.cors'),
-                signal: this.shadowRoot.querySelector('.signal')
+                cors: {
+                    status: this.shadowRoot.querySelector('.cors'),
+                    ping: this.shadowRoot.querySelector('.cors.ping')
+                },
+                signal: {
+                    status: this.shadowRoot.querySelector('.signal'),
+                    ping: this.shadowRoot.querySelector('.signal.ping')
+                }
             }
 
             this.ping()

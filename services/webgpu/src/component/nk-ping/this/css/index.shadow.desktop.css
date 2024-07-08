@@ -38,3 +38,8 @@
 .active {
     background: rgba(140, 255, 0, 0.73);
 }
+
+.ping.cors, .ping.signal {
+    align-self: center;
+    font-weight: 400;
+}
