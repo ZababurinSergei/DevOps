@@ -1,22 +1,45 @@
-import { Component } from '../index.mjs'
+import {Component} from '../index.mjs'
 
 const name = 'nk-ping'
 
 const component = await Component()
 
 Object.defineProperties(component.prototype, {
+    pingId: {
+        value: false,
+        writable: true
+    },
+    host: {
+        value: {
+            cors: 'https://cors-pr6x.onrender.com',
+            signal: 'https://devops-y56f.onrender.com'
+        },
+        writable: true
+    },
+    ping: {
+        value: function () {
+            fetch()
+        },
+        writable: true
+    },
     html: {
         value: undefined,
         writable: true
     },
     init: {
-        value: function(value) {
+        value: function (value) {
             this.html = {
-                container: this.shadowRoot.querySelector('.container'),
-                input: this.shadowRoot.querySelector('input')
+                cors: this.shadowRoot.querySelector('.cors'),
+                signal: this.shadowRoot.querySelector('.signal')
             }
 
-            this.removeAttribute('disabled')
+            this.ping = setInterval(this.ping, 14 * 60 * 1000);
+        },
+        writable: false
+    },
+    terminate: {
+        value: function (value) {
+            clearInterval(this.ping)
         },
         writable: false
     }

@@ -295,7 +295,7 @@ const BaseClass = class extends HTMLElement {
 
     disconnectedCallback() {
         if('terminate' in this) {
-            self.init().catch(e => console.error(e))
+            this.terminate().catch(e => console.error(e))
         }
 
         this?.controller?.addEventListener?.terminate();
