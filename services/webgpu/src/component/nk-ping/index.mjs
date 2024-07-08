@@ -18,7 +18,28 @@ Object.defineProperties(component.prototype, {
     },
     ping: {
         value: function () {
-            fetch()
+            for (let key in this.host) {
+                let url = `${this.host[key]}/ping`
+                fetch({
+                    method: "GET",
+                    url: url,
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "text/plain"
+                    },
+                })
+                    .then(data => {
+                        console.log('---- ping 1 ----', this, data)
+                        return data.text()
+                    })
+                    .then(data => {
+                        console.log('---- ping 2 ----', this, this.host[key], data)
+                    }).catch(e => {
+                            console.log('---- ping 3 ----', this)
+                    // this.ping()
+                    })
+            }
+
         },
         writable: true
     },
@@ -33,13 +54,14 @@ Object.defineProperties(component.prototype, {
                 signal: this.shadowRoot.querySelector('.signal')
             }
 
-            this.ping = setInterval(this.ping, 14 * 60 * 1000);
+            this.ping()
+            this.pingId = setInterval(this.ping, 14 * 60 * 1000);
         },
         writable: false
     },
     terminate: {
         value: function (value) {
-            clearInterval(this.ping)
+            clearInterval(this.pingId)
         },
         writable: false
     }
