@@ -5,15 +5,17 @@
 <script type="module">
     window.addEventListener('message', (event) => {
         if(event.data.hasOwnProperty('html')) {
-            
             let htmlHead = event.data.html.slice(event.data.html.indexOf('<head>'), event.data.html.indexOf('</head>'))
             let htmlBody = event.data.html.slice(event.data.html.indexOf('<body>'), event.data.html.indexOf('</body>'))
+            let htmlScript = event.data.html.slice(event.data.html.indexOf('</body>') + 7, event.data.html.indexOf('</html>'))
 
             const divFragmentHead = document.createRange().createContextualFragment(`${htmlHead}`);
             const divFragmentBody = document.createRange().createContextualFragment(`${htmlBody}`);
+            const divFragmentScript = document.createRange().createContextualFragment(`${htmlScript}`);
 
             document.head.appendChild(divFragmentHead);
             document.body.appendChild(divFragmentBody);
+            document.body.appendChild(divFragmentScript);
         }
     }, false)
 </script>
