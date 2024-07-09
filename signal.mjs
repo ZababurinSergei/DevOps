@@ -3,6 +3,9 @@ import http from "http";
 import path from "path";
 import {ExpressPeerServer} from "peer";
 import process from "process";
+import helmet from "helmet";
+import cors from "cors";
+
 let __dirname = process.cwd();
 
 const app = express();
@@ -17,17 +20,23 @@ const peerServer = ExpressPeerServer(signal, {
     ssl: {},
 });
 
+app.use(cors())
+
 app.use(peerServer);
 
-app.use(express.static(path.join(__dirname)));
+app.use(
+    helmet({
+        contentSecurityPolicy: false,
+    })
+);
 
-app.get("/ping", (request, response) => {
-    response.status(200).send('ok');
-});
+app.use(express.static(path.join(__dirname)));
 
 app.get("/", (request, response) => {
     response.sendFile(`${__dirname}/index.html`);
 });
 
 signal.listen(port);
-console.log(`Listening on: ${port}`);
+
+console.log('pid: ', process.pid);
+console.log('listening on http://localhost:' + port);
