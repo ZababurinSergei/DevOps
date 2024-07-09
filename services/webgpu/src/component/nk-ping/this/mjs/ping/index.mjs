@@ -13,6 +13,7 @@ function request_image(url) {
         img.onerror = function () {
             reject(url);
         };
+        img.crossOrigin = "anonymous";
         img.src = url + '?random-no-cache=' + Math.floor((1 + Math.random()) * 0x10000).toString(16);
     });
 }

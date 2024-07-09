@@ -17,8 +17,7 @@ export const nkGit =function(component, payload) {
                 result.push(`${this.config.git}/${user}/${item}`)
             })
         }
-
-        console.log('--------------------- 3 -----------------------------')
+        
         this.task = {
             id: 'fer-select_0',
             component: 'fer-select',

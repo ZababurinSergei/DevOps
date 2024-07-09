@@ -1,5 +1,5 @@
-import { Component } from '../index.mjs'
-import { ping } from './this/index.mjs'
+import {Component} from '../index.mjs'
+import {ping} from './this/index.mjs'
 
 const name = 'nk-ping'
 
@@ -18,22 +18,26 @@ Object.defineProperties(component.prototype, {
         writable: true
     },
     ping: {
-        value: function () {
-            for(let key in this.host) {
-                ping(this.host[key])
+        value: (path) => {
+               return ping(path)
                     .then(data => {
-                        this.html[key].status.classList.add('active')
-                        this.html[key].ping.textContent = `${data} ms`
-                        console.log('---- ping 1 ----')
+                        console.log('----------------- PING 1 -----------------', {
+                            data: data
+                        })
+
+                        return {
+                            status: true,
+                            ping: data
+                        }
                     }).catch(function (error) {
-                    console.log('---- ping 3 ----', this, key)
-                    this.html[key].status.classList.remove('active')
-                    this.html[key].ping.textContent = ``
-                    this.ping()
+                    console.log('----------------- PING 2 -----------------')
+
+                       return {
+                           status: false
+                       }
                 })
-            }
         },
-        writable: true
+        writable: false
     },
     html: {
         value: undefined,
@@ -52,8 +56,42 @@ Object.defineProperties(component.prototype, {
                 }
             }
 
-            this.ping()
-            this.pingId = setInterval(this.index, 14 * 60 * 1000);
+            const initCors = () => {
+                this.ping(this.host.cors)
+                    .then(data => {
+                        console.log('ping result', data)
+                        if(!data.status) {
+                            initCors()
+                        } else {
+                            console.log('ping true cors')
+                            this.html.cors.status.classList.add('active')
+                            this.html.cors.ping.textContent = `${data.ping} ms`
+                        }
+                    }).catch(e => {console.error('error ping', e)})
+            }
+
+
+            const initSignal = () => {
+                this.ping(this.host.signal).then(data => {
+                    console.log('ping result', data)
+                    if(!data.status) {
+                        initSignal()
+                    } else {
+                        console.log('ping true signal')
+                        this.html.signal.status.classList.add('active')
+                        this.html.signal.ping.textContent = `${data.ping} ms`
+                    }
+                }).catch(e => {console.error('error ping', e)})
+            }
+
+            initSignal()
+            initCors()
+
+            this.pingId = setInterval(() => {
+                console.log('ping')
+                initSignal()
+                initCors()
+            }, 14 * 60 * 1000);
         },
         writable: false
     },
