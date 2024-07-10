@@ -200,6 +200,10 @@ const getHeaders = (destination, path) => {
 
             if (path.includes('.ttf')) {
                 contentType = 'font/ttf'
+            } else if(path.includes('.woff')) {
+                contentType = 'font/woff'
+            } else if(path.includes('.woff2')) {
+                contentType = 'font/woff2'
             } else {
                 console.error('неизвестный Content-Type', path)
             }
@@ -291,7 +295,7 @@ self.addEventListener('fetch', event => {
                         // console.log('sssssssssssssssssssssssssssssssssssss',isOrigin,  scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
                         const isTemplate = rootOpfs.includes('example3')
 
-                        // console.log('-------------------------------------------- 1 -----------------------------------------------', isTemplate)
+                        console.log('-------------------------------------------- 1 -----------------------------------------------', isTemplate)
 
                         let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
 
@@ -307,62 +311,8 @@ self.addEventListener('fetch', event => {
 
                         path = path.replaceAll("%20", ' ')
 
-                        // console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
+                        console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
                         const options = getHeaders(destination, path)
-
-                        // await readFile(path)
-                        //     .then(async data => {
-                        //         html = new TextDecoder().decode(data);
-                        //         initialization(html)
-                        //         return 'ok'
-                        //     })
-                        //     .catch(e => {
-                        //         return opfs.self.readFile(`${self.config.gitDir}/index.html`)
-                        //     })
-                        //     .then(data => {
-                        //         if(data !== 'ok') {
-                        //             html = new TextDecoder().decode(data);
-                        //             initialization(html)
-                        //         }
-                        //
-                        //         return 'ok'
-                        //     })
-                        //     .catch(e => {
-                        //         return opfs.self.readFile(`${self.config.gitDir}/examples/dist/index.html`)
-                        //     })
-                        //     .then(data => {
-                        //         if(data !== 'ok') {
-                        //             html = new TextDecoder().decode(data);
-                        //             initialization(html)
-                        //         }
-                        //
-                        //         return 'ok'
-                        //     })
-                        //     .catch(e => {
-                        //         return opfs.self.readFile(`${self.config.gitDir}/examples/src/index.html`)
-                        //     })
-                        //     .then(data => {
-                        //         if(data !== 'ok') {
-                        //             html = new TextDecoder().decode(data);
-                        //             initialization(html)
-                        //         }
-                        //
-                        //         return 'ok'
-                        //     }).catch(async e => {
-                        //     html = {}
-                        //     html = await fetch(`${window.location.origin}${normalizeLocation}fallback.html`)
-                        //     html = await html.text()
-                        //     initialization(html)
-                        //     return 'ok'
-                        // })
-                        //     .then(data => {
-                        //         if(data !== 'ok') {
-                        //             html = new TextDecoder().decode(data);
-                        //             initialization(html)
-                        //         }
-                        //
-                        //         return 'ok'
-                        //     })
 
                         return new Response(await readFile(path), options)
                     }
