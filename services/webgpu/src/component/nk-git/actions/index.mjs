@@ -64,6 +64,7 @@ export const actions = (self) => {
                                 const iframe = document.createElement('iframe');
 
                                 iframe.setAttribute('seamless', '');
+                                iframe.setAttribute('credentialless', '')
                                 iframe.src = `${window.location.origin}${normalizeLocation}index.sw.html`;
                                 iframe.sandbox = "allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
                                 self.html.views.run.appendChild(iframe);
