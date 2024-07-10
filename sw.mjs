@@ -36,6 +36,7 @@ self.addEventListener("message", async (event) => {
     }
 
     if (event.data.type === "get-client-id") {
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! НЕТ')
         self.clients.matchAll().then(function (clients) {
             clients.forEach(function (client) {
                 if (client.frameType === "top-level") {
@@ -241,17 +242,18 @@ self.addEventListener('fetch', event => {
 
     let isSw = false
 
-    if (iframeClientId.has(event.clientId)) {
-        if (event.clientId.length !== 0) {
+    if (iframeClientId.has(event.clientId) || iframeClientId.has(event.resultingClientId)) {
+        if (event.clientId.length !== 0 || event.resultingClientId.length !== 0) {
             isSw = true
         }
     }
 
-    // if(destination === 'iframe' && url.pathname !== '/index.sw.html') {
-    //     console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', event)
-    //     iframeClientId.add(event.resultingClientId)
-    //     isSw = true
-    // }
+    if(destination === 'iframe') {
+        iframeClientId.add(event.resultingClientId)
+        if(!url.pathname.includes('index.sw.html')) {
+            isSw = true
+        }
+    }
 
     if (windowClientId.has(event.clientId)) {
         isSw = false
@@ -289,7 +291,7 @@ self.addEventListener('fetch', event => {
                         // console.log('sssssssssssssssssssssssssssssssssssss',isOrigin,  scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
                         const isTemplate = rootOpfs.includes('example3')
 
-                        console.log('-------------------------------------------- 1 -----------------------------------------------', isTemplate)
+                        // console.log('-------------------------------------------- 1 -----------------------------------------------', isTemplate)
 
                         let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
 
@@ -305,7 +307,7 @@ self.addEventListener('fetch', event => {
 
                         path = path.replaceAll("%20", ' ')
 
-                        console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
+                        // console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
                         const options = getHeaders(destination, path)
 
                         // await readFile(path)
@@ -370,7 +372,7 @@ self.addEventListener('fetch', event => {
                 })
             );
         } else {
-            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', url, url.pathname)
+            // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', url, url.pathname)
         }
     } else {
         if(!isExclude) {

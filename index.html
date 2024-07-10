@@ -659,7 +659,6 @@
         });
     }
 
-
     perf.observer = new PerformanceObserver(list => {
         list.getEntries().forEach(entry => {
             logEntry(entry);
@@ -757,9 +756,9 @@
 
         if (navigator.serviceWorker.controller) {
             isController = true
-            registration.active.postMessage({
-                type: "get-client-id"
-            });
+            // registration.active.postMessage({
+            //     type: "get-client-id"
+            // });
         }
     }).catch((err) => {
         console.log('Service worker registration failed: ', err);

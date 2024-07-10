@@ -49,7 +49,6 @@ export const actions = (self) => {
                             phase: ''
                         },
                         callback: async (opfs, data) => {
-
                             let normalizeLocation = window.location.pathname
                             if (!normalizeLocation.endsWith('/')) {
                                 normalizeLocation = normalizeLocation.split('/')
@@ -72,24 +71,25 @@ export const actions = (self) => {
                                 self.html.control.button.clear.classList.remove('disabled');
 
                                 iframe.addEventListener('load', function (e) {
-                                    navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                                        registrations.forEach(item => {
-                                            navigator.serviceWorker.addEventListener('message', (event) => {
-                                                console.log('================================== MESSAGE FROM SERVICE WORKER  GIT ====================================', event.data.type)
-                                                if (event.data.type === 'SW_CLIENT') {
+                                    // navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                                    //     registrations.forEach(item => {
+                                            // navigator.serviceWorker.addEventListener('message', (event) => {
+                                            //     console.log('================================== MESSAGE FROM SERVICE WORKER  GIT ====================================', event.data.type)
+                                            //     if (event.data.type === 'SW_CLIENT') {
+                                            //        debugger
                                                     iframe.contentWindow.postMessage({
                                                         html: html
                                                     });
+                                            //
+                                            //         resolve(true)
+                                            //     }
+                                            // }, {once: true});
 
-                                                    resolve(true)
-                                                }
-                                            }, {once: true});
-
-                                            item.active.postMessage({
-                                                type: 'get-client-id',
-                                            })
-                                        })
-                                    });
+                                            // item.active.postMessage({
+                                            //     type: 'get-client-id',
+                                            // })
+                                        // })
+                                    // });
                                 });
                             }
 
