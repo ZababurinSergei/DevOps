@@ -66,31 +66,24 @@ export const actions = (self) => {
                                 // iframe.setAttribute('credentialless', '')
                                 iframe.src = `${window.location.origin}${normalizeLocation}index.sw.html`;
                                 iframe.sandbox = "allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
+                                iframe.dataset.pathname = self.config.gitDir
+
+                                iframe.addEventListener('mouseenter', function (event) {
+                                    navigator.serviceWorker.controller.postMessage({
+                                        type: 'service',
+                                        message: event.currentTarget.dataset.pathname
+                                    });
+                                })
+
+                                iframe.addEventListener('load', function (e) {
+                                    iframe.contentWindow.postMessage({
+                                        html: html
+                                    });
+                                });
+
                                 self.html.views.run.appendChild(iframe);
                                 self.html.control.button.run.classList.add('disabled');
                                 self.html.control.button.clear.classList.remove('disabled');
-
-                                iframe.addEventListener('load', function (e) {
-                                    // navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                                    //     registrations.forEach(item => {
-                                            // navigator.serviceWorker.addEventListener('message', (event) => {
-                                            //     console.log('================================== MESSAGE FROM SERVICE WORKER  GIT ====================================', event.data.type)
-                                            //     if (event.data.type === 'SW_CLIENT') {
-                                            //        debugger
-                                                    iframe.contentWindow.postMessage({
-                                                        html: html
-                                                    });
-                                            //
-                                            //         resolve(true)
-                                            //     }
-                                            // }, {once: true});
-
-                                            // item.active.postMessage({
-                                            //     type: 'get-client-id',
-                                            // })
-                                        // })
-                                    // });
-                                });
                             }
 
                             opfs.self.readFile(path)
@@ -103,7 +96,7 @@ export const actions = (self) => {
                                     return opfs.self.readFile(`${self.config.gitDir}/index.html`)
                                 })
                                 .then(data => {
-                                    if(data !== 'ok') {
+                                    if (data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
                                     }
@@ -114,7 +107,7 @@ export const actions = (self) => {
                                     return opfs.self.readFile(`${self.config.gitDir}/examples/dist/index.html`)
                                 })
                                 .then(data => {
-                                    if(data !== 'ok') {
+                                    if (data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
                                     }
@@ -125,21 +118,21 @@ export const actions = (self) => {
                                     return opfs.self.readFile(`${self.config.gitDir}/examples/src/index.html`)
                                 })
                                 .then(data => {
-                                    if(data !== 'ok') {
+                                    if (data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
                                     }
 
                                     return 'ok'
                                 }).catch(async e => {
-                                    html = {}
-                                    html = await fetch(`${window.location.origin}${normalizeLocation}fallback.html`)
-                                    html = await html.text()
-                                    initialization(html)
-                                    return 'ok'
-                                })
+                                html = {}
+                                html = await fetch(`${window.location.origin}${normalizeLocation}fallback.html`)
+                                html = await html.text()
+                                initialization(html)
+                                return 'ok'
+                            })
                                 .then(data => {
-                                    if(data !== 'ok') {
+                                    if (data !== 'ok') {
                                         html = new TextDecoder().decode(data);
                                         initialization(html)
                                     }

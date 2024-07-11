@@ -1,8 +1,9 @@
 const isWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
 
 let accessHandle = null
-let windowClientId = new Set()
-let iframeClientId = new Set()
+// let windowClientId = new Map()
+let iframeClientId = new Map()
+let pathname = ''
 let white = ['https://zababurinsergei.github.io']
 
 function getClientList() {
@@ -15,12 +16,12 @@ function getClientList() {
 
 self.addEventListener("message", async (event) => {
     if (event.data.type === "service") {
+        pathname = event.data.message
         const opfsRoot = await navigator.storage.getDirectory();
         const fileHandle = await opfsRoot.getFileHandle("config", {create: true});
         const writable = await fileHandle.createWritable();
         await writable.write(event.data.message);
         await writable.close();
-
         self.clients.matchAll().then(function (clients) {
             clients.forEach(function (client) {
                 client.postMessage({
@@ -33,23 +34,6 @@ self.addEventListener("message", async (event) => {
 
     if (event.data.type === "skipWaiting") {
         self.skipWaiting();
-    }
-
-    if (event.data.type === "get-client-id") {
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! НЕТ')
-        self.clients.matchAll().then(function (clients) {
-            clients.forEach(function (client) {
-                if (client.frameType === "top-level") {
-                    windowClientId.add(client.id)
-                    client.postMessage({
-                        type: 'SW_CLIENT',
-                        message: true
-                    })
-                } else if (client.frameType === "nested") {
-                    iframeClientId.add(client.id)
-                }
-            });
-        });
     }
 })
 
@@ -248,19 +232,33 @@ self.addEventListener('fetch', event => {
 
     if (iframeClientId.has(event.clientId) || iframeClientId.has(event.resultingClientId)) {
         if (event.clientId.length !== 0 || event.resultingClientId.length !== 0) {
+            if(iframeClientId.has(event.clientId)) {
+                pathname =  (iframeClientId.get(event.clientId)).pathname
+            }
+
+            if(iframeClientId.has(event.resultingClientId)) {
+                pathname =  (iframeClientId.get(event.clientId)).pathname
+            }
             isSw = true
         }
     }
 
     if(destination === 'iframe') {
-        iframeClientId.add(event.resultingClientId)
+        if(!iframeClientId.has(event.resultingClientId)) {
+            for (let amount of iframeClientId) {
+                if(amount[1].pathname === pathname) {
+                    iframeClientId.delete(amount[0])
+                }
+            }
+
+            iframeClientId.set(event.resultingClientId, {
+                pathname: pathname
+            })
+        }
+
         if(!url.pathname.includes('index.sw.html')) {
             isSw = true
         }
-    }
-
-    if (windowClientId.has(event.clientId)) {
-        isSw = false
     }
 
     const isExclude = url.pathname ==='/false' || url.pathname ===`${scope}false` || url.hostname !== host
@@ -270,7 +268,9 @@ self.addEventListener('fetch', event => {
         if (isOrigin && !isExclude && !url.pathname.includes('index.sw.html') && !url.pathname.includes('git-upload-pack') && !url.pathname.includes('info/refs')) {
             event.respondWith(readFile('config')
                 .then(async function (servicePath) {
-                    const rootOpfs = textDecoder.decode(servicePath)
+                    const eventId = event.clientId || event.resultingClientId
+                    // const rootOpfs = textDecoder.decode(servicePath)
+                    const rootOpfs = pathname
                     const isScope = url.pathname.includes(scope)
                     const isAudio = url.pathname.includes('.mp3')
 
@@ -301,7 +301,7 @@ self.addEventListener('fetch', event => {
                             url.pathname = `${url.pathname}index.html`
                         }
 
-                        console.log('-------------------------------------------- 1 -----------------------------------------------', url.pathname)
+                        // console.log('-------------------------------------------- 1 -----------------------------------------------', url.pathname)
 
                         let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
 
