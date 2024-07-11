@@ -301,7 +301,7 @@ self.addEventListener('fetch', event => {
                             url.pathname = `${url.pathname}index.html`
                         }
 
-                        // console.log('-------------------------------------------- 1 -----------------------------------------------', url.pathname)
+                        console.log('-------------------------------------------- 1 -----------------------------------------------', url.pathname)
 
                         let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
 

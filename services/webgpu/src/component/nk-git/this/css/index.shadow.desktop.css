@@ -293,6 +293,14 @@ iframe {
     width: 10dvw;
 }
 
+.run {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0px 0.47vw 0.94vw 0px #88919d4d;
+    border-radius: 0.21vw;
+}
+
 @keyframes indeterminateAnimation {
     0% {
         transform:  translateX(0) scaleX(0);
