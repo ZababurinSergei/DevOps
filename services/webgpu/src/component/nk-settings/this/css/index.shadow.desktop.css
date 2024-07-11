@@ -3,7 +3,6 @@
     flex-direction: column;
 }
 
-
 .fonts-button {
     width: max-content;
     height: 52px;
@@ -54,4 +53,16 @@
 
 .test {
     width: 20%;
+}
+
+.link {
+    align-self: center;
+    color: var(--main-color, #00A0A8);
+    font-family: 'Raleway', serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.06vw;
+    line-height: 0.97vw;
+    margin: 0;
+    cursor: pointer;
 }
