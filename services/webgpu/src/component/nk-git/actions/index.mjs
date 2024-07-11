@@ -36,6 +36,8 @@ export const actions = (self) => {
                         return;
                     }
 
+                    self.html.control.button.run.classList.add('disabled')
+
                     self.task = {
                         id: 'nk-opfs_0',
                         component: 'nk-opfs',
@@ -68,11 +70,23 @@ export const actions = (self) => {
                                 // iframe.sandbox = "allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation allow-top-navigation-by-user-activation"
                                 iframe.dataset.pathname = self.config.gitDir
 
+                                let lastKnownScrollPosition = 0
+
+                                const disable = function() {
+                                    window.scrollTo(0, lastKnownScrollPosition);
+                                }
+
                                 iframe.addEventListener('mouseenter', function (event) {
                                     navigator.serviceWorker.controller.postMessage({
                                         type: 'service',
                                         message: event.currentTarget.dataset.pathname
                                     });
+                                    lastKnownScrollPosition = window.scrollY;
+                                    window.addEventListener('scroll', disable);
+                                })
+
+                                iframe.addEventListener('mouseleave', function (event) {
+                                    window.removeEventListener('scroll', disable);
                                 })
 
                                 iframe.addEventListener('load', function (e) {
