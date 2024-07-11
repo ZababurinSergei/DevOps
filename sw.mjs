@@ -295,7 +295,13 @@ self.addEventListener('fetch', event => {
                         // console.log('sssssssssssssssssssssssssssssssssssss',isOrigin,  scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
                         const isTemplate = rootOpfs.includes('example3')
 
-                        console.log('-------------------------------------------- 1 -----------------------------------------------', isTemplate)
+                        const html = url.pathname.split('/')
+
+                        if(html[html.length -1].length === 0) {
+                            url.pathname = `${url.pathname}index.html`
+                        }
+
+                        // console.log('-------------------------------------------- 1 -----------------------------------------------', url.pathname)
 
                         let path = isOrigin ? `${rootOpfs}/${url.pathname}`: `${rootOpfs}${url.pathname}`
 
@@ -311,7 +317,6 @@ self.addEventListener('fetch', event => {
 
                         path = path.replaceAll("%20", ' ')
 
-                        console.log('--------------------------------------------- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',  path)
                         const options = getHeaders(destination, path)
 
                         return new Response(await readFile(path), options)
