@@ -1,5 +1,0 @@
-﻿node_modules
-package-lock.json
-extensions/*.map
-extensions/**/*.map
-.vscode
