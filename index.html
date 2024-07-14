@@ -4,8 +4,10 @@
     <title>DevOps</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes"/>
-    <meta name="description" content="Автоматизации технологических процессов сборки, настройки и развёртывания программного обеспечения.">
-    <meta property="og:description" content="Автоматизации технологических процессов сборки, настройки и развёртывания программного обеспечения."/>
+    <meta name="description"
+          content="Автоматизации технологических процессов сборки, настройки и развёртывания программного обеспечения.">
+    <meta property="og:description"
+          content="Автоматизации технологических процессов сборки, настройки и развёртывания программного обеспечения."/>
     <meta property="og:site_name" content="DevOps"/>
     <meta property="og:title" content="DevOps"/>
     <meta property="og:locale" content="ru_RU"/>
@@ -20,7 +22,9 @@
     <script src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/local-echo/dist/local-echo.js"></script>
     <script src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-fit/lib/xterm-addon-fit.js"></script>
     <script src="./services/webgpu/src/component/nk-memory/this/mjs/terminal/modules/xterm-addon-web-links/lib/xterm-addon-web-links.js"></script>
-    <link rel="shortcut icon" href="data:image/png;base64, AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbbv+DGW3/mRlt/5kZbf+ZGq6/hIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGa3/ohkt/7/Zbj//2S3/v9lt/6WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGm5/iRlt/74Zbj//2W4//9luP//Zbf++mi4/i4gIPciGhr24hsb9uwbG/bsGhr24CEh9xoAAAAAAAAAAAAAAABnuP5mZLf+/2W4//9luP//Zbj//2S3/v9muP5yGBj2rhMT9v8TE/b/ExP2/xMT9f8YGPWkAAAAAAAAAAAAAAAAb7z/BGW3/tZluP//Zbj//2W4//9lt/7gJzH3ShMT9f8TE/b/ExP2/xMT9v8TE/b/ExP1/CAg9joAAAAAAAAAAAAAAABmuP5GZLf+6GS3/uhkt/7oZbf+UhgY9YQSEvX/ExP2/xMT9v8TE/b/ExP2/xIS9f8aGvZ8AAAAAD4++gQgIPZ6IiL2hiIi9oYgIPZ8KCj5BAAAAAAtLfgUFBT17BMT9v8TE/b/ExP2/xMT9v8VFfXoLCz4DgAAAAAaGvZqEhL1/xMT9v8TE/b/EhL1/xsb9nIAAAAAAAAAABwc9m4SEvX/ExP2/xMT9v8SEvX/HR32ZAAAAAAnJ/gSFRX16hMT9v8TE/b/ExP2/xMT9v8UFPXuJyf4Fp2xlAKNnqUYLC/mfhYW83ATE/VuFxf1aDc3+gIAAAAAGBj1fhIS9f8TE/b/ExP2/xMT9v8TE/b/ExP1/xkZ9YaGn3yIhZ57/4Wee/+Gn3yKAAAAAAAAAAAAAAAAAAAAACMj9zYTE/X8ExP2/xMT9v8TE/b/ExP2/xMT9f9JUshihZ57+IaffP+Gn3z/hZ579oigfiYAAAAAAAAAAAAAAAAAAAAAGBj1oBIS9f8TE/b/ExP2/xMT9f8YGPWmiKB+PIWee/+Gn3z/hp98/4Wee/+HoH06AAAAAAAAAAAAAAAAAAAAACUl9xgVFfXOExP11BMT9dQUFPXQJib3HgAAAACGn3ymhp98/4affP+Gn3ymAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiKB+EIihf0CIoX9AiKB+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AADg/wAA4MMAAOCBAADggQAA8QEAAOeBAADDwwAAgf8AAIAPAACBDwAAgQ8AAMMPAAD//wAA//8AAA==" type="image/png">
+    <link rel="shortcut icon"
+          href="data:image/png;base64, AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbbv+DGW3/mRlt/5kZbf+ZGq6/hIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGa3/ohkt/7/Zbj//2S3/v9lt/6WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGm5/iRlt/74Zbj//2W4//9luP//Zbf++mi4/i4gIPciGhr24hsb9uwbG/bsGhr24CEh9xoAAAAAAAAAAAAAAABnuP5mZLf+/2W4//9luP//Zbj//2S3/v9muP5yGBj2rhMT9v8TE/b/ExP2/xMT9f8YGPWkAAAAAAAAAAAAAAAAb7z/BGW3/tZluP//Zbj//2W4//9lt/7gJzH3ShMT9f8TE/b/ExP2/xMT9v8TE/b/ExP1/CAg9joAAAAAAAAAAAAAAABmuP5GZLf+6GS3/uhkt/7oZbf+UhgY9YQSEvX/ExP2/xMT9v8TE/b/ExP2/xIS9f8aGvZ8AAAAAD4++gQgIPZ6IiL2hiIi9oYgIPZ8KCj5BAAAAAAtLfgUFBT17BMT9v8TE/b/ExP2/xMT9v8VFfXoLCz4DgAAAAAaGvZqEhL1/xMT9v8TE/b/EhL1/xsb9nIAAAAAAAAAABwc9m4SEvX/ExP2/xMT9v8SEvX/HR32ZAAAAAAnJ/gSFRX16hMT9v8TE/b/ExP2/xMT9v8UFPXuJyf4Fp2xlAKNnqUYLC/mfhYW83ATE/VuFxf1aDc3+gIAAAAAGBj1fhIS9f8TE/b/ExP2/xMT9v8TE/b/ExP1/xkZ9YaGn3yIhZ57/4Wee/+Gn3yKAAAAAAAAAAAAAAAAAAAAACMj9zYTE/X8ExP2/xMT9v8TE/b/ExP2/xMT9f9JUshihZ57+IaffP+Gn3z/hZ579oigfiYAAAAAAAAAAAAAAAAAAAAAGBj1oBIS9f8TE/b/ExP2/xMT9f8YGPWmiKB+PIWee/+Gn3z/hp98/4Wee/+HoH06AAAAAAAAAAAAAAAAAAAAACUl9xgVFfXOExP11BMT9dQUFPXQJib3HgAAAACGn3ymhp98/4affP+Gn3ymAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiKB+EIihf0CIoX9AiKB+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AADg/wAA4MMAAOCBAADggQAA8QEAAOeBAADDwwAAgf8AAIAPAACBDwAAgQ8AAMMPAAD//wAA//8AAA=="
+          type="image/png">
     <style>
         @import "./codicon.css";
         @import url('./services/webgpu/src/component/nk-ide/this/mjs/api/this/index.css');
@@ -92,7 +96,8 @@
             <div class="wrapper">
                 <h2>Scheduler</h2>
                 <div class="settings">
-                    <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span class="value"></span></div>
+                    <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span
+                            class="value"></span></div>
                 </div>
                 <div class="memory-queue"></div>
                 <div class="nk-ping">
@@ -105,21 +110,21 @@
             </div>
         </div>
         <nk-ping
-            id="nk-ping_0"
-            slot="nk-ping"
+                id="nk-ping_0"
+                slot="nk-ping"
         >
             <template>
                 <div class="relation">
                     <div class="property">
                         <div class="item">
-                            <div class="name"> Cors Proxy </div>
-                            <div class="status cors"> </div>
-                            <div class="ping cors"> </div>
+                            <div class="name"> Cors Proxy</div>
+                            <div class="status cors"></div>
+                            <div class="ping cors"></div>
                         </div>
                         <div class="item">
-                            <div class="name"> Signal Server </div>
-                            <div class="status signal"> </div>
-                            <div class="ping signal"> </div>
+                            <div class="name"> Signal Server</div>
+                            <div class="status signal"></div>
+                            <div class="ping signal"></div>
                         </div>
                     </div>
                 </div>
@@ -162,7 +167,7 @@
                     <div class="inner-modal">
                         <label>Дайте идентификатор устройства вашего собеседника</label>
                         <input placeholder="Enter your friend's device ID" aria-colcount="10">
-                        <button class="connect-btn" >
+                        <button class="connect-btn">
                             Звонок
                         </button>
                     </div>
@@ -176,7 +181,7 @@
         >
             <template>
                 <div class="nk-git__container">
-                    <slot name="nk-settings"></slot>
+                    <slot name="nk-concept"></slot>
                     <div class="run"></div>
                     <div class="settings">
                         <div class="settings__block_0">
@@ -302,23 +307,73 @@
                     <slot name="mss-settings"></slot>
                 </div>
 
-                <nk-settings
-                        id="nk-settings_0"
-                        slot="nk-settings"
+                <nk-concept
+                        id="nk-concept_0"
+                        slot="nk-concept"
                 >
                     <template>
                         <div class="settings">
-                            <div class="wrapper">
-                                <a class="link" href="./context.ld.json">Context</a>
-                                <!--                                <button class="fonts-button disabled">Загрузить шрифт</button>-->
-                                <!--                                <input type="file" id="font-input">-->
-                                <!--                                <div class="test">-->
-                                <!--                                    <p id="test">Upload a font to change me!</p>-->
-                                <!--                                </div>-->
-                            </div>
+                            <details class="wrapper">
+                                <summary>  <a class="link" href="./context.ld.json">Context</a> </summary>
+                                <pre>
+{
+    '@context': 'https://zababurinsergei.github.io/DevOps/context.ld.json',
+    '@id': '/DevOps',
+    'version': '5.8.1',
+    'edges': [
+        {
+            '@id': '/json-ld.org',
+            '@type': 'Edge',
+            'dataset': '/d/DevOps',
+            'license': 'cc:by-sa/4.0',
+            'surfaceText': 'json-ld.org сайт',
+            'weight': 1.0
+        },
+        {
+            '@id': '/Okuma-Reader',
+            '@type': 'Edge',
+            'dataset': '/d/DevOps',
+            'license': 'cc:by-sa/4.0',
+            'surfaceText': 'Сервис Okuma-Reader',
+            'weight': 1.0
+        },
+        {
+            '@id': '/welcomebook',
+            '@type': 'Edge',
+            'dataset': '/d/DevOps',
+            'license': 'cc:by-sa/4.0',
+            'surfaceText': 'Сервис welcomebook',
+            'weight': 1.0
+        },
+        {
+            '@id': '/checklist',
+            '@type': 'Edge',
+            'dataset': '/d/DevOps',
+            'license': 'cc:by-sa/4.0',
+            'surfaceText': 'Сервис checklist',
+            'url': 'https://github.com/ElenaSidneva/yoga_studio',
+            'weight': 1.0
+        },
+        {
+            '@id': '/yoga_studio',
+            '@type': 'Edge',
+            'dataset': '/d/DevOps',
+            'license': 'cc:by-sa/4.0',
+            'surfaceText': 'Сервис yoga_studio',
+            'url': 'https://github.com/ElenaSidneva/yoga_studio',
+            'weight': 1.0
+        },
+    ],
+    'view': {
+        '@id': '/DevOps',
+        '@type': 'PartialCollectionView'
+    }
+}
+                                </pre>
+                            </details>
                         </div>
                     </template>
-                </nk-settings>
+                </nk-concept>
 
                 <nk-opfs
                         id="nk-opfs_0"
@@ -375,7 +430,7 @@
                     <template>
                         <div data-exclusion id="swagger">
                             <nk-mocha
-                                id="nk-mocha_0"
+                                    id="nk-mocha_0"
                             >
                                 <template>
                                     <div id="tests" style="position: relative">
@@ -402,11 +457,13 @@
                                                     <div class="dropdown">
                                                         <div class="wrapper">
                                                             <div class="input">
-                                                                <button placeholder="Значение ещё не существует" class="button"
+                                                                <button placeholder="Значение ещё не существует"
+                                                                        class="button"
                                                                         type="button"></button>
                                                             </div>
                                                             <div class="button_arrow">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                     height="16"
                                                                      viewBox="0 0 16 16" fill="none">
                                                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                                                           d="M7.99994 8.93934L11.4696 5.46967L12.5303 6.53033L8.53027 10.5303C8.23738 10.8232 7.76251 10.8232 7.46961 10.5303L3.46961 6.53033L4.53027 5.46967L7.99994 8.93934Z"
@@ -436,7 +493,7 @@
                                         </div>
                                         <slot name="mocha"></slot>
                                     </div>
-                                    <ul data-exclusion  id="mocha" slot="mocha"></ul>
+                                    <ul data-exclusion id="mocha" slot="mocha"></ul>
                                 </template>
                             </nk-mocha>
                         </div>
@@ -512,13 +569,13 @@
                 redirect: 'follow', // manual, *follow, error
                 referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
                 body: JSON.stringify(data), // body data type must match "Content-Type" header
-            }).then(async function(response) {
+            }).then(async function (response) {
                 if (response.status === 400) {
                     throw new FetchException(await response.json());
                 } else {
                     resolve(response.json());
                 }
-            }).catch(function(e) {
+            }).catch(function (e) {
                 reject(e);
             });
         });
@@ -533,7 +590,7 @@
             "duration": entry.duration,
         };
 
-        if(entry.entryType === 'navigation') {
+        if (entry.entryType === 'navigation') {
             perf.performance = [{
                 name: entry.name,
                 pathname: (new URL(entry.name)).pathname,
@@ -543,17 +600,17 @@
                 delta: entry.duration,
                 end: 0,
                 isSending: false
-            },{ }]
+            }, {}]
         }
 
-        if(entry.entryType === 'resource') {
-            if(window.location.pathname === perf.performance[0].pathname && !perf.performance[0].isSending) {
+        if (entry.entryType === 'resource') {
+            if (window.location.pathname === perf.performance[0].pathname && !perf.performance[0].isSending) {
                 perf.performance[0].delta = objDict.start - perf.performance[0].current
                 perf.performance[0].current = objDict.start
                 perf.performance[0].duration = perf.performance[0].duration + perf.performance[0].delta
                 perf.performance[0].end = objDict.duration
 
-                if(!perf.performance[1].name) {
+                if (!perf.performance[1].name) {
                     perf.performance[1].name = objDict.name
                     perf.performance[1].duration = objDict.duration
                 }
@@ -564,7 +621,7 @@
                     clearTimeout(timerId)
                     perf.performance[0].duration = perf.performance[0].duration + perf.performance[0].end
                     console.log('Performance: ', perf.performance[0])
-                    for(let item of perf.performance) {
+                    for (let item of perf.performance) {
 
                         // post('/api/v1/metric', {
                         //     "uiResponse" : {
@@ -682,27 +739,27 @@
 
     const request = (url, data) => {
         return new Promise((resolve, reject) => {
-                fetch(url, {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    mode: 'cors', // no-cors, *cors, same-origin
-                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                    credentials: 'same-origin', // include, *same-origin, omit
-                    headers: {
-                        'X-CSRF-TOKEN': getCookie(),
-                        'X-XSRF-TOKEN': getCookie(),
-                    },
-                    redirect: 'follow', // manual, *follow, error
-                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                    body: JSON.stringify(data), // body data type must match "Content-Type" header
-                }).then(async function(response) {
-                    if (response.status === 400) {
-                        throw new FetchException(await response.json());
-                    } else {
-                        resolve(response.json());
-                    }
-                }).catch(function(e) {
-                    reject(e);
-                });
+            fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'X-CSRF-TOKEN': getCookie(),
+                    'X-XSRF-TOKEN': getCookie(),
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data), // body data type must match "Content-Type" header
+            }).then(async function (response) {
+                if (response.status === 400) {
+                    throw new FetchException(await response.json());
+                } else {
+                    resolve(response.json());
+                }
+            }).catch(function (e) {
+                reject(e);
+            });
             resolve(true)
         });
     };

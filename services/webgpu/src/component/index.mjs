@@ -1,4 +1,5 @@
 import { Component } from './base-nk/index.mjs';
+import nkConcept from './nk-concept/index.mjs'
 import nkPing from './nk-ping/index.mjs'
 import nkPeer from './nk-peer/index.mjs'
 import nkSwagger from './nk-swagger/index.mjs'
