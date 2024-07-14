@@ -266,9 +266,9 @@
     }
   ],
   "@context": {
-    "@base": "http://api.conceptnet.io/ld/conceptnet5.7/context.ld.json",
-    "cn": "http://api.conceptnet.io/ld/conceptnet5.7/context.ld.json#",
-    "pages": "http://api.conceptnet.io/ld/conceptnet5.7/context.ld.json#pagination-",
+    "@base": "https://zababurinsergei.github.io/DevOps/context.ld.json",
+    "cn": "https://zababurinsergei.github.io/DevOps/context.ld.json#",
+    "pages": "https://zababurinsergei.github.io/DevOps/context.ld.json#pagination-",
     "cc": "http://creativecommons.org/licenses/",
     "dc": "http://purl.org/dc/terms/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -425,6 +425,6 @@
   },
   "@id": "cn:",
   "vann:preferredNamespacePrefix": "cn",
-  "dc:creator": "rspeer@luminoso.com",
-  "seeAlso": "http://api.conceptnet.io/docs"
+  "dc:creator": "zababurins@vk.com",
+  "seeAlso": "https://github.com/ZababurinSergei/DevOps/wiki"
 }
