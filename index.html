@@ -93,6 +93,9 @@
             <div class="nk-peer">
                 <slot name="nk-peer"></slot>
             </div>
+            <div class="nk-sqlite">
+                <slot name="nk-sqlite"></slot>
+            </div>
             <div class="wrapper">
                 <h2>Scheduler</h2>
                 <div class="settings">
@@ -109,6 +112,49 @@
                 <slot name="nk-git"></slot>
             </div>
         </div>
+        <nk-sqlite
+                id="nk-sqlite_0"
+                slot="nk-sqlite"
+        >
+            <template>
+                <div>
+                    <h1>SQLite</h1>
+                    <div id="controls">
+                        <div id="file-controls">
+                            <button id="clear">Clear files</button>
+                            <button id="init">Initiate database</button>
+                        </div>
+                        <textarea id="input-code" rows="10" cols="48">
+    CREATE TABLE cars(
+      id INT PRIMARY KEY NOT NULL,
+      name TEXT NOT NULL,
+      color_id INT
+    );
+    CREATE TABLE colors(
+      id INT PRIMARY KEY NOT NULL,
+      name TEXT NOT NULL
+    );
+
+    INSERT INTO cars (id, name, color_id)
+    VALUES
+    (1, 'honda', 1),
+    (2, 'honda', 2),
+    (3, 'fiat', 1),
+    (4, 'fiat', 2);
+
+    INSERT INTO colors (id, name)
+    VALUES
+    (1, 'yellow'),
+    (2, 'green');
+
+    SELECT * FROM cars;
+                        </textarea>
+                        <button id="run">Run query</button>
+                        <button id="test">Run test</button>
+                    </div>
+                </div>
+            </template>
+        </nk-sqlite>
         <nk-ping
                 id="nk-ping_0"
                 slot="nk-ping"
@@ -314,7 +360,7 @@
                     <template>
                         <div class="settings">
                             <details class="wrapper">
-                                <summary>  <a class="link" href="./context.ld.json">Context</a> </summary>
+                                <summary><a class="link" href="./context.ld.json">Context</a></summary>
                                 <pre>
 {
     '@context': 'https://zababurinsergei.github.io/DevOps/context.ld.json',

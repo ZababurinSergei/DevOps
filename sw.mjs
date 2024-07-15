@@ -318,9 +318,6 @@ self.addEventListener('fetch', event => {
                         path = path.replaceAll("%E2%80%99", '’')
 
                         const options = getHeaders(destination, path)
-
-                        console.log('-------------------------------------------- 1 -----------------------------------------------', path)
-
                         return new Response(await readFile(path), options)
                     }
                 })
@@ -333,7 +330,6 @@ self.addEventListener('fetch', event => {
         }
     } else {
         if(!isExclude) {
-            console.log('------------------------------ url.pathname -----------------------------------', url.pathname)
             event.respondWith(
                 fetch(event.request)
                     .then(function (response) {
