@@ -1,9 +1,8 @@
 import { Component } from '../index.mjs';
+import { sqlite3Worker } from './this/index.mjs'
 
 const name = 'nk-sqlite';
 const component = await Component();
-
-// const opfsWorkerUrl = new URL('./worker.js', import.meta.url);
 
 component.observedAttributes = ['open', 'disabled'];
 
@@ -12,33 +11,72 @@ Object.defineProperties(component.prototype, {
         value: null,
         writable: true
     },
-    _worker: {
+    sqlite3: {
         value: null,
         writable: true
     },
-    worker: {
-        value: function(value) {
-            return new Promise((resolve, reject) => {
-                this._worker = new Worker(opfsWorkerUrl.pathname, {
-                    name: 'sqlite',
-                    type: 'module'
-                });
-
-                this._worker.onerror = (event) => {
-                    console.error('##########################', event);
-                };
-
-                this._worker.onmessage = async (event) => {
-
-                };
-            });
-        },
+    db: {
+        value: null,
         writable: true
     },
     init: {
-        value: async function(property) {
+        value: async function(action) {
+            this.html = {
+                runButton: this.shadowRoot.getElementById('run'),
+                clearButton: this.shadowRoot.getElementById('clear'),
+                initButton: this.shadowRoot.getElementById('init'),
+                inputCode:  this.shadowRoot.getElementById('input-code'),
+                testButton: this.shadowRoot.getElementById('test'),
+            }
 
-            console.log('=== init ===')
+            this.sqlite3 = await sqlite3Worker();
+            // this.db = await this.sqlite3.initializeDB("db/index.db");
+
+            console.log('sqlite3 db', this.db)
+            this.html.initButton.addEventListener('click', async () => {
+                this.db = await this.sqlite3.initializeDB("db/index.db");
+            })
+
+            this.html.runButton.addEventListener('click', async () => {
+                await this.db.exec({
+                    returnValue: "resultRows",
+                    sql: this.html.inputCode.value,
+                    rowMode: 'object', // 'array' (default), 'object', or 'stmt'
+                    columnNames: []
+                });
+            })
+
+            this.html.clearButton.addEventListener('click', async () => {
+                await this.sqlite3.clear();
+            })
+
+
+            this.html.testButton.addEventListener('click', async () => {
+                // prepare test
+                let result = await this.db.prepare("SELECT * from cars")
+                console.log({
+                    result
+                })
+
+                const res1 = await result.step();
+                console.log({
+                    res1
+                });
+
+                const res2 = await result.get({});
+                console.log({
+                    res2
+                })
+
+
+
+
+
+            })
+
+            // this.html.clearButton.click()
+            // this.html.initButton.click()
+
             return true;
         },
         writable: true
