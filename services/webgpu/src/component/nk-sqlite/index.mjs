@@ -68,14 +68,17 @@ Object.defineProperties(component.prototype, {
                     res2
                 })
 
+                const amount = ['name'];
+                const start = new Date();
 
+                const logTime = () => {
+                    const total = (new Date()).getTime() - start.getTime();
+                    console.log(`Total time: ${total} ms`);
+                }
 
 
 
             })
-
-            // this.html.clearButton.click()
-            // this.html.initButton.click()
 
             return true;
         },
