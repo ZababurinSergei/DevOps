@@ -1,3 +1,13 @@
+h1 {
+    color: #00A0A8;
+    font-family: 'Raleway-ExtraBold', serif;
+    font-size: 1.5dvw;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
 button {
     width: max-content;
     min-width: 130px;
