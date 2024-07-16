@@ -1,6 +1,6 @@
 import html from './html/index.mjs'
 
-export { sqlite3Worker } from './mjs/index.mjs'
+export { sqlite3Worker, editor } from './mjs/index.mjs'
 
 export { html }
 export { actions } from '../actions/index.mjs'

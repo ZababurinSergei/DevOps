@@ -123,34 +123,10 @@
                         <div id="file-controls">
                             <button id="clear">Clear files</button>
                             <button id="init">Initiate database</button>
+                            <button id="run">Run query</button>
+                            <button id="test">Run test</button>
                         </div>
-                        <textarea id="input-code" rows="10" cols="48">
-    CREATE TABLE cars(
-      id INT PRIMARY KEY NOT NULL,
-      name TEXT NOT NULL,
-      color_id INT
-    );
-    CREATE TABLE colors(
-      id INT PRIMARY KEY NOT NULL,
-      name TEXT NOT NULL
-    );
-
-    INSERT INTO cars (id, name, color_id)
-    VALUES
-    (1, 'honda', 1),
-    (2, 'honda', 2),
-    (3, 'fiat', 1),
-    (4, 'fiat', 2);
-
-    INSERT INTO colors (id, name)
-    VALUES
-    (1, 'yellow'),
-    (2, 'green');
-
-    SELECT * FROM cars;
-                        </textarea>
-                        <button id="run">Run query</button>
-                        <button id="test">Run test</button>
+                        <div id="input-code"> </div>
                     </div>
                 </div>
             </template>

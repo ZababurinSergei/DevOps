@@ -1,5 +1,5 @@
 import { Component } from '../index.mjs';
-import { sqlite3Worker } from './this/index.mjs'
+import { sqlite3Worker, editor } from './this/index.mjs'
 
 const name = 'nk-sqlite';
 const component = await Component();
@@ -8,6 +8,10 @@ component.observedAttributes = ['open', 'disabled'];
 
 Object.defineProperties(component.prototype, {
     html: {
+        value: null,
+        writable: true
+    },
+    editor: {
         value: null,
         writable: true
     },
@@ -29,8 +33,42 @@ Object.defineProperties(component.prototype, {
                 testButton: this.shadowRoot.getElementById('test'),
             }
 
+            this.editor = editor(this.html.inputCode, ``);
+            // console.log('codemirror',codemirror.state.setValue)
+            this.editor.dispatch({
+                changes: {from: 0, to: this.editor.state.doc.toString().length, insert:''}
+            })
+
+            this.editor.dispatch({
+                changes: {from: 0, insert: `
+CREATE TABLE cars
+(
+    id       INT PRIMARY KEY NOT NULL,
+    name     TEXT            NOT NULL,
+    color_id INT
+);
+CREATE TABLE colors
+(
+    id   INT PRIMARY KEY NOT NULL,
+    name TEXT            NOT NULL
+);
+
+INSERT INTO cars (id, name, color_id)
+VALUES (1, 'honda', 1),
+       (2, 'honda', 2),
+       (3, 'fiat', 1),
+       (4, 'fiat', 2);
+
+INSERT INTO colors (id, name)
+VALUES (1, 'yellow'),
+       (2, 'green');
+
+SELECT *
+FROM cars;
+                    `}
+            })
+
             this.sqlite3 = await sqlite3Worker();
-            // this.db = await this.sqlite3.initializeDB("db/index.db");
 
             console.log('sqlite3 db', this.db)
             this.html.initButton.addEventListener('click', async () => {
@@ -47,7 +85,7 @@ Object.defineProperties(component.prototype, {
             })
 
             this.html.clearButton.addEventListener('click', async () => {
-                await this.sqlite3.clear();
+                await this.sqlite3.clear('/db');
             })
 
 

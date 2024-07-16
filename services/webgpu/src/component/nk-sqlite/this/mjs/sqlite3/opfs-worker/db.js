@@ -9,7 +9,6 @@ import {
 
 export class WorkerDB {
     db;
-
     static init(sqlite3, filePath) {
         const instance = new WorkerDB();
         instance.db = new sqlite3.opfs.OpfsDb(filePath);
