@@ -159,6 +159,7 @@ export const handleRequest = async (data) => {
  */
 async function clear() {
     const rootDir = await navigator.storage.getDirectory();
+    console.log('------------------------ CLEAR ------------------------')
     // @ts-ignore
     for await (const [name] of rootDir.entries()) {
         await rootDir.removeEntry(name, {

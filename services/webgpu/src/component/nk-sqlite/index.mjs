@@ -70,7 +70,6 @@ FROM cars;
 
             this.sqlite3 = await sqlite3Worker();
 
-            console.log('sqlite3 db', this.db)
             this.html.initButton.addEventListener('click', async () => {
                 this.db = await this.sqlite3.initializeDB("db/index.db");
             })
@@ -85,12 +84,11 @@ FROM cars;
             })
 
             this.html.clearButton.addEventListener('click', async () => {
-                await this.sqlite3.clear('/db');
+                await this.sqlite3.clear('db');
             })
 
 
             this.html.testButton.addEventListener('click', async () => {
-                // prepare test
                 let result = await this.db.prepare("SELECT * from cars")
                 console.log({
                     result
@@ -113,9 +111,6 @@ FROM cars;
                     const total = (new Date()).getTime() - start.getTime();
                     console.log(`Total time: ${total} ms`);
                 }
-
-
-
             })
 
             return true;

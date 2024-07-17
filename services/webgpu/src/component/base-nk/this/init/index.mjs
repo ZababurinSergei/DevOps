@@ -1,4 +1,4 @@
-import { store } from '../index.mjs';
+import {store} from '../index.mjs';
 
 let pathname = undefined;
 const getChildren = (content) => {
@@ -55,23 +55,15 @@ export const init = (self) => {
             }
         }
 
-        if (!pathname) {
-            pathname = store.get('location').pathname;
-        }
+        pathname = new URL('../../../../', import.meta.url)
 
-        if (pathname === null || !pathname) {
-            pathname = '.';
-        }
 
-        // if(self.tagName === 'WELCOME-SECTION') {
-        //     console.log('container', container, self.tagName)
-        // }
-
+        console.log('pathname', pathname)
         if (container.shadowDom.length > 0) {
             let link = `${pathname}/component/${self.tagName.toLowerCase()}/this/css/index.shadow.css`;
 
             if (!self.shadowRoot) {
-                self.attachShadow({ mode: 'open' });
+                self.attachShadow({mode: 'open'});
             }
 
             if (self.dataset.cssShadow) {
@@ -86,7 +78,7 @@ export const init = (self) => {
                     self.shadowRoot.append(container.shadowDom[i]);
                 }
 
-                if(container.lightDom.length > 0) {
+                if (container.lightDom.length > 0) {
                     for (let i = 0; i < container.lightDom.length; ++i) {
                         self.appendChild(container.lightDom[i])
                     }
@@ -98,7 +90,7 @@ export const init = (self) => {
             resolve(self);
         }
 
-        if(container.lightDom.length > 0 && container.shadowDom.length === 0) {
+        if (container.lightDom.length > 0 && container.shadowDom.length === 0) {
             for (let i = 0; i < container.lightDom.length; ++i) {
                 self.appendChild(container.lightDom[i])
             }
