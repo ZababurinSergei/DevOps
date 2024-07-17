@@ -43,3 +43,7 @@
     align-self: center;
     font-weight: 400;
 }
+
+.warning {
+    color: rgb(185 77 51 / 95%)
+}
