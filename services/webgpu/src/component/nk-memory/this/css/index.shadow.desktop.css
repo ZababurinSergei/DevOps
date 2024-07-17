@@ -176,3 +176,9 @@ h2 {
     line-height: normal;
     text-transform: uppercase;
 }
+
+.nk-peer {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
