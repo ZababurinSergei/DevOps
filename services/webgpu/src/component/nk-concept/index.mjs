@@ -1,4 +1,40 @@
-import { Component } from '../index.mjs';
+import {Component} from '../index.mjs';
+import context from 'https://zababurinsergei.github.io/DevOps/context.ld.json' assert {type: 'json'};
+
+const initialize = []
+const complex = []
+for(let item of context.definitions) {
+
+    if('domain' in item) {
+        complex.push(item)
+    } else {
+        initialize.push(item)
+    }
+}
+
+for(let item of complex) {
+    switch (typeof item.domain) {
+        case 'string':
+            let objectDomain = initialize.find(object => object['@id'] === item.domain)
+            item.domain = objectDomain
+            break
+        case "object":
+            for(let key in item.domain) {
+                let objectDomain = initialize.find(object => object['@id'] === item.domain[key])
+                delete item.domain[key]
+                item.domain[key] = objectDomain
+            }
+            break
+        default:
+            debugger
+            break
+    }
+}
+
+console.log('-------------------||| context |||-------------------', {
+    complex: complex,
+    initialize: initialize
+})
 
 const name = 'nk-concept';
 
@@ -11,25 +47,59 @@ Object.defineProperties(component.prototype, {
         value: null,
         writable: true
     },
-    init: {
-        value: async function() {
-            this.html = {
-                control: {
-                    button: {
-                        upload: this.shadowRoot.querySelector('.fonts-button')
-                    },
-                    input: {
-                        upload: this.shadowRoot.querySelector('#font-input')
-                    }
-                }
-            }
+    edge: {
+        value: () => {
 
-            return this.html
+            return {
+                '@id': '/checklist',
+                '@type': 'Edge',
+                'dataset': '/d/DevOps',
+                'license': 'cc:by-sa/4.0',
+                'surfaceText': 'Сервис checklist',
+                'url': 'https://github.com/ElenaSidneva/yoga_studio',
+                'weight': 1.0
+            }
         },
         writable: true
     },
-    onMessage:{
-        value: function(event) { },
+    save: {
+        value: async () => {
+            console.log('< ---------------- >', this.json)
+        },
+        writable: true
+    },
+    json: {
+        value: {
+            '@context': [
+                "https://api.conceptnet.io/ld/conceptnet5.5/pagination.ld.json",
+                'https://zababurinsergei.github.io/DevOps/context.ld.json'
+            ],
+            '@id': '/DevOps',
+            'version': '5.8.1',
+            'edges': [ ],
+            "weight": 1.0,
+            'view': {
+                '@id': '/DevOps',
+                '@type': 'PartialCollectionView'
+            }
+        },
+        writable: true
+    },
+    init: {
+        value: async function () {
+            this.html = {
+                definitions: this.shadowRoot.querySelector('.definitions')
+            }
+
+            this.html.definitions.textContent = JSON.stringify(complex, null, 4)
+
+            return true
+        },
+        writable: true
+    },
+    onMessage: {
+        value: function (event) {
+        },
         writable: false
     },
     open: {

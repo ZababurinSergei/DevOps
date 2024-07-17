@@ -57,8 +57,6 @@ export const init = (self) => {
 
         pathname = new URL('../../../../', import.meta.url)
 
-
-        console.log('pathname', pathname)
         if (container.shadowDom.length > 0) {
             let link = `${pathname}/component/${self.tagName.toLowerCase()}/this/css/index.shadow.css`;
 
