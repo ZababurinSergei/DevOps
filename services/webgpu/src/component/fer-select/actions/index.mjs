@@ -102,6 +102,12 @@ export const actions = (self) => {
                     }
                 }
 
+                if(self.id === 'fer-select_3') {
+                    self.config = {
+                        branch: self.dataset.value
+                    }
+                }
+
                 self.html.button.textContent = self.dataset.value
             }
         })

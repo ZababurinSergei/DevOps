@@ -21,17 +21,15 @@ Object.defineProperties(component.prototype, {
         value: (path) => {
                return ping(path)
                     .then(data => {
-                        console.log('----------------- PING 1 -----------------', {
-                            data: data
-                        })
-
+                        // console.log('----------------- PING 1 -----------------', {
+                        //     data: data
+                        // })
                         return {
                             status: true,
                             ping: data
                         }
                     }).catch(function (error) {
-                    console.log('----------------- PING 2 -----------------')
-
+                    // console.log('----------------- PING 2 -----------------')
                        return {
                            status: false
                        }
@@ -59,11 +57,9 @@ Object.defineProperties(component.prototype, {
             const initCors = () => {
                 this.ping(this.host.cors)
                     .then(data => {
-                        console.log('ping result', data)
                         if(!data.status) {
                             initCors()
                         } else {
-                            console.log('ping true cors')
                             this.html.cors.status.classList.add('active')
                             this.html.cors.ping.textContent = `${data.ping} ms`
                         }

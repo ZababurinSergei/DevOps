@@ -1,25 +1,77 @@
 import {Component} from '../index.mjs';
-import context from 'https://zababurinsergei.github.io/DevOps/context.ld.json' assert {type: 'json'};
+import context from 'https://zababurinsergei.github.io/DevOps/context.ld.json' with {type: 'json'};
 
 const initialize = []
 const complex = []
-for(let item of context.definitions) {
+const objects = {}
 
-    if('domain' in item) {
+for(let object in context['@context']) {
+    let tmp = {}
+    if(typeof context['@context'][object] === 'string') {
+        if(context['@context'][object].startsWith('cn')) {
+            objects[object] = {}
+            console.log('------------------- CONTEXT 1 -------------------', object, context['@context'][object])
+        }
+    } else {
+        if(context['@context'][object]['@id'].startsWith('cn') ) {
+            if(context['@context'][object]['@container']) {
+                objects[object] = []
+            } else {
+                if(context['@context'][object]['@type'].trim() === 'xsd:string') {
+                    objects[object] = ''
+                } else if(context['@context'][object]['@type'].trim() === 'xsd:boolean') {
+                    objects[object] = false
+                } else if(context['@context'][object]['@type'].trim() === 'xsd:float'){
+                    objects[object] = 0
+                } else {
+                    objects[object] = {}
+                }
+
+            }
+
+            console.log('------------------- CONTEXT 2 -------------------', object, context['@context'][object])
+        }
+    }
+}
+
+
+console.log('------------------- CONTEXT -------------------', objects)
+
+
+for (let item of context.definitions) {
+    if ('domain' in item) {
         complex.push(item)
     } else {
         initialize.push(item)
     }
 }
 
-for(let item of complex) {
+// for (let item of initialize) {
+//     if ('subClassOf' in item) {
+//         const result = initialize.find(data => data['@id'] === item.subClassOf)
+//         if (result) {
+//             item.subClassOf = result
+//         }
+//     }
+// }
+
+// for (let item of complex) {
+//     if ('range' in item) {
+//         const result = initialize.find(data => data['@id'] === item.range)
+//         if (result) {
+//             item.range = result
+//         }
+//     }
+// }
+
+for (let item of complex) {
     switch (typeof item.domain) {
         case 'string':
             let objectDomain = initialize.find(object => object['@id'] === item.domain)
             item.domain = objectDomain
             break
         case "object":
-            for(let key in item.domain) {
+            for (let key in item.domain) {
                 let objectDomain = initialize.find(object => object['@id'] === item.domain[key])
                 delete item.domain[key]
                 item.domain[key] = objectDomain
@@ -30,6 +82,88 @@ for(let item of complex) {
             break
     }
 }
+
+
+for (let object of initialize) {
+    console.log('------- object -------', object)
+
+    for (let item of complex) {
+        if (Array.isArray(item.domain)) {
+            for (let domain of item.domain) {
+                if (domain['@id'] === object['@id']) {
+                    const name = item['@id'].replace('#', '').toLowerCase()
+                    console.log('-------------- 1 ----------------', item)
+                    object[name] = {}
+                }
+            }
+        } else {
+            if (item.domain['@id'] === object['@id']) {
+                const name = item['@id'].replace('#', '').toLowerCase()
+                object[name] = {}
+                console.log('-------------- 2 ----------------', item)
+                // console.log('--- typeof item.domain ---', object, item['@id'].replace('#', '').toLowerCase())
+            }
+        }
+        // switch (typeof item.domain) {
+        //     case 'string':
+        // console.log('------- domain -------', object['@id'], item.domain)
+        // let objectDomain = initialize.find(object => object['@id'] === item.domain)
+        // item.domain = objectDomain
+        // break
+        // case "object":
+        //     for(let key in item.domain) {
+        //         console.log('------- domain -------', object['@id'], item.domain)
+        //     console.log('------- domain 2 -------', item.domain[key])
+        //     let objectDomain = initialize.find(object => object['@id'] === item.domain[key])
+        //     delete item.domain[key]
+        //     item.domain[key] = objectDomain
+        // }
+        // break
+        // default:
+        //     debugger
+        //     break
+        // }
+    }
+    // console.log('---------------------', item)
+}
+
+// for(let item of complex) {
+//     if('domain' in item) {
+//         if(Array.isArray(item.domain)) {
+//             for(let domain of item.domain) {
+// for(let property of initialize) {
+//
+// }
+// const property = initialize.find(data => data['@id'] === domain['@id'])
+
+// switch (property['@type']) {
+//     case "rdfs:Datatype":
+//         console.log('333333333333333333333333333333333333333333333333333', item)
+//         item[`${item['@id'].replace('#','')}`] = []
+//         break
+//     default:
+//         console.warn('Неизвестный тип', property['@type'])
+//         break
+//
+// }
+// console.log('-------- property 1', property)
+// console.log('-------- domain 1 --------',item['@id'].replace('#',''), item['@type'],'domain: ', domain['@id'], property)
+// }
+// } else {
+//     const property = initialize.find(data => data['@id'] === item.domain['@id'])
+// switch (property['@type']) {
+//     case "rdfs:Datatype":
+//         console.log('333333333333333333333333333333333333333333333333333', item)
+//         item[`${item['@id'].replace('#','')}`] = [{...property}]
+//         break
+//     default:
+//         console.warn('Неизвестный тип', property['@type'])
+//         break
+// }
+// console.log('-------- domain 2 --------',item['@id'].replace('#',''), item['@type'], 'domain: ', item.domain['@id'], property)
+// }
+// }
+// }
 
 console.log('-------------------||| context |||-------------------', {
     complex: complex,
@@ -76,7 +210,7 @@ Object.defineProperties(component.prototype, {
             ],
             '@id': '/DevOps',
             'version': '5.8.1',
-            'edges': [ ],
+            'edges': [],
             "weight": 1.0,
             'view': {
                 '@id': '/DevOps',
