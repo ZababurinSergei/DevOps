@@ -69,7 +69,6 @@ Object.defineProperties(component.prototype, {
 
             const initSignal = () => {
                 this.ping(this.host.signal).then(data => {
-                    console.log('ping result', data)
                     if(!data.status) {
                         initSignal()
                     } else {
@@ -84,7 +83,6 @@ Object.defineProperties(component.prototype, {
             initCors()
 
             this.pingId = setInterval(() => {
-                console.log('ping')
                 initSignal()
                 initCors()
             }, 14 * 60 * 1000);
