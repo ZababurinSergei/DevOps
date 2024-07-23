@@ -142,8 +142,7 @@ const Relation = [{
 const initialize = []
 const complex = []
 const objects = {}
-// const rangeYes = []
-// const rangeNo = []
+const result = []
 
 for (let item of context.definitions) {
     if ('domain' in item) {
@@ -158,14 +157,13 @@ for (let object in context['@context']) {
         if (context['@context'][object]['@id'].startsWith('cn') || context['@context'][object]['@id'].startsWith('dc')) {
             if (context['@context'][object]['@container']) {
                 if(context['@context'][object]['@type'] === '@id') {
-                    console.log('------------ 1 ------------',context['@context'][object],  object)
-                    objects[object] = [{
+                    result[object] = [{
                         '@type': context['@context'][object]['@id'].replace('cn:', '')
                     }]
                 } else {
                     if(context['@context'][object]['@type'].startsWith('cn:')) {
                         const type = context['@context'][object]['@type'].replace('cn:', '')
-                        objects[object] = [{
+                        result[object] = [{
                             '@type': type
                         }]
                     } else {
@@ -179,17 +177,17 @@ for (let object in context['@context']) {
                     const type = definition.range.replace('#', '')
 
                     if (type.trim() === 'xsd:string') {
-                        objects[object] = ''
+                        result[object] = ''
                     } else if (type.trim() === 'xsd:boolean') {
-                        objects[object] = false
+                        result[object] = false
                     } else if (type.trim() === 'xsd:float') {
-                        objects[object] = 0
+                        result[object] = 0
                     } else if( type.startsWith('https')) {
-                        objects[object] = ''
+                        result[object] = ''
                     } else if(type.trim() === 'rdfs:Resource') {
-                        objects[object] = ''
+                        result[object] = ''
                     } else {
-                        objects[object] = {
+                        result[object] = {
                             '@type': type
                         }
                     }
@@ -201,214 +199,71 @@ for (let object in context['@context']) {
     }
 }
 
-console.log('00000000000000000000000000000', {
-    objects: objects
-})
+// console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',result)
+// debugger
+for (let item of complex) {
+    switch (typeof item.domain) {
+        case 'string':
+            let objectDomain = initialize.find(object => object['@id'] === item.domain)
+            item.domain = objectDomain
+            break
+        case "object":
+            for (let key in item.domain) {
+                let objectDomain = initialize.find(object => object['@id'] === item.domain[key])
+                delete item.domain[key]
+                item.domain[key] = objectDomain
+            }
+            break
+        default:
+            debugger
+            break
+    }
+}
 
-// for(let object in objects) {
-//     for (let item of complex) {
-//         if (Array.isArray(item.domain)) {
-//             const id = item['@id'].replace('#', '')
-//             if(object === id) {
-//                 for (let domain of item.domain) {
-//
-//                     console.log('------------------------', domain)
-//                     // if (domain['@id'] === object['@id']) {
-//                     //     const name = item['@id'].replace('#', '')
-//                     //
-//                     //     if(!objects[name]['@container']) {
-//                     //         console.log('-------------- 1 ----------------', {
-//                     //             name: name,
-//                     //             object_1: objects[name],
-//                     //             item: item,
-//                     //             object_2: object
-//                     //         })
-//                     //     }
-//                     // }
-//                 }
-//                 // console.log('------------------------',object, id, item)
-//             }
-//         } else {
-//             // if (item.domain['@id'] === object['@id']) {
-//             //     const name = item['@id'].replace('#', '')
-//             //     object[name] = {}
-//             //
-//             //     if(objects[name]) {
-//             //         if(!objects[name]['@container']) {
-//             //             console.log('-------------- 2 ----------------', {
-//             //                 name: name,
-//             //                 object_1: objects[name],
-//             //                 item: item,
-//             //                 object_2: object
-//             //             })
-//             //         }
-//             //     } else {
-//             //         let objectName = null
-//             //         for(let key in objects) {
-//             //             if(objects[key]['@id'] === name) {
-//             //                 objectName = objects[key]
-//             //             }
-//             //         }
-//             //         console.log('-------------- 333333333333333 ----------------', {
-//             //             name: name,
-//             //             object: objectName,
-//             //             item: item
-//             //         })
-//             //     }
-//             // }
-//         }
-//     }
-// }
+for (let object of initialize) {
+    for (let item of complex) {
+        if (Array.isArray(item.domain)) {
+            for (let domain of item.domain) {
+                if (domain['@id'] === object['@id']) {
+                    const name = item['@id'].replace('#', '').toLowerCase()
 
-// for (let object of initialize) {
-//     for (let item of complex) {
-//         if (Array.isArray(item.domain)) {
-//             for (let domain of item.domain) {
-//                 if (domain['@id'] === object['@id']) {
-//                     const name = item['@id'].replace('#', '')
-//
-//                     if(!objects[name]['@container']) {
-//                         console.log('-------------- 1 ----------------', {
-//                             name: name,
-//                             object_1: objects[name],
-//                             item: item,
-//                             object_2: object
-//                         })
-//                     }
-//
-//                     // object[name] = {}
-//                 }
-//             }
-//         } else {
-//             if (item.domain['@id'] === object['@id']) {
-//                 const name = item['@id'].replace('#', '')
-//                 object[name] = {}
-//
-//                 if(objects[name]) {
-//                     if(!objects[name]['@container']) {
-//                         console.log('-------------- 2 ----------------', {
-//                             name: name,
-//                             object_1: objects[name],
-//                             item: item,
-//                             object_2: object
-//                         })
-//                     }
-//                 } else {
-//                     let objectName = null
-//                     for(let key in objects) {
-//                      if(objects[key]['@id'] === name) {
-//                          objectName = objects[key]
-//                      }
-//                     }
-//                     console.log('-------------- 333333333333333 ----------------', {
-//                         name: name,
-//                         object: objectName,
-//                         item: item
-//                     })
-//                 }
-//             }
-//         }
-//         switch (typeof item.domain) {
-//             case 'string':
-//         console.log('------- domain -------', object['@id'], item.domain)
-//         let objectDomain = initialize.find(object => object['@id'] === item.domain)
-//         item.domain = objectDomain
-//         break
-//         case "object":
-//             for(let key in item.domain) {
-//                 console.log('------- domain -------', object['@id'], item.domain)
-//             console.log('------- domain 2 -------', item.domain[key])
-//             let objectDomain = initialize.find(object => object['@id'] === item.domain[key])
-//             delete item.domain[key]
-//             item.domain[key] = objectDomain
-//         }
-//         break
-//         default:
-//             debugger
-//             break
-//         }
-//     }
-// }
+                    for(let key in result) {
+                        if(Array.isArray(result[key])) {
+                            if(`#${result[key][0]['@type']}` === object['@id']) {
+                                result[key][0][name] = {}
+                            }
+                        } else {
+                            if(`#${result[key]['@type']}` === object['@id']) {
+                                result[key][name] = {}
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            if (item.domain['@id'] === object['@id']) {
+                const name = item['@id'].replace('#', '').toLowerCase()
 
-// for (let item of complex) {
-//     switch (typeof item.domain) {
-//         case 'string':
-//             let objectDomain = initialize.find(object => object['@id'] === item.domain)
-//             item.domain = objectDomain
-//             break
-//         case "object":
-//             for (let key in item.domain) {
-//                 let objectDomain = initialize.find(object => object['@id'] === item.domain[key])
-//                 delete item.domain[key]
-//                 item.domain[key] = objectDomain
-//             }
-//             break
-//         default:
-//             debugger
-//             break
-//     }
-// }
-
-// console.log('------------------- CONTEXT -------------------',context['@context'],  objects)
-// for (let item of initialize) {
-//     if ('subClassOf' in item) {
-//         const result = initialize.find(data => data['@id'] === item.subClassOf)
-//         if (result) {
-//             item.subClassOf = result
-//         }
-//     }
-// }
-
-// for (let item of complex) {
-//     if ('range' in item) {
-//         const result = initialize.find(data => data['@id'] === item.range)
-//         if (result) {
-//             item.range = result
-//         }
-//     }
-// }
-
-// for(let item of complex) {
-//     if('domain' in item) {
-//         if(Array.isArray(item.domain)) {
-//             for(let domain of item.domain) {
-// for(let property of initialize) {
-//
-// }
-// const property = initialize.find(data => data['@id'] === domain['@id'])
-
-// switch (property['@type']) {
-//     case "rdfs:Datatype":
-//         console.log('333333333333333333333333333333333333333333333333333', item)
-//         item[`${item['@id'].replace('#','')}`] = []
-//         break
-//     default:
-//         console.warn('Неизвестный тип', property['@type'])
-//         break
-//
-// }
-// console.log('-------- property 1', property)
-// console.log('-------- domain 1 --------',item['@id'].replace('#',''), item['@type'],'domain: ', domain['@id'], property)
-// }
-// } else {
-//     const property = initialize.find(data => data['@id'] === item.domain['@id'])
-// switch (property['@type']) {
-//     case "rdfs:Datatype":
-//         console.log('333333333333333333333333333333333333333333333333333', item)
-//         item[`${item['@id'].replace('#','')}`] = [{...property}]
-//         break
-//     default:
-//         console.warn('Неизвестный тип', property['@type'])
-//         break
-// }
-// console.log('-------- domain 2 --------',item['@id'].replace('#',''), item['@type'], 'domain: ', item.domain['@id'], property)
-// }
-// }
-// }
+                for(let key in result) {
+                    if(Array.isArray(result[key])) {
+                        if(`#${result[key][0]['@type']}` === object['@id']) {
+                            result[key][0][name] = {}
+                            // debugger
+                        }
+                    } else {
+                        if(`#${result[key]['@type']}` === object['@id']) {
+                            result[key][name] = {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 console.log('-------------------||| context |||-------------------', {
     Relation: Relation,
-    objects: objects,
+    result: result,
     complex: complex,
     initialize: initialize
 })

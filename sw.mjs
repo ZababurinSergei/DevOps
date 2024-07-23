@@ -292,7 +292,6 @@ self.addEventListener('fetch', event => {
                                 console.error(e);
                             })
                     } else {
-                        // console.log('sssssssssssssssssssssssssssssssssssss',isOrigin,  scope,'ssssssssssssssssssaaaaaaaaaa', url.pathname)
                         const isTemplate = rootOpfs.includes('example3')
 
                         const html = url.pathname.split('/')
@@ -316,7 +315,8 @@ self.addEventListener('fetch', event => {
 
                         path = path.replaceAll("%20", ' ')
                         path = path.replaceAll("%E2%80%99", '’')
-
+                        path = decodeURI(path)
+                        console.log('------------------- path -------------------', path)
                         const options = getHeaders(destination, path)
                         return new Response(await readFile(path), options)
                     }
@@ -326,7 +326,7 @@ self.addEventListener('fetch', event => {
                 })
             );
         } else {
-            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', url, url.pathname)
+            // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', url, url.pathname)
         }
     } else {
         if(!isExclude) {
