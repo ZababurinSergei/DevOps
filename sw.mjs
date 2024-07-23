@@ -316,7 +316,7 @@ self.addEventListener('fetch', event => {
                         path = path.replaceAll("%20", ' ')
                         path = path.replaceAll("%E2%80%99", '’')
                         path = decodeURI(path)
-                        console.log('------------------- path -------------------', path)
+                        // console.log('------------------- path -------------------', path)
                         const options = getHeaders(destination, path)
                         return new Response(await readFile(path), options)
                     }
