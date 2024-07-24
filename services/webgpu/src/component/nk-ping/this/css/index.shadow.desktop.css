@@ -2,7 +2,7 @@
     position: relative;
     flex-direction: column;
     flex-grow: 1;
-    background: var(--Input, #F5F7FA);
+    /*background: var(--Input, #F5F7FA);*/
 }
 
 .relation {
