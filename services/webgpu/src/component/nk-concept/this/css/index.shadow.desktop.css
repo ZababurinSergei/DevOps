@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    min-height: 84px;
 }
 
 .fonts-button {
@@ -49,7 +50,13 @@
     box-sizing: border-box;
     padding: 12px 16px;
     flex-direction: row;
-    min-height: 52px;
+}
+
+summary {
+    min-height: 60px;
+    display: flex;
+    flex-direction: row;
+    /*justify-content: center;*/
 }
 
 .test {
@@ -75,4 +82,9 @@ pre {
     /*box-shadow: 0px 0.26vw 1.15vw rgba(148, 152, 170, 0.48);*/
     max-height: 50dvh;
     overflow-y: auto;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
 }
