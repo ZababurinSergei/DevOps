@@ -142,7 +142,23 @@ const Relation = [{
 const initialize = []
 const complex = []
 const objects = {}
-const result = []
+const result = {}
+
+const type = (type) => {
+    if (type.trim() === 'xsd:string') {
+        return ''
+    } else if (type.trim() === 'xsd:boolean') {
+        return false
+    } else if (type.trim() === 'xsd:float') {
+        return 0
+    } else if( type.startsWith('https')) {
+        return ''
+    } else if(type.trim() === 'rdfs:Resource') {
+        return ''
+    } else {
+        return {}
+    }
+}
 
 for (let item of context.definitions) {
     if ('domain' in item) {
@@ -157,12 +173,14 @@ for (let object in context['@context']) {
         if (context['@context'][object]['@id'].startsWith('cn') || context['@context'][object]['@id'].startsWith('dc')) {
             if (context['@context'][object]['@container']) {
                 if(context['@context'][object]['@type'] === '@id') {
+                    // console.log('KKKKKKKKKKKK 222 KKKKKKKKKKKKK', object)
                     result[object] = [{
                         '@type': context['@context'][object]['@id'].replace('cn:', '')
                     }]
                 } else {
                     if(context['@context'][object]['@type'].startsWith('cn:')) {
                         const type = context['@context'][object]['@type'].replace('cn:', '')
+                        // console.log('KKKKKKKKKKKKKKKKKKKKKKKKK', object)
                         result[object] = [{
                             '@type': type
                         }]
@@ -187,7 +205,11 @@ for (let object in context['@context']) {
                     } else if(type.trim() === 'rdfs:Resource') {
                         result[object] = ''
                     } else {
-                        result[object] = {
+                        result[object] = type === 'Relation'? {
+                            '@id': Relation,
+                            '@type': type,
+                            'label': Relation.map(item => item.uri.split('/')[2])
+                        }: {
                             '@type': type
                         }
                     }
@@ -198,7 +220,6 @@ for (let object in context['@context']) {
         }
     }
 }
-
 // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',result)
 // debugger
 for (let item of complex) {
@@ -229,12 +250,14 @@ for (let object of initialize) {
 
                     for(let key in result) {
                         if(Array.isArray(result[key])) {
-                            if(`#${result[key][0]['@type']}` === object['@id']) {
-                                result[key][0][name] = {}
+                            if(`#${result[key][0]['@type']}` === object['@id'] && key !== name) {
+                                // console.log('666666666666666666666666666', name)
+                                result[key][0][name] = type(object['@type'])
                             }
                         } else {
-                            if(`#${result[key]['@type']}` === object['@id']) {
-                                result[key][name] = {}
+                            if(`#${result[key]['@type']}` === object['@id'] && key !== name) {
+                                // console.log('77777777777777777777', name)
+                                result[key][name] = name === 'rel'? Relation: type(object['@type'])
                             }
                         }
                     }
@@ -246,13 +269,14 @@ for (let object of initialize) {
 
                 for(let key in result) {
                     if(Array.isArray(result[key])) {
-                        if(`#${result[key][0]['@type']}` === object['@id']) {
-                            result[key][0][name] = {}
-                            // debugger
+                        if(`#${result[key][0]['@type']}` === object['@id']  && key !== name) {
+                            // console.log('12222222222222222222222', name)
+                            result[key][0][name] = type(object['@type'])
                         }
                     } else {
-                        if(`#${result[key]['@type']}` === object['@id']) {
-                            result[key][name] = {}
+                        if(`#${result[key]['@type']}` === object['@id'] && key !== name) {
+                            // console.log('5555555555555555555555', name)
+                            result[key][name] = type(object['@type'])
                         }
                     }
                 }
@@ -261,13 +285,14 @@ for (let object of initialize) {
     }
 }
 
-console.log('-------------------||| context |||-------------------', {
-    Relation: Relation,
-    result: result,
-    complex: complex,
-    initialize: initialize
-})
+// console.log('-------------------||| context |||-------------------', {
+//     Relation: Relation,
+//     result: result,
+//     complex: complex,
+//     initialize: initialize
+// })
 
+// debugger
 const name = 'nk-concept';
 
 const component = await Component();
@@ -278,6 +303,10 @@ Object.defineProperties(component.prototype, {
     html: {
         value: null,
         writable: true
+    },
+    object: {
+      value: result,
+      writable: false
     },
     edge: {
         value: () => {
@@ -323,7 +352,9 @@ Object.defineProperties(component.prototype, {
                 definitions: this.shadowRoot.querySelector('.definitions')
             }
 
-            this.html.definitions.textContent = JSON.stringify(complex, null, 4)
+            // console.log('dddddddddddddd',this.object,  JSON.stringify(this.object))
+            // debugger
+            this.html.definitions.textContent = JSON.stringify(this.object, null, 4)
 
             return true
         },
