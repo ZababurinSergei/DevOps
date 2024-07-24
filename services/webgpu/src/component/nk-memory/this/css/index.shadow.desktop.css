@@ -177,7 +177,7 @@ h2 {
     text-transform: uppercase;
 }
 
-.nk-connects {
+.nk-memory {
     display: flex;
     flex-direction: column;
     align-self: flex-start;
@@ -185,4 +185,11 @@ h2 {
     box-sizing: border-box;
     box-shadow: 0px 0.47vw 0.94vw 0px #88919d4d;
     padding: 16px 12px;
+    width: 100%;
+}
+
+.nk-connects {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }

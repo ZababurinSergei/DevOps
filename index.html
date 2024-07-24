@@ -90,19 +90,20 @@
             <div class="nk-shared-protocol">
                 <slot name="nk-shared-protocol"></slot>
             </div>
-            <div class="wrapper">
-                <h2>Scheduler</h2>
+            <h2>Connects</h2>
+            <div class="nk-memory">
+<!--                <h2>Scheduler</h2>-->
                 <div class="settings">
                     <div class="item hardwareConcurrency"><span class="key">Колличество логических процессоров для воркеров:</span><span
                             class="value"></span></div>
                 </div>
                 <div class="memory-queue"></div>
-            </div>
-            <div class="nk-peer">
-                <h2>Connects</h2>
-                <div class="nk-connects">
-                    <slot name="nk-ping"></slot>
-                    <slot name="nk-peer"></slot>
+                <div class="nk-peer">
+
+                    <div class="nk-connects">
+                        <slot name="nk-ping"></slot>
+                        <slot name="nk-peer"></slot>
+                    </div>
                 </div>
             </div>
             <div class="nk-sqlite">
