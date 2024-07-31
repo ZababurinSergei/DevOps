@@ -5,9 +5,6 @@ const name = 'nk-peer';
 
 const component = await Component();
 
-component.observedAttributes = ['open', 'disabled'];
-
-
 Object.defineProperties(component.prototype, {
     _peer: {
         value: null,
@@ -178,26 +175,6 @@ Object.defineProperties(component.prototype, {
     },
     terminate: async function () {
         this._peer.destroy();
-    },
-    onMessage:{
-        value: function(event) { },
-        writable: false
-    },
-    open: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
     }
 });
 

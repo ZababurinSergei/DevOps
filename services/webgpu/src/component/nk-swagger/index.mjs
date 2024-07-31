@@ -4,28 +4,7 @@ const name = 'nk-swagger'
 
 const component = await Component()
 
-component.observedAttributes = ["open", "disabled"];
-
 Object.defineProperties(component.prototype, {
-    open: {
-        set(value) {
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            if (value) {
-                this.setAttribute('disabled', '');
-            } else {
-                this.removeAttribute('disabled');
-            }
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
-    },
     html: {
         value: null,
         writable: true

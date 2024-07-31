@@ -5,25 +5,7 @@ const name = 'mss-settings'
 
 const component = await Component()
 
-component.observedAttributes = ["open", "disabled"];
-
 Object.defineProperties(component.prototype, {
-  open: {
-    set(value) {
-      console.log('----- value -----', value)
-    },
-    get() {
-      return this.hasAttribute('open');
-    }
-  },
-  disabled: {
-    set(value) {
-      console.log('----- value -----', value)
-    },
-    get() {
-      return this.hasAttribute('disabled');
-    }
-  },
   mocha: {
     value: undefined,
     writable: true

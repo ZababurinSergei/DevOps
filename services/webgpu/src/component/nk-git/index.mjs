@@ -5,8 +5,6 @@ import { nkOpfs } from './this/index.mjs'
 const name = 'nk-git';
 const component = await Component();
 
-component.observedAttributes = ['open', 'disabled'];
-
 const forgetSavedPassword = (url) => {
     localStorage.removeItem('pass');
     return true;
@@ -422,22 +420,6 @@ Object.defineProperties(component.prototype, {
             }
         },
         writable: false
-    },
-    open: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
     }
 });
 

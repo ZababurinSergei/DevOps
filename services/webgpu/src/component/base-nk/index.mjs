@@ -23,6 +23,10 @@ let config = {
     branch: 'main'
 }
 const BaseClass = class extends HTMLElement {
+    static get observedAttributes() {
+        return ["open", "disabled"];
+    }
+
     _isOnload = false;
     controller = {};
     _isBroadcastChannel = false
@@ -50,6 +54,7 @@ const BaseClass = class extends HTMLElement {
     get api() {
         return swagger
     }
+
     set broadcastChannel(value) {
         if(!this._isBroadcastChannel) {
             this._broadcastChannel[0].value = value;
@@ -153,13 +158,14 @@ const BaseClass = class extends HTMLElement {
                             // debugger
                             const bindOnMessage = item.hasOwnProperty('callback') ? item.callback.bind(this) : onMessage.bind(this);
                             // bindOnMessage(this[`_${item.component}`], item);
-                            bindOnMessage(component, item);
+                     component.observedAttributes = ["open", "disabled"];       bindOnMessage(component, item);
                             return false;
                             // }
                         }
                         return true;
                         break;
                     case 'main':
+                        alert('Не надо использовать main, Используйте self что бы определить обработчик внутри вызываемого компонента')
                         if (component) {
                             component.self.onMessage(item);
                             return false
@@ -208,20 +214,6 @@ const BaseClass = class extends HTMLElement {
     get task() {
         return {
             task: this._task,
-            new: structuredClone({
-                tagName: this.tagName.toLowerCase(),
-                uuid: this.dataset.uuid,
-                component: this._broadcastChannel[0].await,
-                type: ['self', 'main', 'worker'],
-                action: 'default',
-                value: '',
-                message: '',
-                data: {
-                    id: '',
-                    type: '',
-                    phase: ''
-                }
-            })
         };
     }
 
@@ -309,8 +301,8 @@ const BaseClass = class extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if ('attribute' in this) {
-            this?.attribute({
+        if ('attribute' in this && newValue) {
+            this.attribute({
                 name: name,
                 oldValue: oldValue,
                 newValue: newValue
@@ -319,7 +311,11 @@ const BaseClass = class extends HTMLElement {
     }
 
     adoptedCallback() {
-
+        if ('adopted' in this) {
+            this.adopted({
+                name: name
+            });
+        }
     }
 };
 
@@ -333,4 +329,4 @@ export const Component = (() => {
         const baseComponent = new Function('swagger','config','onMessage', 'eventMessages', 'store', 'uuidv', 'servicePath', 'init', 'onload', body);
         return baseComponent(swagger, config, onMessage, eventMessages, store, uuidv, servicePath, init, onload, body);
     };
-})(new URL('./', import.meta.url));
+})();

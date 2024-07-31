@@ -5,8 +5,6 @@ const name = 'fer-select'
 
 const component = await Component()
 
-component.observedAttributes = ["open", "disabled"];
-
 Object.defineProperties(component.prototype, {
     '_nk-git': {
         value: null,

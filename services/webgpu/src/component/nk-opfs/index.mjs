@@ -6,10 +6,7 @@ const component = await Component();
 
 const opfsWorkerUrl = new URL('./worker.js', import.meta.url);
 
-component.observedAttributes = ['open', 'disabled'];
-
 const isWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
-
 async function getHandleFromPath(path = '') {
     const pathParts = path.split('/').filter(part => part.length > 0);
     let currentHandle = await navigator.storage.getDirectory();
@@ -617,22 +614,6 @@ Object.defineProperties(component.prototype, {
             }
         },
         writable: false
-    },
-    open: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
     }
 });
 

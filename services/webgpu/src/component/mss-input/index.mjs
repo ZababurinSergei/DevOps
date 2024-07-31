@@ -5,8 +5,6 @@ const name = 'mss-input'
 
 const component = await Component()
 
-component.observedAttributes = ["open", "disabled"];
-
 Object.defineProperties(component.prototype, {
     '_nk-git': {
         value: null,
@@ -42,14 +40,6 @@ Object.defineProperties(component.prototype, {
     erase: {
         get: function() {
             this.shadowRoot.querySelector('input').value = ''
-        }
-    },
-    open: {
-        set(value) {
-
-        },
-        get() {
-            return this.hasAttribute('open');
         }
     },
     html: {

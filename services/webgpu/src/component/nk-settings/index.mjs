@@ -4,8 +4,6 @@ const name = 'nk-settings';
 
 const component = await Component();
 
-component.observedAttributes = ['open', 'disabled'];
-
 Object.defineProperties(component.prototype, {
     html: {
         value: null,
@@ -27,26 +25,6 @@ Object.defineProperties(component.prototype, {
             return this.html
         },
         writable: true
-    },
-    onMessage:{
-        value: function(event) { },
-        writable: false
-    },
-    open: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
     }
 });
 

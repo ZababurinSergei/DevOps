@@ -5,8 +5,6 @@ const name = 'nk-mocha'
 
 const component = await Component()
 
-component.observedAttributes = ["open", "disabled"];
-
 Object.defineProperties(component.prototype, {
     mocha: {
         value: mocha,
@@ -76,22 +74,6 @@ Object.defineProperties(component.prototype, {
             })
         },
         writable: false
-    },
-    open: {
-        set(value) {
-            console.log('----- value -----', value)
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            console.log('----- value -----', value)
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
     },
     init: {
         value: async function (value) {

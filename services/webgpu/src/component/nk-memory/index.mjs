@@ -14,8 +14,6 @@ if (window.SharedWorker) {
     alert('shared worker не поддерживается')
 }
 
-component.observedAttributes = ["open", "disabled"];
-
 Object.defineProperties(component.prototype, {
     sharedWorker: {
         value: new SharedWorker(urlSharedWorker, {
@@ -112,22 +110,6 @@ Object.defineProperties(component.prototype, {
     init: {
         value: function(value) { },
         writable: false
-    },
-    open: {
-        set(value) {
-            console.log('----- value -----', value)
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            console.log('----- value -----', value)
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
     }
 });
 

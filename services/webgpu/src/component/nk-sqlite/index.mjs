@@ -4,8 +4,6 @@ import { sqlite3Worker, editor } from './this/index.mjs'
 const name = 'nk-sqlite';
 const component = await Component();
 
-component.observedAttributes = ['open', 'disabled'];
-
 Object.defineProperties(component.prototype, {
     html: {
         value: null,
@@ -129,22 +127,6 @@ FROM cars;
 
         },
         writable: false
-    },
-    open: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('open');
-        }
-    },
-    disabled: {
-        set(value) {
-            console.log('----- value -----', value);
-        },
-        get() {
-            return this.hasAttribute('disabled');
-        }
     }
 });
 
