@@ -1,0 +1,6 @@
+@import url('./App.css');
+
+:host, img {
+    width: auto;
+    height: 100%;
+}

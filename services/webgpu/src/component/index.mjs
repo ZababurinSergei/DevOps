@@ -1,4 +1,6 @@
 import { Component } from './base-nk/index.mjs';
+import obApp from './ob-app/index.mjs'
+import obLink from './ob-link/index.mjs'
 import nkSqlite from './nk-sqlite/index.mjs'
 import nkConcept from './nk-concept/index.mjs'
 import nkPing from './nk-ping/index.mjs'

@@ -22,18 +22,17 @@ Object.defineProperties(component.prototype, {
             return this.hasAttribute('disabled');
         }
     },
-    _test2: {
-        value: "",
-        writable: true
+    init: {
+        value: async () => {
+
+        },
+        writable: false
     },
-    test2: {
-        set(value) {
-            this._test = value
+    terminate: {
+        value: async () => {
+
         },
-        get() {
-            return this._test
-        },
-        enumerable: true
+        writable: false
     }
 });
 
